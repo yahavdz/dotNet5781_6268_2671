@@ -10,7 +10,7 @@ namespace dotNet5781_01_6268_4032
     {
         static void Main(string[] args)
         {
-            0
+            
         }
     }
 }
