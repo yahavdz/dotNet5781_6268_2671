@@ -7,29 +7,25 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_01_6268_4032
 {
-    class Buss
+    class Bus
     {
-        public int busID { set; get; }
+        public static int maxKmHandler = 20000;
+        public static int maxKmFule = 1200;
+        public string busID { set; get; }
         public int km { set; get; }
         public int treatmentKm { set; get; }
         public int kmFule { set; get; }
         public DateTime treatmentDate { set; get; }
 
-        public void treatment(int fule)
+        public void treatment()
         {
-            treamentKm = km;
+            treatmentKm = km;
             treatmentDate = DateTime.Now;
         }
-        public void fule()
+        public void refueling()
         {
-            kmFule = 1200;
+            kmFule = maxKmFule;
         }
-        public int bussID { set; get; }
-        public int km { set; get; }
-        public int kmHandler { set; get; }
-        public int kmFule { set; get; }
-        public DateTime date { set; get; }
-        private static int maxKmHandler = 20000;
-        private static int maxKmFule = 1200;
+
     }
 }
