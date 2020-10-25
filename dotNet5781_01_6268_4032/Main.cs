@@ -11,6 +11,10 @@ namespace dotNet5781_01_6268_4032
         static void Main(string[] args)
         {
             List<Bus> busList = new List<Bus>();
+            Bus b1 = new Bus();
+            Bus b2 = new Bus();
+
+            b1.fule();
         }
     }
 }
