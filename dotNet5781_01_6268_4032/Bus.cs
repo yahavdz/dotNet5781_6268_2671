@@ -11,10 +11,10 @@ namespace dotNet5781_01_6268_4032
     {
         public string bussID { set; get; }
         public int mileage { set; get; }
-        public int treatmentKm { set; get; }
-        public int kmFule { set; get; }
+        public int mileageTreatment { set; get; }
+        public int mileageFule { set; get; }
         public DateTime treatmentDate { set; get; }
-        private static int maxKmHandler = 20000;
-        private static int maxKmFule = 1200;
+        private static int maxMileageTreatment = 20000;
+        private static int maxMileageFule = 1200;
     }
 }
