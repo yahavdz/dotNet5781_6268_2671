@@ -27,22 +27,23 @@ namespace dotNet5781_02_6268_4032
 
         public void addStation(BusLineStation station)
         {
-            
+           
+            //TODO
         }
 
-        public void removeStation(BusLineStation station)
+        public void removeStation(BusLineStation station)//remove the station from the list
         {
-            Stations.RemoveAt(station);
+            Stations.Remove(station);
         }
 
         public bool isStationExist(BusLineStation station)
         {
-           
+            return Stations.Any(x => x.BusStationKey == station.BusStationKey);
         }
 
         public double getDistanceBetweenStations(BusLineStation station1, BusLineStation station2)
         {
-            //TODO
+            //נוסחאת מרחק בין 2 נקודות
         }
 
         public double getTimeBetweenStations(BusLineStation station1, BusLineStation station2)

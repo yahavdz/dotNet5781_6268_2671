@@ -12,6 +12,6 @@ namespace dotNet5781_02_6268_4032
         public double DistanceFromPreviousStation { get; set; }
         public double TimeFromPreviousStation { get; set; } // TODO double ?
         
-        public BusLineStation
+        public double 
     }
 }
