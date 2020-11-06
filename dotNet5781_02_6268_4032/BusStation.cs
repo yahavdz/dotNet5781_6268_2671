@@ -21,7 +21,6 @@ namespace dotNet5781_02_6268_4032
             }
             get { return busStationKey;  }
         }
-
         private double latitude;
         public double Latitude { 
             set

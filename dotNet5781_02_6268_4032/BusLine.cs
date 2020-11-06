@@ -27,7 +27,7 @@ namespace dotNet5781_02_6268_4032
 
         public void addStation(BusLineStation station)
         {
-           
+
             //TODO
         }
 
@@ -43,12 +43,34 @@ namespace dotNet5781_02_6268_4032
 
         public double getDistanceBetweenStations(BusLineStation station1, BusLineStation station2)
         {
-            (Math.Pow(station1.Latitude - station2.Latitude, 2) + Math.Pow(station1.Longitude - station2.Longitude, 2)) < (d * d);
+            return Math.Sqrt(Math.Pow(station2.Latitude - station1.Latitude, 2) + Math.Pow(station2.Longitude - station1.Longitude, 2) * 1.0);
         }
 
         public double getTimeBetweenStations(BusLineStation station1, BusLineStation station2)
         {
-            //TODO
+
+            int key = 0;
+            int i = 0;
+            double timeCounter = 0;
+            for (; i < Stations.Count(); ++i)
+            {
+                if (Stations[i].BusStationKey == station1.BusStationKey)
+                {
+                    key = station2.BusStationKey;
+                    break;
+                }
+                if (Stations[i].BusStationKey == station2.BusStationKey)
+                {
+                    key = station1.BusStationKey;
+                    break;
+                }
+            }
+            i += 1;
+            for (; Stations[i-1].BusStationKey == key; ++i)
+            {
+                timeCounter += Stations[i].TimeFromPreviousStation;
+            }
+            return timeCounter;
         }
 
         public BusLine getSubLineBetweenStations(BusLineStation station1, BusLineStation station2)
