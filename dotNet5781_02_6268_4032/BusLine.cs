@@ -11,11 +11,11 @@ namespace dotNet5781_02_6268_4032
 {
     public class BusLine : IComparable<BusLine>
     {
-        List<BusLineStation> Stations { get; set; }
-        int busLine { get; set; }
-        BusLineStation FirstStation { get; set; }
-        BusLineStation LastStation { get; set; }
-        Area BusArea { get; set; }
+        public List<BusLineStation> Stations { get; set; }
+        public int busLine { get; set; }
+        public BusLineStation FirstStation { get; set; }
+        public BusLineStation LastStation { get; set; }
+        public Area BusArea { get; set; }
 
         // methods:
 
@@ -43,7 +43,7 @@ namespace dotNet5781_02_6268_4032
 
         public double getDistanceBetweenStations(BusLineStation station1, BusLineStation station2)
         {
-            //נוסחאת מרחק בין 2 נקודות
+            (Math.Pow(station1.Latitude - station2.Latitude, 2) + Math.Pow(station1.Longitude - station2.Longitude, 2)) < (d * d);
         }
 
         public double getTimeBetweenStations(BusLineStation station1, BusLineStation station2)
