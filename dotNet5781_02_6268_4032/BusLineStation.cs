@@ -10,8 +10,7 @@ namespace dotNet5781_02_6268_4032
     public class BusLineStation : BusStation
     {
         public double DistanceFromPreviousStation { get; set; }
-        public double TimeFromPreviousStation { get; set; } // TODO double ?
-        
-        public double 
+        public double TimeFromPreviousStation { get; set; } 
+
     }
 }

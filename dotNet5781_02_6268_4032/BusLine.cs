@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,14 +23,18 @@ namespace dotNet5781_02_6268_4032
 
         public override string ToString()
         {
-            //TODO
-            return "";
+            string busLIneStations ="";
+            foreach (BusLineStation currentLine in Stations)
+            {
+                busLIneStations += currentLine.BusStationKey.ToString();
+                busLIneStations += " , ";
+            }
+                return "The number of the Line is: "+ busLine +" , The Area of the Line is: " + BusArea + " , The bus station key is: "+ busLIneStations;
         }
 
-        public void addStation(BusLineStation station)
+        public void addStation(BusLineStation station, int index)
         {
-
-            //TODO
+            Stations.Insert(index, station);
         }
 
         public void removeStation(BusLineStation station)//remove the station from the list
@@ -66,7 +72,7 @@ namespace dotNet5781_02_6268_4032
                 }
             }
             i += 1;
-            for (; Stations[i-1].BusStationKey == key; ++i)
+            for (; Stations[i - 1].BusStationKey == key; ++i)
             {
                 timeCounter += Stations[i].TimeFromPreviousStation;
             }
@@ -75,20 +81,53 @@ namespace dotNet5781_02_6268_4032
 
         public BusLine getSubLineBetweenStations(BusLineStation station1, BusLineStation station2)
         {
-            //TODO
+            BusLine subBus = new BusLine();
+            int key = 0;
+            int i = 0;
+            for (; i < Stations.Count(); ++i)
+            {
+                if (Stations[i].BusStationKey == station1.BusStationKey)
+                {
+                    key = station2.BusStationKey;
+                    break;
+                }
+                if (Stations[i].BusStationKey == station2.BusStationKey)
+                {
+                    key = station1.BusStationKey;
+                    break;
+                }
+            }
+            i += 1;
+            for (; Stations[i - 1].BusStationKey == key; ++i)
+            {
+                subBus.Stations.Add(Stations[i]);
+            }
+            return subBus;
         }
 
         public int CompareTo(BusLine busLine)
         {
-            if (busLine == null) return 1;
-            // TODO
+            double timeCounter1 = 0;
+            double timeCounter2 = 0;
+            foreach (BusLineStation currentLine in Stations)
+            {
+                timeCounter1 += currentLine.TimeFromPreviousStation;
+            }
+            foreach (BusLineStation currentLine in busLine.Stations)
+            {
+                timeCounter2 += currentLine.TimeFromPreviousStation;
+            }
+            return timeCounter1.CompareTo(timeCounter2);
         }
-
+    }
+    public enum Area {
+        General,
+        North,
+        South,
+        Center,
+        Jerusalem
 
     }
-
-    // TODO
-    public enum Area { }
 
 
 }
