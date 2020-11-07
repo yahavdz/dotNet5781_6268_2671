@@ -19,15 +19,17 @@ namespace dotNet5781_02_6268_4032
         }
         public List<BusLine> getBusLinesOfStation(BusStation busStation)
         {
-
+            
         }
         public List<BusLine> getBusListByLengthOfRide(BusCollection busCollection)
         {
 
         }
-        public void index(int value)
+        public BusLine indexer(int value)
         {
+           return this.BusLines.FirstOrDefault(x => x.busLine == value);
 
         }
+
     }
 }
