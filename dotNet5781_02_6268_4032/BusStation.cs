@@ -14,8 +14,7 @@ namespace dotNet5781_02_6268_4032
             set { 
                 if (value < 0 || value > 999999)
                 {
-                    Console.WriteLine("ERROR - BusStationKey must be positive and with at most 6 digits");
-                  
+                    //TODO exception
                 }
                 busStationKey = value;
             }
@@ -27,7 +26,7 @@ namespace dotNet5781_02_6268_4032
             {
                 if (value < -180 || value > 180)
                 {
-                    Console.WriteLine("ERROR - Latitude must a number between -180 to 180");
+                    //TODO exception
 
                 }
                 else
@@ -42,7 +41,7 @@ namespace dotNet5781_02_6268_4032
             {
                 if (value < -90 || value > 90)
                 {
-                    Console.WriteLine("ERROR - Longitude must be a number between -90 to 90");
+                    //TODO exception
 
                 }
                 else
@@ -51,9 +50,16 @@ namespace dotNet5781_02_6268_4032
             get { return longitude; }
         }
 
-
         public string address { set; get; }
         //TODO
+
+        public BusStation(int busStationKey1, double latitude1, double longitude1, string address1)
+        {
+            BusStationKey = busStationKey1;
+            Latitude = latitude1;
+            Longitude = longitude1;
+            address = address1;
+        }
 
 
         // methods:
