@@ -10,7 +10,7 @@ namespace dotNet5781_02_6268_4032
     {
         public StationIsNotExistException(){}
 
-        public StationIsNotExistException(int msg) : base(String.Format("The Station is not exist ,the key you entered is: {0}", msg)) { }
+        public StationIsNotExistException(int stationKey) : base(String.Format("The Station is not exist ,the key you entered is: {0}", stationKey)) { }
 
 
     }

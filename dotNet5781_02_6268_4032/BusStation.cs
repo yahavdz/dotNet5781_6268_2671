@@ -14,7 +14,7 @@ namespace dotNet5781_02_6268_4032
             set { 
                 if (value < 0 || value > 999999)
                 {
-                    //TODO exception
+                    throw new InvalidIndexException(BusStationKey);
                 }
                 busStationKey = value;
             }
@@ -26,7 +26,7 @@ namespace dotNet5781_02_6268_4032
             {
                 if (value < -180 || value > 180)
                 {
-                    //TODO exception
+                    throw new InvalidLatitudeException(latitude);
 
                 }
                 else
@@ -41,7 +41,7 @@ namespace dotNet5781_02_6268_4032
             {
                 if (value < -90 || value > 90)
                 {
-                    //TODO exception
+                    throw new InvalidLongitudeException(longitude);
 
                 }
                 else

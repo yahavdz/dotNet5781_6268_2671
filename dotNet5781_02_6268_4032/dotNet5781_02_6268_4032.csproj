@@ -46,6 +46,8 @@
     <Compile Include="BusCollection.cs" />
     <Compile Include="InvalidIndexException.cs" />
     <Compile Include="BusLine.cs" />
+    <Compile Include="InvalidLatitudeException.cs" />
+    <Compile Include="InvalidLongitudeException.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BusStation.cs" />

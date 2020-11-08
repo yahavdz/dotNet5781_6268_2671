@@ -15,8 +15,8 @@ namespace dotNet5781_02_6268_4032
     {
         public List<BusLineStation> Stations { get; set; }
         public int busLine { get; set; }
-        private BusLineStation firstStation;
-        private BusLineStation lastStation;
+        public BusLineStation firstStation;
+        public BusLineStation lastStation;
         public Area BusArea { get; set; }
 
         // methods:

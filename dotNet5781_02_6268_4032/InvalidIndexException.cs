@@ -9,6 +9,6 @@ namespace dotNet5781_02_6268_4032
     class InvalidIndexException: Exception
     {
         public InvalidIndexException() { }
-        public InvalidIndexException(int msg) : base(String.Format("Invalid Index : {0}", msg)) { }
+        public InvalidIndexException(int msg) : base(String.Format("Invalid Index :{0}, the index must be between 0 - 999999", msg)) { }
     }
 }
