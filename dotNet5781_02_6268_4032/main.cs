@@ -11,7 +11,7 @@ namespace dotNet5781_02_6268_4032
         static void Main(string[] args)
         {
             //assumption: All stations must be entered manually so that the user has ready information and does not have to configure in the console
-            int k = 0;
+            int k = 1;
             Random random = new Random();
             BusCollection busCo = new BusCollection();
             for (int i = 0; i < 10; i++)
@@ -26,7 +26,7 @@ namespace dotNet5781_02_6268_4032
                     if (j == 0)
                         bls.DistanceFromPreviousStation = 0;
                     else
-                        bls.DistanceFromPreviousStation = Math.Sqrt(Math.Pow(bls.Latitude - stations[j - 1].Latitude, 2) + Math.Pow(bls.Longitude - stations[j - 1].Longitude, 2) * 1.0);
+                        bls.DistanceFromPreviousStation = Math.Sqrt(Math.Pow(bls.Latitude* 110.574 - stations[j - 1].Latitude * 110.574, 2) + Math.Pow(bls.Longitude * 111.320 * Math.Cos(bls.Latitude) - stations[j - 1].Longitude * 111.320 * Math.Cos(bls.Latitude), 2) * 1.0);
 
                     stations.Add(bls);
                     k++;                    
@@ -43,7 +43,7 @@ namespace dotNet5781_02_6268_4032
                 busCo[2].addStation(busCo[3].Stations[i], i);
             }
 
-            Console.WriteLine("Please enter your choise:\n 1: To add\n 2: To delete\n 3: To search\n 4: To print\n 5: exit\n");
+            Console.WriteLine("Please enter your choise:\n 1: To add\n 2: To delete\n 3: To search\n 4: To print\n 5: exit");
             userChoiceEnum choice; // the definition is under the main
             Enum.TryParse(Console.ReadLine(), true, out choice);
             while (choice != userChoiceEnum.exit)
@@ -63,6 +63,7 @@ namespace dotNet5781_02_6268_4032
                                 Enum.TryParse(Console.ReadLine(), out Area myStatus);
                                 BusLine newBus = new BusLine(line, myStatus);
                                 busCo.addBus(newBus);
+                               
                             }
                             catch (Exception ex)
                             // assumption: the catch can get general Exception, bc all the catches will do the same
@@ -122,7 +123,6 @@ namespace dotNet5781_02_6268_4032
                                 Console.WriteLine("please enter the station key you want to delete: ");
                                 int stationdel = Int32.Parse(Console.ReadLine());
                                 busCo[busDel].removeStation(stationdel);
-
                             }
                             catch (Exception ex)
                             // assumption: the catch can get general Exception, bc all the catches will do the same
@@ -147,7 +147,7 @@ namespace dotNet5781_02_6268_4032
                         break;
 
                 }
-                Console.WriteLine("Please enter your choise:\n 1: To add\n 2: To delete\n 3: To search\n 4: To print\n 5: exit\n");
+                Console.WriteLine("Please enter your choise:\n 1: To add\n 2: To delete\n 3: To search\n 4: To print\n 5: exit");
                 Enum.TryParse(Console.ReadLine(), true, out choice); // convert the input to the enum and enter it into choice
             }
         }
