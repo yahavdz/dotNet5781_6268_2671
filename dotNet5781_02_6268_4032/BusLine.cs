@@ -20,7 +20,8 @@ namespace dotNet5781_02_6268_4032
         public Area BusArea { get; set; }
 
         // methods:
-        public BusLine() { }
+        public BusLine() {  }
+        public BusLine(int busLine1, Area BusArea1) { busLine = busLine1; BusArea = BusArea1; }
         public BusLine(List<BusLineStation> Stations1, int busLine1, BusLineStation firstStation1, BusLineStation lastStation1, Area BusArea1)
         {
             Stations = new List<BusLineStation>();
@@ -48,7 +49,7 @@ namespace dotNet5781_02_6268_4032
         {
             if (index < 0 || index > Stations.Count())
                 throw new InvalidIndexException(index);
-            if (isStationExist(station))
+            if (isStationExist(station.BusStationKey))
                 throw new StationAlreadyExistException(station.BusStationKey);
             if (index == Stations.Count())
                 lastStation = station;
@@ -58,33 +59,33 @@ namespace dotNet5781_02_6268_4032
 
         }
 
-        public void removeStation(BusLineStation station)//remove the station from the list
+        public void removeStation(int keystation)//remove the station from the list
         {
-            if (station.BusStationKey == firstStation.BusStationKey)
+            if (keystation == firstStation.BusStationKey)
                 firstStation = Stations[1];
-            if (station.BusStationKey == lastStation.BusStationKey)
+            if (keystation == lastStation.BusStationKey)
                 lastStation = Stations[Stations.Count() - 2];
-            if (!isStationExist(station))
+            if (!isStationExist(keystation))
             {
-                throw new StationIsNotExistException(station.BusStationKey);
+                throw new StationIsNotExistException(keystation);
             }
-            Stations.Remove(station);
+            Stations.RemoveAll(s => s.BusStationKey == keystation);
         }
 
-        public bool isStationExist(BusLineStation station)
+        public bool isStationExist(int keyStation)
         {
-            return Stations.Any(x => x.BusStationKey == station.BusStationKey);
+            return Stations.Any(x => x.BusStationKey == keyStation);
         }
 
         public double getDistanceBetweenStations(BusLineStation station1, BusLineStation station2)
         {
             //return Math.Sqrt(Math.Pow(station2.Latitude - station1.Latitude, 2) + Math.Pow(station2.Longitude - station1.Longitude, 2) * 1.0);
 
-            if (!isStationExist(station1))
+            if (!isStationExist(station1.BusStationKey))
             {
                 throw new StationIsNotExistException(station1.BusStationKey);
             }
-            if (!isStationExist(station2))
+            if (!isStationExist(station2.BusStationKey))
             {
                 throw new StationIsNotExistException(station2.BusStationKey);
             }
@@ -115,11 +116,11 @@ namespace dotNet5781_02_6268_4032
 
         public double getTimeBetweenStations(BusLineStation station1, BusLineStation station2)
         {
-            if (!isStationExist(station1))
+            if (!isStationExist(station1.BusStationKey))
             {
                 throw new StationIsNotExistException(station1.BusStationKey);
             }
-            if (!isStationExist(station2))
+            if (!isStationExist(station2.BusStationKey))
             {
                 throw new StationIsNotExistException(station2.BusStationKey);
             }
@@ -149,11 +150,11 @@ namespace dotNet5781_02_6268_4032
 
         public BusLine getSubLineBetweenStations(BusLineStation station1, BusLineStation station2)
         {
-            if (!isStationExist(station1))
+            if (!isStationExist(station1.BusStationKey))
             {
                 throw new StationIsNotExistException(station1.BusStationKey);
             }
-            if (!isStationExist(station2))
+            if (!isStationExist(station2.BusStationKey))
             {
                 throw new StationIsNotExistException(station2.BusStationKey);
             }
