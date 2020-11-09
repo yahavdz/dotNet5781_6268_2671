@@ -69,11 +69,17 @@ namespace dotNet5781_02_6268_4032
                         if (tooMany == 1)
                             BusLines.Add(bus);
                     }
+                    else if (iterator.Current.firstStation == bus.firstStation && iterator.Current.lastStation == bus.lastStation)
+                    {
+                        throw new BusLineAlreadyExistsException(bus.busLine);
+                    }
                 }
             }
             if (tooMany == 0)
+            { 
                 BusLines.Add(bus);
-            //TODO exception when line allready exist
+            }
+            
         }
         public void deleteBus(int busID)
         {
