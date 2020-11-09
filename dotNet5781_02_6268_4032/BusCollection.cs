@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,20 @@ namespace dotNet5781_02_6268_4032
     public class BusCollection : IEnumerable
     {
         public List<BusLine> BusLines { set; get; }
+        public BusLine this[int i]
+        {
+            get { return this.BusLines.FirstOrDefault(x => x.busLine == i); }
+            set { 
+                foreach (BusLine b in BusLines)
+                {
+                    if(b.busLine == i)
+                    {
+                        BusLines.Remove(b);
+                        BusLines.Add(value);
+                    }
+                }
+            }
+        }
 
         public IteratorBusLine iterator;
 
@@ -30,10 +45,11 @@ namespace dotNet5781_02_6268_4032
             }
             if (tooMany == 0)
                 BusLines.Add(bus);
+            //TODO exception when line lready exist
         }
         public void deleteBus(int busID)
         {
-            BusLines.Remove(indexer(busID));
+            BusLines.Remove(BusLines[busID]);
         }
         public List<BusLine> getBusLinesOfStation(BusStation busStation)
         {
@@ -56,18 +72,7 @@ namespace dotNet5781_02_6268_4032
         public IEnumerator GetEnumerator()
         {
             return iterator;
-        }
-
-        public BusLine indexer(int value)
-        {
-            
-                var bus= this.BusLines.FirstOrDefault(x => x.busLine == value);
-            if (bus == null)
-                throw new Exception("no buss with this id found");
-            return bus;
-        }
-
-
+        }        
     }
     public class IteratorBusLine : IEnumerator<BusLine>
     {

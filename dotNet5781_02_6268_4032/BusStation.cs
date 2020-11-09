@@ -53,12 +53,10 @@ namespace dotNet5781_02_6268_4032
         public string address { set; get; }
         //TODO
 
-        public BusStation(int busStationKey1, double latitude1, double longitude1, string address1)
+        public BusStation(int busStationKey1, string address1)
         {
-            BusStationKey = busStationKey1;
-            Latitude = latitude1;
-            Longitude = longitude1;
-            address = address1;
+            this.BusStationKey = busStationKey1;
+            this.address = address1;
         }
 
 

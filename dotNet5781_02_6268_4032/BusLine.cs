@@ -23,6 +23,7 @@ namespace dotNet5781_02_6268_4032
         public BusLine() { }
         public BusLine(List<BusLineStation> Stations1, int busLine1, BusLineStation firstStation1, BusLineStation lastStation1, Area BusArea1)
         {
+            Stations = new List<BusLineStation>();
             foreach (BusLineStation currentBus in Stations1)
             {
                 Stations.Add(currentBus);
