@@ -41,6 +41,9 @@ namespace dotNet5781_02_6268_4032
                 stations1[ii].Latitude  = random.NextDouble() * (33.3 - 31.0) + 31.0;
                 stations1[ii].Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3;
                 stations1[ii].TimeFromPreviousStation = new Random().Next(86400);
+                if (ii == 0)
+                    stations1[ii].DistanceFromPreviousStation = 0;
+                else
                 stations1[ii].DistanceFromPreviousStation = Math.Sqrt(Math.Pow(stations1[ii].Latitude - stations1[ii - 1].Latitude, 2) + Math.Pow(stations1[ii].Longitude - stations1[ii - 1].Longitude, 2) * 1.0);
             }
             for (int ii = 0; ii < stations2.Count(); ++ii)
@@ -48,14 +51,20 @@ namespace dotNet5781_02_6268_4032
                 stations2[ii].Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0;
                 stations2[ii].Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3;
                 stations2[ii].TimeFromPreviousStation = new Random().Next(86400);
-                stations2[ii].DistanceFromPreviousStation= Math.Sqrt(Math.Pow(stations2[ii].Latitude - stations2[ii-1].Latitude, 2) + Math.Pow(stations2[ii].Longitude - stations2[ii-1].Longitude, 2) * 1.0);
+                if (ii == 0)
+                    stations2[ii].DistanceFromPreviousStation = 0;
+                else
+                    stations2[ii].DistanceFromPreviousStation= Math.Sqrt(Math.Pow(stations2[ii].Latitude - stations2[ii-1].Latitude, 2) + Math.Pow(stations2[ii].Longitude - stations2[ii-1].Longitude, 2) * 1.0);
             }
             for (int ii = 0; ii < stations3.Count(); ++ii)
             {
                 stations3[ii].Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0;
                 stations3[ii].Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3;
                 stations3[ii].TimeFromPreviousStation = new Random().Next(86400);
-                stations3[ii].DistanceFromPreviousStation = Math.Sqrt(Math.Pow(stations3[ii].Latitude - stations3[ii - 1].Latitude, 2) + Math.Pow(stations3[ii].Longitude - stations3[ii - 1].Longitude, 2) * 1.0);
+                if (ii == 0)
+                    stations2[ii].DistanceFromPreviousStation = 0;
+                else
+                    stations3[ii].DistanceFromPreviousStation = Math.Sqrt(Math.Pow(stations3[ii].Latitude - stations3[ii - 1].Latitude, 2) + Math.Pow(stations3[ii].Longitude - stations3[ii - 1].Longitude, 2) * 1.0);
             }
 
             BusLine bus1 = new BusLine(stations1, 12, a, c, Area.Center);
@@ -97,15 +106,14 @@ namespace dotNet5781_02_6268_4032
                             {
                                 Console.WriteLine("To which line you want to enter the station? : \n");
                                 int line = Int32.Parse(Console.ReadLine());
-                                busCo[line]
-
+                                Console.WriteLine("please enter the number of the place you want to enter the station : \n");
+                                int index = Int32.Parse(Console.ReadLine());
                                 Console.WriteLine("please enter Bus key Station: \n");
                                 int keyStation = Int32.Parse(Console.ReadLine());
                                 Console.WriteLine("please enter the address of the Station: \n");
                                 string address = Console.ReadLine();
-                                BusStation newBusStation = new BusStation(keyStation, address);
-
-
+                                BusLineStation newBusStation = new BusLineStation(keyStation, address);
+                                busCo[line].addStation(newBusStation,index);
                             }
                             catch
                             {

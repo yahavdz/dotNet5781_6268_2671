@@ -8,9 +8,25 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_6268_4032
 {
+    
     public class BusCollection : IEnumerable
     {
-        public List<BusLine> BusLines { set; get; }
+        public BusCollection()
+        {
+            busLines = new List<BusLine>();
+            iterator = new IteratorBusLine();
+        }
+
+        private List<BusLine> busLines;
+        public List<BusLine> BusLines
+        {
+            set
+            {
+                busLines = value;
+            }
+            get { return busLines; }
+        }
+
         public BusLine this[int i]
         {
             get { return this.BusLines.FirstOrDefault(x => x.busLine == i); }
@@ -45,7 +61,7 @@ namespace dotNet5781_02_6268_4032
             }
             if (tooMany == 0)
                 BusLines.Add(bus);
-            //TODO exception when line lready exist
+            //TODO exception when line allready exist
         }
         public void deleteBus(int busID)
         {
@@ -76,6 +92,10 @@ namespace dotNet5781_02_6268_4032
     }
     public class IteratorBusLine : IEnumerator<BusLine>
     {
+        public IteratorBusLine()
+            {
+            _busCollection = new BusCollection();
+            }
         public BusCollection _busCollection { set; get; }
         public int counter = -1;
         public BusLine Current
