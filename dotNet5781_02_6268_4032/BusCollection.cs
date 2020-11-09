@@ -8,13 +8,12 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_6268_4032
 {
-    
+
     public class BusCollection : IEnumerable
     {
         public BusCollection()
         {
             busLines = new List<BusLine>();
-            iterator = new IteratorBusLine();
         }
 
         private List<BusLine> busLines;
@@ -30,10 +29,11 @@ namespace dotNet5781_02_6268_4032
         public BusLine this[int i]
         {
             get { return this.BusLines.FirstOrDefault(x => x.busLine == i); }
-            set { 
+            set
+            {
                 foreach (BusLine b in BusLines)
                 {
-                    if(b.busLine == i)
+                    if (b.busLine == i)
                     {
                         BusLines.Remove(b);
                         BusLines.Add(value);
@@ -42,20 +42,32 @@ namespace dotNet5781_02_6268_4032
             }
         }
 
-        public IteratorBusLine iterator;
+        // public IteratorBusLine iterator;
 
         public void addBus(BusLine bus)
         {
             var tooMany = 0;
-            while (iterator.MoveNext())
+            foreach (BusLine b in busLines)
             {
-                if (iterator.Current.busLine == bus.busLine)
+                if (b.busLine == bus.busLine)
                 {
                     tooMany++;
-                    if (iterator.Current.firstStation==bus.lastStation&&iterator.Current.lastStation==bus.firstStation)
+                    if (b.firstStation == bus.lastStation && b.lastStation == bus.firstStation)
                     {
-                        if(tooMany==1)
-                        BusLines.Add(bus);
+                        if (tooMany == 1)
+                            BusLines.Add(bus);
+                    }
+                }
+            }
+            foreach (BusLine b in busLines)
+            {
+                if (b.busLine == bus.busLine)
+                {
+                    tooMany++;
+                    if (b.firstStation == bus.lastStation && b.lastStation == bus.firstStation)
+                    {
+                        if (tooMany == 1)
+                            BusLines.Add(bus);
                     }
                 }
             }
@@ -70,11 +82,11 @@ namespace dotNet5781_02_6268_4032
         public List<BusLine> getBusLinesOfStation(BusStation busStation)
         {
             var busesToReturn = new List<BusLine>();
-            while (iterator.MoveNext())
+            foreach (BusLine b in busLines)
             {
-                if (iterator.Current.Stations.Contains(busStation))
+                if (b.Stations.Contains(busStation))
                 {
-                    busesToReturn.Add(iterator.Current);
+                    busesToReturn.Add(b);
                 }
             }
             return busesToReturn;
@@ -87,43 +99,7 @@ namespace dotNet5781_02_6268_4032
 
         public IEnumerator GetEnumerator()
         {
-            return iterator;
-        }        
-    }
-    public class IteratorBusLine : IEnumerator<BusLine>
-    {
-        public IteratorBusLine()
-            {
-            _busCollection = new BusCollection();
-            }
-        public BusCollection _busCollection { set; get; }
-        public int counter = -1;
-        public BusLine Current
-        {
-            get
-            {
-                return _busCollection.BusLines[counter];
-            }
+            return BusLines.GetEnumerator();
         }
-
-        object IEnumerator.Current => throw new NotImplementedException();
-
-        public IteratorBusLine(BusCollection busCollection)
-        {
-            _busCollection = busCollection;
-        }
-
-        public bool MoveNext()
-        {
-            return ++counter < _busCollection.BusLines.Count;
-        }
-
-        public void Reset()
-        {
-            counter = -1;
-        }
-
-        public void Dispose()
-        { }
     }
 }
