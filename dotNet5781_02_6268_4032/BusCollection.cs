@@ -79,8 +79,10 @@ namespace dotNet5781_02_6268_4032
             { 
                 BusLines.Add(bus);
             }
+
             
         }
+        
         public void deleteBus(int busID)
         {
             BusLines.Remove(BusLines[busID]);
@@ -90,7 +92,7 @@ namespace dotNet5781_02_6268_4032
             var busesToReturn = new List<BusLine>();
             foreach (BusLine b in busLines)
             {
-                if (b.Stations.Contains(busStation))
+                if ((b.Stations.FirstOrDefault(x => x.BusStationKey == busStation))!=null)
                 {
                     busesToReturn.Add(b);
                 }
@@ -107,5 +109,17 @@ namespace dotNet5781_02_6268_4032
         {
             return BusLines.GetEnumerator();
         }
+
+        public override string ToString()
+        {
+            string busCollection1 = "";
+            foreach (BusLine busLine1 in BusLines)
+            {
+                busCollection1 += busLine1.busLine.ToString();
+                busCollection1 += " , ";
+            }
+            return "The number of Lines is: " + BusLines.Count;
+        }
+
     }
 }
