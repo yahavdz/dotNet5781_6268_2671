@@ -76,23 +76,25 @@ namespace dotNet5781_02_6268_4032
             { 
                 BusLines.Add(bus);
             }
+
             
         }
         public void deleteBus(int busID)//delete bus fron collection
         {
             BusLines.Remove(BusLines[busID]);
         }
-        public List<BusLine> getBusLinesOfStation(int busStation)//A method that receives an ID number (code) of a bus stop and returns the listThe lines that pass through this station.If there are no lines passing through the station, an exception will be thrown.
+        public BusCollection getBusLinesOfStation(int busStation)
         {
             var busesToReturn = new List<BusLine>();
             foreach (BusLine b in busLines)
             {
-                if (b.Stations.Contains(busStation))
+                if ((b.Stations.FirstOrDefault(x => x.BusStationKey == busStation))!=null)
                 {
                     busesToReturn.Add(b);
                 }
             }
-            return busesToReturn;
+
+            return new BusCollection { busLines = busesToReturn };
         }
         public List<BusLine> getBusListByLengthOfRide()//A method that returns a list of all lines sorted by total travel time, from the shortest To lengthen
         {
@@ -104,5 +106,17 @@ namespace dotNet5781_02_6268_4032
         {
             return BusLines.GetEnumerator();
         }
+
+        public override string ToString()
+        {
+            string busCollection1 = "";
+            foreach (BusLine busLine1 in BusLines)
+            {
+                busCollection1 += busLine1.busLine.ToString();
+                busCollection1 += " , ";
+            }
+            return "The number of Lines is: " + BusLines.Count;
+        }
+
     }
 }
