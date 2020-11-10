@@ -45,6 +45,18 @@ namespace dotNet5781_02_6268_4032
             return "The number of the Line is: " + busLine + " , The Area of the Line is: " + BusArea + " , The bus station key is: " + busLIneStations;
         }
 
+        public BusLineStation getStation(int id)
+        {
+            foreach (BusLineStation currentLine in Stations)
+            {
+                if (currentLine.BusStationKey == id)
+                {
+                    return currentLine;
+                }
+            }
+            return null;
+
+        }
         public void addStation(BusLineStation station, int index)//add station and throe exception in case of wrong input
         {
             if (index < 0 || index > Stations.Count())

@@ -143,13 +143,20 @@ namespace dotNet5781_02_6268_4032
                         {
                             case userSubChoice.search:
                                 Console.WriteLine("which station do you want to check? ");
-                                int busID = Console.Read();
-                                Console.WriteLine( busCo.getBusLinesOfStation(busID).ToString());
+                                int busID = Int32.Parse(Console.ReadLine());
+                                Console.WriteLine(busCo.getBusLinesOfStation(busID).ToString());
                                 break;
                             case userSubChoice.print:
-                                int stationID1 = Console.Read();
-                                int stationID2 = Console.Read();
-                                Console.WriteLine(busCo.getBusListByLengthOfRide());
+                                Console.WriteLine("enter the first station: ");
+                                int stationID1 = Int32.Parse(Console.ReadLine());
+                                Console.WriteLine("enter the second station: ");
+                                int stationID2 = Int32.Parse(Console.ReadLine());
+                                List<BusLine> busList = busCo.getBusLinesOfStation(stationID1).BusLines.Union(busCo.getBusLinesOfStation(stationID2).BusLines).ToList();
+                                List<BusLine> result = busList.OrderBy(x => x.getTimeBetweenStations(x.getStation(stationID1), x.getStation(stationID2))).ToList();
+                                foreach(BusLine b in result)
+                                {
+                                    Console.WriteLine(b.ToString());
+                                }
                                 break;
                             default:
                                 break;
@@ -172,9 +179,9 @@ namespace dotNet5781_02_6268_4032
                             }
                             foreach(BusLineStation station in allStations)
                             {
-                                List<BusLine> BusLineList = busCo.getBusLinesOfStation(station.BusStationKey);
+                                BusCollection bc = busCo.getBusLinesOfStation(station.BusStationKey);
                                 Console.WriteLine(station.ToString());
-                                foreach(BusLine b in BusLineList)
+                                foreach(BusLine b in bc)
                                 {
                                     Console.WriteLine(b.ToString());
                                 }

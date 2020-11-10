@@ -115,7 +115,7 @@ namespace dotNet5781_02_6268_4032
                 busCollection1 += busLine1.busLine.ToString();
                 busCollection1 += " , ";
             }
-            return "The number of Lines is: " + BusLines.Count;
+            return "The number of Lines is: " + busCollection1;
         }
 
     }
