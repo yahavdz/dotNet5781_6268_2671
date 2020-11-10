@@ -143,10 +143,13 @@ namespace dotNet5781_02_6268_4032
                         {
                             case userSubChoice.search:
                                 Console.WriteLine("which station do you want to check? ");
-                                Console.ReadLine(BusStation );
-                                busCo.getBusLinesOfStation(BusStation busStation);
+                                int busID = Console.Read();
+                                Console.WriteLine( busCo.getBusLinesOfStation(busID).ToString());
                                 break;
                             case userSubChoice.print:
+                                int stationID1 = Console.Read();
+                                int stationID2 = Console.Read();
+                                Console.WriteLine(busCo.getBusListByLengthOfRide());
                                 break;
                             default:
                                 break;
