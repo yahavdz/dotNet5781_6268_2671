@@ -85,7 +85,7 @@ namespace dotNet5781_02_6268_4032
         {
             BusLines.Remove(BusLines[busID]);
         }
-        public List<BusLine> getBusLinesOfStation(BusStation busStation)
+        public List<BusLine> getBusLinesOfStation(int busStation)
         {
             var busesToReturn = new List<BusLine>();
             foreach (BusLine b in busLines)

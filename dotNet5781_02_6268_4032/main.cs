@@ -45,6 +45,7 @@ namespace dotNet5781_02_6268_4032
 
             Console.WriteLine("Please enter your choise:\n 1: To add\n 2: To delete\n 3: To search\n 4: To print\n 5: exit");
             userChoiceEnum choice; // the definition is under the main
+            userSubChoice subChoice;
             Enum.TryParse(Console.ReadLine(), true, out choice);
             while (choice != userChoiceEnum.exit)
             {
@@ -135,11 +136,24 @@ namespace dotNet5781_02_6268_4032
                             Console.WriteLine("you can press only 1 or 2 please try again\n ");
                         break;
 
-                    case userChoiceEnum.search:
-                        ;
+                    case userChoiceEnum.search://3
+                        Console.WriteLine("press 1 to search lines by station, press 2 to print the best line between 2 stations ");
+                        Enum.TryParse(Console.ReadLine(), true, out subChoice);
+                        switch (subChoice)
+                        {
+                            case userSubChoice.search:
+                                Console.WriteLine("which station do you want to check? ");
+                                Console.ReadLine(BusStation );
+                                busCo.getBusLinesOfStation(BusStation busStation);
+                                break;
+                            case userSubChoice.print:
+                                break;
+                            default:
+                                break;
+                        }
                         break;
 
-                    case userChoiceEnum.print:
+                    case userChoiceEnum.print://4
 
                         break;
 
@@ -151,6 +165,8 @@ namespace dotNet5781_02_6268_4032
                 Enum.TryParse(Console.ReadLine(), true, out choice); // convert the input to the enum and enter it into choice
             }
         }
+
+        
     }
 }
 public enum userChoiceEnum
@@ -161,4 +177,9 @@ public enum userChoiceEnum
     print = 4,
     exit = 5
 
+}
+public enum userSubChoice
+{
+    search = 1,
+    print = 2
 }
