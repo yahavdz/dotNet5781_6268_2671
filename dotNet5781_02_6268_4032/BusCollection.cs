@@ -26,7 +26,7 @@ namespace dotNet5781_02_6268_4032
             get { return busLines; }
         }
 
-        public BusLine this[int i]
+        public BusLine this[int i]//Indexer that receives a line number and returns the instance. If there is no such line an exception will be thrown.
         {
             get { return this.BusLines.FirstOrDefault(x => x.busLine == i); }
             set
@@ -41,10 +41,7 @@ namespace dotNet5781_02_6268_4032
                 }
             }
         }
-
-        // public IteratorBusLine iterator;
-
-        public void addBus(BusLine bus)
+        public void addBus(BusLine bus)//add bus to collection
         {
             var tooMany = 0;
             foreach (BusLine b in busLines)
@@ -81,11 +78,11 @@ namespace dotNet5781_02_6268_4032
             }
             
         }
-        public void deleteBus(int busID)
+        public void deleteBus(int busID)//delete bus fron collection
         {
             BusLines.Remove(BusLines[busID]);
         }
-        public List<BusLine> getBusLinesOfStation(int busStation)
+        public List<BusLine> getBusLinesOfStation(int busStation)//A method that receives an ID number (code) of a bus stop and returns the listThe lines that pass through this station.If there are no lines passing through the station, an exception will be thrown.
         {
             var busesToReturn = new List<BusLine>();
             foreach (BusLine b in busLines)
@@ -97,7 +94,7 @@ namespace dotNet5781_02_6268_4032
             }
             return busesToReturn;
         }
-        public List<BusLine> getBusListByLengthOfRide()
+        public List<BusLine> getBusListByLengthOfRide()//A method that returns a list of all lines sorted by total travel time, from the shortest To lengthen
         {
             var busses = BusLines;
             return busses.OrderBy(x => x.getTimeBetweenStations(x.firstStation, x.lastStation)).ToList();

@@ -20,9 +20,9 @@ namespace dotNet5781_02_6268_4032
         public Area BusArea { get; set; }
 
         // methods:
-        public BusLine() {  }
-        public BusLine(int busLine1, Area BusArea1) { busLine = busLine1; BusArea = BusArea1; }
-        public BusLine(List<BusLineStation> Stations1, int busLine1, BusLineStation firstStation1, BusLineStation lastStation1, Area BusArea1)
+        public BusLine() { }//empy constructor
+        public BusLine(int busLine1, Area BusArea1) { busLine = busLine1; BusArea = BusArea1; }//constructor that get the bus key and area
+        public BusLine(List<BusLineStation> Stations1, int busLine1, BusLineStation firstStation1, BusLineStation lastStation1, Area BusArea1)//construcor that get all the metods
         {
             Stations = new List<BusLineStation>();
             foreach (BusLineStation currentBus in Stations1)
@@ -34,7 +34,7 @@ namespace dotNet5781_02_6268_4032
             lastStation = lastStation1;
             BusArea = BusArea1;
         }
-        public override string ToString()
+        public override string ToString()//override tostring
         {
             string busLIneStations = "";
             foreach (BusLineStation currentLine in Stations)
@@ -45,7 +45,7 @@ namespace dotNet5781_02_6268_4032
             return "The number of the Line is: " + busLine + " , The Area of the Line is: " + BusArea + " , The bus station key is: " + busLIneStations;
         }
 
-        public void addStation(BusLineStation station, int index)
+        public void addStation(BusLineStation station, int index)//add station and throe exception in case of wrong input
         {
             if (index < 0 || index > Stations.Count())
                 throw new InvalidIndexException(index);
@@ -77,10 +77,8 @@ namespace dotNet5781_02_6268_4032
             return Stations.Any(x => x.BusStationKey == keyStation);
         }
 
-        public double getDistanceBetweenStations(BusLineStation station1, BusLineStation station2)
+        public double getDistanceBetweenStations(BusLineStation station1, BusLineStation station2)//A method that will return the distance between 2 stations that are on the line
         {
-            //return Math.Sqrt(Math.Pow(station2.Latitude - station1.Latitude, 2) + Math.Pow(station2.Longitude - station1.Longitude, 2) * 1.0);
-
             if (!isStationExist(station1.BusStationKey))
             {
                 throw new StationIsNotExistException(station1.BusStationKey);
@@ -114,7 +112,7 @@ namespace dotNet5781_02_6268_4032
         }
 
 
-        public double getTimeBetweenStations(BusLineStation station1, BusLineStation station2)
+        public double getTimeBetweenStations(BusLineStation station1, BusLineStation station2)//A method that returns the time between 2 stations that are on the line
         {
             if (!isStationExist(station1.BusStationKey))
             {
@@ -148,7 +146,7 @@ namespace dotNet5781_02_6268_4032
             return timeCounter;
         }
 
-        public BusLine getSubLineBetweenStations(BusLineStation station1, BusLineStation station2)
+        public BusLine getSubLineBetweenStations(BusLineStation station1, BusLineStation station2)//A method that returns a sub-route of the line, the method receives 2 stations and returns A bus line object that actually represented the line segment between the two stations
         {
             if (!isStationExist(station1.BusStationKey))
             {
@@ -182,7 +180,7 @@ namespace dotNet5781_02_6268_4032
             return subBus;
         }
 
-        public int CompareTo(BusLine busLine)
+        public int CompareTo(BusLine busLine)//Comparison of two objects of a bus line by comparing the total time of travel on the line
         {
             double timeCounter1 = 0;
             double timeCounter2 = 0;

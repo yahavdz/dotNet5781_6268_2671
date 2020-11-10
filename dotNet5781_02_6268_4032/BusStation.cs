@@ -53,7 +53,7 @@ namespace dotNet5781_02_6268_4032
         public string address { set; get; }
         //TODO
 
-        public BusStation(int busStationKey1, string address1)
+        public BusStation(int busStationKey1, string address1)//constructor
         {
             this.BusStationKey = busStationKey1;
             this.address = address1;

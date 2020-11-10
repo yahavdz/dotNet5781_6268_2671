@@ -154,7 +154,32 @@ namespace dotNet5781_02_6268_4032
                         break;
 
                     case userChoiceEnum.print://4
-
+                        Console.WriteLine("Please enter your choise\n 1: To print all the bus Line that exist at the system\n 2:To print all the station and which Line pass through them ");
+                        string input2 = Console.ReadLine();
+                        if (input2 == "1")
+                        {
+                            Console.WriteLine(busCo.ToString());
+                        }
+                        else if (input2 == "2")
+                        {
+                            List<BusLineStation> allStations = new List<BusLineStation>();
+                            foreach (BusLine currentBusLine in busCo)
+                            {
+                                allStations = allStations.Union(currentBusLine.Stations).ToList();
+                            }
+                            foreach(BusLineStation station in allStations)
+                            {
+                                List<BusLine> BusLineList = busCo.getBusLinesOfStation(station.BusStationKey);
+                                Console.WriteLine(station.ToString());
+                                foreach(BusLine b in BusLineList)
+                                {
+                                    Console.WriteLine(b.ToString());
+                                }
+                                Console.WriteLine();
+                            }
+                        }
+                        else
+                            Console.WriteLine("you can press only 1 or 2 please try again\n ");
                         break;
 
                     default:
