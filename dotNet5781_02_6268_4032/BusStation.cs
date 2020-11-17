@@ -63,7 +63,7 @@ namespace dotNet5781_02_6268_4032
         // methods:
         public override string ToString() 
         {
-            string s = "Bus Station Code: " + busStationKey.ToString() + ", " + latitude.ToString() + "°N " + longitude.ToString() + "°E";
+            string s = "Bus Station Addres: " + address + " Code: " + busStationKey.ToString() + ", Location: " + latitude.ToString() + "°N, " + longitude.ToString() + "°E";
             return s;
         }
     }

@@ -1,0 +1,30 @@
+﻿<Window x:Class="dotNet5781_03A_6268_4032.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:dotNet5781_03A_6268_4032"
+        mc:Ignorable="d"
+        Title="Davidzada Badarom" Height="640" Width="800" Icon="Icon1.ico" >
+
+    <Grid Name="MainGrid" >
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="400*"/>
+        </Grid.RowDefinitions>
+        <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions >
+            <TextBox Name ="tbArea" HorizontalAlignment= "Stretch" VerticalAlignment="Stretch" Grid.Column="3" Text="{Binding Path=BusArea}" Margin="0.667,0,0.333,0" TextWrapping="Wrap" RenderTransformOrigin="-0.283,-0.599" FontWeight="Bold" FontSize="18" FontStyle="Italic" FontFamily="Century"/>
+            <ComboBox Name="cbBusLines" HorizontalAlignment="Stretch" Margin="10.333,0,197.667,0" VerticalAlignment="Stretch" Grid.Column="1" Grid.ColumnSpan="2" SelectionChanged="cbBusLines_SelectionChanged" FontSize="18" FontWeight="Bold"/>
+            <Label Content="Area:" Grid.Column="2" HorizontalAlignment="Left" Margin="9.667,0,0,0" VerticalAlignment="Top" Height="68" Width="184" FontSize="22" FontFamily="Book Antiqua" FontWeight="Bold" FontStyle="Italic" Background="#FFB8DBFE" BorderBrush="#FFFBD1D1"/>
+            <Label Content="Bus Line Number:" Margin="0,2,198.333,0" Grid.ColumnSpan="2" FontSize="22" FontFamily="Book Antiqua" FontWeight="Bold" FontStyle="Italic" Cursor="None" BorderBrush="Black" Background="#FFB8D9F8"/>
+        </Grid>
+        <ListBox Name="lbBusLineStations" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="533" Margin="10,10,0,-0.333" Grid.Row="1" VerticalAlignment="Top" Width="783" FontFamily="Comic Sans MS" FontSize="16" FontWeight="Bold" Background="#FFCCCCCC" BorderBrush="#FF111111" Foreground="Black"/>
+    </Grid>
+</Window>
