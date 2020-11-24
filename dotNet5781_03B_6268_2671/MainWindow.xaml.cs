@@ -33,10 +33,7 @@ namespace dotNet5781_03B_6268_2671
             {
                 
                 Bus bus = new Bus();
-                if (i == 1 || i == 4 || i == 7 || i == 9)//Ensure that there will be both license plates from 2018-2020 and from 2018 onwards
-                    bus.busID = random.Next(10, 100) + "-" + random.Next(1, 1000) + "-" + random.Next(1, 100);
-                else
-                    bus.busID = random.Next(100, 1000) + "-" + random.Next(1, 100) + "-" + random.Next(1, 1000);
+                bus.busID = random.Next(100, 1000) + "-" + random.Next(1, 100) + "-" + random.Next(1, 1000);
 
                 //set a random date from the last year
                 DateTime start = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day - 365);
@@ -52,8 +49,8 @@ namespace dotNet5781_03B_6268_2671
                 busList.Add(bus);
             }
             busList[1].treatmentDate = new DateTime(2019, 11, 1); //More than a year has passed since the last treatment
-            busList[2].mileageTreatment = busList[2].mileage - 19000; //Close to the next treatment (in mileage)
-            busList[3].mileageFuel = busList[2].mileage - 1100; //Bus with little fuel
+            busList[2].mileageTreatment = busList[2].mileage - 19000; // Close to the next treatment (in mileage) 
+            busList[3].mileageFuel = busList[2].mileage - 1100; //Bus with little fuel 
 
 
         }
