@@ -30,17 +30,17 @@ namespace dotNet5781_03B_6268_2671
             for (int i = 0 ; i < 10 ; i++)
             {
                 Bus bus = new Bus();
-                int k;
-                bool isStationAlreadyExist;
-                do// do while to check if the key code is already exist
-                {
-                    k = random.Next(1, 999999);
-                    isStationAlreadyExist = busList.Any(s => s.busID == k);
-                } while (isStationAlreadyExist);
-                bus.busID = k / 1000;
-                bus.mileage= random.Next(1,200000);
-
+                if (i == 1 || i == 4 || i == 7 || i == 9)//Ensure that there will be both license plates from 2018-2020 and from 2018 onwards
+                    bus.busID = random.Next(1, 99) + "-" + random.Next(1, 999) + "-" + random.Next(1, 99);
+                else
+                    bus.busID = random.Next(1, 999) + "-" + random.Next(1, 99) + "-" + random.Next(1, 999);
+                bus.mileage= random.Next(1,200000);//set the mileage to be random from 1 to 200,000
+                DateTime start = new DateTime(1995, 1, 1);//set a random date
+                int range = (DateTime.Today - start).Days;
+                bus.treatmentDate = start.AddDays(random.Next(range));
+                bus.mileageFuel= random.Next(1,1200);
             }
+            
         }
     }
 }

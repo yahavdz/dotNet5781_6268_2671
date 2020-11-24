@@ -12,11 +12,15 @@ namespace dotNet5781_01_6268_4032
         public static int maxMileageTreatment = 20000;
         public static int maxmileageFuel = 1200;
 
-        public int busID { set; get; }
+        public string busID { set; get; }
         public int mileage { set; get; }
         public int mileageTreatment { set; get; }
         public int mileageFuel { set; get; }
         public DateTime treatmentDate { set; get; }
+        public int getMileageAfterTreatment()
+        {
+            return mileage - mileageTreatment;
+        }
 
         public void treatment()
         {
