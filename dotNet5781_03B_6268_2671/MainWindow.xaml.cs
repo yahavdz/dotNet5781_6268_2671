@@ -27,20 +27,35 @@ namespace dotNet5781_03B_6268_2671
         {
             InitializeComponent();
             Random random = new Random();
+
+            //Initialization ten buses
             for (int i = 0 ; i < 10 ; i++)
             {
+                
                 Bus bus = new Bus();
                 if (i == 1 || i == 4 || i == 7 || i == 9)//Ensure that there will be both license plates from 2018-2020 and from 2018 onwards
-                    bus.busID = random.Next(1, 99) + "-" + random.Next(1, 999) + "-" + random.Next(1, 99);
+                    bus.busID = random.Next(10, 100) + "-" + random.Next(1, 1000) + "-" + random.Next(1, 100);
                 else
-                    bus.busID = random.Next(1, 999) + "-" + random.Next(1, 99) + "-" + random.Next(1, 999);
-                bus.mileage= random.Next(1,200000);//set the mileage to be random from 1 to 200,000
-                DateTime start = new DateTime(1995, 1, 1);//set a random date
-                int range = (DateTime.Today - start).Days;
-                bus.treatmentDate = start.AddDays(random.Next(range));
-                bus.mileageFuel= random.Next(1,1200);
+                    bus.busID = random.Next(100, 1000) + "-" + random.Next(1, 100) + "-" + random.Next(1, 1000);
+
+                //set a random date from the last year
+                DateTime start = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day - 365);
+                bus.treatmentDate = start.AddDays(random.Next(365));
+
+                bus.mileage = random.Next(20000,200000);//set the mileage to be random from 20,000km to 200,000km
+                bus.mileageTreatment = bus.mileage - random.Next(1, 20000);
+                bus.mileageFuel= bus.mileage - random.Next(1,1200);
+
+                if (i != 1) //It has been more than a year since the treatment of the second bus
+                    bus.statusNow = status.readyToGo;
+                
+                busList.Add(bus);
             }
-            
+            busList[1].treatmentDate = new DateTime(2019, 11, 1); //More than a year has passed since the last treatment
+            busList[2].mileageTreatment = busList[2].mileage - 19000; //Close to the next treatment (in mileage)
+            busList[3].mileageFuel = busList[2].mileage - 1100; //Bus with little fuel
+
+
         }
     }
 }
