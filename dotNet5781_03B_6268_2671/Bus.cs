@@ -14,25 +14,26 @@ namespace dotNet5781_01_6268_4032
         public static int maxMileageFuel = 1200;
 
         public string busID { set; get; }
-        public int mileage { set; get; }
-        public DateTime treatmentDate { set; get; }
-        public int mileageTreatment { set; get; }
-        public int mileageFuel { set; get; }
+        public int totalKilometers { set; get; }
+        public DateTime LastTreatmentDate { set; get; }
+        public int kilometersSinceLastTreatment { set; get; }
+        public int KilometersAtLastRefueling { set; get; }
         public status statusNow { set; get; }
+        public DateTime ActivityStartDate { set; get; }
 
-
-        public int getMileageAfterTreatment()
-        {
-            return mileage - mileageTreatment;
-        }
         public void treatment()
         {
-            mileageTreatment = mileage;
-            treatmentDate = DateTime.Now;
+            kilometersSinceLastTreatment = totalKilometers;
+            LastTreatmentDate = DateTime.Now;
         }
         public void refueling()
         {
-            mileageFuel = mileage;
+            KilometersAtLastRefueling = totalKilometers;
+        }
+        public override string ToString()
+        {
+            string s = "License plate: " + busID + ", Total Kilometers: " + totalKilometers + ", The Last Treatment Day: " + LastTreatmentDate + ", Fuel: " + Math.Abs(KilometersAtLastRefueling - totalKilometers) + " Left";
+            return s;
         }
     }
 }
