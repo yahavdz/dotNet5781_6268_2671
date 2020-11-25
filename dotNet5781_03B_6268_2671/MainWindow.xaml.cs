@@ -35,9 +35,14 @@ namespace dotNet5781_03B_6268_2671
 
                 Bus bus = new Bus();
                 if (i == 1 || i == 3 || i == 5 || i == 7)
-                    bus.busID = random.Next(1, 100) + "-" + random.Next(100, 1000) + "-" + random.Next(1, 100);
+                {
+                    bus.busID = random.Next(10, 100) + "-" + random.Next(100, 1000) + "-" + random.Next(10, 100);
+
+                }
                 else
-                    bus.busID = random.Next(100, 1000) + "-" + random.Next(1, 100) + "-" + random.Next(1, 1000);
+                {
+                    bus.busID = random.Next(100, 1000) + "-" + random.Next(10, 100) + "-" + random.Next(100, 1000);
+                }
 
                 //set a random date from the last year
                 DateTime start = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day);
@@ -57,7 +62,7 @@ namespace dotNet5781_03B_6268_2671
             busList[3].KilometersAtLastRefueling = busList[2].totalKilometers - 1100; //Bus with little fuel 
 
             foreach (Bus _bus in busList)
-                myLBI.Items.Add(new BusItem(_bus.busID));
+                myLBI.Items.Add(new BusItem(_bus));
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

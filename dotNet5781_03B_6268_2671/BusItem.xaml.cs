@@ -20,10 +20,20 @@ namespace dotNet5781_03B_6268_2671
     /// </summary>
     public partial class BusItem : UserControl
     {
-        public BusItem(string busNum)
+        public BusItem(Bus myBus)
         {
             InitializeComponent();
-            myLab.Content = busNum;
+            myLab.Content = myBus.id;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

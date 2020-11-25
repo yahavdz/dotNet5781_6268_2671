@@ -7,7 +7,7 @@
              mc:Ignorable="d">
     <StackPanel Orientation="Horizontal">
         <Label Name="myLab" Content="" Width="80"></Label>
-        <Button Content="GO" Width="40"></Button>
-        <Button Content="FUEL" Width="40"></Button>
+        <Button Content="GO" Width="40" Click="Button_Click"></Button>
+        <Button Content="FUEL" Width="40" Click="Button_Click_1"></Button>
     </StackPanel>
 </UserControl>
