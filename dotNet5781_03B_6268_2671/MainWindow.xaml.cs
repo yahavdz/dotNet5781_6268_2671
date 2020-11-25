@@ -23,12 +23,12 @@ namespace dotNet5781_03B_6268_2671
     public partial class MainWindow : Window
     {
         public List<Bus> busList { get; set; }
-        private Bus currentDisplayBus;
+        
         public MainWindow()
         {
             InitializeComponent();
             Random random = new Random();
-
+            busList = new List<Bus>();
             //Initialization ten buses
             for (int i = 0; i < 10; i++)
             {
@@ -40,7 +40,7 @@ namespace dotNet5781_03B_6268_2671
                     bus.busID = random.Next(100, 1000) + "-" + random.Next(1, 100) + "-" + random.Next(1, 1000);
 
                 //set a random date from the last year
-                DateTime start = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day - 365);
+                DateTime start = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day);
                 bus.LastTreatmentDate = start.AddDays(random.Next(365));
 
                 bus.totalKilometers = random.Next(20000, 200000);//set the mileage to be random from 20,000km to 200,000km
@@ -56,6 +56,7 @@ namespace dotNet5781_03B_6268_2671
             busList[2].kilometersSinceLastTreatment = busList[2].totalKilometers - 19000; // Close to the next treatment (in mileage) 
             busList[3].KilometersAtLastRefueling = busList[2].totalKilometers - 1100; //Bus with little fuel 
 
+           
         }
     }
 }
