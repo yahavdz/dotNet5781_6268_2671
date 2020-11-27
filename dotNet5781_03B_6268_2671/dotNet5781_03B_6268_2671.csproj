@@ -37,6 +37,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -59,6 +60,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="FuelWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -70,6 +79,12 @@
     <Compile Include="Bus.cs" />
     <Compile Include="BusItem.xaml.cs">
       <DependentUpon>BusItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FuelWindow.xaml.cs">
+      <DependentUpon>FuelWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GoWindow.xaml.cs">
+      <DependentUpon>GoWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -103,10 +118,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\dotNet5781_01_6268_4032\dotNet5781_01_6268_4032.csproj">
-      <Project>{da1a5ce3-e408-43cd-94c2-df58ab9037e0}</Project>
-      <Name>dotNet5781_01_6268_4032</Name>
-    </ProjectReference>
     <ProjectReference Include="..\dotNet5781_02_6268_4032\dotNet5781_02_6268_4032.csproj">
       <Project>{4c5ac438-0689-4c66-84b1-bd70863dfeb4}</Project>
       <Name>dotNet5781_02_6268_4032</Name>

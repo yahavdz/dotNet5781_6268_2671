@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:dotNet5781_03B_6268_2671"
              mc:Ignorable="d">
     <StackPanel Orientation="Horizontal">
-        <Label Name="myLab" Content="" Width="80"></Label>
-        <Button Content="GO" Width="40" Click="Button_Click"></Button>
-        <Button Content="FUEL" Width="40" Click="Button_Click_1"></Button>
+        <Label x:Name="myLab" Content="" Width="109"/>
+        <Button Content="GO" Width="40" Click="Button_Go"/>
+        <Button Content="FUEL" Width="40" Click="Button_Fuel"/>
     </StackPanel>
 </UserControl>

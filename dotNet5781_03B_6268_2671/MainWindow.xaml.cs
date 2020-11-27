@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using dotNet5781_02_6268_4032;
-using dotNet5781_01_6268_4032;
+
 
 namespace dotNet5781_03B_6268_2671
 {
@@ -61,6 +61,7 @@ namespace dotNet5781_03B_6268_2671
             busList[2].kilometersSinceLastTreatment = busList[2].totalKilometers - 19000; // Close to the next treatment (in mileage) 
             busList[3].KilometersAtLastRefueling = busList[2].totalKilometers - 1100; //Bus with little fuel 
 
+           
             foreach (Bus _bus in busList)
                 myLBI.Items.Add(new BusItem(_bus));
         }

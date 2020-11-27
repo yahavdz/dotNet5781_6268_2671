@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace dotNet5781_03B_6268_2671
 {
     /// <summary>
@@ -20,20 +21,28 @@ namespace dotNet5781_03B_6268_2671
     /// </summary>
     public partial class BusItem : UserControl
     {
-        public BusItem(Bus myBus)
+        private Bus b;
+        public BusItem(Bus _bus)
         {
             InitializeComponent();
-            myLab.Content = myBus.id;
+            myLab.Content = _bus.busID;
+            this.b = new Bus();
+            b = _bus;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Go(object sender, RoutedEventArgs e)
         {
-
+            GoWindow secondWindow = new GoWindow();
+            secondWindow.ShowDialog();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Button_Fuel(object sender, RoutedEventArgs e)
         {
-            
+
+            this.b.refueling();
+            FuelWindow secondWindow = new FuelWindow();
+            secondWindow.ShowDialog();
+
         }
     }
 }
