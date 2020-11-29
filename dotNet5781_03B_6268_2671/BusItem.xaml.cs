@@ -43,5 +43,6 @@ namespace dotNet5781_03B_6268_2671
             FuelWindow secondWindow = new FuelWindow();
             secondWindow.ShowDialog();
         }
+       
     }
 }

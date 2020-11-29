@@ -15,6 +15,7 @@
             <StackPanel Grid.Row="2">
                 <Grid Margin="10" Height="300">
                     <ListBox x:Name="myLBI" ></ListBox>
+                    <Border  BorderThickness="10" Name="border1" MouseLeftButtonDown="border1_MouseLeftButtonDown" />
                 </Grid>
                 <Button Content="ADD" Click="ADDBUS_Click" Margin="10"></Button>
             </StackPanel>
