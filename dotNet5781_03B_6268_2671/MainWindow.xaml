@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_6268_2671"
         mc:Ignorable="d"
-        Title="MainWindow" Height="640" Width="800">
+        Title="MainWindow" Height="500" Width="800">
     <Grid>
         <Grid Name="MainGrid">
             <Grid.RowDefinitions>
@@ -16,7 +16,7 @@
                 <Grid Margin="10" Height="300">
                     <ListBox x:Name="myLBI" ></ListBox>
                 </Grid>
-                <Button Content="ADD" Click="ADDBUS_Click"></Button>
+                <Button Content="ADD" Click="ADDBUS_Click" Margin="10"></Button>
             </StackPanel>
         </Grid>
     </Grid>

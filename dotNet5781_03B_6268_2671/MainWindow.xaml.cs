@@ -23,30 +23,43 @@ namespace dotNet5781_03B_6268_2671
     public partial class MainWindow : Window
     {
         public List<Bus> busList { get; set; }
-        
+        static Random random = new Random(DateTime.Now.Millisecond);
         public MainWindow()
         {
             InitializeComponent();
-            Random random = new Random();
+            
             busList = new List<Bus>();
             //Initialization ten buses
             for (int i = 0; i < 10; i++)
             {
-
                 Bus bus = new Bus();
+                DateTime start;
                 if (i == 1 || i == 3 || i == 5 || i == 7)
                 {
                     bus.busID = random.Next(10, 100) + "-" + random.Next(100, 1000) + "-" + random.Next(10, 100);
-
+                    start = new DateTime(random.Next(1985, 2018), random.Next(1, 13), 1);
                 }
                 else
                 {
                     bus.busID = random.Next(100, 1000) + "-" + random.Next(10, 100) + "-" + random.Next(100, 1000);
+                    start = new DateTime(random.Next(2018, 2021), random.Next(1, 12), 1);
                 }
+                start = start.AddDays(random.Next(30));
+                bus.ActivityStartDate = start;
 
                 //set a random date from the last year
-                DateTime start = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day);
-                bus.LastTreatmentDate = start.AddDays(random.Next(365));
+                DateTime lastTra;
+                if ((DateTime.Today.Year - bus.ActivityStartDate.Year) == 0)
+                {
+                    lastTra = start;
+                    lastTra = lastTra.AddDays(random.Next(1, (DateTime.Today - bus.ActivityStartDate).Days));
+                }
+                else
+                {
+                    lastTra = new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day);
+                    lastTra = lastTra.AddDays(random.Next(1, 365));
+                }
+                bus.LastTreatmentDate = lastTra;
 
                 bus.totalKilometers = random.Next(20000, 200000);//set the mileage to be random from 20,000km to 200,000km
                 bus.kilometersSinceLastTreatment = bus.totalKilometers - random.Next(1, 20000);
@@ -68,9 +81,10 @@ namespace dotNet5781_03B_6268_2671
         private void ADDBUS_Click(object sender, RoutedEventArgs e)
         {
             AddWindow secondWindow = new AddWindow();
+            secondWindow._busList = busList;
             secondWindow.ShowDialog();
-
-            myLBI.Items.Add(busList[11]);
+            for (int i = myLBI.Items.Count; i < busList.Count; i++)
+                myLBI.Items.Add(new BusItem(busList[i]));
         }
     }
 }
