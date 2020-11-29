@@ -15,9 +15,8 @@
             <StackPanel Grid.Row="2">
                 <Grid Margin="10" Height="300">
                     <ListBox x:Name="myLBI" ></ListBox>
-                    
                 </Grid>
-                <Button Content="ADD" Click="Button_Click"></Button>
+                <Button Content="ADD" Click="ADDBUS_Click"></Button>
             </StackPanel>
         </Grid>
     </Grid>

@@ -38,11 +38,9 @@ namespace dotNet5781_03B_6268_2671
 
         private void Button_Fuel(object sender, RoutedEventArgs e)
         {
-
             this.b.refueling();
             FuelWindow secondWindow = new FuelWindow();
             secondWindow.ShowDialog();
-
         }
     }
 }

@@ -61,14 +61,16 @@ namespace dotNet5781_03B_6268_2671
             busList[2].kilometersSinceLastTreatment = busList[2].totalKilometers - 19000; // Close to the next treatment (in mileage) 
             busList[3].KilometersAtLastRefueling = busList[2].totalKilometers - 1100; //Bus with little fuel 
 
-           
             foreach (Bus _bus in busList)
                 myLBI.Items.Add(new BusItem(_bus));
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ADDBUS_Click(object sender, RoutedEventArgs e)
         {
+            AddWindow secondWindow = new AddWindow();
+            secondWindow.ShowDialog();
 
+            myLBI.Items.Add(busList[11]);
         }
     }
 }

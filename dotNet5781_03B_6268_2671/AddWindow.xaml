@@ -1,0 +1,35 @@
+﻿<Window x:Class="dotNet5781_03B_6268_2671.AddWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:dotNet5781_03B_6268_2671"
+        mc:Ignorable="d"
+        Title="AddWindow" Height="450" Width="800">
+    <Grid Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Content="Enter new bus details"/>
+        <Grid Grid.Row="1" HorizontalAlignment="Stretch" Height="auto" VerticalAlignment="Stretch" Width="auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Bus ID:" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0"/>
+            <TextBox x:Name="newBusId" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1"/>
+        </Grid>
+        <Grid Grid.Row="2" HorizontalAlignment="Stretch" Height="auto" VerticalAlignment="Stretch" Width="auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions >
+            <Label Content="Total Kilometers::" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0"/>
+            <TextBox x:Name="newTotalKilometers" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1"/>
+        </Grid>
+        <Button x:Name="save" Content="SAVE" Grid.Row="3" Margin="40" Click="save_Click"/>
+    </Grid>
+</Window>
