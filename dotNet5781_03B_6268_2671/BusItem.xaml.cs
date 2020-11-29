@@ -32,7 +32,8 @@ namespace dotNet5781_03B_6268_2671
 
         private void Button_Go(object sender, RoutedEventArgs e)
         {
-            GoWindow secondWindow = new GoWindow();
+            GoWindow secondWindow = new GoWindow(b);
+            
             secondWindow.ShowDialog();
         }
 

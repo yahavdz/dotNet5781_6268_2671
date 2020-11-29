@@ -22,14 +22,15 @@ namespace dotNet5781_03B_6268_2671
     /// </summary>
     public partial class GoWindow : Window
     {
-        private Bus b;
-        public GoWindow()
+        private Bus b;//TODO add to the 
+        public GoWindow(Bus _bus)
         {
             InitializeComponent();
             this.b = new Bus();
+            b = _bus;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_OK(object sender, RoutedEventArgs e)
         {
             MyLabel.Content = MyTextBox.Text;
             var isNumeric = int.TryParse(MyTextBox.Text, out int n);
@@ -43,16 +44,16 @@ namespace dotNet5781_03B_6268_2671
             }
             else //TODO dates
             {
-                if(b.kilometersSinceLastTreatment + n > 20000)
+                if(b.totalKilometers - b.kilometersSinceLastTreatment + n > 20000)
                 {
-                    string message = "The bus could not take the ride: pass the 20,000 km since last treatment";
+                    string message = "The bus could not take the ride: pass the 20,000 km since last treatment("+ (b.totalKilometers-b.kilometersSinceLastTreatment)+ " km since last treatment)";//TODO
                     string title = "Close Window";
                     MessageBoxButtons buttons = MessageBoxButtons.OK;
                     DialogResult result = System.Windows.Forms.MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning);
                 }
-                else if (Math.Abs(n - (b.totalKilometers - b.KilometersAtLastRefueling)) > 1200)
+                else if (n + (b.totalKilometers - b.KilometersAtLastRefueling) > 1200)
                 {
-                    string message = "The bus could not take the ride: The fuel will not hold until the end of the ride";
+                    string message = "The bus could not take the ride: The fuel will not hold until the end of the ride(" + (1200-(b.totalKilometers - b.KilometersAtLastRefueling))+ " km left at the tank)";//TODO
                     string title = "Close Window";
                     MessageBoxButtons buttons = MessageBoxButtons.OK;
                     DialogResult result = System.Windows.Forms.MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning);
