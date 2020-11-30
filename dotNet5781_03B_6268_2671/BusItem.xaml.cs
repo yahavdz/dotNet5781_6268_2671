@@ -21,25 +21,24 @@ namespace dotNet5781_03B_6268_2671
     /// </summary>
     public partial class BusItem : UserControl
     {
-        private Bus b;
+        public Bus currentBus { get; set; }
         public BusItem(Bus _bus)
         {
             InitializeComponent();
             myLab.Content = _bus.busID;
-            this.b = new Bus();
-            b = _bus;
+            this.currentBus = new Bus();
+            currentBus = _bus;
         }
 
         private void Button_Go(object sender, RoutedEventArgs e)
         {
-            GoWindow secondWindow = new GoWindow(b);
-            
+            GoWindow secondWindow = new GoWindow(currentBus);
             secondWindow.ShowDialog();
         }
 
         private void Button_Fuel(object sender, RoutedEventArgs e)
         {
-            this.b.refueling();
+            this.currentBus.refueling();
             FuelWindow secondWindow = new FuelWindow();
             secondWindow.ShowDialog();
         }
