@@ -81,7 +81,7 @@ namespace dotNet5781_03B_6268_2671
         private void ADDBUS_Click(object sender, RoutedEventArgs e)
         {
             AddWindow secondWindow = new AddWindow();
-            //secondWindow._busList = busList;
+            secondWindow._busList = busList;
             secondWindow.ShowDialog();
             for (int i = myLBI.Items.Count; i < busList.Count; i++)
                 myLBI.Items.Add(new BusItem(busList[i]));
