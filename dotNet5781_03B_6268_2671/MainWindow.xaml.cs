@@ -27,7 +27,7 @@ namespace dotNet5781_03B_6268_2671
         public MainWindow()
         {
             InitializeComponent();
-            
+
             busList = new List<Bus>();
             //Initialization ten buses
             for (int i = 0; i < 10; i++)
@@ -72,7 +72,7 @@ namespace dotNet5781_03B_6268_2671
             }
             busList[1].LastTreatmentDate = new DateTime(2019, 11, 1); //More than a year has passed since the last treatment
             busList[2].kilometersSinceLastTreatment = busList[2].totalKilometers - 19000; // Close to the next treatment (in mileage) 
-            busList[3].KilometersAtLastRefueling = busList[2].totalKilometers - 1100; //Bus with little fuel 
+            busList[3].KilometersAtLastRefueling = busList[3].totalKilometers - 1100; //Bus with little fuel 
 
             foreach (Bus _bus in busList)
                 myLBI.Items.Add(new BusItem(_bus));
@@ -86,14 +86,19 @@ namespace dotNet5781_03B_6268_2671
             for (int i = myLBI.Items.Count; i < busList.Count; i++)
                 myLBI.Items.Add(new BusItem(busList[i]));
         }
-        private void border1_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+
+        private void listBox_SelectionChanged(object sender, RoutedEventArgs e)
         {
-            if (e.ClickCount == 2)
+            if (myLBI.SelectedItem != null)
             {
-                DetailsWindow secondWindow = new DetailsWindow();
-                secondWindow.Show();
+                foreach (var selectedItem in myLBI.SelectedItems)
+                {
+                    DetailsWindow secondWindow = new DetailsWindow();
+                    secondWindow.detailsBus = (selectedItem as BusItem).currentBus;
+                    secondWindow.showDetails();
+                    secondWindow.ShowDialog();
+                }
             }
-               
         }
     }
 }

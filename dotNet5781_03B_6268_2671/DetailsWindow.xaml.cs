@@ -21,7 +21,30 @@ namespace dotNet5781_03B_6268_2671
     {
         public DetailsWindow()
         {
-            InitializeComponent();
+            InitializeComponent();  
+        }
+        public Bus detailsBus { get; set; }
+
+        public void showDetails()
+        {
+            laBusId.Content = detailsBus.busID;
+            laTotalKilometers.Content = detailsBus.totalKilometers;
+            laAmountFuel.Content = 1200 - (detailsBus.totalKilometers - detailsBus.KilometersAtLastRefueling);
+            laActivityStartDate.Content = detailsBus.ActivityStartDate.ToString("MMMM dd, yyyy");
+            laLastTreatmentDate.Content = detailsBus.LastTreatmentDate.ToString("MMMM dd, yyyy");
+            laStatus.Content = detailsBus.statusNow;
+        }
+
+        private void go_Click(object sender, RoutedEventArgs e)
+        {
+            GoWindow secondWindow = new GoWindow(detailsBus);
+            secondWindow.ShowDialog();
+        }
+
+        private void fuel_Click(object sender, RoutedEventArgs e)
+        {
+            detailsBus.refueling();
+            laAmountFuel.Content = 1200;
         }
     }
 }

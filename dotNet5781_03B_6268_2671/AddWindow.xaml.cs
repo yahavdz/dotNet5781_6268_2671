@@ -80,7 +80,7 @@ namespace dotNet5781_03B_6268_2671
                     break;
                 }
 
-            if (newTotalKilometers.Text.Length > 0 && checkTotalKm)
+            if (newTotalKilometers.Text.Length > 0 && newTotalKilometers.Text.Length < 10 && checkTotalKm)
                 newBus.totalKilometers = Convert.ToInt32(newTotalKilometers.Text);
             else
                 newTotalKilometers.Text = "*Invalid number*";
@@ -103,7 +103,7 @@ namespace dotNet5781_03B_6268_2671
                 {
                     totalFuel = Convert.ToInt32(newTotalFuel.Text);
                     if (totalFuel <= 1200)
-                        totalFuel = newBus.totalKilometers - totalFuel;
+                        totalFuel = newBus.totalKilometers - (1200 - totalFuel);
                     else
                         checkFuel = false;
                 }

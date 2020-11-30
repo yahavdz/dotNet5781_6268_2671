@@ -5,19 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_6268_2671"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="800">
+        Title="MainWindow" Height="450" Width="300">
     <Grid>
         <Grid Name="MainGrid">
             <Grid.RowDefinitions>
-                <RowDefinition Height="50*"/>
+                <RowDefinition Height="40*"/>
                 <RowDefinition Height="400*"/>
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="2">
+            <StackPanel Grid.Row="1">
                 <Grid Margin="10" Height="300">
-                    <ListBox x:Name="myLBI" ></ListBox>
-                    <Border  BorderThickness="10" Name="border1" MouseLeftButtonDown="border1_MouseLeftButtonDown" />
+                    <ListBox x:Name="myLBI" MouseDoubleClick="listBox_SelectionChanged" SelectionMode="Single"></ListBox>
                 </Grid>
-                <Button Content="ADD" Click="ADDBUS_Click" Margin="10"></Button>
+                <Button Content="ADD" Click="ADDBUS_Click" Margin="10" Height="30" FontWeight="Bold" FontSize="14"></Button>
             </StackPanel>
         </Grid>
     </Grid>
