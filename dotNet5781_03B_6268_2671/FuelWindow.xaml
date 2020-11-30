@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_6268_2671"
         mc:Ignorable="d"
-        Title="FuelWindow" Height="450" Width="800">
-    <Grid>
-        <TextBlock Text="The bus will be lit successfully!" VerticalAlignment="Center" Margin="99,151,84.333,37.667" Height="232" FontSize="40" FontWeight="Bold" TextDecorations="{x:Null}"/>
-    </Grid>
+       Title="FuelWindow" Height="130.71" Width="311.086" Name="Fuel">
+
+    <TextBlock VerticalAlignment="Top" Margin="10,35,3.667,-77.667" Height="144" FontSize="18" FontWeight="Bold" TextDecorations="{x:Null}" Text="the Bus has Successfully Fueled!" />
+
+
 </Window>

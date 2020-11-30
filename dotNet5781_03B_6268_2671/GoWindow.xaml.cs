@@ -12,8 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
-
+using KeyEventArgs = System.Windows.Input.KeyEventArgs;
 
 namespace dotNet5781_03B_6268_2671
 {
@@ -22,7 +21,7 @@ namespace dotNet5781_03B_6268_2671
     /// </summary>
     public partial class GoWindow : Window
     {
-        private Bus b;//TODO add to the 
+        private Bus b; 
         public GoWindow(Bus _bus)
         {
             InitializeComponent();
@@ -32,65 +31,71 @@ namespace dotNet5781_03B_6268_2671
 
         private void Button_OK(object sender, RoutedEventArgs e)
         {
-            MyLabel.Content = MyTextBox.Text;
-            var isNumeric = int.TryParse(MyTextBox.Text, out int n);
-            if (!isNumeric)
-            {
-                string message = "Incorrect Value";
-                string title = "warning";
-                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                DialogResult result = System.Windows.Forms.MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning);
-
-            }
-            else //TODO dates
-            {
-                if(b.totalKilometers - b.kilometersSinceLastTreatment + n > 20000)
-                {
-                    string message = "The bus could not take the ride: pass the 20,000 km since last treatment("+ (b.totalKilometers-b.kilometersSinceLastTreatment)+ " km since last treatment)";//TODO
-                    string title = "Close Window";
-                    MessageBoxButtons buttons = MessageBoxButtons.OK;
-                    DialogResult result = System.Windows.Forms.MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning);
-                }
-                else if (n + (b.totalKilometers - b.KilometersAtLastRefueling) > 1200)
-                {
-                    string message = "The bus could not take the ride: The fuel will not hold until the end of the ride(" + (1200-(b.totalKilometers - b.KilometersAtLastRefueling))+ " km left at the tank)";//TODO
-                    string title = "Close Window";
-                    MessageBoxButtons buttons = MessageBoxButtons.OK;
-                    DialogResult result = System.Windows.Forms.MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning);
-                }
-                 else if(b.statusNow == status.midRide)
-                {
-                    string message = "The bus could not take the ride: in a middle of a ride";
-                    string title = "Close Window";
-                    MessageBoxButtons buttons = MessageBoxButtons.OK;
-                    DialogResult result = System.Windows.Forms.MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning);
-                }
-                else if (b.statusNow == status.refuelingNow)
-                {
-                    string message = "The bus could not take the ride: refuling now";
-                    string title = "Close Window";
-                    MessageBoxButtons buttons = MessageBoxButtons.OK;
-                    DialogResult result = System.Windows.Forms.MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning);
-                }
-                else if (b.statusNow == status.treatmentNow)
-                {
-                    string message = "The bus could not take the ride: in a treatment";
-                    string title = "Close Window";
-                    MessageBoxButtons buttons = MessageBoxButtons.OK;
-                    DialogResult result = System.Windows.Forms.MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning);
-                }
-                else
-                {
-                    b.kilometersSinceLastTreatment += n;
-                    b.totalKilometers += n;
-                    b.statusNow = status.midRide;
-                }
-                this.Close();
-            }
+            
+          
+            
             
         }
+        private void OnKeyDownHandler(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                var isNumeric = int.TryParse(textBox1.Text, out int n);
+                if (!isNumeric)
+                {
+                    string message = "Incorrect Value";
+                    string title = "warning";
+                    MessageBoxButtons buttons = MessageBoxButtons.OK;
+                    DialogResult result = System.Windows.Forms.MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning);
 
-       
+                }
+                else //TODO dates
+                {
+                    if (b.totalKilometers - b.kilometersSinceLastTreatment + n > 20000)
+                    {
+                        string message = "The bus could not take the ride: pass the 20,000 km since last treatment(" + (b.totalKilometers - b.kilometersSinceLastTreatment) + " km since last treatment)";//TODO
+                        string title = "Close Window";
+                        MessageBoxButtons buttons = MessageBoxButtons.OK;
+                        DialogResult result = System.Windows.Forms.MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning);
+                    }
+                    else if (n + (b.totalKilometers - b.KilometersAtLastRefueling) > 1200)
+                    {
+                        string message = "The bus could not take the ride: The fuel will not hold until the end of the ride(" + (1200 - (b.totalKilometers - b.KilometersAtLastRefueling)) + " km left at the tank)";//TODO
+                        string title = "Close Window";
+                        MessageBoxButtons buttons = MessageBoxButtons.OK;
+                        DialogResult result = System.Windows.Forms.MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning);
+                    }
+                    else if (b.statusNow == status.midRide)
+                    {
+                        string message = "The bus could not take the ride: in a middle of a ride";
+                        string title = "Close Window";
+                        MessageBoxButtons buttons = MessageBoxButtons.OK;
+                        DialogResult result = System.Windows.Forms.MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning);
+                    }
+                    else if (b.statusNow == status.refuelingNow)
+                    {
+                        string message = "The bus could not take the ride: refuling now";
+                        string title = "Close Window";
+                        MessageBoxButtons buttons = MessageBoxButtons.OK;
+                        DialogResult result = System.Windows.Forms.MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning);
+                    }
+                    else if (b.statusNow == status.treatmentNow)
+                    {
+                        string message = "The bus could not take the ride: in a treatment";
+                        string title = "Close Window";
+                        MessageBoxButtons buttons = MessageBoxButtons.OK;
+                        DialogResult result = System.Windows.Forms.MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning);
+                    }
+                    else
+                    {
+                        b.kilometersSinceLastTreatment += n;
+                        b.totalKilometers += n;
+                        b.statusNow = status.midRide;
+                    }
+                    this.Close();
+                }
+            }
+        }
     }
 }
 

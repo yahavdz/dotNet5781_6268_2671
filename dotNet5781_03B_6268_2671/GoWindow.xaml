@@ -5,18 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_6268_2671"
         mc:Ignorable="d"
-        Title="GoWindow" Height="450" Width="800">
-    <Grid>
+        Title="GoWindow" Height="244" Width="252">
+    <Grid Margin="0,0,-207.667,25.667">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="16*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Label Content="Enter Ride Trip Distance" Margin="5"/>
-        <TextBox Grid.Row="1" Name="MyTextBox" Margin="5"/>
-        <Button IsDefault="True" Grid.Row="2"  Margin="5" Click="Button_OK"/>
-        <Label Grid.Row="3" Name="MyLabel" Margin="5"/>
-        
+        <Label Content="Enter Ride Trip Distance" Margin="5,5,5.334,4.667" FontWeight="Bold" FontSize="18" Grid.ColumnSpan="2"/>
+        <TextBox Name="textBox1" KeyDown="OnKeyDownHandler" Margin="5,14.667,138,10" Grid.Row="1" Grid.RowSpan="2"/>
+
+
+
+
+
     </Grid>
 </Window>

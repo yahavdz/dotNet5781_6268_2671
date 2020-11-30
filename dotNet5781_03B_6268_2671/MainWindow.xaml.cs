@@ -89,16 +89,16 @@ namespace dotNet5781_03B_6268_2671
 
         private void listBox_SelectionChanged(object sender, RoutedEventArgs e)
         {
-            if (myLBI.SelectedItem != null)
-            {
-                foreach (var selectedItem in myLBI.SelectedItems)
-                {
+           // if (myLBI.SelectedItem != null)
+           // {
+               // foreach (var selectedItem in myLBI.SelectedItems)
+               // {
                     DetailsWindow secondWindow = new DetailsWindow();
-                    secondWindow.detailsBus = (selectedItem as BusItem).currentBus;
+                    secondWindow.detailsBus = (myLBI.SelectedItems[0] as BusItem).currentBus;
                     secondWindow.showDetails();
                     secondWindow.ShowDialog();
-                }
-            }
+             //   }
+           // }
         }
     }
 }
