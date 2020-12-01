@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,20 +22,16 @@ namespace dotNet5781_03B_6268_2671
     /// </summary>
     public partial class GoWindow : Window
     {
-        private Bus b; 
-        public GoWindow(Bus _bus)
+        private Bus b;
+        static Random random = new Random();
+        private readonly BusItem busItemWindow;
+
+        public GoWindow(Bus _bus, BusItem busWindow)
         {
             InitializeComponent();
             this.b = new Bus();
             b = _bus;
-        }
-
-        private void Button_OK(object sender, RoutedEventArgs e)
-        {
-            
-          
-            
-            
+            busItemWindow = busWindow;
         }
         private void OnKeyDownHandler(object sender, KeyEventArgs e)
         {
@@ -91,10 +88,27 @@ namespace dotNet5781_03B_6268_2671
                         b.kilometersSinceLastTreatment += n;
                         b.totalKilometers += n;
                         b.statusNow = status.midRide;
+                       
+                        Thread t1 = new Thread(inARide);
+                        t1.Start(n);
+                       
+
                     }
                     this.Close();
                 }
             }
+        }
+        private void inARide(object distance)
+        {
+            Dispatcher.BeginInvoke((Action)(() => busItemWindow.tbStatus.Text = "Ends the trip in: ")); // use dispatcher to access the TextBox in different threads
+
+            int speed = random.Next(20, 50);            
+            int sleepTime = ((int)distance / speed) * 6000;
+            busItemWindow.countDown((sleepTime/1000));
+            Thread.Sleep(sleepTime);
+            Dispatcher.BeginInvoke((Action)(() => busItemWindow.tbStatus.Text = "Ready To Go ")); // use dispatcher to access the TextBox in different threads 
+            b.statusNow = status.readyToGo;
+
         }
     }
 }

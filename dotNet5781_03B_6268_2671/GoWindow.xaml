@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:dotNet5781_03B_6268_2671"
         mc:Ignorable="d"
         Title="GoWindow" Height="244" Width="252">
+    
     <Grid Margin="0,0,-207.667,25.667">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="16*"/>

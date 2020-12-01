@@ -44,9 +44,9 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button Content="GO" Margin="5" Click="go_Click" Grid.Column="0"/>
+                <Button Content="TREATMENT" Margin="0,5,4.667,0" Click="treatment_Click" Grid.Column="0" Height="29" VerticalAlignment="Top" HorizontalAlignment="Right" Width="67"/>
                 <Button Content="FUEL" Margin="5" Click="fuel_Click" Grid.Column="1"/>
             </Grid>
-         </Grid>
+        </Grid>
     </Grid>
 </Window>

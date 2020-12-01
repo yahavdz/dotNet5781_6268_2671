@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,11 +20,14 @@ namespace dotNet5781_03B_6268_2671
     /// </summary>
     public partial class DetailsWindow : Window
     {
+        public Bus detailsBus { get; set; }
+        private const int day = 144000;
+        private const int hour = 6000;
         public DetailsWindow()
         {
-            InitializeComponent();  
+            InitializeComponent();
         }
-        public Bus detailsBus { get; set; }
+
 
         public void showDetails()
         {
@@ -35,16 +39,30 @@ namespace dotNet5781_03B_6268_2671
             laStatus.Content = detailsBus.statusNow;
         }
 
-        private void go_Click(object sender, RoutedEventArgs e)
+        private void treatment_Click(object sender, RoutedEventArgs e)
         {
-            GoWindow secondWindow = new GoWindow(detailsBus);
-            secondWindow.ShowDialog();
+            detailsBus.statusNow = status.treatmentNow;
+            Thread t1 = new Thread(inTreatment);
+            t1.Start();
         }
 
         private void fuel_Click(object sender, RoutedEventArgs e)
         {
             detailsBus.refueling();
             laAmountFuel.Content = 1200;
+            detailsBus.statusNow = status.refuelingNow;
+            Thread t1 = new Thread(inRefuel);
+            t1.Start();
+        }
+        private void inTreatment()
+        {
+            Thread.Sleep(day);
+            detailsBus.statusNow = status.readyToGo;
+        }
+        private void inRefuel()
+        {
+            Thread.Sleep(hour * 2);
+            detailsBus.statusNow = status.readyToGo;
         }
     }
 }
