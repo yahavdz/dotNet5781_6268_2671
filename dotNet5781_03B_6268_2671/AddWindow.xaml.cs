@@ -97,7 +97,7 @@ namespace dotNet5781_03B_6268_2671
                     }
 
                 int totalFuel = -1;
-                if (newTotalFuel.Text.Length == 0)
+                if (newTotalFuel.Text.Length == 0 || newTotalFuel.Text.Length > 9)
                     checkFuel = false;
                 else
                 {

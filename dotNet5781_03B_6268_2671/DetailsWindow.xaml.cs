@@ -52,6 +52,8 @@ namespace dotNet5781_03B_6268_2671
                 SolidColorBrush mySCBtr = new SolidColorBrush(Colors.Khaki);
                 mySCBtr.Opacity = 0.6;
                 busItemWindow.itamPanel.Background = mySCBtr;
+                if (detailsBus.totalKilometers == (detailsBus.KilometersAtLastRefueling + 1200))
+                    detailsBus.refueling();
                 detailsBus.treatment();
                 showDetails();
                 Thread t1 = new Thread(inTreatment);

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Bus details" Height="300" Width="340" Icon="https://static.thenounproject.com/png/835842-200.png">
     <Grid Background="Cornsilk">
-        <Grid>
+        <Grid x:Name="mainGrid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
