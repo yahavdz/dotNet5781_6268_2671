@@ -88,7 +88,9 @@ namespace dotNet5781_03B_6268_2671
                         b.kilometersSinceLastTreatment += n;
                         b.totalKilometers += n;
                         b.statusNow = status.midRide;
-                        busItemWindow.itamPanel.Background = Brushes.Tomato;
+                        SolidColorBrush mySCBgo = new SolidColorBrush(Colors.Tomato);
+                        mySCBgo.Opacity = 0.6;
+                        busItemWindow.itamPanel.Background = mySCBgo;
                         Thread t1 = new Thread(inARide);
                         t1.Start(n);
                     }

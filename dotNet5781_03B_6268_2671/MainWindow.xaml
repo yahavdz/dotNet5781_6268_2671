@@ -16,12 +16,16 @@
         <Label Content="Welcome to the bus system" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" FontSize="28" FontWeight="Bold" FontFamily="Cooper Black" Foreground="SandyBrown"/>
         <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Label Content="Ready to go" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" FontFamily="Cooper Black" Foreground="LightGreen"/>
-            <Label Content="In refueling" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" FontFamily="Cooper Black" Foreground="LightSkyBlue"/>
+            <Label Content="In refueling" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" FontFamily="Cooper Black" Foreground="DarkCyan"/>
             <Label Content="In A Ride" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" FontFamily="Cooper Black" Foreground="Tomato"/>
             <Label Content="In treatment" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" FontFamily="Cooper Black" Foreground="Khaki"/>
         </StackPanel>
-        <Grid Margin="10" Grid.Row="2">
-            <ListBox x:Name="myLBI" MouseDoubleClick="listBox_SelectionChanged" SelectionMode="Single"/>
+        <Grid Margin="10" Grid.Row="2" Background="White">
+            <ListBox x:Name="myLBI" MouseDoubleClick="listBox_SelectionChanged" SelectionMode="Single">
+                <ListBox.Background>
+                    <ImageBrush ImageSource="https://upload.wikimedia.org/wikipedia/commons/3/35/Metrobusjuanbjusto.png" Stretch="Uniform"/>
+                </ListBox.Background>
+            </ListBox>
         </Grid>
         <Button Content="ADD" Click="ADDBUS_Click" Margin="10" FontWeight="Bold" FontSize="16" Grid.Row="3" Background="PeachPuff" Foreground="SandyBrown" FontFamily="Microsoft YaHei UI" BorderBrush="BurlyWood"></Button>
     </Grid>

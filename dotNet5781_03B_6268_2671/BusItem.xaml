@@ -5,7 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:dotNet5781_03B_6268_2671"
              mc:Ignorable="d">
-    <StackPanel x:Name="itamPanel" Orientation="Horizontal" Background="LightGreen">
+    <StackPanel x:Name="itamPanel" Orientation="Horizontal">
+        <StackPanel.Background>
+            <SolidColorBrush Color="LightGreen" Opacity="0.6"/>
+        </StackPanel.Background>
         <Label x:Name="myLab" Content="" Width="109" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14"/>
         <Button Content="GO" Margin="2" Width="40" Click="Button_Go" Background="PeachPuff" Foreground="SandyBrown" FontFamily="Microsoft YaHei UI" BorderBrush="BurlyWood" FontWeight="Bold"/>
         <Border Width="1"/>

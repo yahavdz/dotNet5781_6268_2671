@@ -29,12 +29,15 @@ namespace dotNet5781_03B_6268_2671
         private const int hour = 6000;
         DispatcherTimer _timer;
         TimeSpan _time;
+        SolidColorBrush mySolidColorBrush = new SolidColorBrush(Colors.LightGreen);
+        
         public BusItem(Bus _bus)
         {
             InitializeComponent();
             myLab.Content = _bus.busID;
             this.currentBus = new Bus();
             currentBus = _bus;
+            mySolidColorBrush.Opacity = 0.6;
         }
 
         private void Button_Go(object sender, RoutedEventArgs e)//A button that sends for travel
@@ -42,8 +45,7 @@ namespace dotNet5781_03B_6268_2671
             if (currentBus.statusNow == status.readyToGo)
             {
                 GoWindow secondWindow = new GoWindow(currentBus, this); 
- 
-                 secondWindow.ShowDialog();
+                secondWindow.ShowDialog();
             }
             else
             {
@@ -60,7 +62,11 @@ namespace dotNet5781_03B_6268_2671
             if (currentBus.statusNow == status.readyToGo && currentBus.totalKilometers > currentBus.KilometersAtLastRefueling)//Checks that the status of the bus is ok and also that the bus is not refueled
             {
                 this.currentBus.refueling();
-                itamPanel.Background = Brushes.LightSkyBlue;
+                SolidColorBrush mySCBfu = new SolidColorBrush(Colors.DarkCyan);
+                mySCBfu.Opacity = 0.6;
+                itamPanel.Background = mySCBfu;
+                //itamPanel.Background.Opacity = new Double();
+                //itamPanel.Background.Opacity = 0.6;
                 Thread t1 = new Thread(inRefuel);
                 t1.Start();
                 FuelWindow secondWindow = new FuelWindow();
@@ -88,13 +94,17 @@ namespace dotNet5781_03B_6268_2671
             _timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
             {
                 tbTime.Text = _time.ToString("c");
-                if (_time == TimeSpan.Zero) { _timer.Stop(); Dispatcher.BeginInvoke((Action)(() => tbTime.Text = "")); Dispatcher.BeginInvoke((Action)(() => itamPanel.Background = Brushes.LightGreen)); Dispatcher.BeginInvoke((Action)(() => tbStatus.Text = "")); }
+                if (_time == TimeSpan.Zero)
+                {
+                    _timer.Stop(); Dispatcher.BeginInvoke((Action)(() => tbTime.Text = ""));
+                    Dispatcher.BeginInvoke((Action)(() => itamPanel.Background = mySolidColorBrush));
+                    Dispatcher.BeginInvoke((Action)(() => tbStatus.Text = ""));
+
+                }
                     _time = _time.Add(TimeSpan.FromSeconds(-1));
             }, System.Windows.Application.Current.Dispatcher);
 
             _timer.Start();
-            
-
         }
 
     }

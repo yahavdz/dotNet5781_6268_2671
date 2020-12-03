@@ -45,7 +45,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Button Content="TREATMENT" Margin="4" Click="treatment_Click" Grid.Column="0" Background="PeachPuff" Foreground="SandyBrown" FontFamily="Microsoft YaHei UI" BorderBrush="BurlyWood" FontWeight="Bold"/>
-                <Button Content="FUEL" Margin="4" Click="fuel_Click" Grid.Column="1" Background="PeachPuff" Foreground="SandyBrown" FontFamily="Microsoft YaHei UI" BorderBrush="BurlyWood" FontWeight="Bold"/>
+                <Button Content="FUEL" Margin="4" Click="fuel_Click" Grid.Column="1" Background="PeachPuff" Foreground="SandyBrown" FontFamily="Microsoft YaHei UI" BorderBrush="BurlyWood" FontWeight="Bold" Height="30" VerticalAlignment="Bottom"/>
             </Grid>
         </Grid>
     </Grid>

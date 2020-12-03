@@ -49,7 +49,9 @@ namespace dotNet5781_03B_6268_2671
         {
             if (detailsBus.statusNow == status.readyToGo)//check if the bus is not in a middle of other thread
             {
-                busItemWindow.itamPanel.Background = Brushes.Khaki;
+                SolidColorBrush mySCBtr = new SolidColorBrush(Colors.Khaki);
+                mySCBtr.Opacity = 0.6;
+                busItemWindow.itamPanel.Background = mySCBtr;
                 detailsBus.treatment();
                 showDetails();
                 Thread t1 = new Thread(inTreatment);
@@ -68,9 +70,10 @@ namespace dotNet5781_03B_6268_2671
         {
             if (detailsBus.statusNow == status.readyToGo && detailsBus.totalKilometers > detailsBus.KilometersAtLastRefueling)//Checks that the status of the bus is ok and also that the bus is not refueled
             {
-                
                 detailsBus.refueling();
-                busItemWindow.itamPanel.Background = Brushes.LightSkyBlue;
+                SolidColorBrush mySCBfu = new SolidColorBrush(Colors.DarkCyan);
+                mySCBfu.Opacity = 0.6;
+                busItemWindow.itamPanel.Background = mySCBfu;
                 showDetails();
                 Thread t1 = new Thread(inRefuel);
                 t1.Start();
@@ -88,7 +91,7 @@ namespace dotNet5781_03B_6268_2671
         private void inTreatment()//thread Which activates the countdown until the end of the treatment and cancels the use of the bus until the countdown is completed
         {
             Dispatcher.BeginInvoke((Action)(() => busItemWindow.tbStatus.Text = "End treatment in:"));
-            busItemWindow.countDown(day/1000);
+            busItemWindow.countDown(day / 1000);
             Thread.Sleep(day);
             detailsBus.statusNow = status.readyToGo;
             Dispatcher.BeginInvoke((Action)(() => showDetails()));
