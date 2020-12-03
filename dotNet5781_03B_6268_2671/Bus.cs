@@ -23,11 +23,13 @@ namespace dotNet5781_03B_6268_2671
 
         public void treatment()
         {
+            statusNow = status.treatmentNow;
             kilometersSinceLastTreatment = totalKilometers;
-            LastTreatmentDate = DateTime.Now;
+            LastTreatmentDate = DateTime.Today;
         }
         public void refueling()
         {
+            statusNow = status.refuelingNow;
             KilometersAtLastRefueling = totalKilometers;
         }
         public override string ToString()

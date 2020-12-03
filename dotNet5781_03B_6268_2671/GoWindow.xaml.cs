@@ -38,7 +38,7 @@ namespace dotNet5781_03B_6268_2671
             if (e.Key == Key.Return)
             {
                 var isNumeric = int.TryParse(textBox1.Text, out int n);
-                if (!isNumeric)
+                if (!isNumeric || n < 0)
                 {
                     string message = "Incorrect Value";
                     string title = "warning";
@@ -50,14 +50,14 @@ namespace dotNet5781_03B_6268_2671
                 {
                     if (b.totalKilometers - b.kilometersSinceLastTreatment + n > 20000)
                     {
-                        string message = "The bus could not take the ride: pass the 20,000 km since last treatment(" + (b.totalKilometers - b.kilometersSinceLastTreatment) + " km since last treatment)";//TODO
+                        string message = "The bus could not take the ride: pass the 20,000 km since last treatment (" + (b.totalKilometers - b.kilometersSinceLastTreatment) + " km since last treatment)";//TODO
                         string title = "Close Window";
                         MessageBoxButtons buttons = MessageBoxButtons.OK;
                         DialogResult result = System.Windows.Forms.MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning);
                     }
                     else if (n + (b.totalKilometers - b.KilometersAtLastRefueling) > 1200)
                     {
-                        string message = "The bus could not take the ride: The fuel will not hold until the end of the ride(" + (1200 - (b.totalKilometers - b.KilometersAtLastRefueling)) + " km left at the tank)";//TODO
+                        string message = "The bus could not take the ride: The fuel will not hold until the end of the ride (" + (1200 - (b.totalKilometers - b.KilometersAtLastRefueling)) + " km left at the tank)";//TODO
                         string title = "Close Window";
                         MessageBoxButtons buttons = MessageBoxButtons.OK;
                         DialogResult result = System.Windows.Forms.MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning);
@@ -88,11 +88,9 @@ namespace dotNet5781_03B_6268_2671
                         b.kilometersSinceLastTreatment += n;
                         b.totalKilometers += n;
                         b.statusNow = status.midRide;
-                       
+                        busItemWindow.itamPanel.Background = Brushes.Tomato;
                         Thread t1 = new Thread(inARide);
                         t1.Start(n);
-                       
-
                     }
                     this.Close();
                 }
@@ -100,15 +98,15 @@ namespace dotNet5781_03B_6268_2671
         }
         private void inARide(object distance)
         {
-            Dispatcher.BeginInvoke((Action)(() => busItemWindow.tbStatus.Text = "Ends the trip in: ")); // use dispatcher to access the TextBox in different threads
+            Dispatcher.BeginInvoke((Action)(() => busItemWindow.tbStatus.Text = "Ends the trip in:")); // use dispatcher to access the TextBox in different threads
 
             int speed = random.Next(20, 50);            
             int sleepTime = ((int)distance / speed) * 6000;
-            busItemWindow.countDown((sleepTime/1000));
+            busItemWindow.countDown((sleepTime / 1000));
             Thread.Sleep(sleepTime);
-            Dispatcher.BeginInvoke((Action)(() => busItemWindow.tbStatus.Text = "Ready To Go ")); // use dispatcher to access the TextBox in different threads 
             b.statusNow = status.readyToGo;
-
+            Dispatcher.BeginInvoke((Action)(() => busItemWindow.itamPanel.Background = Brushes.LightGreen));
+            Dispatcher.BeginInvoke((Action)(() => busItemWindow.tbStatus.Text = ""));
         }
     }
 }

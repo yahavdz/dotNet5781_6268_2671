@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_6268_2671"
         mc:Ignorable="d"
-        Title="Add Bus" Height="250" Width="300">
-    <Grid Name="MainGrid">
+        Title="Add Bus" Height="250" Width="300" Icon="https://static.thenounproject.com/png/835842-200.png">
+    <Grid Name="MainGrid" Background="Cornsilk">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -17,7 +17,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Enter new bus details" FontWeight="Bold" FontSize="14" Margin="5" TextAlignment="Center"/>
+        <TextBlock Text="Enter new bus details" FontWeight="Bold" FontSize="14" Margin="5" TextAlignment="Center" Foreground="SandyBrown"/>
         <Grid Grid.Row="1" HorizontalAlignment="Stretch" Height="auto" VerticalAlignment="Stretch" Width="auto">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -58,7 +58,7 @@
             <Label Content="Last Treatment:" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0"/>
             <DatePicker Name="newLastTreatment" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1"/>
         </Grid>
-        <Button x:Name="save" Content="SAVE" Grid.Row="6" Margin="5" Click="save_Click"/>
-        <Label Name="Indication" Content=" " FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="7" FontStyle="Italic"/>
+        <Button x:Name="save" Content="SAVE" Grid.Row="6" Margin="3" Click="save_Click"  Background="PeachPuff" Foreground="SandyBrown" BorderBrush="BurlyWood" FontWeight="Bold"/>
+        <Label Name="Indication" Content=" " FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="7" FontStyle="Italic" />
     </Grid>
 </Window>

@@ -89,8 +89,7 @@ namespace dotNet5781_03B_6268_2671
 
         private void listBox_SelectionChanged(object sender, RoutedEventArgs e)
         {
-            DetailsWindow secondWindow = new DetailsWindow();
-            secondWindow.detailsBus = (myLBI.SelectedItems[0] as BusItem).currentBus;
+            DetailsWindow secondWindow = new DetailsWindow(myLBI.SelectedItems[0] as BusItem);
             secondWindow.showDetails();
             secondWindow.ShowDialog();
         }

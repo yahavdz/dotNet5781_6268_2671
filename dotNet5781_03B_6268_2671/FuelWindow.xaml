@@ -5,9 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_6268_2671"
         mc:Ignorable="d"
-       Title="FuelWindow" Height="130.71" Width="504.419" Name="Fuel">
-
-    <TextBlock VerticalAlignment="Top" Margin="10,35,3.667,-77.667" Height="144" FontSize="18" FontWeight="Bold" TextDecorations="{x:Null}" Text="Starting to refuel, please wait two hours for completion" />
-
-
+       Title="Refueling" Height="100" Width="450" Name="Fuel" Icon="https://static.thenounproject.com/png/835842-200.png">
+    <Grid Background="Cornsilk">
+        <TextBlock FontSize="16" FontWeight="Bold" Text="Starting to refuel, please wait two hours for completion" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SandyBrown"/>
+    </Grid>
 </Window>

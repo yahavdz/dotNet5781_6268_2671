@@ -5,19 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_6268_2671"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="300">
-    <Grid>
-        <Grid Name="MainGrid">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="40*"/>
-                <RowDefinition Height="400*"/>
-            </Grid.RowDefinitions>
-            <StackPanel Grid.Row="1">
-                <Grid Margin="10" Height="300">
-                    <ListBox x:Name="myLBI" MouseDoubleClick="listBox_SelectionChanged" SelectionMode="Single"></ListBox>
-                </Grid>
-                <Button Content="ADD" Click="ADDBUS_Click" Margin="10" Height="30" FontWeight="Bold" FontSize="14"></Button>
-            </StackPanel>
+        Title="Bus System" Height="460" Width="455" Icon="https://static.thenounproject.com/png/835842-200.png">
+    <Grid Name="MainGrid" Background="Cornsilk">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="12*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Label Content="Welcome to the bus system" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" FontSize="28" FontWeight="Bold" FontFamily="Cooper Black" Foreground="SandyBrown"/>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Label Content="Ready to go" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" FontFamily="Cooper Black" Foreground="LightGreen"/>
+            <Label Content="On refueling" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" FontFamily="Cooper Black" Foreground="LightSkyBlue"/>
+            <Label Content="In travel" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" FontFamily="Cooper Black" Foreground="Tomato"/>
+            <Label Content="In treatment" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" FontFamily="Cooper Black" Foreground="Khaki"/>
+        </StackPanel>
+        <Grid Margin="10" Grid.Row="2">
+            <ListBox x:Name="myLBI" MouseDoubleClick="listBox_SelectionChanged" SelectionMode="Single"/>
         </Grid>
+        <Button Content="ADD" Click="ADDBUS_Click" Margin="10" FontWeight="Bold" FontSize="16" Grid.Row="3" Background="PeachPuff" Foreground="SandyBrown" FontFamily="Microsoft YaHei UI" BorderBrush="BurlyWood"></Button>
     </Grid>
 </Window>

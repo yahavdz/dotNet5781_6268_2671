@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_6268_2671"
         mc:Ignorable="d"
-        Title="DetailsWindow" Height="300" Width="340">
-    <Grid>
+        Title="Bus details" Height="300" Width="340" Icon="https://static.thenounproject.com/png/835842-200.png">
+    <Grid Background="Cornsilk">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -27,7 +27,7 @@
             <Label Content="Total Kilometers:" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" FontWeight="Bold"/>
             <Label Name="laTotalKilometers" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16"/>
 
-            <Label Content="Amount of fuel:" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+            <Label Content="Next refueling in:" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" FontWeight="Bold"/>
             <Label Name="laAmountFuel" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16"/>
 
             <Label Content="Activity Start Date:" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" FontWeight="Bold"/>
@@ -41,11 +41,11 @@
 
             <Grid Grid.Row="6" Grid.Column="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button Content="TREATMENT" Margin="0,5,4.667,0" Click="treatment_Click" Grid.Column="0" Height="29" VerticalAlignment="Top" HorizontalAlignment="Right" Width="67"/>
-                <Button Content="FUEL" Margin="5" Click="fuel_Click" Grid.Column="1"/>
+                <Button Content="TREATMENT" Margin="4" Click="treatment_Click" Grid.Column="0" Background="PeachPuff" Foreground="SandyBrown" FontFamily="Microsoft YaHei UI" BorderBrush="BurlyWood" FontWeight="Bold"/>
+                <Button Content="FUEL" Margin="4" Click="fuel_Click" Grid.Column="1" Background="PeachPuff" Foreground="SandyBrown" FontFamily="Microsoft YaHei UI" BorderBrush="BurlyWood" FontWeight="Bold"/>
             </Grid>
         </Grid>
     </Grid>
