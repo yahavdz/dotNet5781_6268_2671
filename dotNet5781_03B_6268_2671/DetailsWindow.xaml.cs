@@ -49,7 +49,7 @@ namespace dotNet5781_03B_6268_2671
             if (detailsBus.statusNow == status.readyToGo)
             {
                 busItemWindow.itamPanel.Background = Brushes.Khaki;
-                busItemWindow.tbStatus.Text = "End the treatment in:";
+                busItemWindow.tbStatus.Text = "End of treatment in:";
                 detailsBus.treatment();
                 showDetails();
                 Thread t1 = new Thread(inTreatment);

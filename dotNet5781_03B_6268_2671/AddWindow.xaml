@@ -39,7 +39,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
-            <Label Content="Amount of fuel:" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0"/>
+            <Label Content="Next refueling in (km):" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0"/>
             <TextBox x:Name="newTotalFuel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1"/>
         </Grid>
         <Grid Grid.Row="4" HorizontalAlignment="Stretch" Height="auto" VerticalAlignment="Stretch" Width="auto">
