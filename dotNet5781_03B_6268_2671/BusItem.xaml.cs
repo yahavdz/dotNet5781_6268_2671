@@ -37,19 +37,27 @@ namespace dotNet5781_03B_6268_2671
             currentBus = _bus;
         }
 
-        private void Button_Go(object sender, RoutedEventArgs e)
+        private void Button_Go(object sender, RoutedEventArgs e)//A button that sends for travel
         {
             if (currentBus.statusNow == status.readyToGo)
             {
-                GoWindow secondWindow = new GoWindow(currentBus, this);
-                secondWindow.ShowDialog();
+                GoWindow secondWindow = new GoWindow(currentBus, this); 
+ 
+                 secondWindow.ShowDialog();
+            }
+            else
+            {
+                string message = "The Bus can't go to a ride now";//error messageBox
+                string title = "warning";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                DialogResult result = System.Windows.Forms.MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning);
             }
         }
 
-        private void Button_Fuel(object sender, RoutedEventArgs e)
+        private void Button_Fuel(object sender, RoutedEventArgs e)//Button that sends for refueling
         {
 
-            if (currentBus.statusNow == status.readyToGo && currentBus.totalKilometers > currentBus.KilometersAtLastRefueling)
+            if (currentBus.statusNow == status.readyToGo && currentBus.totalKilometers > currentBus.KilometersAtLastRefueling)//Checks that the status of the bus is ok and also that the bus is not refueled
             {
                 this.currentBus.refueling();
                 itamPanel.Background = Brushes.LightSkyBlue;
@@ -60,33 +68,32 @@ namespace dotNet5781_03B_6268_2671
             }
             else
             {
-                string message = "The Bus can't refule now";
+                string message = "The Bus can't refule now";//error messageBox
                 string title = "warning";
                 MessageBoxButtons buttons = MessageBoxButtons.OK;
                 DialogResult result = System.Windows.Forms.MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning);
             }
         }
-        private void inRefuel()
+        private void inRefuel()//thread Which activates the countdown until the end of refueling and cancels the use of the bus until the countdown is completed
         {
             Dispatcher.BeginInvoke((Action)(() => tbStatus.Text = "End refuel in:")); // use dispatcher to access the TextBox in different threads
             countDown(hour * 2 / 1000);
             Thread.Sleep(hour * 2);
-            currentBus.statusNow = status.readyToGo;
-            Dispatcher.BeginInvoke((Action)(() => itamPanel.Background = Brushes.LightGreen)); // use dispatcher to access the TextBox in different threads
-            Dispatcher.BeginInvoke((Action)(() => tbStatus.Text = ""));
+            currentBus.statusNow = status.readyToGo;           
         }
-        public void countDown(int time)
+        public void countDown(int time)// Bonus, counting down the seconds and displaying them in the main row
         {
             _time = TimeSpan.FromSeconds(time);
 
             _timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
             {
                 tbTime.Text = _time.ToString("c");
-                if (_time == TimeSpan.Zero) _timer.Stop();
-                _time = _time.Add(TimeSpan.FromSeconds(-1));
+                if (_time == TimeSpan.Zero) { _timer.Stop(); Dispatcher.BeginInvoke((Action)(() => tbTime.Text = "")); Dispatcher.BeginInvoke((Action)(() => itamPanel.Background = Brushes.LightGreen)); Dispatcher.BeginInvoke((Action)(() => tbStatus.Text = "")); }
+                    _time = _time.Add(TimeSpan.FromSeconds(-1));
             }, System.Windows.Application.Current.Dispatcher);
 
             _timer.Start();
+            
 
         }
 

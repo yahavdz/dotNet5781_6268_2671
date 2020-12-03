@@ -78,7 +78,7 @@ namespace dotNet5781_03B_6268_2671
                 myLBI.Items.Add(new BusItem(_bus));
         }
 
-        private void ADDBUS_Click(object sender, RoutedEventArgs e)
+        private void ADDBUS_Click(object sender, RoutedEventArgs e)//A button that opens a new window for adding a bus
         {
             AddWindow secondWindow = new AddWindow();
             secondWindow._busList = busList;
@@ -87,7 +87,7 @@ namespace dotNet5781_03B_6268_2671
                 myLBI.Items.Add(new BusItem(busList[i]));
         }
 
-        private void listBox_SelectionChanged(object sender, RoutedEventArgs e)
+        private void listBox_SelectionChanged(object sender, RoutedEventArgs e)//list box
         {
             DetailsWindow secondWindow = new DetailsWindow(myLBI.SelectedItems[0] as BusItem);
             secondWindow.showDetails();

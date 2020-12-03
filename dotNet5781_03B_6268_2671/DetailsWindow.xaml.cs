@@ -26,6 +26,7 @@ namespace dotNet5781_03B_6268_2671
         private readonly BusItem busItemWindow;
         private const int day = 144000;
         private const int hour = 6000;
+        
         public DetailsWindow(BusItem busWindow)
         {
             InitializeComponent();
@@ -34,7 +35,7 @@ namespace dotNet5781_03B_6268_2671
         }
 
 
-        public void showDetails()
+        public void showDetails()//showing the details of the bus
         {
             laBusId.Content = detailsBus.busID;
             laTotalKilometers.Content = detailsBus.totalKilometers;
@@ -44,12 +45,11 @@ namespace dotNet5781_03B_6268_2671
             laStatus.Content = detailsBus.statusNow;
         }
 
-        private void treatment_Click(object sender, RoutedEventArgs e)
+        private void treatment_Click(object sender, RoutedEventArgs e)//buttom to send the bus for treatmen
         {
-            if (detailsBus.statusNow == status.readyToGo)
+            if (detailsBus.statusNow == status.readyToGo)//check if the bus is not in a middle of other thread
             {
                 busItemWindow.itamPanel.Background = Brushes.Khaki;
-                busItemWindow.tbStatus.Text = "End of treatment in:";
                 detailsBus.treatment();
                 showDetails();
                 Thread t1 = new Thread(inTreatment);
@@ -57,20 +57,20 @@ namespace dotNet5781_03B_6268_2671
             }
             else
             {
-                string message = "The bus is in the middle of a process";
+                string message = "The bus is in the middle of a process";//error messageBox
                 string title = "Close Window";
                 MessageBoxButtons buttons = MessageBoxButtons.OK;
                 DialogResult result = System.Windows.Forms.MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning);
             }
         }
 
-        private void fuel_Click(object sender, RoutedEventArgs e)
+        private void fuel_Click(object sender, RoutedEventArgs e)//sending the bus to refuel
         {
-            if (detailsBus.statusNow == status.readyToGo && detailsBus.totalKilometers > detailsBus.KilometersAtLastRefueling)
+            if (detailsBus.statusNow == status.readyToGo && detailsBus.totalKilometers > detailsBus.KilometersAtLastRefueling)//Checks that the status of the bus is ok and also that the bus is not refueled
             {
-                busItemWindow.tbStatus.Text = "End refuel in:";
-                busItemWindow.itamPanel.Background = Brushes.LightSkyBlue;
+                
                 detailsBus.refueling();
+                busItemWindow.itamPanel.Background = Brushes.LightSkyBlue;
                 showDetails();
                 Thread t1 = new Thread(inRefuel);
                 t1.Start();
@@ -79,26 +79,26 @@ namespace dotNet5781_03B_6268_2671
             }
             else
             {
-                string message = "The bus is in the middle of a process";
+                string message = "The bus is in the middle of a process";//error messageBox
                 string title = "Close Window";
                 MessageBoxButtons buttons = MessageBoxButtons.OK;
                 DialogResult result = System.Windows.Forms.MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning);
             }
         }
-        private void inTreatment()
+        private void inTreatment()//thread Which activates the countdown until the end of the treatment and cancels the use of the bus until the countdown is completed
         {
+            Dispatcher.BeginInvoke((Action)(() => busItemWindow.tbStatus.Text = "End treatment in:"));
+            busItemWindow.countDown(day/1000);
             Thread.Sleep(day);
             detailsBus.statusNow = status.readyToGo;
-            Dispatcher.BeginInvoke((Action)(() => busItemWindow.itamPanel.Background = Brushes.LightGreen));
-            Dispatcher.BeginInvoke((Action)(() => busItemWindow.tbStatus.Text = ""));
             Dispatcher.BeginInvoke((Action)(() => showDetails()));
         }
-        private void inRefuel()
+        private void inRefuel()//thread Which activates the countdown until the end of refueling and cancels the use of the bus until the countdown is completed
         {
+            Dispatcher.BeginInvoke((Action)(() => busItemWindow.tbStatus.Text = "End refuel in:"));
+            busItemWindow.countDown((hour* 2) / 1000);
             Thread.Sleep(hour * 2);
             detailsBus.statusNow = status.readyToGo;
-            Dispatcher.BeginInvoke((Action)(() => busItemWindow.itamPanel.Background = Brushes.LightGreen));
-            Dispatcher.BeginInvoke((Action)(() => busItemWindow.tbStatus.Text = ""));
             Dispatcher.BeginInvoke((Action)(() => showDetails()));
         }
     }

@@ -16,8 +16,8 @@
         <Label Content="Welcome to the bus system" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" FontSize="28" FontWeight="Bold" FontFamily="Cooper Black" Foreground="SandyBrown"/>
         <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Label Content="Ready to go" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" FontFamily="Cooper Black" Foreground="LightGreen"/>
-            <Label Content="On refueling" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" FontFamily="Cooper Black" Foreground="LightSkyBlue"/>
-            <Label Content="In travel" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" FontFamily="Cooper Black" Foreground="Tomato"/>
+            <Label Content="In refueling" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" FontFamily="Cooper Black" Foreground="LightSkyBlue"/>
+            <Label Content="In A Ride" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" FontFamily="Cooper Black" Foreground="Tomato"/>
             <Label Content="In treatment" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" FontFamily="Cooper Black" Foreground="Khaki"/>
         </StackPanel>
         <Grid Margin="10" Grid.Row="2">
