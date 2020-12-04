@@ -96,10 +96,10 @@ namespace dotNet5781_03B_6268_2671
                 tbTime.Text = _time.ToString("c");
                 if (_time == TimeSpan.Zero)
                 {
-                    _timer.Stop(); Dispatcher.BeginInvoke((Action)(() => tbTime.Text = ""));
+                    _timer.Stop();
+                    Dispatcher.BeginInvoke((Action)(() => tbTime.Text = ""));
                     Dispatcher.BeginInvoke((Action)(() => itamPanel.Background = mySolidColorBrush));
                     Dispatcher.BeginInvoke((Action)(() => tbStatus.Text = ""));
-
                 }
                     _time = _time.Add(TimeSpan.FromSeconds(-1));
             }, System.Windows.Application.Current.Dispatcher);

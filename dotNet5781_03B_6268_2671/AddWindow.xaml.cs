@@ -49,7 +49,7 @@ namespace dotNet5781_03B_6268_2671
             //------>
             bool checkBusId = true;
             newBus.busID = newBusId.Text;
-            if (len > 0 && (len == 7 || len == 8))
+            if (newBus.busID[0] != '0' && (len == 7 || len == 8))
             {
                 for (int i = 0; i < len; i++)
                     if (newBus.busID[i] < '0' && newBus.busID[i] > '9')
@@ -103,7 +103,7 @@ namespace dotNet5781_03B_6268_2671
                 {
                     totalFuel = Convert.ToInt32(newTotalFuel.Text);
                     if (totalFuel <= 1200)
-                        totalFuel = newBus.totalKilometers - (1200 - totalFuel);
+                        totalFuel = newBus.totalKilometers - totalFuel;
                     else
                         checkFuel = false;
                 }
