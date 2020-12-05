@@ -1,4 +1,10 @@
-﻿using System;
+﻿//nevo cohen 207962671
+//yahav davidzada 318356268
+//exercise 3B
+//In this exercise we created a graphical interface for handling a bus.
+//We created windows to send the vehicle for refueling, treatment, and travel. And another window to insert a new bus into the system.
+//The system announced the times when the bus was sent for each of the above missions.
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
