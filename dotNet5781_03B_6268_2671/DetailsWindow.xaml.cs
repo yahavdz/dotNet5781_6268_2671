@@ -62,6 +62,7 @@ namespace dotNet5781_03B_6268_2671
                     detailsBus.refueling();
                 detailsBus.treatment();
                 showDetails();
+                busItemWindow.myPB.Maximum = (day / 1000);
                 Thread t1 = new Thread(inTreatment);
                 t1.Start();
             }
@@ -83,6 +84,7 @@ namespace dotNet5781_03B_6268_2671
                 mySCBfu.Opacity = 0.6;
                 busItemWindow.itamPanel.Background = mySCBfu;
                 showDetails();
+                busItemWindow.myPB.Maximum = 12;
                 Thread t1 = new Thread(inRefuel);
                 t1.Start();
                 FuelWindow secondWindow = new FuelWindow();

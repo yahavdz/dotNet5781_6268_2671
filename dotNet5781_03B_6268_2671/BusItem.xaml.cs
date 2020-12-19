@@ -71,8 +71,7 @@ namespace dotNet5781_03B_6268_2671
                 SolidColorBrush mySCBfu = new SolidColorBrush(Colors.DarkCyan);
                 mySCBfu.Opacity = 0.6;
                 itamPanel.Background = mySCBfu;
-                //itamPanel.Background.Opacity = new Double();
-                //itamPanel.Background.Opacity = 0.6;
+                myPB.Maximum = 12;
                 Thread t1 = new Thread(inRefuel);
                 t1.Start();
                 FuelWindow secondWindow = new FuelWindow();
@@ -100,12 +99,14 @@ namespace dotNet5781_03B_6268_2671
             _timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
             {
                 tbTime.Text = _time.ToString("c");
+                Dispatcher.BeginInvoke((Action)(() => myPB.Value++));
                 if (_time == TimeSpan.Zero)
                 {
                     _timer.Stop();
                     Dispatcher.BeginInvoke((Action)(() => tbTime.Text = ""));
                     Dispatcher.BeginInvoke((Action)(() => itamPanel.Background = mySolidColorBrush));
                     Dispatcher.BeginInvoke((Action)(() => tbStatus.Text = ""));
+                    Dispatcher.BeginInvoke((Action)(() => myPB.Value = 0));
                 }
                     _time = _time.Add(TimeSpan.FromSeconds(-1));
             }, System.Windows.Application.Current.Dispatcher);

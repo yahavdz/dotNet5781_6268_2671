@@ -110,6 +110,7 @@ namespace dotNet5781_03B_6268_2671
 
             int speed = random.Next(20, 50);            
             int sleepTime = ((int)distance / speed) * 6000;
+            Dispatcher.BeginInvoke((Action)(() => busItemWindow.myPB.Maximum = (sleepTime / 1000)));
             busItemWindow.countDown((sleepTime / 1000));
             Thread.Sleep(sleepTime);
             b.statusNow = status.readyToGo;
