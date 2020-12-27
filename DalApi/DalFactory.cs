@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
+
 namespace DalApi
 {
     internal static class DalFactory
     {
         public static IDal GetDal()
         {
-            return null;
+            return new DalObject.DALObject;//TODO
         }
     }
 }

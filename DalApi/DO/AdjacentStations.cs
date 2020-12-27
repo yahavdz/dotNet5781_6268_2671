@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DO
 {
-    class AdjacentStations
+     public class AdjacentStations
     {
         public int Station1 { get; set; }
         public int Station2 { get; set; }

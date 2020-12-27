@@ -15,6 +15,7 @@ namespace DS
         public static List<Station> ListStations;
         public static List<Trip> ListRrips;
         public static List<User> ListUsers;
+        public static List<AdjacentStations> ListAdjacentStations;
 
         static DataSource()
         {
@@ -479,6 +480,7 @@ namespace DS
                       Accessibility = false
                   }
             };
+
             ListLines = new List<Line>()
             {
                  new Line//1
@@ -563,12 +565,13 @@ namespace DS
                  },
 
             };
+
             ListBuses = new List<Bus>()
             {
                 new Bus//1
                 {
                     LicenseNum = Counts.getLicenseNumFrom2018(),
-                    FromDate= new DateTime(random.Next(2018, 2021), random.Next(1, 12), 1),
+                    FromDate= (new DateTime(random.Next(2018, 2021), random.Next(1, 12), 1)).AddDays(random.Next(30)),
                     TotalTrip = 10000,
                     FuelRemain = 1200,
                     BusStatus = BusStatus.readyToGo,
@@ -578,7 +581,7 @@ namespace DS
                 new Bus//2
                 {
                     LicenseNum = Counts.getLicenseNumFrom2018(),
-                    FromDate= new DateTime(random.Next(2018, 2021), random.Next(1, 12), 1),
+                    FromDate=(new DateTime(random.Next(2018, 2021), random.Next(1, 12), 1)).AddDays(random.Next(30)),
                     TotalTrip = 11000,
                     FuelRemain = 1200,
                     BusStatus = BusStatus.readyToGo,
@@ -588,7 +591,7 @@ namespace DS
                 new Bus//3
                 {
                     LicenseNum = Counts.getLicenseNumFrom2018(),
-                    FromDate= new DateTime(random.Next(2018, 2021), random.Next(1, 12), 1),
+                    FromDate= (new DateTime(random.Next(2018, 2021), random.Next(1, 12), 1)).AddDays(random.Next(30)),
                     TotalTrip = 12000,
                     FuelRemain = 1200,
                     BusStatus = BusStatus.readyToGo,
@@ -598,7 +601,7 @@ namespace DS
                 new Bus//4
                 {
                     LicenseNum = Counts.getLicenseNumFrom2018(),
-                    FromDate= new DateTime(random.Next(2018, 2021), random.Next(1, 12), 1),
+                    FromDate= (new DateTime(random.Next(2018, 2021), random.Next(1, 12), 1)).AddDays(random.Next(30)),
                     TotalTrip = 13000,
                     FuelRemain = 1200,
                     BusStatus = BusStatus.readyToGo,
@@ -608,7 +611,7 @@ namespace DS
                 new Bus//5
                 {
                     LicenseNum = Counts.getLicenseNumFrom2018(),
-                    FromDate= new DateTime(random.Next(2018, 2021), random.Next(1, 12), 1),
+                    FromDate=(new DateTime(random.Next(2018, 2021), random.Next(1, 12), 1)).AddDays(random.Next(30)),
                     TotalTrip = 14000,
                     FuelRemain = 1200,
                     BusStatus = BusStatus.readyToGo,
@@ -618,7 +621,7 @@ namespace DS
                 new Bus//6
                 {
                     LicenseNum = Counts.getLicenseNumFrom2018(),
-                    FromDate= new DateTime(random.Next(2018, 2021), random.Next(1, 12), 1),
+                    FromDate= (new DateTime(random.Next(2018, 2021), random.Next(1, 12), 1)).AddDays(random.Next(30)),
                     TotalTrip = 15000,
                     FuelRemain = 1200,
                     BusStatus = BusStatus.readyToGo,
@@ -628,7 +631,7 @@ namespace DS
                 new Bus//7
                 {
                     LicenseNum = Counts.getLicenseNumFrom2018(),
-                    FromDate= new DateTime(random.Next(2018, 2021), random.Next(1, 12), 1),
+                    FromDate=(new DateTime(random.Next(2018, 2021), random.Next(1, 12), 1)).AddDays(random.Next(30)),
                     TotalTrip = 16000,
                     FuelRemain = 1200,
                     BusStatus = BusStatus.readyToGo,
@@ -638,7 +641,7 @@ namespace DS
                 new Bus//8
                 {
                     LicenseNum = Counts.getLicenseNumFrom2018(),
-                    FromDate= new DateTime(random.Next(2018, 2021), random.Next(1, 12), 1),
+                    FromDate= (new DateTime(random.Next(2018, 2021), random.Next(1, 12), 1)).AddDays(random.Next(30)),
                     TotalTrip = 17000,
                     FuelRemain = 1200,
                     BusStatus = BusStatus.readyToGo,
@@ -648,7 +651,7 @@ namespace DS
                 new Bus//9
                 {
                     LicenseNum = Counts.getLicenseNumFrom2018(),
-                    FromDate= new DateTime(random.Next(2018, 2021), random.Next(1, 12), 1),
+                    FromDate= (new DateTime(random.Next(2018, 2021), random.Next(1, 12), 1)).AddDays(random.Next(30)),
                     TotalTrip = 18000,
                     FuelRemain = 1200,
                     BusStatus = BusStatus.readyToGo,
@@ -658,7 +661,7 @@ namespace DS
                 new Bus//10
                 {
                     LicenseNum = Counts.getLicenseNumFrom2018(),
-                    FromDate= new DateTime(random.Next(2018, 2021), random.Next(1, 12), 1),
+                    FromDate= (new DateTime(random.Next(2018, 2021), random.Next(1, 12), 1)).AddDays(random.Next(30)),
                     TotalTrip = 19000,
                     FuelRemain = 1200,
                     BusStatus = BusStatus.readyToGo,
@@ -668,7 +671,7 @@ namespace DS
                 new Bus//11
                 {
                     LicenseNum = Counts.getlicenseNumLess2018(),
-                    FromDate= new DateTime(random.Next(1985, 2018), random.Next(1, 13), 1),
+                    FromDate= (new DateTime(random.Next(1985, 2018), random.Next(1, 13), 1)).AddDays(random.Next(30)),
                     TotalTrip = 100000,
                     FuelRemain = 1200,
                     BusStatus = BusStatus.readyToGo,
@@ -678,7 +681,7 @@ namespace DS
                 new Bus//12
                 {
                    LicenseNum = Counts.getlicenseNumLess2018(),
-                    FromDate= new DateTime(random.Next(1985, 2018), random.Next(1, 13), 1),
+                    FromDate=(new DateTime(random.Next(1985, 2018), random.Next(1, 13), 1)).AddDays(random.Next(30)),
                     TotalTrip = 110000,
                     FuelRemain = 1200,
                     BusStatus = BusStatus.readyToGo,
@@ -688,7 +691,7 @@ namespace DS
                 new Bus//13
                 {
                     LicenseNum = Counts.getlicenseNumLess2018(),
-                    FromDate= new DateTime(random.Next(1985, 2018), random.Next(1, 13), 1),
+                    FromDate=(new DateTime(random.Next(1985, 2018), random.Next(1, 13), 1)).AddDays(random.Next(30)),
                     TotalTrip = 120000,
                     FuelRemain = 1200,
                     BusStatus = BusStatus.readyToGo,
@@ -698,7 +701,7 @@ namespace DS
                 new Bus//14
                 {
                     LicenseNum = Counts.getlicenseNumLess2018(),
-                    FromDate=new DateTime(random.Next(1985, 2018), random.Next(1, 13), 1),
+                    FromDate=(new DateTime(random.Next(1985, 2018), random.Next(1, 13), 1)).AddDays(random.Next(30)),
                     TotalTrip = 130000,
                     FuelRemain = 1200,
                     BusStatus = BusStatus.readyToGo,
@@ -708,7 +711,7 @@ namespace DS
                 new Bus//15
                 {
                    LicenseNum = Counts.getlicenseNumLess2018(),
-                    FromDate= new DateTime(random.Next(1985, 2018), random.Next(1, 13), 1),
+                    FromDate= (new DateTime(random.Next(1985, 2018), random.Next(1, 13), 1)).AddDays(random.Next(30)),
                     TotalTrip = 140000,
                     FuelRemain = 1200,
                     BusStatus = BusStatus.readyToGo,
@@ -718,7 +721,7 @@ namespace DS
                 new Bus//16
                 {
                     LicenseNum = Counts.getlicenseNumLess2018(),
-                    FromDate= new DateTime(random.Next(1985, 2018), random.Next(1, 13), 1),
+                    FromDate= (new DateTime(random.Next(1985, 2018), random.Next(1, 13), 1)).AddDays(random.Next(30)),
                     TotalTrip = 150000,
                     FuelRemain = 1200,
                     BusStatus = BusStatus.readyToGo,
@@ -728,7 +731,7 @@ namespace DS
                 new Bus//17
                 {
                     LicenseNum = Counts.getlicenseNumLess2018(),
-                    FromDate= new DateTime(random.Next(1985, 2018), random.Next(1, 13), 1),
+                    FromDate= (new DateTime(random.Next(1985, 2018), random.Next(1, 13), 1)).AddDays(random.Next(30)),
                     TotalTrip = 160000,
                     FuelRemain = 1200,
                     BusStatus = BusStatus.readyToGo,
@@ -738,7 +741,7 @@ namespace DS
                 new Bus//18
                 {
                     LicenseNum = Counts.getlicenseNumLess2018(),
-                    FromDate= new DateTime(random.Next(1985, 2018), random.Next(1, 13), 1),
+                    FromDate= (new DateTime(random.Next(1985, 2018), random.Next(1, 13), 1)).AddDays(random.Next(30)),
                     TotalTrip = 170000,
                     FuelRemain = 1200,
                     BusStatus = BusStatus.readyToGo,
@@ -748,7 +751,7 @@ namespace DS
                 new Bus//19
                 {
                     LicenseNum = Counts.getlicenseNumLess2018(),
-                    FromDate=new DateTime(random.Next(1985, 2018), random.Next(1, 13), 1),
+                    FromDate=(new DateTime(random.Next(1985, 2018), random.Next(1, 13), 1)).AddDays(random.Next(30)),
                     TotalTrip = 180000,
                     FuelRemain = 1200,
                     BusStatus = BusStatus.readyToGo,
@@ -758,7 +761,7 @@ namespace DS
                 new Bus//20
                 {
                     LicenseNum = Counts.getlicenseNumLess2018(),
-                    FromDate= new DateTime(random.Next(1985, 2018), random.Next(1, 13), 1),
+                    FromDate= (new DateTime(random.Next(1985, 2018), random.Next(1, 13), 1)).AddDays(random.Next(30)),
                     TotalTrip = 190000,
                     FuelRemain = 1200,
                     BusStatus = BusStatus.readyToGo,
@@ -766,10 +769,11 @@ namespace DS
                     KilometersAtLastRefueling= 190000
                 },
             };
+
             ListLineTrips = new List<LineTrip>()
-            { 
+            {
                 new LineTrip//1
-                { 
+                {
                     Id = Counts.getTripLine(),
                     LineId = ListLines[0].Code,
                     StartAt = new TimeSpan(6,0,0),
@@ -849,27 +853,63 @@ namespace DS
                     FinishAt = new TimeSpan(12,0,0)
                 },
             };
-            ListLineStations = new List<LineStation>()
+
+            ListLineStations = new List<LineStation>();
+            for (int i = 0; i < 10; i++)
             {
-                new LineStation//1
+
+                ListLineStations.Add(new LineStation
                 {
-                    LineId= ListLines[0].Id,
-                    Station= ListStations[0].Code,
-                    LineStationIndex=1,
+                    LineId = ListLines[i].Id,
+                    Station = ListStations[0].Code,
+                    LineStationIndex = 1,
                     PrevStation = ListStations[0].Code,
                     NextStation = ListStations[1].Code
-                },
-                new LineStation//1
+                });
+
+                for (int j = 1; j < 10; j++)
                 {
-                    LineId= ListLines[0].Id,
-                    Station= ListStations[0].Code,
-                    LineStationIndex=1,
-                    PrevStation = ListStations[0].Code,
-                    NextStation = ListStations[1].Code
+
+                    ListLineStations.Add(new LineStation
+                    {
+                        LineId = ListLines[i].Id,
+                        Station = ListStations[j - 1].Code,
+                        LineStationIndex = j,
+                        PrevStation = ListStations[j].Code,
+                        NextStation = ListStations[j + 1].Code
+                    });
+                }
+
+            }
+
+            ListUsers = new List<User>()
+            {
+                new User
+                {
+                    UserName="Admin",
+                    Password="Admin",
+                    Admin=true
                 },
-
-
+                new User
+                {
+                    UserName="Guest",
+                    Password="Guest",
+                    Admin=false
+                }
             };
+
+            ListAdjacentStations = new List<AdjacentStations>();
+            for (int i = 0; i < 48; i++)
+            {
+                ListAdjacentStations.Add(new AdjacentStations
+                {
+                    Station1= ListStations[i].Code,
+                    Station2 = ListStations[i+1].Code,
+                    Distance = random.Next(1,5)*0.9,
+                    Time=new TimeSpan(0, random.Next(2, 10), 0)
+                });
+            }
+
 
 
         }
