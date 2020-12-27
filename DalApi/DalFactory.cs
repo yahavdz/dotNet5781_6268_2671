@@ -4,8 +4,11 @@ using System.Text;
 
 namespace DalApi
 {
-    class DalFactory
+    internal static class DalFactory
     {
-
+        public static IDal GetDal()
+        {
+            return null;
+        }
     }
 }

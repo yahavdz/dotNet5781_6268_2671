@@ -5,7 +5,7 @@ using DO;
 
 namespace Dal
 {
-    public class DALObject : IDal
+    public class DALObject : IDal // singletone
     {
         public List<Bus> getAllBuses()
         {

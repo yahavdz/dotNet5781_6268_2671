@@ -5,7 +5,7 @@ using System.Text;
 namespace DO
 {
     
-    class User
+   public class User
     {
         string UserName { get; set; }
         string Password { get; set; }
