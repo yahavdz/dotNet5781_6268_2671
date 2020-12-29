@@ -5,7 +5,12 @@ using DO;
 
 namespace DalApi
 {
-     public interface IDal
+    //CRUD Logic:
+    // Create - add new instance
+    // Request - ask for an instance or for a collection
+    // Update - update properties of an instance
+    // Delete - delete an instance
+    public interface IDal
     {
         #region Bus
         Bus GetBus(int busId);
@@ -17,24 +22,75 @@ namespace DalApi
         #endregion Bus
 
         #region Line
-        Bus GetLine(int lineId);
-        IEnumerable<Bus> GetAllLines();
-        IEnumerable<Bus> GetAllLinesBy(Predicate<Bus> predicate);
+        Line GetLine(int lineId);
+        IEnumerable<Line> GetAllLines();
+        IEnumerable<Line> GetAllLinesBy(Predicate<Line> predicate);
         void AddLine(Line line);
         void UpdateLine(Line line);
-        void DeleteLine(int id);
+        void DeleteLine(int lineId);
         #endregion Line
 
         #region Station
-        Bus GetStation(int lineId);
-        IEnumerable<Bus> GetAllStations();
-        IEnumerable<Bus> GetAllStationBy(Predicate<Bus> predicate);
+        Station GetStation(int stationId);
+        IEnumerable<Station> GetAllStations();
+        IEnumerable<Station> GetAllStationBy(Predicate<Station> predicate);
         void AddStation(Station station);
         void UpdateStation(Station station);
-        void DeleteStation(int id);
+        void DeleteStation(int stationId);
         #endregion Line
 
+        #region BusOnTrip
+        BusOnTrip GetBusOnTrip(int busOnTripId);
+        IEnumerable<BusOnTrip> GetAllBusOnTrip();
+        IEnumerable<BusOnTrip> GetAllBusOnTripBy(Predicate<BusOnTrip> predicate);
+        void AddBusOnTrip(BusOnTrip busOnTrip);
+        void UpdateBusOnTrip(BusOnTrip busOnTrip);
+        void DeleteBusOnTrip(int busOnTripId);
+        #endregion
 
+        #region LineStation
+        LineStation GetLineStation(int lineStationId);
+        IEnumerable<LineStation> GetAllLineStation();
+        IEnumerable<LineStation> GetAllLineStationBy(Predicate<LineStation> predicate);
+        void AddLineStation(LineStation lineStation);
+        void UpdateLineStation(LineStation lineStation);
+        void DeleteLineStation(int lineStationId);
+        #endregion
 
+        #region LineTrip
+        LineTrip GetLineTrip(int lineTripId);
+        IEnumerable<LineTrip> GetAllLineTrip();
+        IEnumerable<LineTrip> GetAllLineTripBy(Predicate<LineTrip> predicate);
+        void AddLineTrip(LineTrip lineTrip);
+        void UpdateLineTrip(LineTrip lineTrip);
+        void DeleteLineTrip(int lineTripId);
+        #endregion
+
+        #region Trip
+        Trip GetTrip(int tripId);
+        IEnumerable<Trip> GetAllTrip();
+        IEnumerable<Trip> GetAllTripBy(Predicate<Trip> predicate);
+        void AddTrip(Trip trip);
+        void UpdateTrip(Trip trip);
+        void DeleteTrip(int tripId);
+        #endregion
+
+        #region User
+        User GetUser(string userName);
+        IEnumerable<User> GetAllUsers();
+        IEnumerable<User> GetAllUsersBy(Predicate<User> predicate);
+        void AddUser(User user);
+        void UpdateUser(User user);
+        void DeleteUser(string userName);
+        #endregion
+
+        #region AdjacentStations
+        AdjacentStations GetAdjacentStations(int adjacentStationsId1, int adjacentStationsId2));
+        IEnumerable<AdjacentStations> GetAllAdjacentStations();
+        IEnumerable<AdjacentStations> GetAllAdjacentStationsBy(Predicate<AdjacentStations> predicate);
+        void AddAdjacentStations(AdjacentStations adjacentStations);
+        void UpdateAdjacentStations(AdjacentStations adjacentStations);
+        void DeleteAdjacentStations(int adjacentStationsId1, int adjacentStationsId2);
+        #endregion
     }
 }
