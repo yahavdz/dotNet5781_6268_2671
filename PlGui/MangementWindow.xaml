@@ -1,0 +1,28 @@
+﻿<Window x:Class="PlGui.MangementWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PlGui"
+        mc:Ignorable="d"
+        Title="MangementWindow" Height="450" Width="800">
+    <Grid x:Name="mainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="busButton" Content="Bus display" Margin="10 10 5 10" FontSize="32" Grid.Column="0"/>
+            <Button x:Name="lineButton" Content="Line display" Margin="5 10 5 10" FontSize="32" Grid.Column="1"/>
+            <Button x:Name="stationButton" Content="Station display" Margin="5 10 10 10" FontSize="32" Grid.Column="2"/>
+        </Grid>
+        <Grid Grid.Row="1" Margin="30 20 30 30">
+            <ListBox x:Name="myLBI"/>
+        </Grid>
+    </Grid>
+</Window>

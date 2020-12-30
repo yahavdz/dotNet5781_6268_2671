@@ -21,7 +21,7 @@ namespace Dal
         #region Bus
         public Bus GetBus(int busId)
         {
-            Bus bus = DataSource.ListBuses.Find(b => b.LicenseNum == busId);
+            Bus bus = DataSource.ListBuses.Find(b => b.LicenseNum == busId && b.Active);
 
             if (bus != null)
                 return bus.Clone();
@@ -30,31 +30,34 @@ namespace Dal
         }
         public IEnumerable<Bus> GetAllBuses()
         {
-            return from bus in DataSource.ListBuses
+            return from bus in DataSource.ListBuses.FindAll(b => b.Active)
                    select bus.Clone();
         }
         public IEnumerable<Bus> GetAllBusesBy(Predicate<Bus> predicate)
         {
-            return from bus in DataSource.ListBuses.FindAll(predicate)
+            return from bus in DataSource.ListBuses.FindAll(b => b.Active).FindAll(predicate)
                    select bus.Clone();
         }
         public void AddBus(Bus bus)
         {
-            if (DataSource.ListBuses.FirstOrDefault(b => b.LicenseNum == bus.LicenseNum) != null)
+            Bus findBus = DataSource.ListBuses.FirstOrDefault(b => b.LicenseNum == bus.LicenseNum);
+            if (findBus != null && findBus.Active)
                 throw new BadIdException(bus.LicenseNum, "Duplicate bus ID");
+            if (findBus != null && !findBus.Active)
+                DataSource.ListBuses.Remove(findBus);
             DataSource.ListBuses.Add(bus.Clone());
         }
         public void DeleteBus(int busId)
         {
             Bus bus = DataSource.ListBuses.Find(b => b.LicenseNum == busId);
             if (bus != null)
-                DataSource.ListBuses.Remove(bus);
+                bus.Active = false;
             else
                 throw new BadIdException(busId, $"bad bus id: {busId}");
         }
         public void UpdateBus(Bus bus)
         {
-            Bus findBus = DataSource.ListBuses.Find(b => b.LicenseNum == bus.LicenseNum);
+            Bus findBus = DataSource.ListBuses.FirstOrDefault(b => b.LicenseNum == bus.LicenseNum && b.Active);
 
             if (findBus != null)
             {
@@ -69,7 +72,7 @@ namespace Dal
         #region Line
         public Line GetLine(int lineId)
         {
-            Line line = DataSource.ListLines.Find(l => l.Id == lineId);
+            Line line = DataSource.ListLines.Find(l => l.Id == lineId && l.Active);
 
             if (line != null)
                 return line.Clone();
@@ -78,31 +81,34 @@ namespace Dal
         }
         public IEnumerable<Line> GetAllLines()
         {
-            return from line in DataSource.ListLines
+            return from line in DataSource.ListLines.FindAll(l => l.Active)
                    select line.Clone();
         }
         public IEnumerable<Line> GetAllLinesBy(Predicate<Line> predicate)
         {
-            return from line in DataSource.ListLines.FindAll(predicate)
+            return from line in DataSource.ListLines.FindAll(l => l.Active).FindAll(predicate)
                    select line.Clone();
         }
         public void AddLine(Line line)
         {
-            if (DataSource.ListLines.FirstOrDefault(l => l.Id == line.Id) != null)
+            Line findLine = DataSource.ListLines.FirstOrDefault(l => l.Id == line.Id);
+            if (findLine != null && findLine.Active)
                 throw new BadIdException(line.Id, "Duplicate line ID");
+            if (findLine != null && !findLine.Active)
+                DataSource.ListLines.Remove(findLine);
             DataSource.ListLines.Add(line.Clone());
         }
         public void DeleteLine(int lineId)
         {
             Line line = DataSource.ListLines.Find(l => l.Id == lineId);
             if (line != null)
-                DataSource.ListLines.Remove(line);
+                line.Active = false;
             else
                 throw new BadIdException(lineId, $"bad line id: {lineId}");
         }
         public void UpdateLine(Line line)
         {
-            Line findLine = DataSource.ListLines.Find(l => l.Id == line.Id);
+            Line findLine = DataSource.ListLines.FirstOrDefault(l => l.Id == line.Id && l.Active);
 
             if (findLine != null)
             {
@@ -117,40 +123,43 @@ namespace Dal
         #region Station
         public Station GetStation(int stationId)
         {
-            Station station = DataSource.ListStations.Find(s => s.Code == stationId);
+            Station station = DataSource.ListStations.Find(s => s.Code == stationId && s.Active);
 
             if (station != null)
                 return station.Clone();
             else
-                throw new BadIdException(stationId, $"bad station id: {stationId}");
+                throw new BadIdException(stationId, $"bad station code: {stationId}");
         }
         public IEnumerable<Station> GetAllStations()
         {
-            return from station in DataSource.ListStations
+            return from station in DataSource.ListStations.FindAll(s => s.Active)
                    select station.Clone();
         }
         public IEnumerable<Station> GetAllStationBy(Predicate<Station> predicate)
         {
-            return from station in DataSource.ListStations.FindAll(predicate)
+            return from station in DataSource.ListStations.FindAll(s => s.Active).FindAll(predicate)
                    select station.Clone();
         }
         public void AddStation(Station station)
         {
-            if (DataSource.ListStations.FirstOrDefault(s => s.Code == station.Code) != null)
-                throw new BadIdException(station.Code, "Duplicate station ID");
+            Station findStation = DataSource.ListStations.FirstOrDefault(s => s.Code == station.Code);
+            if (findStation != null && findStation.Active)
+                throw new BadIdException(station.Code, "Duplicate station Code");
+            if (findStation != null && !findStation.Active)
+                DataSource.ListStations.Remove(findStation);
             DataSource.ListStations.Add(station.Clone());
         }
         public void DeleteStation(int stationId)
         {
             Station station = DataSource.ListStations.Find(s => s.Code == stationId);
             if (station != null)
-                DataSource.ListStations.Remove(station);
+                station.Active = false;
             else
-                throw new BadIdException(stationId, $"bad station id: {stationId}");
+                throw new BadIdException(stationId, $"bad station code: {stationId}");
         }
         public void UpdateStation(Station station)
         {
-            Station findStation = DataSource.ListStations.Find(s => s.Code == station.Code);
+            Station findStation = DataSource.ListStations.FirstOrDefault(s => s.Code == station.Code && s.Active);
 
             if (findStation != null)
             {
@@ -158,14 +167,14 @@ namespace Dal
                 DataSource.ListStations.Add(station.Clone());
             }
             else
-                throw new BadIdException(station.Code, $"bad station id: {station.Code}");
+                throw new BadIdException(station.Code, $"bad station code: {station.Code}");
         }
         #endregion Station
 
         #region BusOnTrip
         public BusOnTrip GetBusOnTrip(int busOnTripId)
         {
-            BusOnTrip busOnTrip = DataSource.ListBusesOnTrip.Find(bt => bt.Id == busOnTripId);
+            BusOnTrip busOnTrip = DataSource.ListBusesOnTrip.Find(bt => bt.Id == busOnTripId && bt.Active);
 
             if (busOnTrip != null)
                 return busOnTrip.Clone();
@@ -174,31 +183,34 @@ namespace Dal
         }
         public IEnumerable<BusOnTrip> GetAllBusOnTrip()
         {
-            return from busOnTrip in DataSource.ListBusesOnTrip
+            return from busOnTrip in DataSource.ListBusesOnTrip.FindAll(bt => bt.Active)
                    select busOnTrip.Clone();
         }
         public IEnumerable<BusOnTrip> GetAllBusOnTripBy(Predicate<BusOnTrip> predicate)
         {
-            return from busOnTrip in DataSource.ListBusesOnTrip.FindAll(predicate)
+            return from busOnTrip in DataSource.ListBusesOnTrip.FindAll(bt => bt.Active).FindAll(predicate)
                    select busOnTrip.Clone();
         }
         public void AddBusOnTrip(BusOnTrip busOnTrip)
         {
-            if (DataSource.ListBusesOnTrip.FirstOrDefault(bt => bt.Id == busOnTrip.Id) != null)
+            BusOnTrip findBusOnTrip = DataSource.ListBusesOnTrip.FirstOrDefault(bt => bt.Id == busOnTrip.Id);
+            if (findBusOnTrip != null && findBusOnTrip.Active)
                 throw new BadIdException(busOnTrip.Id, "Duplicate busOnTrip ID");
+            if (findBusOnTrip != null && !findBusOnTrip.Active)
+                DataSource.ListBusesOnTrip.Remove(findBusOnTrip);
             DataSource.ListBusesOnTrip.Add(busOnTrip.Clone());
         }
         public void DeleteBusOnTrip(int busOnTripId)
         {
             BusOnTrip busOnTrip = DataSource.ListBusesOnTrip.Find(bt => bt.Id == busOnTripId);
             if (busOnTrip != null)
-                DataSource.ListBusesOnTrip.Remove(busOnTrip);
+                busOnTrip.Active = false;
             else
                 throw new BadIdException(busOnTripId, $"bad busOnTrip id: {busOnTripId}");
         }
         public void UpdateBusOnTrip(BusOnTrip busOnTrip)
         {
-            BusOnTrip findBusOnTrip = DataSource.ListBusesOnTrip.Find(bt => bt.Id == busOnTrip.Id);
+            BusOnTrip findBusOnTrip = DataSource.ListBusesOnTrip.FirstOrDefault(bt => bt.Id == busOnTrip.Id && bt.Active);
 
             if (findBusOnTrip != null)
             {
@@ -213,7 +225,7 @@ namespace Dal
         #region LineStation
         public LineStation GetLineStation(int lineStationId)
         {
-            LineStation lineStation = DataSource.ListLineStations.Find(ls => ls.LineId == lineStationId);
+            LineStation lineStation = DataSource.ListLineStations.Find(ls => ls.LineId == lineStationId && ls.Active);
 
             if (lineStation != null)
                 return lineStation.Clone();
@@ -222,31 +234,34 @@ namespace Dal
         }
         public IEnumerable<LineStation> GetAllLineStation()
         {
-            return from lineStation in DataSource.ListLineStations
+            return from lineStation in DataSource.ListLineStations.FindAll(ls => ls.Active)
                    select lineStation.Clone();
         }
         public IEnumerable<LineStation> GetAllLineStationBy(Predicate<LineStation> predicate)
         {
-            return from lineStation in DataSource.ListLineStations.FindAll(predicate)
+            return from lineStation in DataSource.ListLineStations.FindAll(ls => ls.Active).FindAll(predicate)
                    select lineStation.Clone();
         }
         public void AddLineStation(LineStation lineStation)
         {
-            if (DataSource.ListLineStations.FirstOrDefault(ls => ls.LineId == lineStation.LineId) != null)
+            LineStation findLineStation = DataSource.ListLineStations.FirstOrDefault(ls => ls.LineId == lineStation.LineId);
+            if (findLineStation != null && findLineStation.Active)
                 throw new BadIdException(lineStation.LineId, "Duplicate line station ID");
+            if (findLineStation != null && !findLineStation.Active)
+                DataSource.ListLineStations.Remove(findLineStation);
             DataSource.ListLineStations.Add(lineStation.Clone());
         }
         public void DeleteLineStation(int lineStationId)
         {
             LineStation lineStation = DataSource.ListLineStations.Find(ls => ls.LineId == lineStationId);
             if (lineStation != null)
-                DataSource.ListLineStations.Remove(lineStation);
+                lineStation.Active = false;
             else
                 throw new BadIdException(lineStationId, $"bad line station id: {lineStationId}");
         }
         public void UpdateLineStation(LineStation lineStation)
         {
-            LineStation findLineStation = DataSource.ListLineStations.Find(ls => ls.LineId == lineStation.LineId);
+            LineStation findLineStation = DataSource.ListLineStations.FirstOrDefault(ls => ls.LineId == lineStation.LineId && ls.Active);
 
             if (findLineStation != null)
             {
@@ -261,7 +276,7 @@ namespace Dal
         #region LineTrip
         public LineTrip GetLineTrip(int lineTripId)
         {
-            LineTrip lineTrip = DataSource.ListLineTrips.Find(lt => lt.Id == lineTripId);
+            LineTrip lineTrip = DataSource.ListLineTrips.Find(lt => lt.Id == lineTripId && lt.Active);
 
             if (lineTrip != null)
                 return lineTrip.Clone();
@@ -270,31 +285,34 @@ namespace Dal
         }
         public IEnumerable<LineTrip> GetAllLineTrip()
         {
-            return from lineTrip in DataSource.ListLineTrips
+            return from lineTrip in DataSource.ListLineTrips.FindAll(lt => lt.Active)
                    select lineTrip.Clone();
         }
         public IEnumerable<LineTrip> GetAllLineTripBy(Predicate<LineTrip> predicate)
         {
-            return from lineTrip in DataSource.ListLineTrips.FindAll(predicate)
+            return from lineTrip in DataSource.ListLineTrips.FindAll(lt => lt.Active).FindAll(predicate)
                    select lineTrip.Clone();
         }
         public void AddLineTrip(LineTrip lineTrip)
         {
-            if (DataSource.ListLineTrips.FirstOrDefault(lt => lt.Id == lineTrip.Id) != null)
+            LineTrip findLineTrip = DataSource.ListLineTrips.FirstOrDefault(lt => lt.Id == lineTrip.Id);
+            if (findLineTrip != null && findLineTrip.Active)
                 throw new BadIdException(lineTrip.Id, "Duplicate line trip ID");
+            if (findLineTrip != null && !findLineTrip.Active)
+                DataSource.ListLineTrips.Remove(findLineTrip);
             DataSource.ListLineTrips.Add(lineTrip.Clone());
         }
         public void DeleteLineTrip(int lineTripId)
         {
             LineTrip lineTrip = DataSource.ListLineTrips.Find(lt => lt.Id == lineTripId);
             if (lineTrip != null)
-                DataSource.ListLineTrips.Remove(lineTrip);
+                lineTrip.Active = false;
             else
                 throw new BadIdException(lineTripId, $"bad line trip id: {lineTripId}");
         }
         public void UpdateLineTrip(LineTrip lineTrip)
         {
-            LineTrip findLineTrip = DataSource.ListLineTrips.Find(lt => lt.Id == lineTrip.Id);
+            LineTrip findLineTrip = DataSource.ListLineTrips.FirstOrDefault(lt => lt.Id == lineTrip.Id && lt.Active);
 
             if (findLineTrip != null)
             {
@@ -309,7 +327,7 @@ namespace Dal
         #region Trip
         public Trip GetTrip(int tripId)
         {
-            Trip trip = DataSource.ListRrips.Find(t => t.Id == tripId);
+            Trip trip = DataSource.ListTrips.Find(t => t.Id == tripId && t.Active);
 
             if (trip != null)
                 return trip.Clone();
@@ -318,36 +336,39 @@ namespace Dal
         }
         public IEnumerable<Trip> GetAllTrip()
         {
-            return from trip in DataSource.ListRrips
+            return from trip in DataSource.ListTrips.FindAll(t => t.Active)
                    select trip.Clone();
         }
         public IEnumerable<Trip> GetAllTripBy(Predicate<Trip> predicate)
         {
-            return from trip in DataSource.ListRrips.FindAll(predicate)
+            return from trip in DataSource.ListTrips.FindAll(t => t.Active).FindAll(predicate)
                    select trip.Clone();
         }
         public void AddTrip(Trip trip)
         {
-            if (DataSource.ListRrips.FirstOrDefault(t => t.Id == trip.Id) != null)
+            Trip findTrip = DataSource.ListTrips.FirstOrDefault(t => t.Id == trip.Id);
+            if (findTrip != null && findTrip.Active)
                 throw new BadIdException(trip.Id, "Duplicate trip ID");
-            DataSource.ListRrips.Add(trip.Clone());
+            if (findTrip != null && !findTrip.Active)
+                DataSource.ListTrips.Remove(findTrip);
+            DataSource.ListTrips.Add(trip.Clone());
         }
         public void DeleteTrip(int tripId)
         {
-            Trip trip = DataSource.ListRrips.Find(t => t.Id == tripId);
+            Trip trip = DataSource.ListTrips.Find(t => t.Id == tripId);
             if (trip != null)
-                DataSource.ListRrips.Remove(trip);
+                trip.Active = false;
             else
                 throw new BadIdException(tripId, $"bad trip id: {tripId}");
         }
         public void UpdateTrip(Trip trip)
         {
-            Trip findTrip = DataSource.ListRrips.Find(t => t.Id == trip.Id);
+            Trip findTrip = DataSource.ListTrips.FirstOrDefault(t => t.Id == trip.Id && t.Active);
 
             if (findTrip != null)
             {
-                DataSource.ListRrips.Remove(findTrip);
-                DataSource.ListRrips.Add(trip.Clone());
+                DataSource.ListTrips.Remove(findTrip);
+                DataSource.ListTrips.Add(trip.Clone());
             }
             else
                 throw new BadIdException(trip.Id, $"bad trip id: {trip.Id}");
@@ -357,7 +378,7 @@ namespace Dal
         #region User
         public User GetUser(string userName)
         {
-            User user = DataSource.ListUsers.Find(u => u.UserName == userName);
+            User user = DataSource.ListUsers.Find(u => u.UserName == userName && u.Active);
 
             if (user != null)
                 return user.Clone();
@@ -366,31 +387,34 @@ namespace Dal
         }
         public IEnumerable<User> GetAllUsers()
         {
-            return from user in DataSource.ListUsers
+            return from user in DataSource.ListUsers.FindAll(u => u.Active)
                    select user.Clone();
         }
         public IEnumerable<User> GetAllUsersBy(Predicate<User> predicate)
         {
-            return from user in DataSource.ListUsers.FindAll(predicate)
+            return from user in DataSource.ListUsers.FindAll(u => u.Active).FindAll(predicate)
                    select user.Clone();
         }
         public void AddUser(User user)
         {
-            if (DataSource.ListUsers.FirstOrDefault(u => u.UserName == user.UserName) != null)
+            User findUser = DataSource.ListUsers.FirstOrDefault(u => u.UserName == user.UserName);
+            if (findUser != null && findUser.Active)
                 throw new BadUserNameException(user.UserName, "Duplicate user name");
+            if (findUser != null && !findUser.Active)
+                DataSource.ListUsers.Remove(findUser);
             DataSource.ListUsers.Add(user.Clone());
         }
         public void DeleteUser(string userName)
         {
             User user = DataSource.ListUsers.Find(u => u.UserName == userName);
             if (user != null)
-                DataSource.ListUsers.Remove(user);
+                user.Active = false;
             else
                 throw new BadUserNameException(userName, $"bad user name: {userName}");
         }
         public void UpdateUser(User user)
         {
-            User findUser = DataSource.ListUsers.Find(u => u.UserName == user.UserName);
+            User findUser = DataSource.ListUsers.FirstOrDefault(u => u.UserName == user.UserName && u.Active);
 
             if (findUser != null)
             {
@@ -405,7 +429,7 @@ namespace Dal
         #region AdjacentStations
         public AdjacentStations GetAdjacentStations(int adjacentStationsId1, int adjacentStationsId2)
         {
-            AdjacentStations adjacentStations = DataSource.ListAdjacentStations.Find(ads => ads.Station1 == adjacentStationsId1 && ads.Station2 == adjacentStationsId2);
+            AdjacentStations adjacentStations = DataSource.ListAdjacentStations.Find(ads => ads.Station1 == adjacentStationsId1 && ads.Station2 == adjacentStationsId2 && ads.Active);
 
             if (adjacentStations != null)
                 return adjacentStations.Clone();
@@ -414,31 +438,34 @@ namespace Dal
         }
         public IEnumerable<AdjacentStations> GetAllAdjacentStations()
         {
-            return from adjacentStations in DataSource.ListAdjacentStations
+            return from adjacentStations in DataSource.ListAdjacentStations.FindAll(ads => ads.Active)
                    select adjacentStations.Clone();
         }
         public IEnumerable<AdjacentStations> GetAllAdjacentStationsBy(Predicate<AdjacentStations> predicate)
         {
-            return from adjacentStations in DataSource.ListAdjacentStations.FindAll(predicate)
+            return from adjacentStations in DataSource.ListAdjacentStations.FindAll(ads => ads.Active).FindAll(predicate)
                    select adjacentStations.Clone();
         }
         public void AddAdjacentStations(AdjacentStations adjacentStations)
         {
-            if (DataSource.ListAdjacentStations.FirstOrDefault(ads => ads.Station1 == adjacentStations.Station1 && ads.Station2 == adjacentStations.Station2) != null)
+            AdjacentStations findAdjacentStations = DataSource.ListAdjacentStations.FirstOrDefault(ads => ads.Station1 == adjacentStations.Station1 && ads.Station2 == adjacentStations.Station2);
+            if (findAdjacentStations != null && findAdjacentStations.Active)
                 throw new BadAdjacentStationsException(adjacentStations.Station1, adjacentStations.Station2, "Duplicate adjacentStations");
+            if (findAdjacentStations != null && !findAdjacentStations.Active)
+                DataSource.ListAdjacentStations.Remove(findAdjacentStations);
             DataSource.ListAdjacentStations.Add(adjacentStations.Clone());
         }
         public void DeleteAdjacentStations(int adjacentStationsId1, int adjacentStationsId2)
         {
             AdjacentStations adjacentStations = DataSource.ListAdjacentStations.Find(ads => ads.Station1 == adjacentStationsId1 && ads.Station2 == adjacentStationsId2);
             if (adjacentStations != null)
-                DataSource.ListAdjacentStations.Remove(adjacentStations);
+                adjacentStations.Active = false;
             else
                 throw new BadAdjacentStationsException(adjacentStationsId1, adjacentStationsId2, $"bad adjacent stations id: {adjacentStationsId1}, {adjacentStationsId2}");
         }
         public void UpdateAdjacentStations(AdjacentStations adjacentStations)
         {
-            AdjacentStations findAdjacentStations = DataSource.ListAdjacentStations.Find(ads => ads.Station1 == adjacentStations.Station1 && ads.Station1 == adjacentStations.Station1);
+            AdjacentStations findAdjacentStations = DataSource.ListAdjacentStations.FirstOrDefault(ads => ads.Station1 == adjacentStations.Station1 && ads.Station1 == adjacentStations.Station1 && ads.Active);
 
             if (findAdjacentStations != null)
             {

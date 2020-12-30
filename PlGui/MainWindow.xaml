@@ -5,8 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PlGui"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="OpeningWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="mangementButton" Content="Mangement Window" Margin="50" FontSize="45" Grid.Row="0" Click="mangementButton_Click"/>
+        <Button x:Name="userButton" Content="User Window" Margin="50" FontSize="45" Grid.Row="1"/>
     </Grid>
 </Window>

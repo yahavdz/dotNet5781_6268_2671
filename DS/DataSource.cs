@@ -36,7 +36,8 @@ namespace DS
                     Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                     Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                     Address = " Dolev st. - Habrosh st.",
-                    Accessibility= true
+                    Accessibility = true,
+                    Active = true
                 },
                 new Station//2
                   {
@@ -45,7 +46,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Haermon st. - Hayarden st.",
-                      Accessibility = true
+                      Accessibility = true,
+                      Active = true
                   },
                 new Station//3
                   {
@@ -54,7 +56,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Haermon st. - Hamor st.",
-                      Accessibility = false
+                      Accessibility = false,
+                      Active = true
                   },
                 new Station//4
                   {
@@ -63,7 +66,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Hamor st. - Hayarden st.",
-                      Accessibility = false
+                      Accessibility = false,
+                      Active = true
                   },
                 new Station//5
                   {
@@ -72,7 +76,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Yaalom st. - Hayarden st.",
-                      Accessibility = false
+                      Accessibility = false,
+                      Active = true
                   },
                 new Station//6
                   {
@@ -81,7 +86,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Carmel st. - Yaalom st.",
-                      Accessibility = true
+                      Accessibility = true,
+                      Active = true
                   },
                 new Station//7
                   {
@@ -90,7 +96,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Hagoren st. - Carmel st.",
-                      Accessibility = true
+                      Accessibility = true,
+                      Active = true
                   },
                 new Station//8
                   {
@@ -99,7 +106,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Hashita st. - Hagoren st.",
-                      Accessibility = false
+                      Accessibility = false,
+                      Active = true
                   },
                 new Station//9
                   {
@@ -108,7 +116,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Lakish st. - Hashita st.",
-                      Accessibility = false
+                      Accessibility = false,
+                      Active = true
                   },
                 new Station//10
                   {
@@ -117,7 +126,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Haharouv st. - Lakish st.",
-                      Accessibility = false
+                      Accessibility = false,
+                      Active = true
                   },
                 new Station//11
                   {
@@ -126,7 +136,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Dolev st. - Habrosh st.",
-                      Accessibility = false
+                      Accessibility = false,
+                      Active = true
                   },
                 new Station//12
                   {
@@ -135,7 +146,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Haermon st. - Hayarden st.",
-                      Accessibility = true
+                      Accessibility = true,
+                        Active = true
                   },
                 new Station//13
                   {
@@ -144,7 +156,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Haermon st. - Hamor st.",
-                      Accessibility = true
+                      Accessibility = true,
+                      Active = true
                   },
                 new Station//14
                   {
@@ -153,7 +166,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Hamor st. - Hayarden st.",
-                      Accessibility = false
+                      Accessibility = false,
+                      Active = true
                   },
                 new Station//15
                   {
@@ -162,7 +176,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Yaalom st. - Hayarden st.",
-                      Accessibility = false
+                      Accessibility = false,
+                      Active = true
                   },
                 new Station//16
                   {
@@ -171,7 +186,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Carmel st. - Yaalom st.",
-                      Accessibility = true
+                      Accessibility = true,
+                      Active = true
                   },
                 new Station//17
                   {
@@ -180,7 +196,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Hagoren st. - Carmel st.",
-                      Accessibility = true
+                      Accessibility = true,
+                      Active = true
                   },
                 new Station//18
                   {
@@ -189,7 +206,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Hashita st. - Hagoren st.",
-                      Accessibility = false
+                      Accessibility = false,
+                      Active = true
                   },
                 new Station//19
                   {
@@ -198,7 +216,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Lakish st. - Hashita st.",
-                      Accessibility = false
+                      Accessibility = false,
+                      Active = true
                   },
                 new Station//20
                   {
@@ -207,7 +226,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Haharouv st. - Lakish st.",
-                      Accessibility = false
+                      Accessibility = false,
+                      Active = true
                   },
                 new Station//21
                   {
@@ -216,7 +236,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Dolev st. - Habrosh st.",
-                      Accessibility = false
+                      Accessibility = false,
+                      Active = true
                   },
                 new Station//22
                   {
@@ -225,7 +246,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Haermon st. - Hayarden st.",
-                      Accessibility = true
+                      Accessibility = true,
+                      Active = true
                   },
                 new Station//23
                   {
@@ -234,7 +256,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Haermon st. - Hamor st.",
-                      Accessibility = true
+                      Accessibility = true,
+                      Active = true
                   },
                 new Station//24
                   {
@@ -243,7 +266,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Hamor st. - Hayarden st.",
-                      Accessibility = false
+                      Accessibility = false,
+                      Active = true
                   },
                 new Station//25
                   {
@@ -252,7 +276,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Yaalom st. - Hayarden st.",
-                      Accessibility = false
+                      Accessibility = false,
+                      Active = true
                   },
                 new Station//26
                   {
@@ -261,7 +286,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Carmel st. - Yaalom st.",
-                      Accessibility = true
+                      Accessibility = true,
+                      Active = true
                   },
                 new Station//27
                   {
@@ -270,7 +296,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Hagoren st. - Carmel st.",
-                      Accessibility = true
+                      Accessibility = true,
+                      Active = true
                   },
                 new Station//28
                   {
@@ -279,7 +306,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Hashita st. - Hagoren st.",
-                      Accessibility = false
+                      Accessibility = false,
+                      Active = true
                   },
                 new Station//29
                   {
@@ -288,7 +316,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Lakish st. - Hashita st.",
-                      Accessibility = false
+                      Accessibility = false,
+                      Active = true
                   },
                 new Station//30
                   {
@@ -297,7 +326,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Haharouv st. - Lakish st.",
-                      Accessibility = false
+                      Accessibility = false,
+                      Active = true
                   },
                 new Station//31
                   {
@@ -306,7 +336,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Dolev st. - Habrosh st.",
-                      Accessibility = false
+                      Accessibility = false,
+                      Active = true
                   },
                 new Station//32
                   {
@@ -315,7 +346,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Haermon st. - Hayarden st.",
-                      Accessibility = true
+                      Accessibility = true,
+                      Active = true
                   },
                 new Station//33
                   {
@@ -324,7 +356,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Haermon st. - Hamor st.",
-                      Accessibility = true
+                      Accessibility = true,
+                      Active = true
                   },
                 new Station//34
                   {
@@ -333,7 +366,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Hamor st. - Hayarden st.",
-                      Accessibility = false
+                      Accessibility = false,
+                      Active = true
                   },
                 new Station//35
                   {
@@ -342,7 +376,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Yaalom st. - Hayarden st.",
-                      Accessibility = false
+                      Accessibility = false,
+                      Active = true
                   },
                 new Station//36
                   {
@@ -351,7 +386,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Carmel st. - Yaalom st.",
-                      Accessibility = true
+                      Accessibility = true,
+                      Active = true
                   },
                 new Station//37
                   {
@@ -360,7 +396,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Hagoren st. - Carmel st.",
-                      Accessibility = true
+                      Accessibility = true,
+                      Active = true
                   },
                 new Station//38
                   {
@@ -369,7 +406,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Hashita st. - Hagoren st.",
-                      Accessibility = false
+                      Accessibility = false,
+                      Active = true
                   },
                 new Station//39
                   {
@@ -378,7 +416,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Lakish st. - Hashita st.",
-                      Accessibility = false
+                      Accessibility = false,
+                      Active = true
                   },
                 new Station//40
                   {
@@ -387,7 +426,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Haharouv st. - Lakish st.",
-                      Accessibility = false
+                      Accessibility = false,
+                      Active = true
                   },
                 new Station//41
                   {
@@ -396,7 +436,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Dolev st. - Habrosh st.",
-                      Accessibility = false
+                      Accessibility = false,
+                      Active = true
                   },
                 new Station//42
                   {
@@ -405,7 +446,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Haermon st. - Hayarden st.",
-                      Accessibility = true
+                      Accessibility = true,
+                      Active = true
                   },
                 new Station//43
                   {
@@ -414,7 +456,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Haermon st. - Hamor st.",
-                      Accessibility = true
+                      Accessibility = true,
+                      Active = true
                   },
                 new Station//44
                   {
@@ -423,7 +466,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Hamor st. - Hayarden st.",
-                      Accessibility = false
+                      Accessibility = false,
+                      Active = true
                   },
                 new Station//45
                   {
@@ -432,7 +476,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Yaalom st. - Hayarden st.",
-                      Accessibility = false
+                      Accessibility = false,
+                      Active = true
                   },
                 new Station//46
                   {
@@ -441,7 +486,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Carmel st. - Yaalom st.",
-                      Accessibility = true
+                      Accessibility = true,
+                      Active = true
                   },
                 new Station//47
                   {
@@ -450,7 +496,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Hagoren st. - Carmel st.",
-                      Accessibility = true
+                      Accessibility = true,
+                      Active = true
                   },
                 new Station//48
                   {
@@ -459,7 +506,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Hashita st. - Hagoren st.",
-                      Accessibility = false
+                      Accessibility = false,
+                      Active = true
                   },
                 new Station//49
                   {
@@ -468,7 +516,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Lakish st. - Hashita st.",
-                      Accessibility = false
+                      Accessibility = false,
+                      Active = true
                   },
                 new Station//50
                   {
@@ -477,7 +526,8 @@ namespace DS
                       Latitude = random.NextDouble() * (33.3 - 31.0) + 31.0,
                       Longitude = random.NextDouble() * (35.5 - 34.3) + 34.3,
                       Address = " Haharouv st. - Lakish st.",
-                      Accessibility = false
+                      Accessibility = false,
+                      Active = true
                   }
             };
 
@@ -490,6 +540,7 @@ namespace DS
                      Area =Areas.Center ,
                      FirstStation=ListStations[0].Code,
                      LastStation=ListStations[9].Code,
+                     Active = true
                  },
                  new Line//2
                  {
@@ -498,6 +549,7 @@ namespace DS
                      Area =Areas.North ,
                      FirstStation=ListStations[10].Code,
                      LastStation=ListStations[19].Code,
+                     Active = true
                  },
                  new Line//3
                  {
@@ -506,6 +558,7 @@ namespace DS
                      Area =Areas.South ,
                      FirstStation=ListStations[20].Code,
                      LastStation=ListStations[29].Code,
+                     Active = true
                  },
                  new Line//4
                  {
@@ -514,6 +567,7 @@ namespace DS
                      Area =Areas.Center ,
                      FirstStation=ListStations[30].Code,
                      LastStation=ListStations[39].Code,
+                     Active = true
                  },
                  new Line//5
                  {
@@ -522,6 +576,7 @@ namespace DS
                      Area =Areas.Jerusalem ,
                      FirstStation=ListStations[40].Code,
                      LastStation=ListStations[49].Code,
+                     Active = true
                  },
                  new Line//6
                  {
@@ -530,6 +585,7 @@ namespace DS
                      Area =Areas.General ,
                      FirstStation=ListStations[5].Code,
                      LastStation=ListStations[15].Code,
+                     Active = true
                  },
                  new Line//7
                  {
@@ -538,6 +594,7 @@ namespace DS
                      Area =Areas.General ,
                      FirstStation=ListStations[15].Code,
                      LastStation=ListStations[25].Code,
+                     Active = true
                  },
                  new Line//8
                  {
@@ -546,6 +603,7 @@ namespace DS
                      Area =Areas.South ,
                      FirstStation=ListStations[25].Code,
                      LastStation=ListStations[35].Code,
+                     Active = true
                  },
                  new Line//9
                  {
@@ -554,6 +612,7 @@ namespace DS
                      Area =Areas.General ,
                      FirstStation=ListStations[35].Code,
                      LastStation=ListStations[45].Code,
+                     Active = true
                  },
                  new Line//10
                  {
@@ -562,6 +621,7 @@ namespace DS
                      Area =Areas.Jerusalem ,
                      FirstStation=ListStations[20].Code,
                      LastStation=ListStations[40].Code,
+                     Active = true
                  },
 
             };
@@ -576,7 +636,8 @@ namespace DS
                     FuelRemain = 1200,
                     BusStatus = BusStatus.readyToGo,
                     KilometersSinceLastTreatment =0,
-                    KilometersAtLastRefueling= 10000
+                    KilometersAtLastRefueling= 10000,
+                    Active = true
                 },
                 new Bus//2
                 {
@@ -586,7 +647,8 @@ namespace DS
                     FuelRemain = 1200,
                     BusStatus = BusStatus.readyToGo,
                     KilometersSinceLastTreatment =0,
-                    KilometersAtLastRefueling= 11000
+                    KilometersAtLastRefueling= 11000,
+                    Active = true
                 },
                 new Bus//3
                 {
@@ -596,7 +658,8 @@ namespace DS
                     FuelRemain = 1200,
                     BusStatus = BusStatus.readyToGo,
                     KilometersSinceLastTreatment =0,
-                    KilometersAtLastRefueling= 12000
+                    KilometersAtLastRefueling= 12000,
+                    Active = true
                 },
                 new Bus//4
                 {
@@ -606,7 +669,8 @@ namespace DS
                     FuelRemain = 1200,
                     BusStatus = BusStatus.readyToGo,
                     KilometersSinceLastTreatment =0,
-                    KilometersAtLastRefueling= 13000
+                    KilometersAtLastRefueling= 13000,
+                    Active = true
                 },
                 new Bus//5
                 {
@@ -616,7 +680,8 @@ namespace DS
                     FuelRemain = 1200,
                     BusStatus = BusStatus.readyToGo,
                     KilometersSinceLastTreatment =0,
-                    KilometersAtLastRefueling= 14000
+                    KilometersAtLastRefueling= 14000,
+                    Active = true
                 },
                 new Bus//6
                 {
@@ -626,7 +691,8 @@ namespace DS
                     FuelRemain = 1200,
                     BusStatus = BusStatus.readyToGo,
                     KilometersSinceLastTreatment =0,
-                    KilometersAtLastRefueling= 15000
+                    KilometersAtLastRefueling= 15000,
+                    Active = true
                 },
                 new Bus//7
                 {
@@ -636,7 +702,8 @@ namespace DS
                     FuelRemain = 1200,
                     BusStatus = BusStatus.readyToGo,
                     KilometersSinceLastTreatment =0,
-                    KilometersAtLastRefueling= 16000
+                    KilometersAtLastRefueling= 16000,
+                    Active = true
                 },
                 new Bus//8
                 {
@@ -646,7 +713,8 @@ namespace DS
                     FuelRemain = 1200,
                     BusStatus = BusStatus.readyToGo,
                     KilometersSinceLastTreatment =0,
-                    KilometersAtLastRefueling= 17000
+                    KilometersAtLastRefueling= 17000,
+                    Active = true
                 },
                 new Bus//9
                 {
@@ -656,7 +724,8 @@ namespace DS
                     FuelRemain = 1200,
                     BusStatus = BusStatus.readyToGo,
                     KilometersSinceLastTreatment =0,
-                    KilometersAtLastRefueling= 18000
+                    KilometersAtLastRefueling= 18000,
+                    Active = true
                 },
                 new Bus//10
                 {
@@ -666,7 +735,8 @@ namespace DS
                     FuelRemain = 1200,
                     BusStatus = BusStatus.readyToGo,
                     KilometersSinceLastTreatment =0,
-                    KilometersAtLastRefueling= 19000
+                    KilometersAtLastRefueling= 19000,
+                    Active = true
                 },
                 new Bus//11
                 {
@@ -676,7 +746,8 @@ namespace DS
                     FuelRemain = 1200,
                     BusStatus = BusStatus.readyToGo,
                     KilometersSinceLastTreatment =100000-random.Next(1,15000),
-                    KilometersAtLastRefueling= 100000
+                    KilometersAtLastRefueling= 100000,
+                    Active = true
                 },
                 new Bus//12
                 {
@@ -686,7 +757,8 @@ namespace DS
                     FuelRemain = 1200,
                     BusStatus = BusStatus.readyToGo,
                     KilometersSinceLastTreatment =110000-random.Next(1,15000),
-                    KilometersAtLastRefueling= 110000
+                    KilometersAtLastRefueling= 110000,
+                    Active = true
                 },
                 new Bus//13
                 {
@@ -696,7 +768,8 @@ namespace DS
                     FuelRemain = 1200,
                     BusStatus = BusStatus.readyToGo,
                     KilometersSinceLastTreatment =120000-random.Next(1,15000),
-                    KilometersAtLastRefueling= 120000
+                    KilometersAtLastRefueling= 120000,
+                    Active = true
                 },
                 new Bus//14
                 {
@@ -706,7 +779,8 @@ namespace DS
                     FuelRemain = 1200,
                     BusStatus = BusStatus.readyToGo,
                     KilometersSinceLastTreatment =130000-random.Next(1,15000),
-                    KilometersAtLastRefueling= 130000
+                    KilometersAtLastRefueling= 130000,
+                    Active = true
                 },
                 new Bus//15
                 {
@@ -716,7 +790,8 @@ namespace DS
                     FuelRemain = 1200,
                     BusStatus = BusStatus.readyToGo,
                     KilometersSinceLastTreatment =140000-random.Next(1,15000),
-                    KilometersAtLastRefueling= 140000
+                    KilometersAtLastRefueling= 140000,
+                    Active = true
                 },
                 new Bus//16
                 {
@@ -726,7 +801,8 @@ namespace DS
                     FuelRemain = 1200,
                     BusStatus = BusStatus.readyToGo,
                     KilometersSinceLastTreatment =150000-random.Next(1,15000),
-                    KilometersAtLastRefueling= 150000
+                    KilometersAtLastRefueling= 150000,
+                    Active = true
                 },
                 new Bus//17
                 {
@@ -736,7 +812,8 @@ namespace DS
                     FuelRemain = 1200,
                     BusStatus = BusStatus.readyToGo,
                     KilometersSinceLastTreatment =160000-random.Next(1,15000),
-                    KilometersAtLastRefueling= 160000
+                    KilometersAtLastRefueling= 160000,
+                    Active = true
                 },
                 new Bus//18
                 {
@@ -746,7 +823,8 @@ namespace DS
                     FuelRemain = 1200,
                     BusStatus = BusStatus.readyToGo,
                     KilometersSinceLastTreatment =170000-random.Next(1,15000),
-                    KilometersAtLastRefueling= 170000
+                    KilometersAtLastRefueling= 170000,
+                    Active = true
                 },
                 new Bus//19
                 {
@@ -756,7 +834,8 @@ namespace DS
                     FuelRemain = 1200,
                     BusStatus = BusStatus.readyToGo,
                     KilometersSinceLastTreatment =180000-random.Next(1,15000),
-                    KilometersAtLastRefueling= 180000
+                    KilometersAtLastRefueling= 180000,
+                    Active = true
                 },
                 new Bus//20
                 {
@@ -766,7 +845,8 @@ namespace DS
                     FuelRemain = 1200,
                     BusStatus = BusStatus.readyToGo,
                     KilometersSinceLastTreatment =190000-random.Next(1,15000),
-                    KilometersAtLastRefueling= 190000
+                    KilometersAtLastRefueling= 190000,
+                    Active = true
                 },
             };
 
@@ -778,7 +858,8 @@ namespace DS
                     LineId = ListLines[0].Code,
                     StartAt = new TimeSpan(6,0,0),
                     Frequency = new TimeSpan(0,0,30),
-                    FinishAt = new TimeSpan(23,0,0)
+                    FinishAt = new TimeSpan(23,0,0),
+                    Active = true
                 },
                 new LineTrip//2
                 {
@@ -786,7 +867,8 @@ namespace DS
                     LineId = ListLines[1].Code,
                     StartAt = new TimeSpan(6,0,0),
                     Frequency = new TimeSpan(0,15,0),
-                    FinishAt = new TimeSpan(23,45,0)
+                    FinishAt = new TimeSpan(23,45,0),
+                    Active = true
                 },
                 new LineTrip//3
                 {
@@ -794,7 +876,8 @@ namespace DS
                     LineId = ListLines[2].Code,
                     StartAt = new TimeSpan(6,0,0),
                     Frequency = new TimeSpan(1,0,0),
-                    FinishAt = new TimeSpan(23,0,0)
+                    FinishAt = new TimeSpan(23,0,0),
+                    Active = true
                 },
                 new LineTrip//4
                 {
@@ -802,7 +885,8 @@ namespace DS
                     LineId = ListLines[3].Code,
                     StartAt = new TimeSpan(6,0,0),
                     Frequency = new TimeSpan(0,0,30),
-                    FinishAt = new TimeSpan(23,0,0)
+                    FinishAt = new TimeSpan(23,0,0),
+                    Active = true
                 },
                 new LineTrip//5
                 {
@@ -810,7 +894,8 @@ namespace DS
                     LineId = ListLines[4].Code,
                     StartAt = new TimeSpan(7,0,0),
                     Frequency = new TimeSpan(0,15,0),
-                    FinishAt = new TimeSpan(21,45,0)
+                    FinishAt = new TimeSpan(21,45,0),
+                    Active = true
                 },
                 new LineTrip//6
                 {
@@ -818,7 +903,8 @@ namespace DS
                     LineId = ListLines[5].Code,
                     StartAt = new TimeSpan(8,0,0),
                     Frequency = new TimeSpan(1,0,0),
-                    FinishAt = new TimeSpan(22,0,0)
+                    FinishAt = new TimeSpan(22,0,0),
+                    Active = true
                 },
                 new LineTrip//7
                 {
@@ -826,7 +912,8 @@ namespace DS
                     LineId = ListLines[6].Code,
                     StartAt = new TimeSpan(12,0,0),
                     Frequency = new TimeSpan(0,1,0),
-                    FinishAt = new TimeSpan(23,0,0)
+                    FinishAt = new TimeSpan(23,0,0),
+                    Active = true
                 },
                 new LineTrip//8
                 {
@@ -834,7 +921,8 @@ namespace DS
                     LineId = ListLines[7].Code,
                     StartAt = new TimeSpan(10,0,0),
                     Frequency = new TimeSpan(0,15,0),
-                    FinishAt = new TimeSpan(21,45,0)
+                    FinishAt = new TimeSpan(21,45,0),
+                    Active = true
                 },
                 new LineTrip//9
                 {
@@ -842,7 +930,8 @@ namespace DS
                     LineId = ListLines[8].Code,
                     StartAt = new TimeSpan(5,0,0),
                     Frequency = new TimeSpan(1,0,0),
-                    FinishAt = new TimeSpan(22,0,0)
+                    FinishAt = new TimeSpan(22,0,0),
+                    Active = true
                 },
                 new LineTrip//10
                 {
@@ -850,7 +939,8 @@ namespace DS
                     LineId = ListLines[9].Code,
                     StartAt = new TimeSpan(6,0,0),
                     Frequency = new TimeSpan(1,30,0),
-                    FinishAt = new TimeSpan(12,0,0)
+                    FinishAt = new TimeSpan(12,0,0),
+                    Active = true
                 },
             };
 
@@ -864,7 +954,8 @@ namespace DS
                     Station = ListStations[0].Code,
                     LineStationIndex = 1,
                     PrevStation = ListStations[0].Code,
-                    NextStation = ListStations[1].Code
+                    NextStation = ListStations[1].Code,
+                    Active = true
                 });
 
                 for (int j = 1; j < 10; j++)
@@ -876,7 +967,8 @@ namespace DS
                         Station = ListStations[j - 1].Code,
                         LineStationIndex = j,
                         PrevStation = ListStations[j].Code,
-                        NextStation = ListStations[j + 1].Code
+                        NextStation = ListStations[j + 1].Code,
+                        Active = true
                     });
                 }
 
@@ -886,15 +978,17 @@ namespace DS
             {
                 new User
                 {
-                    UserName="Admin",
-                    Password="Admin",
-                    Admin=true
+                    UserName = "Admin",
+                    Password = "Admin",
+                    Admin = true,
+                    Active = true
                 },
                 new User
                 {
-                    UserName="Guest",
-                    Password="Guest",
-                    Admin=false
+                    UserName = "Guest",
+                    Password = "Guest",
+                    Admin = false,
+                    Active = true
                 }
             };
 
@@ -903,15 +997,13 @@ namespace DS
             {
                 ListAdjacentStations.Add(new AdjacentStations
                 {
-                    Station1= ListStations[i].Code,
+                    Station1 = ListStations[i].Code,
                     Station2 = ListStations[i+1].Code,
                     Distance = random.Next(1,5)*0.9,
-                    Time=new TimeSpan(0, random.Next(2, 10), 0)
+                    Time = new TimeSpan(0, random.Next(2, 10), 0),
+                    Active = true
                 });
             }
-
-
-
         }
     }
 }
