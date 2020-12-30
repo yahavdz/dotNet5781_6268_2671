@@ -13,7 +13,7 @@ namespace DS
         public static List<LineStation> ListLineStations;
         public static List<LineTrip> ListLineTrips;
         public static List<Station> ListStations;
-        public static List<Trip> ListRrips;
+        public static List<Trip> ListTrips;
         public static List<User> ListUsers;
         public static List<AdjacentStations> ListAdjacentStations;
 
