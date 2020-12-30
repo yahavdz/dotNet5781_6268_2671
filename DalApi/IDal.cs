@@ -85,7 +85,7 @@ namespace DalApi
         #endregion
 
         #region AdjacentStations
-        AdjacentStations GetAdjacentStations(int adjacentStationsId1, int adjacentStationsId2));
+        AdjacentStations GetAdjacentStations(int adjacentStationsId1, int adjacentStationsId2);
         IEnumerable<AdjacentStations> GetAllAdjacentStations();
         IEnumerable<AdjacentStations> GetAllAdjacentStationsBy(Predicate<AdjacentStations> predicate);
         void AddAdjacentStations(AdjacentStations adjacentStations);
