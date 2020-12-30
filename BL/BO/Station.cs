@@ -6,6 +6,7 @@ namespace BL.BO
 {
     class Station
     {
+        public int code { get; set; } // for manager window
         public string Name { get; set; }
         public string Address { get; set; }
     }

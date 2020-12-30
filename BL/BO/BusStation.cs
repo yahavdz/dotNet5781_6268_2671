@@ -6,6 +6,7 @@ namespace BL.BO
 {
     class BusStation : Station
     {
-        public IEnumerable<Line> BusStationList { get; set; }
+        public IEnumerable<Line> LinesList { get; set; }
+
     }
 }

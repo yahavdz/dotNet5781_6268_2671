@@ -9,7 +9,7 @@ namespace DalApi
     {
         public static IDal GetDal()
         {
-            return new DalObject.DALObject;//TODO
+            return null;//TODO
         }
     }
 }
