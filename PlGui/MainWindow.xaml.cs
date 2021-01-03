@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BL.BO;
 
 namespace PlGui
 {
@@ -29,6 +30,12 @@ namespace PlGui
         {
             MangementWindow mangementWindow = new MangementWindow();
             mangementWindow.ShowDialog();
+        }
+
+        private void userButton_Click(object sender, RoutedEventArgs e)
+        {
+            UserWindow userWindow = new UserWindow();
+            userWindow.ShowDialog();
         }
     }
 }

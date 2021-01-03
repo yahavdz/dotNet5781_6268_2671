@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PlGui"
         mc:Ignorable="d"
-        Title="MangementWindow" Height="450" Width="800">
+        Title="MangementWindow" Height="550" Width="800">
     <Grid x:Name="mainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="5*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
@@ -18,11 +19,16 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="busButton" Content="Bus display" Margin="10 10 5 10" FontSize="32" Grid.Column="0"/>
-            <Button x:Name="lineButton" Content="Line display" Margin="5 10 5 10" FontSize="32" Grid.Column="1"/>
-            <Button x:Name="stationButton" Content="Station display" Margin="5 10 10 10" FontSize="32" Grid.Column="2"/>
+            <Button x:Name="lineButton" Content="Line display" Margin="5 10 5 10" FontSize="32" Grid.Column="1" Click="lineButton_Click"/>
+            <Button x:Name="stationButton" Content="Station display" Margin="5 10 10 10" FontSize="32" Grid.Column="2" Click="stationButton_Click"/>
         </Grid>
-        <Grid Grid.Row="1" Margin="30 20 30 30">
+        <Grid Grid.Row="1" Margin="30 20 30 20">
             <ListBox x:Name="myLBI"/>
         </Grid>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button x:Name="addButton" Content="ADD" Width="100" Margin="10 10 5 10" FontSize="24" Grid.Column="0" Click="addButton_Click"/>
+            <Button x:Name="deleteButton" Content="DELETE" Width="100" Margin="5 10 5 10" FontSize="24" Grid.Column="1" Click="deleteButton_Click"/>
+            <Button x:Name="updateButton" Content="UPDATE" Width="100" Margin="5 10 10 10" FontSize="24" Grid.Column="2" Click="updateButton_Click"/>
+        </StackPanel>
     </Grid>
 </Window>
