@@ -33,5 +33,11 @@ namespace PlGui
             MangementWindow mangementWindow = new MangementWindow();
             mangementWindow.ShowDialog();
         }
+
+        private void userButton_Click(object sender, RoutedEventArgs e)
+        {
+            UserWindow userWindow = new UserWindow();
+            userWindow.ShowDialog();
+        }
     }
 }

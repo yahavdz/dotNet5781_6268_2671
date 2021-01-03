@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="PlGui.LineControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PlGui"
+             mc:Ignorable="d">
+    <Grid>
+        <StackPanel x:Name="myPanel" Orientation="Horizontal">
+            <TextBox x:Name="lineId" Text="Line Number:" Width="120" HorizontalAlignment="Left" VerticalAlignment="Center" Height="22.4" FontSize="14"/>
+            <TextBox x:Name="lineArea" Text="Area:" Width="120" HorizontalAlignment="Left" VerticalAlignment="Center" Height="22.4" FontSize="14"/>
+            <ComboBox Name="allStation" Width="100"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

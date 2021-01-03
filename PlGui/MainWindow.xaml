@@ -12,6 +12,6 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Button x:Name="mangementButton" Content="Mangement Window" Margin="50" FontSize="45" Grid.Row="0" Click="mangementButton_Click"/>
-        <Button x:Name="userButton" Content="User Window" Margin="50" FontSize="45" Grid.Row="1"/>
+        <Button x:Name="userButton" Content="User Window" Margin="50" FontSize="45" Grid.Row="1" Click="userButton_Click"/>
     </Grid>
 </Window>
