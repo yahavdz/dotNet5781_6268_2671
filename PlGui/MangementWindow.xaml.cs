@@ -23,5 +23,10 @@ namespace PlGui
         {
             InitializeComponent();
         }
+
+        private void busButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

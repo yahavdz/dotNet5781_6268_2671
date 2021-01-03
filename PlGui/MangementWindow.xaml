@@ -17,7 +17,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="busButton" Content="Bus display" Margin="10 10 5 10" FontSize="32" Grid.Column="0"/>
+            <Button x:Name="busButton" Content="Bus display" Margin="10 10 5 10" FontSize="32" Grid.Column="0" Click="busButton_Click"/>
             <Button x:Name="lineButton" Content="Line display" Margin="5 10 5 10" FontSize="32" Grid.Column="1"/>
             <Button x:Name="stationButton" Content="Station display" Margin="5 10 10 10" FontSize="32" Grid.Column="2"/>
         </Grid>

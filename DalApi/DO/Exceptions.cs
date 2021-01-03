@@ -15,8 +15,16 @@ namespace DO
             base(message, innerException) => ID = id;
         public override string ToString() => base.ToString() + $", bad id: {ID}";
     }
+    public class BadTimeException : Exception
+    {
 
-    public class BadUserNameException : Exception
+        public DateTime Date; 
+        public BadTimeException(DateTime date, string message) :
+           base(message) => Date = date;
+        public override string ToString() => base.ToString() + $", Wrong Time: {Date}";
+    }
+
+        public class BadUserNameException : Exception
     {
         public string userName;
         public BadUserNameException(string un) : base() => userName = un;
