@@ -7,7 +7,7 @@ namespace BL.BO
 {
     public class Line
     {
-        public IEnumerable<Station> lineList { get; set; }
+        public IEnumerable<Station> stations { get; set; }
 
         //public IEnumerable<Station> GetLineList()
         //{
@@ -19,6 +19,6 @@ namespace BL.BO
 
         public int LineId { get; set; }
         public Areas Area { get; set; }
-       
+
     }
 }

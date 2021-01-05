@@ -4,8 +4,17 @@ using System.Text;
 
 namespace BL.BlApi
 {
-    interface BlFactory
+    public static class BLFactory
     {
-
+        public static IBL GetBL(string type)
+        {
+            switch (type)
+            {
+                case "1":
+                    return BLImp.Instance;
+                default:
+                    return BLImp.Instance;
+            }
+        }
     }
 }

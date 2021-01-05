@@ -73,5 +73,19 @@ namespace BL.BO
         { station1 = s1; station2 = s2; }
         public override string ToString() => base.ToString() + $", bad adjacent stations: {station1}, {station2}";
     }
+    public class BadAddressException : Exception
+    {
+        public string address;
+        public BadAddressException(string a, string message) :
+       base(message) => address = a;
+        public override string ToString() => base.ToString() + $", Wrong address: {address}";
+    }
 
+    public class BadLongitudeLatitudeException : Exception
+    {
+        public double longitudeLatitude;
+        public BadLongitudeLatitudeException(double l, string message) :
+       base(message) => longitudeLatitude = l;
+        public override string ToString() => base.ToString() + $", Wrong cordinates: {longitudeLatitude}";
+    }
 }

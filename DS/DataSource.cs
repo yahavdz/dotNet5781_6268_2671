@@ -998,8 +998,8 @@ namespace DS
                 ListAdjacentStations.Add(new AdjacentStations
                 {
                     Station1 = ListStations[i].Code,
-                    Station2 = ListStations[i+1].Code,
-                    Distance = random.Next(1,5)*0.9,
+                    Station2 = ListStations[i + 1].Code,
+                    Distance = random.Next(1, 5) * 0.9,
                     Time = new TimeSpan(0, random.Next(2, 10), 0),
                     Active = true
                 });

@@ -5,7 +5,7 @@ using BL.BO;
 
 namespace BL.BlApi
 {
-    interface IBL
+    public interface IBL
     {
         #region Bus
         Bus GetBus(int busId);
@@ -15,6 +15,24 @@ namespace BL.BlApi
         void UpdateBus(Bus bus);
         void DeleteBus(int id);
         #endregion Bus
+
+        #region Line
+        Line GetLine(int busId);
+        IEnumerable<Line> GetAllLines();
+        IEnumerable<Line> GetAllLinesBy(Predicate<Line> predicate);
+        void AddLine(Line line);
+        void UpdateLine(Line line);
+        void DeleteLine(int id);
+        #endregion Line
+
+        #region Station
+        Station GetStations(int stationId);
+        IEnumerable<Station> GetAllStations();
+        IEnumerable<Station> GetAllStationsBy(Predicate<Station> predicate);
+        void AddStation(Station station);
+        void UpdateStation(Station station);
+        void DeleteStation(int id);
+        #endregion Station
 
     }
 }

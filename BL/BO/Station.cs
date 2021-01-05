@@ -6,8 +6,12 @@ namespace BL.BO
 {
     public class Station
     {
-        public int code { get; set; } // for manager window
+        public int Code { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
+        public bool Accessibility { get; set; }
+        public double Longitude { get; set; }
+        public double Latitude { get; set; }
+        public bool Active { get; set; }
     }
 }
