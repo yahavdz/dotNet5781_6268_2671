@@ -12,24 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using BL.BO;
-using Line = BL.BO.Line;
 
 namespace PlGui
 {
     /// <summary>
-    /// Interaction logic for LineControl.xaml
+    /// Interaction logic for StationControl.xaml
     /// </summary>
-    public partial class LineControl : UserControl
+    public partial class StationControl : UserControl
     {
-        public Line currentLine { get; set; }
-        public LineControl(Line _line)
+        public StationControl()
         {
             InitializeComponent();
-            currentLine = _line;
-            lineId.Text = lineId.Text + " " + currentLine.LineId;
-            lineArea.Text = lineArea.Text + " " + currentLine.Area;
-            allStation.ItemsSource = currentLine.lineList;
         }
     }
 }
