@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="PlGui.BusControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PlGui"
+             mc:Ignorable="d">
+    <Grid>
+        <StackPanel x:Name="myPanel" Orientation="Horizontal">
+            <TextBox x:Name="busId" Text="" Width="80" HorizontalAlignment="Left" VerticalAlignment="Center" Height="22.4" FontSize="14"/>
+            <TextBox x:Name="totalKilometers" Text="" Width="80" HorizontalAlignment="Left" VerticalAlignment="Center" Height="22.4" FontSize="14"/>
+            <TextBox x:Name="amountFuel" Text="" Width="80" HorizontalAlignment="Left" VerticalAlignment="Center" Height="22.4" FontSize="14"/>
+            <TextBox x:Name="activityStartDate" Text="" Width="80" HorizontalAlignment="Left" VerticalAlignment="Center" Height="22.4" FontSize="14"/>
+            <TextBox x:Name="lastTreatmentDate" Text="" Width="80" HorizontalAlignment="Left" VerticalAlignment="Center" Height="22.4" FontSize="14"/>
+            <TextBox x:Name="busStatus" Text="" Width="80" HorizontalAlignment="Left" VerticalAlignment="Center" Height="22.4" FontSize="14"/>
+            <Button x:Name="doFuel" Content="Refuel" Width="65" Margin="10 0 5 0" Click="doFuel_Click"/>
+            <Button x:Name="doTreatment" Content="Treatment" Width="65" Margin="5 0 0 0" Click="doTreatment_Click"/>
+        </StackPanel>
+    </Grid>
+</UserControl>
