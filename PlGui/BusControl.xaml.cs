@@ -26,24 +26,9 @@ namespace PlGui
         {
             InitializeComponent();
             currentBus = _bus;
-            busId.Text = currentBus.LicenseNum.ToString();
-            totalKilometers.Text = currentBus.TotalTrip.ToString() + "km";
-            amountFuel.Text = currentBus.FuelRemain.ToString() + "km";
-            activityStartDate.Text = currentBus.FromDate.ToString("dd - MMM - yy");
-            //lastTreatmentDate.Text = currentBus.TreatmentDate.ToString("dd - MMM - yy");
-            busStatus.Text = currentBus.BusStatus.ToString();
-        }
-
-        private void doFuel_Click(object sender, RoutedEventArgs e)
-        {
-            //if (currentBus.FuelRemain != 0.0)
-            //    bl.doFuel(currentBus.LicenseNum);
-        }
-
-        private void doTreatment_Click(object sender, RoutedEventArgs e)
-        {
-            //if (currentBus.KilometersSinceLastTreatment > 20000 || currentBus.TreatmentDate.Year == DateTime.Now.Year)
-            //    bl.doTreatment(currentBus.LicenseNum);
+            busNum.Content = currentBus.LicenseNum.ToString();
+            busMileage.Content = currentBus.TotalTrip.ToString() + "km";
+            busFuel.Content = currentBus.FuelRemain.ToString() + "km";
         }
     }
 }

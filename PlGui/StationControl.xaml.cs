@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BL.BO;
 
 namespace PlGui
 {
@@ -20,9 +21,13 @@ namespace PlGui
     /// </summary>
     public partial class StationControl : UserControl
     {
-        public StationControl()
+        public Station currentStation { get; set; }
+        public StationControl(Station _station)
         {
             InitializeComponent();
+            currentStation = _station;
+            nameSta.Content = currentStation.Name;
+            codeSta.Content = currentStation.Code;
         }
     }
 }

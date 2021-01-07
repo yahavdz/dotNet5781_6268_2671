@@ -27,9 +27,8 @@ namespace PlGui
         {
             InitializeComponent();
             currentLine = _line;
-            lineId.Text = lineId.Text + " " + currentLine.LineId;
-            lineArea.Text = lineArea.Text + " " + currentLine.Area;
-            allStation.ItemsSource = currentLine.lineList;
+            lineId.Content = currentLine.LineId;
+            lineArea.Content = currentLine.Area;
         }
     }
 }

@@ -5,13 +5,56 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PlGui"
         mc:Ignorable="d"
-        Title="OpeningWindow" Height="450" Width="800">
-    <Grid>
+        Title="OpeningWindow" Height="600" Width="600">
+    <Grid Background="Azure">
+        <Border Margin="20" MinWidth="400" Background="White" VerticalAlignment="Center" Padding="30" CornerRadius="10" MaxWidth="800">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="30" Color="LightGray" ShadowDepth="0"/>
+            </Border.Effect>
+            <StackPanel>
+                <TextBlock Text="Welcome" FontSize="36" FontWeight="Bold" Margin="0 0 0 20"/>
+                <Grid Margin="0 0 0 20">
+                    <Button x:Name="signupButton" Content="Registration" Height="30" Width="120" Background="SkyBlue" BorderBrush="SkyBlue" HorizontalAlignment="Left" Click="Signup_Click" FontSize="16">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="15"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Button x:Name="loginButton" Content="Login" Width="120" Background="SkyBlue" BorderBrush="SkyBlue"  Opacity="0.6" HorizontalAlignment="Right" Click="Login_Click" FontSize="16">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="15"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </Grid>
+                <Label Content="Username" Margin="0 5" FontSize="14"/>
+                <TextBox Name="myUsername" Height="25" Margin="0 5"/>
+                <Label Name="passwordLab" Content="Password" Margin="0 5" FontSize="14"/>
+                <PasswordBox Name="myPassword" Height="25" Margin="0 5" KeyDown="OnKeyDownHandlerLogin"/>
+
+                <Label Name="confirmPWlab" Content="Confirm Password" Margin="0 5" FontSize="14"/>
+                <PasswordBox Name="myConfirmPW" Margin="0 5" Height="25"/>
+                <Label Name="emaillab" Content="Email" Margin="0 5" FontSize="14"/>
+                <TextBox Name="myEmail" KeyDown="OnKeyDownHandlerSginin" Height="25" Margin="0 5"/>
+
+                <Button x:Name="approval" Content="Sign up" Height="30" Margin="0 20" Background="SkyBlue" BorderBrush="SkyBlue"  Click="approval_Click" FontSize="16" FontWeight="Bold">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </StackPanel>
+        </Border>
+    </Grid>
+    <!--<Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Button x:Name="mangementButton" Content="Mangement Window" Margin="50" FontSize="45" Grid.Row="0" Click="mangementButton_Click"/>
         <Button x:Name="userButton" Content="User Window" Margin="50" FontSize="45" Grid.Row="1" Click="userButton_Click"/>
-    </Grid>
+    </Grid>-->
 </Window>

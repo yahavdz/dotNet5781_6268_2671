@@ -23,7 +23,7 @@ namespace PlGui
     public partial class MangementWindow : Window
     {
         private selected selectedView { get; set; }
-        private List<BusControl> allBusControls { get; set; }
+        public List<BusControl> allBusControls { get; set; }
         private List<LineControl> allLineControls { get; set; }
         private List<StationControl> allStationControls { get; set; }
         public MangementWindow()
@@ -60,9 +60,9 @@ namespace PlGui
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
-            BL.BLImp myBLImp = new BL.BLImp();
-            switch (selectedView)
-            {
+            //BL.BLImp myBLImp = new BL.BLImp();
+            //switch (selectedView)
+            //{
                 //case selected.busDis:
                 //    BusControl SelectedBC = myLBI.SelectedItem as BusControl;
                 //    myBLImp.DeleteBus(SelectedBC.currentBus.LicenseNum);
@@ -80,21 +80,27 @@ namespace PlGui
                 //    break;
                 //default:
                 //    break;
-            }
+            //}
             updateList();
         }
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
+            UserControl usc = null;
+            USCgrid.Children.Clear();
             switch (selectedView)
             {
                 case selected.busDis:
+                    usc = new AddBusControl(allItems);
+                    USCgrid.Children.Add(usc);
                     break;
                 case selected.lineDis:
-                    AddOrUpdateLine newWin = new AddOrUpdateLine(null);
-                    newWin.ShowDialog();
+                    usc = new AddLineControl(allItems);
+                    USCgrid.Children.Add(usc);
                     break;
                 case selected.stationDis:
+                    usc = new AddStationControl(allItems);
+                    USCgrid.Children.Add(usc);
                     break;
                 default:
                     break;
@@ -125,24 +131,58 @@ namespace PlGui
 
         private void updateList() 
         {
-            myLBI.Items.Clear();
-            switch (selectedView)
-            {
-                case selected.busDis:
-                    foreach (BusControl _busControl in allBusControls)
-                        myLBI.Items.Add(_busControl);
-                    break;
-                case selected.lineDis:
-                    foreach (LineControl _lineControl in allLineControls)
-                        myLBI.Items.Add(_lineControl);
-                    break;
-                case selected.stationDis:
-                    foreach (StationControl _stationControl in allStationControls)
-                        myLBI.Items.Add(_stationControl);
-                    break;
-                default:
-                    break;
-            }
+            //myLBI.Items.Clear();
+            //switch (selectedView)
+            //{
+            //    case selected.busDis:
+            //        foreach (BusControl _busControl in allBusControls)
+            //            myLBI.Items.Add(_busControl);
+            //        break;
+            //    case selected.lineDis:
+            //        foreach (LineControl _lineControl in allLineControls)
+            //            myLBI.Items.Add(_lineControl);
+            //        break;
+            //    case selected.stationDis:
+            //        foreach (StationControl _stationControl in allStationControls)
+            //            myLBI.Items.Add(_stationControl);
+            //        break;
+            //    default:
+            //        break;
+            //}
+        }
+
+        private void busDis_Click(object sender, RoutedEventArgs e)
+        {
+            if (selectedView != selected.busDis)
+                allItems.Items.Clear();
+            selectedView = selected.busDis;
+            Bus temp = new Bus();
+            temp.LicenseNum = 12345678;
+            temp.TotalTrip = 15000;
+            temp.FuelRemain = 980;
+            allItems.Items.Add(new BusControl(temp));
+        }
+
+        private void lineDis_Click(object sender, RoutedEventArgs e)
+        {
+            if (selectedView != selected.lineDis)
+                allItems.Items.Clear();
+            selectedView = selected.lineDis;
+            Line temp = new Line();
+            temp.LineId = 466;
+            temp.Area = Areas.Jerusalem;
+            allItems.Items.Add(new LineControl(temp));
+        }
+
+        private void stationDis_Click(object sender, RoutedEventArgs e)
+        {
+            if (selectedView != selected.stationDis)
+                allItems.Items.Clear();
+            selectedView = selected.stationDis;
+            Station temp = new Station();
+            temp.Name = "Dolev st. - Habrosh st.";
+            temp.Code = 56789;
+            allItems.Items.Add(new StationControl(temp));
         }
     }
 }

@@ -4,17 +4,24 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PlGui"
-             mc:Ignorable="d">
-    <Grid>
-        <StackPanel x:Name="myPanel" Orientation="Horizontal">
-            <TextBox x:Name="busId" Text="" Width="80" HorizontalAlignment="Left" VerticalAlignment="Center" Height="22.4" FontSize="14"/>
-            <TextBox x:Name="totalKilometers" Text="" Width="80" HorizontalAlignment="Left" VerticalAlignment="Center" Height="22.4" FontSize="14"/>
-            <TextBox x:Name="amountFuel" Text="" Width="80" HorizontalAlignment="Left" VerticalAlignment="Center" Height="22.4" FontSize="14"/>
-            <TextBox x:Name="activityStartDate" Text="" Width="80" HorizontalAlignment="Left" VerticalAlignment="Center" Height="22.4" FontSize="14"/>
-            <TextBox x:Name="lastTreatmentDate" Text="" Width="80" HorizontalAlignment="Left" VerticalAlignment="Center" Height="22.4" FontSize="14"/>
-            <TextBox x:Name="busStatus" Text="" Width="80" HorizontalAlignment="Left" VerticalAlignment="Center" Height="22.4" FontSize="14"/>
-            <Button x:Name="doFuel" Content="Refuel" Width="65" Margin="10 0 5 0" Click="doFuel_Click"/>
-            <Button x:Name="doTreatment" Content="Treatment" Width="65" Margin="5 0 0 0" Click="doTreatment_Click"/>
+             mc:Ignorable="d" >
+    <Grid Background="#FFC3C3E5" Margin="0 5 0 5" Width="235">
+        <StackPanel Orientation="Vertical">
+            <Label Name="busNum" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" FontFamily="Segoe UI Black" Foreground="Peru"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <Label Content="Mileage:" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="12" FontFamily="Segoe UI Emoji" Foreground="Peru"/>
+                    <Label Name="busMileage" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="12" FontFamily="Segoe UI Black" Foreground="Peru"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <Label Content="Fuel left:" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="12" FontFamily="Segoe UI Emoji" Foreground="Peru"/>
+                    <Label Name="busFuel" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="12" FontFamily="Segoe UI Black" Foreground="Peru"/>
+                </StackPanel>
+            </Grid>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -18,8 +18,9 @@ namespace BL//uuuuu
         public static BLImp Instance { get => instance; }// The public Instance property to use
         #endregion
 
-        #region Bus
         IDal dl = DalFactory.GetDal();
+
+        #region Bus
         Bus busDoBoAdapter(DO.Bus busDO)
         {
             Bus busBO = new Bus();

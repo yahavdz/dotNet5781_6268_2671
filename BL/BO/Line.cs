@@ -9,13 +9,13 @@ namespace BL.BO
     {
         public IEnumerable<Station> stations { get; set; }
 
-        //public IEnumerable<Station> GetLineList()
-        //{
-        //    return from st in lineList
-        //           select st;
-        //}
+        public IEnumerable<Station> GetLineList()
+        {
+            return from st in stations
+                   select st;
+        }
 
-        //public void SetLineList(List<Station> value) => lineList = value;
+        public void SetLineList(List<Station> value) => stations = value;
 
         public int LineId { get; set; }
         public Areas Area { get; set; }

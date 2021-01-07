@@ -6,9 +6,7 @@ using System.Xml.Linq;
 
 namespace DalApi
 {
-    class DLConfig
-    {
-        /**
+    /**
      <summary>
      Class for processing config.xml file and getting from there
      information which is relevant for initialization of DalApi<br/>
@@ -39,7 +37,8 @@ namespace DalApi
      </example>
      </summary>
     */
-
+    static class DLConfig
+    {
         public class DLPackage
         {
             public string Name;

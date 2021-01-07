@@ -5,30 +5,125 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PlGui"
         mc:Ignorable="d"
-        Title="MangementWindow" Height="550" Width="800">
-    <Grid x:Name="mainGrid">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="5*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Button x:Name="busButton" Content="Bus display" Margin="10 10 5 10" FontSize="32" Grid.Column="0" Click="busButton_Click"/>
-            <Button x:Name="lineButton" Content="Line display" Margin="5 10 5 10" FontSize="32" Grid.Column="1" Click="lineButton_Click"/>
-            <Button x:Name="stationButton" Content="Station display" Margin="5 10 10 10" FontSize="32" Grid.Column="2" Click="stationButton_Click"/>
+        Title="MangementWindow" Height="720" Width="1080">
+    <Window.Resources>
+        <Storyboard x:Key="addButton">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="AddGrid">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="270"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="closeButton">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="AddGrid">
+                <EasingDoubleKeyFrame KeyTime="0" Value="270"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="addButton">
+            <BeginStoryboard Storyboard="{StaticResource addButton}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="closeButton">
+            <BeginStoryboard Storyboard="{StaticResource closeButton}"/>
+        </EventTrigger>
+    </Window.Triggers>
+    <Grid x:Name="BackgroundGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2.7*"/>
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="menuGrid" Grid.Column="0" Background="#FF31577E">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="6*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Margin="5">
+                <Grid.Background>
+                    <ImageBrush Stretch="Uniform" ImageSource="logo.png"/>
+                </Grid.Background>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+                    <!--<materialDesign:PopupBox PlacementMode="BottomAndAlignLeftEdges" StaysOpen="False" HorizontalAlignment="Left" Foreground="White">
+                        <StackPanel Width="150" Background="PowderBlue">
+                            <Button Content="Settings"/>
+                            <Button Content="Account"/>
+                            <Button Content="Help"/>
+                            <Separator/>
+                            <Button Content="Logout"/>
+                        </StackPanel>
+                    </materialDesign:PopupBox>-->
+                </StackPanel>
+            </Grid>
+            <Grid x:Name="optionsGrid" Grid.Row="1" Margin="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="busDis" Margin="4 0 2 0" Grid.Column="0" Click="busDis_Click">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="40"/>
+                        </Style>
+                    </Button.Resources>
+                    <Button.Background>
+                        <ImageBrush Stretch="UniformToFill" ImageSource="busImg.png"/>
+                    </Button.Background>
+                </Button>
+                <Button x:Name="lineDis" Margin="2 0 2 0" Grid.Column="1" Click="lineDis_Click">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="40"/>
+                        </Style>
+                    </Button.Resources>
+                    <Button.Background>
+                        <ImageBrush Stretch="UniformToFill" ImageSource="lineImg.png"/>
+                    </Button.Background>
+                </Button>
+                <Button x:Name="stationDis" Margin="2 0 4 0" Grid.Column="2" Click="stationDis_Click">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="40"/>
+                        </Style>
+                    </Button.Resources>
+                    <Button.Background>
+                        <ImageBrush Stretch="UniformToFill" ImageSource="stationImg.png"/>
+                    </Button.Background>
+                </Button>
+            </Grid>
+            <Canvas x:Name="mainListGrid" Grid.Row="2">
+                <ListBox x:Name="allItems" Height="450" Width="270" Margin="10 10 10 10" Background="#FFDEDEDE"/>
+                <Button x:Name="addButton" Content="+" Width="40" Height="40" Background="#FF5C99D6" BorderBrush="#FF5C99D6" Foreground="White" FontSize="16" FontWeight="Bold" Click="addButton_Click" Canvas.Left="115" Canvas.Top="440">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="20"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Canvas>
         </Grid>
-        <Grid Grid.Row="1" Margin="30 20 30 20">
-            <ListBox x:Name="myLBI"/>
+        <Grid x:Name="displayGrid" Grid.Column="1" Background="#FFDEDEDE">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="6*"/>
+            </Grid.RowDefinitions>
+            <Grid x:Name="AddGrid" Grid.Row="1" Width="0" HorizontalAlignment="Left" Margin="0 70 0 40">
+                <Border Margin="0" BorderBrush="DarkGray" Background="#FF31577E" BorderThickness="0" CornerRadius="8" Grid.Row="0" Grid.RowSpan="4">
+                    <Border.Effect>
+                        <DropShadowEffect/>
+                    </Border.Effect>
+                </Border>
+                <Grid x:Name="USCgrid" Margin="0 0 0 50"/>
+                <Button x:Name="closeButton" Content="close" Margin="0 0 10 10" Width="50" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Background="#FF5C99D6" BorderBrush="#FF5C99D6" Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            </Grid>
+            <Grid Grid.Row="0">
+                <Border Margin="0" BorderBrush="DarkGray" Background="#FF5C99D6" BorderThickness="1" CornerRadius="10">
+                    <Border.Effect>
+                        <DropShadowEffect/>
+                    </Border.Effect>
+                </Border>
+            </Grid>
         </Grid>
-        <StackPanel Orientation="Horizontal" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Button x:Name="addButton" Content="ADD" Width="100" Margin="10 10 5 10" FontSize="24" Grid.Column="0" Click="addButton_Click"/>
-            <Button x:Name="deleteButton" Content="DELETE" Width="100" Margin="5 10 5 10" FontSize="24" Grid.Column="1" Click="deleteButton_Click"/>
-            <Button x:Name="updateButton" Content="UPDATE" Width="100" Margin="5 10 10 10" FontSize="24" Grid.Column="2" Click="updateButton_Click"/>
-        </StackPanel>
     </Grid>
 </Window>

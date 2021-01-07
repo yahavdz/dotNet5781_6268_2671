@@ -56,8 +56,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AddOrUpdateLine.xaml.cs">
-      <DependentUpon>AddOrUpdateLine.xaml</DependentUpon>
+    <Compile Include="AddBusControl.xaml.cs">
+      <DependentUpon>AddBusControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddLineControl.xaml.cs">
+      <DependentUpon>AddLineControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddStationControl.xaml.cs">
+      <DependentUpon>AddStationControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="BusControl.xaml.cs">
       <DependentUpon>BusControl.xaml</DependentUpon>
@@ -71,7 +77,15 @@
     <Compile Include="UserWindow.xaml.cs">
       <DependentUpon>UserWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="AddOrUpdateLine.xaml">
+    <Page Include="AddBusControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddLineControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddStationControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -145,6 +159,18 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="busImg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="lineImg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="stationImg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

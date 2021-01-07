@@ -5,11 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PlGui"
              mc:Ignorable="d">
-    <Grid>
-        <StackPanel x:Name="myPanel" Orientation="Horizontal">
-            <TextBox x:Name="lineId" Text="Line Number:" Width="120" HorizontalAlignment="Left" VerticalAlignment="Center" Height="22.4" FontSize="14"/>
-            <TextBox x:Name="lineArea" Text="Area:" Width="120" HorizontalAlignment="Left" VerticalAlignment="Center" Height="22.4" FontSize="14"/>
-            <ComboBox Name="allStation" Width="100"/>
+    <Grid Background="#FFC3C3E5" Margin="0 5 0 5" Width="235">
+        <StackPanel Orientation="Vertical">
+            <Grid>
+                <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <Label Name="lineId" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" FontFamily="Segoe UI Black" Foreground="Peru"/>
+                    <Label Name="lineArea" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" FontFamily="Segoe UI Black" Foreground="Peru"/>
+                </StackPanel>
+            </Grid>
         </StackPanel>
     </Grid>
 </UserControl>

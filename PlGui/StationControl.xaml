@@ -4,9 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PlGui"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+             mc:Ignorable="d">
+    <Grid Background="#FFC3C3E5" Margin="0 5 0 5" Width="235">
+        <StackPanel Orientation="Vertical">
+            <Grid>
+                <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <Label Name="nameSta" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" FontFamily="Segoe UI Black" Foreground="Peru"/>
+                    <Label Name="codeSta" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" FontFamily="Segoe UI Black" Foreground="Peru"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
     </Grid>
 </UserControl>
