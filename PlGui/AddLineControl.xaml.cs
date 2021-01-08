@@ -12,8 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using BL.BO;
-using Line = BL.BO.Line;
+using BO;
+using BLApi;
+using Line = BO.Line;
 
 namespace PlGui
 {
@@ -35,7 +36,7 @@ namespace PlGui
         {
             bool Succeeded = true;
             Line newLine = new Line();
-            try { newLine.LineId = Int32.Parse(newLineNum.Text); }
+            try { newLine.Id = Int32.Parse(newLineNum.Text); }
             catch (FormatException) { newLineNum.Text = "*Invalid number*"; Succeeded = false; }
             if (newArea.SelectedItem != null)
                 newLine.Area = (Areas)Enum.Parse(typeof(Areas), newArea.SelectedItem.ToString());

@@ -1,19 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using DalApi;
 using DO;
 using DS;
 
 namespace Dal
 {
-    sealed class DALObject : IDal // singletone
+    sealed class DLObject : IDal
     {
         #region singelton
-        static readonly DALObject instance = new DALObject();
-        static DALObject() { }// static ctor to ensure instance init is done just before first usage
-        private DALObject() { } 
-        public static DALObject Instance { get => instance; }// The public Instance property to use
+        static readonly DLObject instance = new DLObject();
+        static DLObject() { }// static ctor to ensure instance init is done just before first usage
+        private DLObject() { }
+        public static DLObject Instance { get => instance; }// The public Instance property to use
         #endregion
 
         //Implement IDal methods, CRUD

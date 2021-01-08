@@ -12,8 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using BL.BO;
-using Line = BL.BO.Line;
+using BO;
+using BLApi;
+using Line = BO.Line;
 
 namespace PlGui
 {
@@ -27,7 +28,7 @@ namespace PlGui
         {
             InitializeComponent();
             currentLine = _line;
-            lineId.Content = currentLine.LineId;
+            lineId.Content = currentLine.Id;
             lineArea.Content = currentLine.Area;
         }
     }

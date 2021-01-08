@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace DalApi
@@ -28,9 +29,9 @@ namespace DalApi
 &lt;config&gt;<br/>
     &lt;dal&gt;data&lt;/dal&gt;<br/>
     &lt;dal-packages&gt;<br/>
-    &lt;data&gt;DalObject&lt;/data&gt;<br/>
-    &lt;xml namespace="DAL" class="DalXml"&gt;DalXml&lt;/xml&gt;<br/>
-    &lt;oracle namespace="DL" class="DalDbOracle"&gt;DalOracle&lt;/oracle&gt;<br/>
+    &lt;data&gt;DLObject&lt;/data&gt;<br/>
+    &lt;xml namespace="Dal" class="DalXml"&gt;DalXml&lt;/xml&gt;<br/>
+    &lt;oracle namespace="Dal" class="DalDbOracle"&gt;DalOracle&lt;/oracle&gt;<br/>
     &lt;/dal-packages&gt;<br/>
 &lt;/config&gt;<br/>
      </code>
@@ -59,7 +60,7 @@ namespace DalApi
             DLName = dlConfig.Element("dl").Value;
             DLPackages = (from pkg in dlConfig.Element("dl-packages").Elements()
                           let tmp1 = pkg.Attribute("namespace")
-                          let nameSpace = tmp1 == null ? "DL" : tmp1.Value
+                          let nameSpace = tmp1 == null ? "Dal" : tmp1.Value
                           let tmp2 = pkg.Attribute("class")
                           let className = tmp2 == null ? pkg.Value : tmp2.Value
                           select new DLPackage()
@@ -83,4 +84,3 @@ namespace DalApi
         public DLConfigException(string message, Exception inner) : base(message, inner) { }
     }
 }
-

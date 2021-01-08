@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfBus xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Bus>
+		<LicenseNum>12345678</LicenseNum>
+		<FromDate>17-Apr-85 12:00:00 AM</FromDate>
+		<TotalTrip>10000</TotalTrip>
+		<FuelRemain>900</FuelRemain>
+		<BusStatus>readyToGo</BusStatus>
+		<KilometersSinceLastTreatment>55</KilometersSinceLastTreatment>
+		<KilometersAtLastRefueling>10000</KilometersAtLastRefueling>
+		<Active>true</Active>
+	</Bus>
+</ArrayOfBus>
