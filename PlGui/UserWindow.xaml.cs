@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BL.BlApi;
 
 namespace PlGui
 {
@@ -19,9 +20,11 @@ namespace PlGui
     /// </summary>
     public partial class UserWindow : Window
     {
-        public UserWindow()
+        IBL bl;
+        public UserWindow(IBL _bl)
         {
             InitializeComponent();
+            bl = _bl;
         }
     }
 }

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BL.BlApi;
 using BL.BO;
 using Line = BL.BO.Line;
 
@@ -22,13 +23,15 @@ namespace PlGui
     /// </summary>
     public partial class MangementWindow : Window
     {
+        IBL bl;
         private selected selectedView { get; set; }
         public List<BusControl> allBusControls { get; set; }
         private List<LineControl> allLineControls { get; set; }
         private List<StationControl> allStationControls { get; set; }
-        public MangementWindow()
+        public MangementWindow(IBL _bl)
         {
             InitializeComponent();
+            bl = _bl;
         }
 
         private void busButton_Click(object sender, RoutedEventArgs e)
@@ -63,23 +66,23 @@ namespace PlGui
             //BL.BLImp myBLImp = new BL.BLImp();
             //switch (selectedView)
             //{
-                //case selected.busDis:
-                //    BusControl SelectedBC = myLBI.SelectedItem as BusControl;
-                //    myBLImp.DeleteBus(SelectedBC.currentBus.LicenseNum);
-                //    allBusControls.Remove(SelectedBC);
-                //    break;
-                //case selected.lineDis:
-                //    LineControl SelectedLC = myLBI.SelectedItem as LineControl;
-                //    myBLImp.DeleteLine(SelectedLC.currentLine.LineId);
-                //    allLineControls.Remove(SelectedLC);
-                //    break;
-                //case selected.stationDis:
-                //    StationControl SelectedSC = myLBI.SelectedItem as StationControl;
-                //    myBLImp.DeleteStation(SelectedSC.currentStation.code);
-                //    allStationControls.Remove(SelectedSC);
-                //    break;
-                //default:
-                //    break;
+            //case selected.busDis:
+            //    BusControl SelectedBC = myLBI.SelectedItem as BusControl;
+            //    myBLImp.DeleteBus(SelectedBC.currentBus.LicenseNum);
+            //    allBusControls.Remove(SelectedBC);
+            //    break;
+            //case selected.lineDis:
+            //    LineControl SelectedLC = myLBI.SelectedItem as LineControl;
+            //    myBLImp.DeleteLine(SelectedLC.currentLine.LineId);
+            //    allLineControls.Remove(SelectedLC);
+            //    break;
+            //case selected.stationDis:
+            //    StationControl SelectedSC = myLBI.SelectedItem as StationControl;
+            //    myBLImp.DeleteStation(SelectedSC.currentStation.code);
+            //    allStationControls.Remove(SelectedSC);
+            //    break;
+            //default:
+            //    break;
             //}
             updateList();
         }
@@ -129,7 +132,7 @@ namespace PlGui
             //}
         }
 
-        private void updateList() 
+        private void updateList()
         {
             //myLBI.Items.Clear();
             //switch (selectedView)

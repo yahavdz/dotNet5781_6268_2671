@@ -18,7 +18,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Enter new bus details" FontWeight="Bold" FontSize="20" Margin="5" TextAlignment="Center" Foreground="Peru" TextDecorations="Underline"/>
+        <TextBlock Text="Enter new station details" FontWeight="Bold" FontSize="20" Margin="5" TextAlignment="Center" Foreground="Peru" TextDecorations="Underline"/>
         <Grid Grid.Row="1" HorizontalAlignment="Stretch" Height="auto" VerticalAlignment="Stretch" Width="auto">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>

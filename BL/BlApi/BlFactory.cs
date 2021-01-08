@@ -12,9 +12,9 @@ namespace BL.BlApi
             switch (type)
             {
                 case "1":
-                    return BLImp.Instance;
+                    return new BLImp(); //BLImp.Instance;
                 default:
-                    return BLImp.Instance;
+                    return new BLImp(); //BLImp.Instance;
             }
         }
     }

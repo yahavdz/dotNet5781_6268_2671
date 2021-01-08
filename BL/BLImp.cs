@@ -11,12 +11,12 @@ namespace BL//uuuuu
 {
     public class BLImp : BlApi.IBL
     {
-        #region singelton
-        static readonly BLImp instance = new BLImp();
-        static BLImp() { }// static ctor to ensure instance init is done just before first usage
-        private BLImp() { }
-        public static BLImp Instance { get => instance; }// The public Instance property to use
-        #endregion
+        //#region singelton
+        //static readonly BLImp instance = new BLImp();
+        //static BLImp() { }// static ctor to ensure instance init is done just before first usage
+        //private BLImp() { }
+        //public static BLImp Instance { get => instance; }// The public Instance property to use
+        //#endregion
 
         IDal dl = DalFactory.GetDal();
 

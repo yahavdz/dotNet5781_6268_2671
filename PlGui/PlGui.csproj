@@ -152,12 +152,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BL\BL.csproj">
-      <Project>{17b7cad5-0b21-489c-b834-b9ba4462b5cc}</Project>
-      <Name>BL</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
@@ -171,6 +165,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BL\BL.csproj">
+      <Project>{7c7f9757-c937-472a-aa92-62ec36d268e4}</Project>
+      <Name>BL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -23,15 +23,13 @@ namespace PlGui
     /// </summary>
     public partial class MainWindow : Window
     {
-        //IBL bl = BLFactory.GetBL("1");
-
+        IBL bl = BLFactory.GetBL("1");
         private Options selectedView { get; set; }
         public MainWindow()
         {
             InitializeComponent();
             selectedView = Options.Signup;
         }
-
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
@@ -60,14 +58,14 @@ namespace PlGui
 
         private void approval_Click(object sender, RoutedEventArgs e)
         {
-            if(selectedView == Options.Login)
+            if (selectedView == Options.Login)
             {
                 if (myUsername.Text == "aaa" && myPassword.Password == "1234")
                 {
                     passwordLab.Foreground = Brushes.Black;
                     myUsername.Text = "";
                     myPassword.Password = "";
-                    MangementWindow mangementWindow = new MangementWindow();
+                    MangementWindow mangementWindow = new MangementWindow(bl);
                     mangementWindow.ShowDialog();
                 }
                 else if (myUsername.Text == "zzz" && myPassword.Password == "0000")
@@ -75,7 +73,7 @@ namespace PlGui
                     passwordLab.Foreground = Brushes.Black;
                     myUsername.Text = "";
                     myPassword.Password = "";
-                    UserWindow userWindow = new UserWindow();
+                    UserWindow userWindow = new UserWindow(bl);
                     userWindow.ShowDialog();
                 }
                 else
