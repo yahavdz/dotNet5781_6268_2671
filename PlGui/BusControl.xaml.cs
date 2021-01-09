@@ -12,7 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using BL.BO;
+using BO;
+using BLApi;
 
 namespace PlGui
 {
@@ -26,7 +27,11 @@ namespace PlGui
         {
             InitializeComponent();
             currentBus = _bus;
-            busNum.Content = currentBus.LicenseNum.ToString();
+            string newBusNum = currentBus.LicenseNum.ToString();
+            if(newBusNum.Length == 8)
+                busNum.Content = newBusNum.Insert(5, "-").Insert(3, "-");
+            else
+                busNum.Content = newBusNum.Insert(5, "-").Insert(2, "-");
             busMileage.Content = currentBus.TotalTrip.ToString() + "km";
             busFuel.Content = currentBus.FuelRemain.ToString() + "km";
         }

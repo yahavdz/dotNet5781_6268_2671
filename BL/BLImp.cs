@@ -1,22 +1,24 @@
-﻿using BL.BO;
-using DalApi;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Globalization;
+using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using BLApi;
+using DalApi;
+using BO;
 
-namespace BL//uuuuu
+
+namespace BL
 {
-    public class BLImp : BlApi.IBL
+    class BLImp : IBL
     {
-        //#region singelton
-        //static readonly BLImp instance = new BLImp();
-        //static BLImp() { }// static ctor to ensure instance init is done just before first usage
-        //private BLImp() { }
-        //public static BLImp Instance { get => instance; }// The public Instance property to use
-        //#endregion
+        #region singelton
+        static readonly BLImp instance = new BLImp();
+        static BLImp() { }// static ctor to ensure instance init is done just before first usage
+        private BLImp() { }
+        public static BLImp Instance { get => instance; }// The public Instance property to use
+        #endregion
 
         IDal dl = DalFactory.GetDal();
 
@@ -158,8 +160,8 @@ namespace BL//uuuuu
         }
         public void AddLine(BO.Line line)
         {
-            if (line.LineId < 0)
-                throw new BadIdException(line.LineId, " Line ID must be bigger then 0");
+            if (line.Id < 0)
+                throw new BadIdException(line.Id, " Line ID must be bigger then 0");
             DO.Line lineDO = new DO.Line();
             line.CopyPropertiesTo(lineDO);
             try
@@ -168,14 +170,14 @@ namespace BL//uuuuu
             }
             catch (DO.BadIdException ex)
             {
-                throw new BadIdException(ex, "Duplicate Line ID", line.LineId);
+                throw new BadIdException(ex, "Duplicate Line ID", line.Id);
             }
 
         }
         public void UpdateLine(BO.Line line)
         {
-            if (line.LineId < 0)
-                throw new BadIdException(line.LineId, " Line ID must be bigger then 0");
+            if (line.Id < 0)
+                throw new BadIdException(line.Id, " Line ID must be bigger then 0");
             DO.Line lineDO = new DO.Line();
             line.CopyPropertiesTo(lineDO);
             try
@@ -208,7 +210,7 @@ namespace BL//uuuuu
         {
             Station stationBO = new Station();
 
-            stationBO.CopyPropertiesTo(stationBO);
+            stationDO.CopyPropertiesTo(stationBO);
 
             return stationBO;
         }
@@ -296,4 +298,3 @@ namespace BL//uuuuu
 
     }
 }
-

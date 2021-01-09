@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace BL.BO
+namespace BO
 {
     public enum BusStatus { readyToGo, midRide, refuelingNow, treatmentNow }
     public enum Areas { General, North, South, Center, Jerusalem }

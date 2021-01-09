@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 
-
 namespace DalApi
 {
     public static class DalFactory
     {
+
         public static IDal GetDal()
         {
             // get dal implementation name from config.xml according to <data> element

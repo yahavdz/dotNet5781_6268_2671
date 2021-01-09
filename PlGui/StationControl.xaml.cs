@@ -12,7 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using BL.BO;
+using BO;
+using BLApi;
+using Line = BO.Line;
 
 namespace PlGui
 {

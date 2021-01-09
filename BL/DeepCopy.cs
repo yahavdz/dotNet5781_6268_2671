@@ -1,9 +1,14 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace BL
 {
-    public static class DeepCopy
+    static class DeepCopy
     {
         public static void CopyPropertiesTo<T, S>(this S from, T to)
         {

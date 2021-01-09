@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using BL;
 
-namespace BL.BlApi
+namespace BLApi
 {
     public static class BLFactory
     {
@@ -12,9 +14,11 @@ namespace BL.BlApi
             switch (type)
             {
                 case "1":
-                    return new BLImp(); //BLImp.Instance;
+                    return BLImp.Instance;
+                case "2":
+                    //return new BLImp2();
                 default:
-                    return new BLImp(); //BLImp.Instance;
+                    return BLImp.Instance;
             }
         }
     }
