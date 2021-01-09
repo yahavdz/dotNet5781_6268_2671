@@ -7,13 +7,13 @@ using DS;
 
 namespace Dal
 {
-    sealed class DALObject : IDal // singletone
+    sealed class DalObject : IDal // singletone
     {
         #region singelton
-        static readonly DALObject instance = new DALObject();
-        static DALObject() { }// static ctor to ensure instance init is done just before first usage
-        private DALObject() { } 
-        public static DALObject Instance { get => instance; }// The public Instance property to use
+        static readonly DalObject instance = new DalObject();
+        static DalObject() { }// static ctor to ensure instance init is done just before first usage
+        private DalObject() { } 
+        public static DalObject Instance { get => instance; }// The public Instance property to use
         #endregion
 
         //Implement IDal methods, CRUD
