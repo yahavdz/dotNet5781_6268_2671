@@ -25,7 +25,7 @@
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="addButton">
             <BeginStoryboard Storyboard="{StaticResource addButton}"/>
         </EventTrigger>
-        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="closeButton">
+        <EventTrigger x:Name="closeTri" RoutedEvent="ButtonBase.Click" SourceName="closeButton">
             <BeginStoryboard Storyboard="{StaticResource closeButton}"/>
         </EventTrigger>
     </Window.Triggers>

@@ -39,20 +39,27 @@ namespace PlGui
 
         private void busDis_Click(object sender, RoutedEventArgs e)
         {
+            bool Continued = true;
             if(AddGrid.Width == 270)
             {
-                //MessageBoxResult popUp = MessageBox.Show("There are unsaved changes, are you sure you want to exit?", "ERROR",
-                //MessageBoxButton.YesNo,
-                //MessageBoxImage.Question,
-                //MessageBoxResult.Yes,
-                //MessageBoxOptions.RtlReading | MessageBoxOptions.RightAlign);
-
+                MessageBoxResult popUp = MessageBox.Show("There are unsaved changes, are you sure you want to exit?", "ERROR",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question,
+                MessageBoxResult.Yes,
+                MessageBoxOptions.RtlReading | MessageBoxOptions.RightAlign);
+                if (popUp == MessageBoxResult.No)
+                    Continued = false;
+                else
+                    AddGrid.Width = 0.0;
             }
-            if (allBusControls.Count == 0)
-                foreach (Bus _bus in bl.GetAllBuses())
-                    allBusControls.Add(new BusControl(_bus));
-            selectedView = selected.busDis;
-            updateList();
+            if (Continued)
+            {
+                if (allBusControls.Count == 0)
+                    foreach (Bus _bus in bl.GetAllBuses())
+                        allBusControls.Add(new BusControl(_bus));
+                selectedView = selected.busDis;
+                updateList();
+            }
         }
 
         private void lineDis_Click(object sender, RoutedEventArgs e)
