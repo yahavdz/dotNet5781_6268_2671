@@ -19,6 +19,7 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        
     </Window.Resources>
     <Window.Triggers>
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="addButton">
@@ -108,13 +109,13 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="6*"/>
             </Grid.RowDefinitions>
-            <Grid x:Name="AddGrid" Grid.Row="1" Width="0" HorizontalAlignment="Left" Margin="0 70 0 40">
+            <Grid x:Name="AddGrid" Panel.ZIndex="2" Grid.Row="1" Width="0" HorizontalAlignment="Left" Margin="0 70 0 40">
                 <Border Margin="0" BorderBrush="DarkGray" Background="#FF31577E" BorderThickness="0" CornerRadius="8" Grid.Row="0" Grid.RowSpan="4">
                     <Border.Effect>
                         <DropShadowEffect/>
                     </Border.Effect>
                 </Border>
-                <Grid x:Name="USCgrid" Margin="0 0 0 50"/>
+                <Grid x:Name="USCgrid" Margin="0 0 0 50" />
                 <Button x:Name="closeButton" Content="close" Margin="0 0 10 10" Width="50" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Background="#FF5C99D6" BorderBrush="#FF5C99D6" Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
             </Grid>
             <Grid Grid.Row="0">

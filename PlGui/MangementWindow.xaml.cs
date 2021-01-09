@@ -39,6 +39,15 @@ namespace PlGui
 
         private void busDis_Click(object sender, RoutedEventArgs e)
         {
+            if(AddGrid.Width == 270)
+            {
+                //MessageBoxResult popUp = MessageBox.Show("There are unsaved changes, are you sure you want to exit?", "ERROR",
+                //MessageBoxButton.YesNo,
+                //MessageBoxImage.Question,
+                //MessageBoxResult.Yes,
+                //MessageBoxOptions.RtlReading | MessageBoxOptions.RightAlign);
+
+            }
             if (allBusControls.Count == 0)
                 foreach (Bus _bus in bl.GetAllBuses())
                     allBusControls.Add(new BusControl(_bus));
