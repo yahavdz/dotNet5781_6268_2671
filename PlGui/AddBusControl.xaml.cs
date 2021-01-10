@@ -17,32 +17,46 @@ using BLApi;
 
 namespace PlGui
 {
+    enum addOrUpdate { add, update};
     /// <summary>
     /// Interaction logic for AddBusControl.xaml
     /// </summary>
     public partial class AddBusControl : UserControl
     {
         private ListBox allBusC { get; set; }
-        public AddBusControl(ListBox _allBusC)
+        private addOrUpdate myStatos { get; set; }
+        private IBL bl { get; set; }
+        private BusControl SelectedBC { get; set; }
+        private List<BusControl> allBusControls { get; set; }
+        public AddBusControl(BusControl _SelectedBC, List<BusControl> _allBusControls, IBL _bl)
         {
             InitializeComponent();
-            allBusC = _allBusC;
-            BusControl SelectedBC = allBusC.SelectedItem as BusControl;
-            if(SelectedBC != null)
+            bl = _bl;
+            allBusControls = _allBusControls;
+            SelectedBC = _SelectedBC;
+            if (SelectedBC != null)
             {
-                newBusId.Text = SelectedBC.currentBus.LicenseNum.ToString(); ;
+                myStatos = addOrUpdate.update;
+                newBusId.Text = SelectedBC.currentBus.LicenseNum.ToString();
+                newBusId.IsReadOnly = true;
                 newTotalKilometers.Text = SelectedBC.currentBus.TotalTrip.ToString();
                 newTotalFuel.Text = SelectedBC.currentBus.FuelRemain.ToString();
                 newLastTreatment.Text = SelectedBC.currentBus.KilometersSinceLastTreatment.ToString();
                 newActivityStart.SelectedDate = SelectedBC.currentBus.FromDate;
             }
+            else
+                myStatos = addOrUpdate.add;
 
         }
 
         private void saveButton_Click(object sender, RoutedEventArgs e)
         {
             bool Succeeded = true;
-            Bus newBus = new Bus();
+            Bus newBus;
+            if (SelectedBC != null)
+                newBus = SelectedBC.currentBus;
+            else
+                newBus = new Bus();
             newBus.FromDate = newActivityStart.DisplayDate;
             try { newBus.LicenseNum = Int32.Parse(newBusId.Text); }
             catch(FormatException) { newBusId.Text = "*Invalid number*"; Succeeded = false; }
@@ -50,35 +64,42 @@ namespace PlGui
             catch (FormatException) { newTotalKilometers.Text = "*Invalid number*"; Succeeded = false; }
             try { newBus.KilometersSinceLastTreatment = Int32.Parse(newLastTreatment.Text); }
             catch (FormatException) { newLastTreatment.Text = "*Invalid number*"; Succeeded = false; }
-            try { newBus.FuelRemain = Int32.Parse(newTotalFuel.Text); }
+            try { newBus.FuelRemain = Int32.Parse(newTotalFuel.Text);
+                newBus.KilometersAtLastRefueling = newBus.TotalTrip - newBus.FuelRemain; }
             catch (FormatException) { newTotalFuel.Text = "*Invalid number*"; Succeeded = false; }
 
-            //try { bl.AddBus(newBus); }
-            //catch (BadIdException e)
-            //{
-            //    newBusId.Text = e.Message;
-            //    Succeeded = false;
-            //}
-            //catch (BadTimeException e)
-            //{
-            //    Indication.Content = e.Message;
-            //    Succeeded = false;
-            //}
-            //catch (BadTotalTripException e)
-            //{
-            //    newTotalKilometers.Text = e.Message;
-            //    Succeeded = false;
-            //}
-            //catch (BadFuelException e)
-            //{
-            //    newTotalFuel.Text = e.Message;
-            //    Succeeded = false;
-            //}
-            //catch (BadKilometersException e)
-            //{
-            //    Indication.Content = e.Message;
-            //    Succeeded = false;
-            //}
+            try
+            {
+                if (myStatos == addOrUpdate.add)
+                    bl.AddBus(newBus);
+                else
+                    bl.UpdateBus(newBus);
+            }
+            catch (BadIdException ex)
+            {
+                newBusId.Text = ex.Message;
+                Succeeded = false;
+            }
+            catch (BadTimeException ex)
+            {
+                Indication.Content = ex.Message;
+                Succeeded = false;
+            }
+            catch (BadTotalTripException ex)
+            {
+                newTotalKilometers.Text = ex.Message;
+                Succeeded = false;
+            }
+            catch (BadFuelException ex)
+            {
+                newTotalFuel.Text = ex.Message;
+                Succeeded = false;
+            }
+            catch (BadKilometersException ex)
+            {
+                Indication.Content = ex.Message;
+                Succeeded = false;
+            }
 
             if (Succeeded)
             {
@@ -87,9 +108,18 @@ namespace PlGui
                 newTotalFuel.Text = "";
                 newLastTreatment.Text = "";
                 newActivityStart.SelectedDate = null;
-                Indication.Content = "Succeeded";
+                if (myStatos == addOrUpdate.add)
+                {
+                    Indication.Content = "Added successfully";
+                    allBusControls.Add(new BusControl(newBus));
+                }
+                else
+                {
+                    Indication.Content = "Updated successfully";
+                    SelectedBC.Refresh();
+                }
                 Indication.Foreground = Brushes.Lime;
-                allBusC.Items.Add(new BusControl(newBus));
+                
             }
             else
             {

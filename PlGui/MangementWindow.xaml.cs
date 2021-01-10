@@ -41,6 +41,8 @@ namespace PlGui
 
         private void busDis_Click(object sender, RoutedEventArgs e)
         {
+            updateButton.Opacity = 0.8;
+            daletButton.Opacity = 0.8;
             bool Continued = true;
             if(AddGrid.Width == 270)
             {
@@ -68,6 +70,8 @@ namespace PlGui
 
         private void lineDis_Click(object sender, RoutedEventArgs e)
         {
+            updateButton.Opacity = 0.8;
+            daletButton.Opacity = 0.8;
             bool Continued = true;
             if (AddGrid.Width == 270)
             {
@@ -95,6 +99,8 @@ namespace PlGui
 
         private void stationDis_Click(object sender, RoutedEventArgs e)
         {
+            updateButton.Opacity = 0.8;
+            daletButton.Opacity = 0.8;
             bool Continued = true;
             if (AddGrid.Width == 270)
             {
@@ -120,9 +126,12 @@ namespace PlGui
             }
         }
 
+
+
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
-
+            updateButton.Opacity = 0.8;
+            daletButton.Opacity = 0.8;
             if (allItems.SelectedItem != null)
             {
                 MessageBoxResult popUp = MessageBox.Show("Are you sure you want to delete?", "Delete",
@@ -156,49 +165,33 @@ namespace PlGui
             }
         }
 
-        private void addButton_Click(object sender, RoutedEventArgs e)
+        private void addOrUpdate_Click(object sender, RoutedEventArgs e)
         {
-            Storyboard sb = this.FindResource("goBigSB") as Storyboard;
-            sb.Begin();
-            allItems.SelectedItem = null;
-            UserControl usc = null;
-            USCgrid.Children.Clear();
-            switch (selectedView)
+            updateButton.Opacity = 0.8;
+            daletButton.Opacity = 0.8;
+            bool Continued = true;
+            BusControl ifSelected = null;
+            if (allItems.Items.Count > 0 && (sender as Button).Name == "updateButton")
             {
-                case selected.busDis:
-                    usc = new AddBusControl(allItems);
-                    USCgrid.Children.Add(usc);
-                    break;
-                case selected.lineDis:
-                    usc = new AddLineControl(allItems);
-                    USCgrid.Children.Add(usc);
-                    break;
-                case selected.stationDis:
-                    usc = new AddStationControl(allItems);
-                    USCgrid.Children.Add(usc);
-                    break;
-                default:
-                    break;
+                ifSelected = allItems.SelectedItem as BusControl;
+                if (ifSelected == null)
+                    Continued = false;
             }
-            updateList();
-        }
-
-        private void updateButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (allItems.SelectedItem != null)
+            if (Continued)
             {
                 Storyboard sb = this.FindResource("goBigSB") as Storyboard;
                 sb.Begin();
+                allItems.SelectedItem = null;
                 UserControl usc = null;
                 USCgrid.Children.Clear();
                 switch (selectedView)
                 {
                     case selected.busDis:
-                        usc = new AddBusControl(allItems);
+                        usc = new AddBusControl(ifSelected, allBusControls, bl);
                         USCgrid.Children.Add(usc);
                         break;
                     case selected.lineDis:
-                        usc = new AddLineControl(allItems);
+                        usc = new AddLineControl(allItems, bl);
                         USCgrid.Children.Add(usc);
                         break;
                     case selected.stationDis:
@@ -212,8 +205,16 @@ namespace PlGui
             }
         }
 
+        private void newItemSelected(object sender, SelectionChangedEventArgs e)
+        {
+            updateButton.Opacity = 1;
+            daletButton.Opacity = 1;
+        }
         private void updateList()
         {
+            updateButton.Opacity = 0.8;
+            daletButton.Opacity = 0.8;
+            allItems.SelectedItem = null;
             allItems.Items.Clear();
             switch (selectedView)
             {

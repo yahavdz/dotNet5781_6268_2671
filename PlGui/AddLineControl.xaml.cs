@@ -24,12 +24,29 @@ namespace PlGui
     public partial class AddLineControl : UserControl
     {
         private ListBox allLineC { get; set; }
-        public AddLineControl(ListBox _allLineC)
+        private IBL bl { get; set; }
+        public AddLineControl(ListBox _allLineC, IBL _bl)
         {
             InitializeComponent();
             allLineC = _allLineC;
-            //Enum.GetValues(typeof(EffectStyle)).Cast<EffectStyle>();
+            bl = _bl;
             newArea.ItemsSource = Enum.GetValues(typeof(Areas));
+            newFirstSta.ItemsSource = bl.GetAllStations();
+            newFirstSta.DisplayMemberPath = "Name";
+
+            newLastSta.ItemsSource = bl.GetAllStations();
+            newLastSta.DisplayMemberPath = "Name";
+
+            LineControl SelectedLC = allLineC.SelectedItem as LineControl;
+            if (SelectedLC != null)
+            {
+                newLineNum.Text = SelectedLC.currentLine.Id.ToString();
+                newArea.SelectedIndex = (int)SelectedLC.currentLine.Area;
+                newFirstSta.Visibility = Visibility.Hidden;
+                newLastSta.Visibility = Visibility.Hidden;
+                labelFS.Text += bl.GetStations(SelectedLC.currentLine.FirstStation).Name;
+                labelLS.Text += bl.GetStations(SelectedLC.currentLine.LastStation).Name;
+            }
         }
 
         private void saveButton_Click(object sender, RoutedEventArgs e)

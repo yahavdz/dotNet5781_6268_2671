@@ -12,7 +12,7 @@
                 <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="270"/>
             </DoubleAnimationUsingKeyFrames>
-        </Storyboard> 
+        </Storyboard>
         <Storyboard x:Key="closeSB">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="AddGrid">
                 <EasingDoubleKeyFrame KeyTime="0" Value="270"/>
@@ -90,27 +90,36 @@
                 </Button>
             </Grid>
             <Canvas x:Name="mainListGrid" Grid.Row="2">
-                <ListBox x:Name="allItems" Height="450" Width="270" Margin="10 10 10 10" Background="#FFDEDEDE"/>
-                <Button x:Name="addButton" Content="+" Width="40" Height="40" Background="#FF5C99D6" BorderBrush="#FF5C99D6" Foreground="White" FontSize="22" FontWeight="Bold" Click="addButton_Click" Canvas.Left="120" Canvas.Top="440">
+                <ListBox x:Name="allItems" Height="450" Width="270" Margin="10 10 10 10" Background="#FFDEDEDE" SelectionChanged="newItemSelected"/>
+                <Button x:Name="addButton" Width="40" Height="40" BorderBrush="{x:Null}" Foreground="{x:Null}" FontSize="22" FontWeight="Bold" Click="addOrUpdate_Click" Canvas.Left="120" Canvas.Top="440">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="20"/>
                         </Style>
                     </Button.Resources>
+                    <Button.Background>
+                        <ImageBrush ImageSource="addIcon.png" Stretch="UniformToFill"/>
+                    </Button.Background>
                 </Button>
-                <Button x:Name="updateButton" Content="U" Width="40" Height="40" Background="#FF5C99D6" BorderBrush="#FF5C99D6" Foreground="White" FontSize="16" FontWeight="Bold" Click="updateButton_Click" Canvas.Left="200" Canvas.Top="440">
+                <Button x:Name="updateButton" Opacity="0.8" Width="40" Height="40" BorderBrush="{x:Null}" FontSize="16" FontWeight="Bold" Click="addOrUpdate_Click" Canvas.Left="200" Canvas.Top="440" Foreground="{x:Null}">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="20"/>
                         </Style>
                     </Button.Resources>
+                    <Button.Background>
+                        <ImageBrush ImageSource="editIcon.png" Stretch="UniformToFill"/>
+                    </Button.Background>
                 </Button>
-                <Button x:Name="daletButton" Content="-" Width="40" Height="40" Background="#FF5C99D6" BorderBrush="#FF5C99D6" Foreground="White" FontSize="28" FontWeight="Bold" Click="deleteButton_Click" Canvas.Left="40" Canvas.Top="440">
+                <Button x:Name="daletButton" Opacity="0.8" Width="40" Height="40" BorderBrush="{x:Null}" Foreground="{x:Null}" FontSize="28" FontWeight="Bold" Click="deleteButton_Click" Canvas.Left="40" Canvas.Top="440">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="20"/>
                         </Style>
                     </Button.Resources>
+                    <Button.Background>
+                        <ImageBrush ImageSource="deleteIcon.png" Stretch="UniformToFill"/>
+                    </Button.Background>
                 </Button>
             </Canvas>
         </Grid>

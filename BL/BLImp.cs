@@ -74,31 +74,31 @@ namespace BL
         }
         public void ValidateBusFiledsCheck(BO.Bus bus)
         {
-            DateTime tempDate2018 = new DateTime(1, 1, 2018);
-            DateTime tempDate2021 = DateTime.Now;
-            DateTime tempDate1985 = new DateTime(1, 1, 1985);
+            DateTime tempDate2018 = new DateTime(2018, 1, 1);
+            DateTime tempDate1985 = new DateTime(1985, 1, 1);
             if (bus.LicenseNum > 100000000 || bus.LicenseNum < 1000000)
                 throw new BO.BadIdException(bus.LicenseNum, $"bad bus License number: {bus.LicenseNum}");
-            if (bus.LicenseNum < 10000000 || bus.LicenseNum > 1000000)
+            if (bus.LicenseNum < 10000000 && bus.LicenseNum > 1000000)
                 if (bus.FromDate > tempDate2018 || bus.FromDate < tempDate1985)
                     throw new BO.BadTimeException(bus.FromDate, $"The time does not match the license plate: {bus.FromDate}");
-            if (bus.LicenseNum < 100000000 || bus.LicenseNum > 10000000)
-                if (bus.FromDate < tempDate2018 || bus.FromDate > tempDate2021)
+            if (bus.LicenseNum < 100000000 && bus.LicenseNum > 10000000)
+                if (bus.FromDate < tempDate2018 || bus.FromDate > DateTime.Now)
                     throw new BO.BadTimeException(bus.FromDate, $"The time does not match the license plate: {bus.FromDate}");
             if (bus.TotalTrip < 0)
                 throw new BO.BadTotalTripException(bus.TotalTrip, $"The Total Trip is lower then 0: {bus.TotalTrip}");
             if (bus.FuelRemain < 0 || bus.FuelRemain > 1200)
                 throw new BO.BadFuelException(bus.FuelRemain, $"Wrong input for Fuel: {bus.FuelRemain}");
             if (bus.KilometersSinceLastTreatment > bus.TotalTrip || bus.KilometersSinceLastTreatment < (bus.TotalTrip - 20000))
-                throw new BO.BadKilometersException(bus.KilometersSinceLastTreatment, $"Wrong input for Fuel: {bus.KilometersSinceLastTreatment}");
+                throw new BO.BadKilometersException(bus.KilometersSinceLastTreatment, $"Wrong input for Last Treatment: {bus.KilometersSinceLastTreatment}");
             if (bus.KilometersAtLastRefueling > bus.TotalTrip || bus.KilometersAtLastRefueling < (bus.TotalTrip - 1200))
-                throw new BO.BadKilometersException(bus.KilometersAtLastRefueling, $"Wrong input for Fuel: {bus.KilometersAtLastRefueling}");
+                throw new BO.BadKilometersException(bus.KilometersAtLastRefueling, $"Wrong input for Last Refueling: {bus.KilometersAtLastRefueling}");
         }
         public void UpdateBus(BO.Bus bus)//?
         {
             ValidateBusFiledsCheck(bus);
             DO.Bus busDO = new DO.Bus();
             bus.CopyPropertiesTo(busDO);
+            busDO.Active = true;
             try
             {
                 dl.UpdateBus(busDO);

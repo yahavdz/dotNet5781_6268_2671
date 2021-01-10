@@ -202,5 +202,14 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="deleteIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="addIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="editIcon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
