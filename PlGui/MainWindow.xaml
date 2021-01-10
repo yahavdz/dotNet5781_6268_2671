@@ -14,7 +14,7 @@
             <StackPanel>
                 <TextBlock Text="Welcome" FontSize="36" FontWeight="Bold" Margin="0 0 0 20"/>
                 <Grid Margin="0 0 0 20">
-                    <Button x:Name="signupButton" Content="Registration" Height="30" Width="120" Background="SkyBlue" BorderBrush="SkyBlue" HorizontalAlignment="Left" Click="Signup_Click" FontSize="16">
+                    <Button x:Name="signupButton" Content="Register" Height="30" Width="120" Background="SkyBlue" BorderBrush="SkyBlue" HorizontalAlignment="Left" Click="Signup_Click" FontSize="16">
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="15"/>

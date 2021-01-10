@@ -27,6 +27,16 @@ namespace PlGui
         {
             InitializeComponent();
             allBusC = _allBusC;
+            BusControl SelectedBC = allBusC.SelectedItem as BusControl;
+            if(SelectedBC != null)
+            {
+                newBusId.Text = SelectedBC.currentBus.LicenseNum.ToString(); ;
+                newTotalKilometers.Text = SelectedBC.currentBus.TotalTrip.ToString();
+                newTotalFuel.Text = SelectedBC.currentBus.FuelRemain.ToString();
+                newLastTreatment.Text = SelectedBC.currentBus.KilometersSinceLastTreatment.ToString();
+                newActivityStart.SelectedDate = SelectedBC.currentBus.FromDate;
+            }
+
         }
 
         private void saveButton_Click(object sender, RoutedEventArgs e)
