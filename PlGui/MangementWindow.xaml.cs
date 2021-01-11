@@ -235,5 +235,28 @@ namespace PlGui
             }
         }
 
+        private void ShowDetailsBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (selectedView)
+            {
+                case selected.busDis:
+                    
+                    break;
+                case selected.lineDis:
+                   
+                    break;
+                case selected.stationDis:
+                    
+                    break;
+                default:
+                    break;
+            }
+            
+        }
+        private void border1_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ClickCount == 2)
+                MessageBox.Show("Double Click");
+        }
     }
 }

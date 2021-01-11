@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PlGui"
         mc:Ignorable="d"
-        Title="MangementWindow" Height="720" Width="1080">
+        Title="MangementWindow" Height="705.848" Width="1076.462">
     <Window.Resources>
         <Storyboard x:Key="goBigSB">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="AddGrid">
@@ -90,7 +90,7 @@
                 </Button>
             </Grid>
             <Canvas x:Name="mainListGrid" Grid.Row="2">
-                <ListBox x:Name="allItems" Height="450" Width="270" Margin="10 10 10 10" Background="#FFDEDEDE" SelectionChanged="newItemSelected"/>
+                <ListBox x:Name="allItems" Height="450" Width="270" Margin="10 10 10 10" Background="#FFDEDEDE" SelectionChanged="newItemSelected" MouseLeftButtonDown="border1_MouseLeftButtonDown"/>
                 <Button x:Name="addButton" Width="40" Height="40" BorderBrush="{x:Null}" Foreground="{x:Null}" FontSize="22" FontWeight="Bold" Click="addOrUpdate_Click" Canvas.Left="120" Canvas.Top="440">
                     <Button.Resources>
                         <Style TargetType="Border">
@@ -138,12 +138,13 @@
                 <Button x:Name="closeButton" Content="close" Margin="0 0 10 10" Width="50" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Background="#FF5C99D6" BorderBrush="#FF5C99D6" Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
             </Grid>
             <Grid Grid.Row="0">
-                <Border Margin="0" BorderBrush="DarkGray" Background="#FF5C99D6" BorderThickness="1" CornerRadius="10">
+                <Border Margin="0" BorderBrush="DarkGray" Background="#FF5C99D6" BorderThickness="1" CornerRadius="10" >
                     <Border.Effect>
                         <DropShadowEffect/>
                     </Border.Effect>
                 </Border>
             </Grid>
+            <ListBox HorizontalAlignment="Left" Height="582" Margin="10,10.333,0,-0.333" Grid.Row="1" VerticalAlignment="Top" Width="763" SelectionChanged="ShowDetailsBox_SelectionChanged"/>
         </Grid>
     </Grid>
 </Window>
