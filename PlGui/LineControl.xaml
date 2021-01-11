@@ -9,7 +9,7 @@
         <StackPanel Orientation="Vertical">
             <Grid>
                 <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left">
-                    <Label Name="lineId" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" FontFamily="Segoe UI Black" Foreground="Peru"/>
+                    <Label Name="lineCode" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" FontFamily="Segoe UI Black" Foreground="Peru"/>
                     <Label Name="lineArea" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" FontFamily="Segoe UI Black" Foreground="Peru"/>
                 </StackPanel>
             </Grid>

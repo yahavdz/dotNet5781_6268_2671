@@ -14,16 +14,15 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BO;
 using BLApi;
+using System.Windows.Media.Animation;
 
 namespace PlGui
 {
-    enum addOrUpdate { add, update};
     /// <summary>
     /// Interaction logic for AddBusControl.xaml
     /// </summary>
     public partial class AddBusControl : UserControl
     {
-        private ListBox allBusC { get; set; }
         private addOrUpdate myStatos { get; set; }
         private IBL bl { get; set; }
         private BusControl SelectedBC { get; set; }
@@ -37,8 +36,10 @@ namespace PlGui
             if (SelectedBC != null)
             {
                 myStatos = addOrUpdate.update;
+                labelBID.Content += SelectedBC.currentBus.LicenseNum.ToString();
                 newBusId.Text = SelectedBC.currentBus.LicenseNum.ToString();
-                newBusId.IsReadOnly = true;
+                newBusId.Visibility = Visibility.Hidden;
+                labelBID.Visibility = Visibility.Visible;
                 newTotalKilometers.Text = SelectedBC.currentBus.TotalTrip.ToString();
                 newTotalFuel.Text = SelectedBC.currentBus.FuelRemain.ToString();
                 newLastTreatment.Text = SelectedBC.currentBus.KilometersSinceLastTreatment.ToString();
@@ -58,7 +59,7 @@ namespace PlGui
             else
                 newBus = new Bus();
             newBus.FromDate = newActivityStart.DisplayDate;
-            try { newBus.LicenseNum = Int32.Parse(newBusId.Text); }
+            try { if(myStatos == addOrUpdate.add) newBus.LicenseNum = Int32.Parse(newBusId.Text); }
             catch(FormatException) { newBusId.Text = "*Invalid number*"; Succeeded = false; }
             try { newBus.TotalTrip = Int32.Parse(newTotalKilometers.Text); }
             catch (FormatException) { newTotalKilometers.Text = "*Invalid number*"; Succeeded = false; }
@@ -103,28 +104,31 @@ namespace PlGui
 
             if (Succeeded)
             {
-                newBusId.Text = "";
-                newTotalKilometers.Text = "";
-                newTotalFuel.Text = "";
-                newLastTreatment.Text = "";
-                newActivityStart.SelectedDate = null;
+                Indication.Content = "Succeeded";
+                Indication.Foreground = Brushes.Lime;
+                var grid = ((((sender as Button).Parent as Grid).Parent as AddBusControl).Parent as Grid).Parent as Grid;
+                var window = ((((grid.Children[2] as Button).Parent as Grid).Parent as Grid).Parent as Grid).Parent;
                 if (myStatos == addOrUpdate.add)
                 {
-                    Indication.Content = "Added successfully";
                     allBusControls.Add(new BusControl(newBus));
+                    (window as MangementWindow).updateList();
+                    string msg = "Bus " + newBus.LicenseNum + " successfully added";
+                    MessageBox.Show(msg);
                 }
                 else
                 {
-                    Indication.Content = "Updated successfully";
                     SelectedBC.Refresh();
+                    string msg = "Bus " + newBus.LicenseNum + " has been successfully updated";
+                    MessageBox.Show(msg);
                 }
                 Indication.Foreground = Brushes.Lime;
-                
+                ((window as Window).FindResource("closeSB") as Storyboard).Begin();
+
             }
             else
             {
                 string temp = Indication.Content.ToString();
-                if (temp == "" || temp == "Succeeded")
+                if (temp == "")
                     Indication.Content = "Try again";
                 Indication.Foreground = Brushes.Red;
             }

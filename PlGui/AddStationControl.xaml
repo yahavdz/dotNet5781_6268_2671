@@ -25,6 +25,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Label Content="Code:" VerticalAlignment="Center" Grid.Column="0" FontSize="14" Foreground="Peru"/>
+            <Label x:Name="labelCo" Visibility="Hidden" VerticalAlignment="Center" Grid.Column="1" FontSize="14" Foreground="Peru" FontWeight="Bold"/>
             <TextBox x:Name="newStaCode" Text="XXXXX" Margin="0 10 0 10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" VerticalContentAlignment="Center"/>
         </Grid>
         <Grid Grid.Row="2" HorizontalAlignment="Stretch" Height="auto" VerticalAlignment="Stretch" Width="auto">
@@ -49,7 +50,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
             <Label Content="Longitude:" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="0" FontSize="14" Foreground="Peru"/>
-            <TextBox Name="newStaLongitude" Text="XX.XX" Margin="0 10 0 10" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="1"/>
+            <TextBox Name="newStaLongitude" Text="34.3 - 35.5" Margin="0 10 0 10" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="1"/>
         </Grid>
         <Grid Grid.Row="5" HorizontalAlignment="Stretch" Height="auto" VerticalAlignment="Stretch" Width="auto">
             <Grid.ColumnDefinitions>
@@ -57,7 +58,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
             <Label Content="Latitude:" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="0" FontSize="14" Foreground="Peru"/>
-            <TextBox Name="newStaLatitude" Text="XX.XX" Margin="0 10 0 10" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="1"/>
+            <TextBox Name="newStaLatitude" Text="31.0 - 33.3" Margin="0 10 0 10" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="1"/>
         </Grid>
         <Grid Grid.Row="6" HorizontalAlignment="Stretch" Height="auto" VerticalAlignment="Stretch" Width="auto">
             <Grid.ColumnDefinitions>

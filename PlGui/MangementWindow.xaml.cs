@@ -18,6 +18,7 @@ using System.Windows.Media.Animation;
 
 namespace PlGui
 {
+    enum addOrUpdate { add, update };
     public enum selected { busDis, lineDis, stationDis, nullDis }
     /// <summary>
     /// Interaction logic for MangementWindow.xaml
@@ -170,12 +171,31 @@ namespace PlGui
             updateButton.Opacity = 0.8;
             daletButton.Opacity = 0.8;
             bool Continued = true;
-            BusControl ifSelected = null;
+            BusControl ifSelectedBC = null;
+            LineControl ifSelectedLC = null;
+            StationControl ifSelectedSC = null;
             if (allItems.Items.Count > 0 && (sender as Button).Name == "updateButton")
             {
-                ifSelected = allItems.SelectedItem as BusControl;
-                if (ifSelected == null)
-                    Continued = false;
+                switch (selectedView)
+                {
+                    case selected.busDis:
+                        ifSelectedBC = allItems.SelectedItem as BusControl;
+                        if (ifSelectedBC == null)
+                            Continued = false;
+                        break;
+                    case selected.lineDis:
+                        ifSelectedLC = allItems.SelectedItem as LineControl;
+                        if (ifSelectedLC == null)
+                            Continued = false;
+                        break;
+                    case selected.stationDis:
+                        ifSelectedSC = allItems.SelectedItem as StationControl;
+                        if (ifSelectedSC == null)
+                            Continued = false;
+                        break;
+                    default:
+                        break;
+                }
             }
             if (Continued)
             {
@@ -187,15 +207,15 @@ namespace PlGui
                 switch (selectedView)
                 {
                     case selected.busDis:
-                        usc = new AddBusControl(ifSelected, allBusControls, bl);
+                        usc = new AddBusControl(ifSelectedBC, allBusControls, bl);
                         USCgrid.Children.Add(usc);
                         break;
                     case selected.lineDis:
-                        usc = new AddLineControl(allItems, bl);
+                        usc = new AddLineControl(ifSelectedLC, allLineControls, bl);
                         USCgrid.Children.Add(usc);
                         break;
                     case selected.stationDis:
-                        usc = new AddStationControl(allItems);
+                        usc = new AddStationControl(ifSelectedSC, allStationControls, bl);
                         USCgrid.Children.Add(usc);
                         break;
                     default:
@@ -210,7 +230,7 @@ namespace PlGui
             updateButton.Opacity = 1;
             daletButton.Opacity = 1;
         }
-        private void updateList()
+        public void updateList()
         {
             updateButton.Opacity = 0.8;
             daletButton.Opacity = 0.8;

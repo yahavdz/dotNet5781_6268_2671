@@ -25,7 +25,8 @@
             </Grid.ColumnDefinitions>
             <Label Content="Bus ID:" VerticalAlignment="Center" Grid.Column="0" FontSize="14" Foreground="Peru"/>
             <TextBox x:Name="newBusId" Text="XXXXXXX/X" Margin="0 10 0 10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" VerticalContentAlignment="Center"/>
-        </Grid>
+            <Label Name="labelBID" VerticalAlignment="Center" Visibility="Hidden" Grid.Column="1" FontSize="14" Foreground="Peru" FontWeight="Bold"/>
+        </Grid> 
         <Grid Grid.Row="2" HorizontalAlignment="Stretch" Height="auto" VerticalAlignment="Stretch" Width="auto">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>

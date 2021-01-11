@@ -31,7 +31,6 @@ namespace BL
 
             return busBO;
         }
-
         public BO.Bus GetBus(int id)
         {
             DO.Bus busDO;
@@ -45,7 +44,6 @@ namespace BL
             }
             return busDoBoAdapter(busDO);
         }
-
         public IEnumerable<BO.Bus> GetAllBuses()
         {
 
@@ -62,6 +60,7 @@ namespace BL
             ValidateBusFiledsCheck(bus);
             DO.Bus busDO = new DO.Bus();
             bus.CopyPropertiesTo(busDO);
+            busDO.Active = true;
             try
             {
                 dl.AddBus(busDO);
@@ -109,13 +108,12 @@ namespace BL
             }
 
         }
-
         public void DeleteBus(int id)
         {
 
             try
             {
-                dl.GetBus(id);
+                dl.DeleteBus(id);
             }
             catch (DO.BadIdException ex)
             {
@@ -124,8 +122,8 @@ namespace BL
 
         }
         #endregion
-        #region Line
 
+        #region Line
         Line LineDoBoAdapter(DO.Line LineDO)
         {
             Line LineBO = new Line();
@@ -160,10 +158,11 @@ namespace BL
         }
         public void AddLine(BO.Line line)
         {
-            if (line.Id < 0)
-                throw new BadIdException(line.Id, " Line ID must be bigger then 0");
+            if (line.Code < 0)
+                throw new BadIdException(line.Code, " Line Code must be bigger then 0");
             DO.Line lineDO = new DO.Line();
             line.CopyPropertiesTo(lineDO);
+            lineDO.Active = true;
             try
             {
                 dl.AddLine(lineDO);
@@ -176,8 +175,8 @@ namespace BL
         }
         public void UpdateLine(BO.Line line)
         {
-            if (line.Id < 0)
-                throw new BadIdException(line.Id, " Line ID must be bigger then 0");
+            if (line.Code < 0)
+                throw new BadIdException(line.Code, " Line Code must be bigger then 0");
             DO.Line lineDO = new DO.Line();
             line.CopyPropertiesTo(lineDO);
             try
@@ -203,8 +202,8 @@ namespace BL
             }
 
         }
-
         #endregion
+
         #region Station
         Station StationDoBoAdapter(DO.Station stationDO)
         {
@@ -246,9 +245,9 @@ namespace BL
             findLetters1 = Regex.Matches(station.Name, @"[a-zA-Z]").Count;
             if (findLetters == 0)
                 throw new BO.BadAddressException(station.Address, $"Wrong Address: {station.Address}");
-            if (station.Longitude < 31.0 || station.Longitude > 33.3)
+            if (station.Longitude < 34.3 || station.Longitude > 35.5)
                 throw new BO.BadLongitudeLatitudeException(station.Longitude, $"Wrong cordinates: {station.Longitude}");
-            if (station.Latitude < 34.3 || station.Latitude > 35.5)
+            if (station.Latitude < 31.0 || station.Latitude > 33.3)
                 throw new BO.BadLongitudeLatitudeException(station.Latitude, $"Wrong cordinates: {station.Latitude}");
             if (findLetters1 == 0)
                 throw new BO.BadAddressException(station.Address, $"Wrong Address: {station.Address}");
@@ -258,6 +257,7 @@ namespace BL
             ValidateStationFiledsCheck(station);
             DO.Station stationDO = new DO.Station();
             station.CopyPropertiesTo(stationDO);
+            stationDO.Active = true;
             try
             {
                 dl.AddStation(stationDO);
@@ -286,7 +286,7 @@ namespace BL
         {
             try
             {
-                dl.GetStation(id);
+                dl.DeleteStation(id);
             }
             catch (DO.BadIdException ex)
             {
@@ -295,6 +295,5 @@ namespace BL
 
         }
         #endregion
-
     }
 }
