@@ -42,8 +42,8 @@ namespace PlGui
 
         private void busDis_Click(object sender, RoutedEventArgs e)
         {
-            updateButton.Opacity = 0.8;
-            daletButton.Opacity = 0.8;
+            updateButton.Opacity = 0.6;
+            daletButton.Opacity = 0.6;
             bool Continued = true;
             if(AddGrid.Width == 270)
             {
@@ -71,8 +71,8 @@ namespace PlGui
 
         private void lineDis_Click(object sender, RoutedEventArgs e)
         {
-            updateButton.Opacity = 0.8;
-            daletButton.Opacity = 0.8;
+            updateButton.Opacity = 0.6;
+            daletButton.Opacity = 0.6;
             bool Continued = true;
             if (AddGrid.Width == 270)
             {
@@ -100,8 +100,8 @@ namespace PlGui
 
         private void stationDis_Click(object sender, RoutedEventArgs e)
         {
-            updateButton.Opacity = 0.8;
-            daletButton.Opacity = 0.8;
+            updateButton.Opacity = 0.6;
+            daletButton.Opacity = 0.6;
             bool Continued = true;
             if (AddGrid.Width == 270)
             {
@@ -131,8 +131,8 @@ namespace PlGui
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
-            updateButton.Opacity = 0.8;
-            daletButton.Opacity = 0.8;
+            updateButton.Opacity = 0.6;
+            daletButton.Opacity = 0.6;
             if (allItems.SelectedItem != null)
             {
                 MessageBoxResult popUp = MessageBox.Show("Are you sure you want to delete?", "Delete",
@@ -168,8 +168,8 @@ namespace PlGui
 
         private void addOrUpdate_Click(object sender, RoutedEventArgs e)
         {
-            updateButton.Opacity = 0.8;
-            daletButton.Opacity = 0.8;
+            updateButton.Opacity = 0.6;
+            daletButton.Opacity = 0.6;
             bool Continued = true;
             BusControl ifSelectedBC = null;
             LineControl ifSelectedLC = null;
@@ -232,8 +232,8 @@ namespace PlGui
         }
         public void updateList()
         {
-            updateButton.Opacity = 0.8;
-            daletButton.Opacity = 0.8;
+            updateButton.Opacity = 0.6;
+            daletButton.Opacity = 0.6;
             allItems.SelectedItem = null;
             allItems.Items.Clear();
             switch (selectedView)

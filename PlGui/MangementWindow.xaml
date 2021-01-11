@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PlGui"
         mc:Ignorable="d"
-        Title="MangementWindow" Height="720" Width="1080">
+        Title="MangementWindow" Height="720" Width="1080" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Storyboard x:Key="goBigSB">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="AddGrid">
@@ -101,7 +101,7 @@
                         <ImageBrush ImageSource="addIcon.png" Stretch="UniformToFill"/>
                     </Button.Background>
                 </Button>
-                <Button x:Name="updateButton" Opacity="0.8" Width="40" Height="40" BorderBrush="{x:Null}" FontSize="16" FontWeight="Bold" Click="addOrUpdate_Click" Canvas.Left="200" Canvas.Top="440" Foreground="{x:Null}">
+                <Button x:Name="updateButton" Opacity="0.6" Width="40" Height="40" BorderBrush="{x:Null}" FontSize="16" FontWeight="Bold" Click="addOrUpdate_Click" Canvas.Left="200" Canvas.Top="440" Foreground="{x:Null}">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="20"/>
@@ -111,7 +111,7 @@
                         <ImageBrush ImageSource="editIcon.png" Stretch="UniformToFill"/>
                     </Button.Background>
                 </Button>
-                <Button x:Name="daletButton" Opacity="0.8" Width="40" Height="40" BorderBrush="{x:Null}" Foreground="{x:Null}" FontSize="28" FontWeight="Bold" Click="deleteButton_Click" Canvas.Left="40" Canvas.Top="440">
+                <Button x:Name="daletButton" Opacity="0.6" Width="40" Height="40" BorderBrush="{x:Null}" Foreground="{x:Null}" FontSize="28" FontWeight="Bold" Click="deleteButton_Click" Canvas.Left="40" Canvas.Top="440">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="20"/>

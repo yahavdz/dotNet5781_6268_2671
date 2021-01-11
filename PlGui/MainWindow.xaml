@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PlGui"
         mc:Ignorable="d"
-        Title="OpeningWindow" Height="600" Width="600">
+        Title="OpeningWindow" Height="600" Width="600" WindowStartupLocation="CenterScreen">
     <Grid Background="Azure">
         <Border Margin="20" MinWidth="400" Background="White" VerticalAlignment="Center" Padding="30" CornerRadius="10" MaxWidth="800">
             <Border.Effect>
@@ -21,6 +21,7 @@
                             </Style>
                         </Button.Resources>
                     </Button>
+                    <TextBox Name="wrongPass" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Red" BorderBrush="{x:Null}" Background="{x:Null}"/>
                     <Button x:Name="loginButton" Content="Login" Width="120" Background="SkyBlue" BorderBrush="SkyBlue"  Opacity="0.6" HorizontalAlignment="Right" Click="Login_Click" FontSize="16">
                         <Button.Resources>
                             <Style TargetType="Border">
@@ -30,14 +31,14 @@
                     </Button>
                 </Grid>
                 <Label Content="Username" Margin="0 5" FontSize="14"/>
-                <TextBox Name="myUsername" Height="25" Margin="0 5"/>
+                <TextBox Name="myUsername" Height="25" Margin="0 5" VerticalContentAlignment="Center"/>
                 <Label Name="passwordLab" Content="Password" Margin="0 5" FontSize="14"/>
-                <PasswordBox Name="myPassword" Height="25" Margin="0 5" KeyDown="OnKeyDownHandlerLogin"/>
+                <PasswordBox Name="myPassword" Height="25" Margin="0 5" KeyDown="OnKeyDownHandlerLogin" VerticalContentAlignment="Center"/>
 
                 <Label Name="confirmPWlab" Content="Confirm Password" Margin="0 5" FontSize="14"/>
-                <PasswordBox Name="myConfirmPW" Margin="0 5" Height="25"/>
+                <PasswordBox Name="myConfirmPW" Margin="0 5" Height="25" VerticalContentAlignment="Center"/>
                 <Label Name="emaillab" Content="Email" Margin="0 5" FontSize="14"/>
-                <TextBox Name="myEmail" KeyDown="OnKeyDownHandlerSginin" Height="25" Margin="0 5"/>
+                <TextBox Name="myEmail" KeyDown="OnKeyDownHandlerSginin" Height="25" Margin="0 5" VerticalContentAlignment="Center"/>
 
                 <Button x:Name="approval" Content="Sign up" Height="30" Margin="0 20" Background="SkyBlue" BorderBrush="SkyBlue"  Click="approval_Click" FontSize="16" FontWeight="Bold">
                     <Button.Resources>
