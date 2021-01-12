@@ -127,11 +127,59 @@ namespace BL
         Line LineDoBoAdapter(DO.Line LineDO)
         {
             Line LineBO = new Line();
+            LineBO.stations = new List<LineStation>();
 
             LineDO.CopyPropertiesTo(LineBO);
-
+            IEnumerable<DO.LineStation> listOfLineStations = dl.GetAllLineStationBy(ls => ls.LineId == LineDO.Id);
+            listOfLineStations.OrderBy(ls => ls.LineStationIndex);
+            for (int i = 0; i < listOfLineStations.Count(); i++)
+            {
+                BO.LineStation bols = new LineStation();
+                DO.Station currentDoStation = dl.GetStation(listOfLineStations.ElementAt(i).Station);
+                if (i < listOfLineStations.Count() - 1) // not the last
+                {
+                    DO.Station nextDoStation = dl.GetStation(listOfLineStations.ElementAt(i + 1).Station);
+                    bols.DistanceToNextStation = Math.Sqrt(Math.Pow(nextDoStation.Latitude * 110.574 - currentDoStation.Latitude * 110.574, 2) + Math.Pow(nextDoStation.Longitude * 111.320 * Math.Cos(nextDoStation.Latitude) - currentDoStation.Longitude * 111.320 * Math.Cos(nextDoStation.Latitude), 2) * 1.0);
+                    double calc = (bols.DistanceToNextStation / 50)*3;
+                    int temp = Convert.ToInt32(calc);
+                    if (calc < 1 && calc > 0) 
+                        bols.TimeToNextStation =new TimeSpan (0,0,temp*2);
+                    if (calc < 60 && calc > 1)
+                        bols.TimeToNextStation = new TimeSpan(0, temp*2, 0);
+                    else if (calc > 60)
+                        bols.TimeToNextStation =  TimeSpan.FromHours(temp*2);
+                }
+                currentDoStation.CopyPropertiesTo(bols);
+                LineBO.stations = LineBO.stations.Append(bols).ToList();
+            }
             return LineBO;
         }
+        DO.Line LineBoDoAdapter(BO.Line LineBO)
+        {
+            DO.Line LineDO = new DO.Line();
+            LineBO.CopyPropertiesTo(LineDO);
+            LineDO.FirstStation = LineBO.stations.First().Code;
+            LineDO.LastStation = LineBO.stations.Last().Code;
+            return LineDO;
+        }
+
+        IEnumerable<DO.LineStation> LineBoLineStationDoAdapter(BO.Line LineBO)
+        {             
+            List<DO.LineStation> stationsList = new List<DO.LineStation>();
+            for (int i = 0; i < LineBO.stations.Count(); i++) // instaed of foraech for the station index
+            {
+                DO.LineStation doLineStation = new DO.LineStation();
+                doLineStation.LineId = LineBO.Code;
+                doLineStation.LineStationIndex = i;
+                doLineStation.Station = LineBO.stations.ElementAt(i).Code;
+                doLineStation.Active = LineBO.stations.ElementAt(i).Active;
+                if (i > 0) doLineStation.PrevStation = LineBO.stations.ElementAt(i - 1).Code;
+                if (i < LineBO.stations.Count() - 1) doLineStation.NextStation = LineBO.stations.ElementAt(i + 1).Code;
+                stationsList.Add(doLineStation);
+            }    
+            return stationsList;
+        }
+
         public BO.Line GetLine(int lineId)
         {
             DO.Line LineDO;
@@ -178,15 +226,46 @@ namespace BL
             if (line.Code < 0)
                 throw new BadIdException(line.Code, " Line Code must be bigger then 0");
             DO.Line lineDO = new DO.Line();
-            line.CopyPropertiesTo(lineDO);
+
+            // adapt the line - list of stations to first and last:
+            lineDO = LineBoDoAdapter(line);
             try
             {
                 dl.UpdateLine(lineDO);
             }
             catch (DO.BadIdException ex)
             {
-                throw new BO.BadIdException(ex, $"bad bus id: {lineDO.Id}", lineDO.Id);
+                throw new BO.BadIdException(ex, $"bad line id: {lineDO.Id}", lineDO.Id);
             }
+
+            // update the line stations - to save the stations order:
+            IEnumerable<DO.LineStation> lineStationsList = LineBoLineStationDoAdapter(line);
+            foreach (DO.LineStation doLineStation in lineStationsList)
+            {
+                if (dl.isLineStationExistForLine(doLineStation.LineId, doLineStation.Station))
+                {
+                    try
+                    {
+                        dl.UpdateLineStation(doLineStation);
+                    }
+                    catch (DO.BadIdException ex)
+                    {
+                        // throw new BO.BadIdException(ex, $"bad bus id: {lineDO.Id}", lineDO.Id);
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        dl.AddLineStation(doLineStation);
+                    }
+                    catch (DO.BadIdException ex)
+                    {
+                        // throw new BO.BadIdException(ex, $"bad bus id: {lineDO.Id}", lineDO.Id);
+                    }
+                }
+            }
+
 
         }
         public void DeleteLine(int id)
@@ -202,6 +281,12 @@ namespace BL
             }
 
         }
+        public void AddStationToLine(Line line, LineStation station)
+        {
+            line.stations = line.stations.Append(station).ToList();
+            UpdateLine(line);
+        }
+
         #endregion
 
         #region Station

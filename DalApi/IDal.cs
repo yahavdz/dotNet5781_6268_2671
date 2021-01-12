@@ -55,6 +55,7 @@ namespace DalApi
         void AddLineStation(LineStation lineStation);
         void UpdateLineStation(LineStation lineStation);
         void DeleteLineStation(int lineStationId);
+        bool isLineStationExistForLine(int lineId, int lineStationsId);
         #endregion
 
         #region LineTrip

@@ -945,32 +945,121 @@ namespace DS
             };
 
             ListLineStations = new List<LineStation>();
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 5; i++)
             {
-
                 ListLineStations.Add(new LineStation
                 {
                     LineId = ListLines[i].Id,
-                    Station = ListStations[0].Code,
+                    Station = ListStations[i * 10].Code,
                     LineStationIndex = 1,
-                    PrevStation = ListStations[0].Code,
-                    NextStation = ListStations[1].Code,
+                    // PrevStation = ListStations[0].Code,
+                    NextStation = ListStations[i * 10 + 1].Code,
                     Active = true
                 });
 
-                for (int j = 1; j < 10; j++)
+                for (int j = 1; j < 9; j++)
                 {
-
                     ListLineStations.Add(new LineStation
                     {
                         LineId = ListLines[i].Id,
-                        Station = ListStations[j - 1].Code,
+                        Station = ListStations[i * 10 + j].Code,
                         LineStationIndex = j,
-                        PrevStation = ListStations[j].Code,
-                        NextStation = ListStations[j + 1].Code,
+                        PrevStation = ListStations[i * 10 + j - 1].Code,
+                        NextStation = ListStations[i * 10 + j + 1].Code,
                         Active = true
                     });
                 }
+
+              
+                ListLineStations.Add(new LineStation
+                {
+                    LineId = ListLines[i].Id,
+                    Station = ListStations[i * 10 + 9].Code,
+                    LineStationIndex = 9,
+                    PrevStation = ListStations[i * 10 + 8].Code,
+                    // NextStation = ListStations[i * 10 + 1] .Code,
+                    Active = true
+                });
+            }
+            for (int i = 0; i < 5; i++)
+            {
+                ListLineStations.Add(new LineStation
+                {
+                    LineId = ListLines[i + 5].Id,
+                    Station = ListLines[i + 5].FirstStation,
+                    LineStationIndex = 1,
+                    // PrevStation = ListStations[0].Code,
+                    NextStation = ListStations[i * 10 + 1].Code,
+                    Active = true
+                }) ;
+
+                for (int j = 1; j < 9; j++)
+                {
+                    ListLineStations.Add(new LineStation
+                    {
+                        LineId = ListLines[i + 5].Id,
+                        Station = ListLines[i + 5].FirstStation + j,
+                        LineStationIndex = j,
+                        PrevStation = ListLines[i + 5].FirstStation + j - 1,
+                        NextStation = ListLines[i + 5].FirstStation + j + 1,
+                        Active = true
+                    });
+                }
+
+
+                ListLineStations.Add(new LineStation
+                {
+                    LineId = ListLines[i + 5].Id,
+                    Station = ListLines[i + 5].LastStation,
+                    LineStationIndex = 9,
+                    PrevStation = ListLines[i + 5].LastStation - 1,
+                    // NextStation = ListStations[i * 10 + 1] .Code,
+                    Active = true
+                });
+            }
+
+
+
+            for (int i = 0; i < 10; i++)
+            {
+                int stationsCount = i * 10;
+                if (i > 4) stationsCount = (i - 5) * 10;
+                ListLineStations.Add(new LineStation
+                {
+                    LineId = ListLines[i].Id,
+                    Station = ListStations[stationsCount].Code,
+                    LineStationIndex = 1,
+                    // PrevStation = ListStations[0].Code,
+                    NextStation = ListStations[stationsCount + 1].Code,
+                    Active = true
+                });
+
+                for (int j = 1; j < 10 - 1; j++)
+                {
+                    stationsCount = i * 10 + j;
+                    if (i > 4) stationsCount = (i - 5) * 10 + j; 
+                    ListLineStations.Add(new LineStation
+                    {
+                        LineId = ListLines[i].Id,
+                        Station = ListStations[stationsCount].Code,
+                        LineStationIndex = j,
+                        PrevStation = ListStations[stationsCount - 1].Code,
+                        NextStation = ListStations[stationsCount + 1].Code,
+                        Active = true
+                    });
+                }
+
+                stationsCount = i * 10 + 9;
+                if (i > 4) stationsCount = (i - 5) * 10 + 9;
+                ListLineStations.Add(new LineStation
+                {
+                    LineId = ListLines[i].Id,
+                    Station = ListStations[stationsCount].Code,
+                    LineStationIndex = 9,
+                    PrevStation = ListStations[stationsCount - 1].Code,
+                    // NextStation = ListStations[i * 10 + 1] .Code,
+                    Active = true
+                });
 
             }
 

@@ -86,8 +86,14 @@
     <Compile Include="BusControl.xaml.cs">
       <DependentUpon>BusControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BusDetails.xaml.cs">
+      <DependentUpon>BusDetails.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LineControl.xaml.cs">
       <DependentUpon>LineControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LineDetails.xaml.cs">
+      <DependentUpon>LineDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="StationControl.xaml.cs">
       <DependentUpon>StationControl.xaml</DependentUpon>
@@ -111,7 +117,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="BusDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LineControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LineDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -30,6 +30,9 @@ namespace PlGui
         public List<BusControl> allBusControls { get; set; }
         private List<LineControl> allLineControls { get; set; }
         private List<StationControl> allStationControls { get; set; }
+
+        private ListBox dragSource = null;
+
         public MangementWindow(IBL _bl)
         {
             InitializeComponent();
@@ -45,7 +48,7 @@ namespace PlGui
             updateButton.Opacity = 0.6;
             daletButton.Opacity = 0.6;
             bool Continued = true;
-            if(AddGrid.Width == 270)
+            if (AddGrid.Width == 270)
             {
                 MessageBoxResult popUp = MessageBox.Show("There are unsaved changes, are you sure you want to exit?", "ERROR",
                 MessageBoxButton.YesNo,
@@ -255,28 +258,75 @@ namespace PlGui
             }
         }
 
-        private void ShowDetailsBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Details_Click(object sender, RoutedEventArgs e)
         {
             switch (selectedView)
             {
                 case selected.busDis:
-                    
+                    BusControl SelectedBC = allItems.SelectedItem as BusControl;
+                    Bus b = bl.GetBus(SelectedBC.currentBus.LicenseNum);
+                    BusDetails bD = new BusDetails(b);
+                    detailsControl.Content = bD;
                     break;
                 case selected.lineDis:
-                   
+                    LineControl SelectedLC = allItems.SelectedItem as LineControl;
+                    Line l = bl.GetLine(SelectedLC.currentLine.Id);
+                    LineDetails ld = new LineDetails(l, bl);
+                    detailsControl.Content = ld;
                     break;
                 case selected.stationDis:
-                    
+                   
                     break;
                 default:
                     break;
             }
-            
         }
-        private void border1_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+
+        private void ListBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.ClickCount == 2)
-                MessageBox.Show("Double Click");
+            if (selectedView == selected.stationDis)
+            {
+                ListBox parent = (ListBox)sender;
+                dragSource = parent;
+                object data = GetDataFromListBox(dragSource, e.GetPosition(parent));
+
+                if (data != null)
+                {
+                    DragDrop.DoDragDrop(parent, data, DragDropEffects.Move);
+                }
+            }
         }
+        #region GetDataFromListBox(ListBox,Point)
+        private static object GetDataFromListBox(ListBox source, Point point)
+        {
+            UIElement element = source.InputHitTest(point) as UIElement;
+            if (element != null)
+            {
+                object data = DependencyProperty.UnsetValue;
+                while (data == DependencyProperty.UnsetValue)
+                {
+                    data = source.ItemContainerGenerator.ItemFromContainer(element);
+
+                    if (data == DependencyProperty.UnsetValue)
+                    {
+                        element = VisualTreeHelper.GetParent(element) as UIElement;
+                    }
+
+                    if (element == source)
+                    {
+                        return null;
+                    }
+                }
+
+                if (data != DependencyProperty.UnsetValue)
+                {
+                    return data;
+                }
+            }
+
+            return null;
+        }
+
+        #endregion
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PlGui"
         mc:Ignorable="d"
-        Title="MangementWindow" Height="720" Width="1080" WindowStartupLocation="CenterScreen">
+        Title="MangementWindow" Height="688" Width="1080" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Storyboard x:Key="goBigSB">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="AddGrid">
@@ -30,7 +30,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="2.7*"/>
         </Grid.ColumnDefinitions>
-        <Grid x:Name="menuGrid" Grid.Column="0" Background="#FF31577E">
+        <Grid x:Name="menuGrid" Grid.Column="0" Background="#FF31577E" Margin="0,0,0,-0.333">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -90,7 +90,7 @@
                 </Button>
             </Grid>
             <Canvas x:Name="mainListGrid" Grid.Row="2">
-                <ListBox x:Name="allItems" Height="450" Width="270" Margin="10 10 10 10" Background="#FFDEDEDE" SelectionChanged="newItemSelected"/>
+                <ListBox x:Name="allItems" Height="450" Width="270" Margin="10 10 10 10" Background="#FFDEDEDE" SelectionChanged="newItemSelected" MouseDoubleClick="Details_Click" PreviewMouseLeftButtonDown="ListBox_PreviewMouseLeftButtonDown"/>
                 <Button x:Name="addButton" Width="40" Height="40" BorderBrush="{x:Null}" Foreground="{x:Null}" FontSize="22" FontWeight="Bold" Click="addOrUpdate_Click" Canvas.Left="120" Canvas.Top="440">
                     <Button.Resources>
                         <Style TargetType="Border">
@@ -123,12 +123,13 @@
                 </Button>
             </Canvas>
         </Grid>
-        <Grid x:Name="displayGrid" Grid.Column="1" Background="#FFDEDEDE">
+        <Grid x:Name="displayGrid" Grid.Column="1" Background="#FFDEDEDE" RenderTransformOrigin="0.517,0.501">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="6*"/>
+                <RowDefinition Height="94*"/>
+                <RowDefinition Height="377*"/>
+                <RowDefinition Height="188*"/>
             </Grid.RowDefinitions>
-            <Grid x:Name="AddGrid" Panel.ZIndex="2" Grid.Row="1" Width="0" HorizontalAlignment="Left" Margin="0 70 0 40">
+            <Grid x:Name="AddGrid" Panel.ZIndex="2" Grid.Row="1" Width="0" HorizontalAlignment="Left" Margin="0,70,0,39.667" Grid.RowSpan="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="3*"/>
                     <RowDefinition Height="*"/>
@@ -141,13 +142,25 @@
                 <Grid x:Name="USCgrid" Grid.Row="0"/>
                 <Button x:Name="closeButton" Grid.Row="1" Content="close" Margin="0 0 30 20" Width="50" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Background="#FF5C99D6" BorderBrush="#FF5C99D6" Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
             </Grid>
-            <Grid Grid.Row="0">
+            <Grid Grid.Row="0" Margin="0,0,0.333,0">
                 <Border Margin="0" BorderBrush="DarkGray" Background="#FF5C99D6" BorderThickness="1" CornerRadius="10">
                     <Border.Effect>
                         <DropShadowEffect/>
                     </Border.Effect>
                 </Border>
             </Grid>
+            <ContentControl x:Name="detailsControl" Background="#FF5C99D6" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="9,2,0.333,187.667" Grid.Row="1" RenderTransformOrigin="0.499,0.534" Height="375" Width="774" Grid.RowSpan="2">
+
+                <ContentControl.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="0"/>
+                        <TranslateTransform X="0.201" Y="0.014"/>
+                    </TransformGroup>
+                </ContentControl.RenderTransform>
+            </ContentControl>
+
         </Grid>
     </Grid>
 </Window>

@@ -246,7 +246,7 @@ namespace Dal
         }
         public void AddLineStation(LineStation lineStation)
         {
-            LineStation findLineStation = DataSource.ListLineStations.FirstOrDefault(ls => ls.LineId == lineStation.LineId);
+            LineStation findLineStation = DataSource.ListLineStations.FirstOrDefault(ls => ls.LineId == lineStation.LineId && ls.Station == lineStation.Station);
             if (findLineStation != null && findLineStation.Active)
                 throw new BadIdException(lineStation.LineId, "Duplicate line station ID");
             if (findLineStation != null && !findLineStation.Active)
@@ -273,6 +273,11 @@ namespace Dal
             else
                 throw new BadIdException(lineStation.LineId, $"bad line station id: {lineStation.LineId}");
         }
+        public bool isLineStationExistForLine(int lineId, int lineStationsId)
+        {
+            return (null != DataSource.ListLineStations.Find(ls => ls.LineId == lineId && ls.Station == lineStationsId));
+        }
+
         #endregion LineStation
 
         #region LineTrip

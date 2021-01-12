@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="PlGui.LineDetails"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PlGui"
+             mc:Ignorable="d" Height="308.556" Width="521" >
+    <Grid Background="#FFDEDEDE" Margin="10,5,0,5">
+        <StackPanel Orientation="Vertical">
+            <Grid Height="63" Margin="0,0,0.333,0">
+                <Label Content="Station List" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="28" FontFamily="Segoe UI Emoji" Foreground="Peru" Height="63" Width="196"/>
+                <Label Content="Line Num: " HorizontalAlignment="Left" Margin="201,0,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Emoji" Foreground="Peru" FontSize="28" Height="63" Width="141"/>
+                <Label x:Name="lineNum" HorizontalAlignment="Left" Margin="347,0,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Emoji" Foreground="Peru" FontSize="28" Height="63" Width="75"/>
+            </Grid>
+            <Grid Margin="0,0,0.333,0" Height="237">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="98*"/>
+                    <ColumnDefinition Width="103*"/>
+                    <ColumnDefinition Width="310*"/>
+                    <ColumnDefinition Width="0*"/>
+                </Grid.ColumnDefinitions>
+                <ListBox x:Name="liststation" Grid.Column="1" HorizontalAlignment="Left" Height="237" Margin="103,0,0,0" VerticalAlignment="Top" Width="310" Grid.ColumnSpan="2" Drop="ListBox_Drop" AllowDrop="True" />
+                <Button Content="ADD" Grid.Column="1" HorizontalAlignment="Left" Margin="0,192,0,-1" VerticalAlignment="Top" Width="103" Height="46"/>
+                <Button Content="DELETE" HorizontalAlignment="Left" Margin="0,192,0,-1" VerticalAlignment="Top" Width="98" Height="46"/>
+                <Label Content="Line Total time:" HorizontalAlignment="Left" Margin="0,64,0,0" VerticalAlignment="Top" Width="98" Height="48"/>
+                <Label x:Name="lineTime" Grid.Column="1" HorizontalAlignment="Left" Margin="0,64,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.446,0.415" Width="103" Height="48"/>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>
