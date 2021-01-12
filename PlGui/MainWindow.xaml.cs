@@ -49,6 +49,7 @@ namespace PlGui
             signupButton.Opacity = 1;
             loginButton.Opacity = 0.6;
             passwordLab.Foreground = Brushes.Black;
+            wrongPass.Text = "";
             approval.Content = "Sign up";
             confirmPWlab.Visibility = Visibility.Visible;
             myConfirmPW.Visibility = Visibility.Visible;
@@ -63,6 +64,7 @@ namespace PlGui
                 if (myUsername.Text == "aaa" && myPassword.Password == "1234")
                 {
                     passwordLab.Foreground = Brushes.Black;
+                    wrongPass.Text = "";
                     myUsername.Text = "";
                     myPassword.Password = "";
                     MangementWindow mangementWindow = new MangementWindow(bl);
@@ -71,13 +73,14 @@ namespace PlGui
                 else if (myUsername.Text == "zzz" && myPassword.Password == "0000")
                 {
                     passwordLab.Foreground = Brushes.Black;
+                    wrongPass.Text = "";
                     myUsername.Text = "";
                     myPassword.Password = "";
                     UserWindow userWindow = new UserWindow(bl);
                     userWindow.ShowDialog();
                 }
                 else
-                    passwordLab.Foreground = Brushes.Red;
+                    wrongPass.Text = "Incorrect password";
             }
             else
             {

@@ -49,7 +49,7 @@ namespace Dal
         }
         public void DeleteBus(int busId)
         {
-            Bus bus = DataSource.ListBuses.Find(b => b.LicenseNum == busId);
+            Bus bus = DataSource.ListBuses.FirstOrDefault(b => b.LicenseNum == busId);
             if (bus != null)
                 bus.Active = false;
             else
@@ -96,7 +96,9 @@ namespace Dal
                 throw new BadIdException(line.Id, "Duplicate line ID");
             if (findLine != null && !findLine.Active)
                 DataSource.ListLines.Remove(findLine);
-            DataSource.ListLines.Add(line.Clone());
+            Line newLine = line.Clone();
+            newLine.Id = Counts.getBusLineCount();
+            DataSource.ListLines.Add(newLine);
         }
         public void DeleteLine(int lineId)
         {

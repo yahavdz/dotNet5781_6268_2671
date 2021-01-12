@@ -28,7 +28,12 @@ namespace PlGui
         {
             InitializeComponent();
             currentLine = _line;
-            lineId.Content = currentLine.Id;
+            Refresh();
+        }
+
+        public void Refresh()
+        {
+            lineCode.Content = currentLine.Code;
             lineArea.Content = currentLine.Area;
         }
     }

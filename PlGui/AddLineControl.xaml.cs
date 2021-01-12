@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using BO;
 using BLApi;
 using Line = BO.Line;
+using System.Windows.Media.Animation;
 
 namespace PlGui
 {
@@ -23,13 +24,17 @@ namespace PlGui
     /// </summary>
     public partial class AddLineControl : UserControl
     {
-        private ListBox allLineC { get; set; }
+        private addOrUpdate myStatos { get; set; }
         private IBL bl { get; set; }
-        public AddLineControl(ListBox _allLineC, IBL _bl)
+        private LineControl SelectedLC { get; set; }
+        private List<LineControl> allLineControls { get; set; }
+        public AddLineControl(LineControl _SelectedLC, List<LineControl> _allLineControls, IBL _bl)
         {
             InitializeComponent();
-            allLineC = _allLineC;
             bl = _bl;
+            allLineControls = _allLineControls;
+            SelectedLC = _SelectedLC;
+
             newArea.ItemsSource = Enum.GetValues(typeof(Areas));
             newFirstSta.ItemsSource = bl.GetAllStations();
             newFirstSta.DisplayMemberPath = "Name";
@@ -37,9 +42,9 @@ namespace PlGui
             newLastSta.ItemsSource = bl.GetAllStations();
             newLastSta.DisplayMemberPath = "Name";
 
-            LineControl SelectedLC = allLineC.SelectedItem as LineControl;
             if (SelectedLC != null)
             {
+                myStatos = addOrUpdate.update;
                 newLineNum.Text = SelectedLC.currentLine.Id.ToString();
                 newArea.SelectedIndex = (int)SelectedLC.currentLine.Area;
                 newFirstSta.Visibility = Visibility.Hidden;
@@ -47,13 +52,19 @@ namespace PlGui
                 labelFS.Text += bl.GetStations(SelectedLC.currentLine.FirstStation).Name;
                 labelLS.Text += bl.GetStations(SelectedLC.currentLine.LastStation).Name;
             }
+            else
+                myStatos = addOrUpdate.add;
         }
 
         private void saveButton_Click(object sender, RoutedEventArgs e)
         {
             bool Succeeded = true;
-            Line newLine = new Line();
-            try { newLine.Id = Int32.Parse(newLineNum.Text); }
+            Line newLine;
+            if (SelectedLC != null)
+                newLine = SelectedLC.currentLine;
+            else
+                newLine = new Line();
+            try { newLine.Code = Int32.Parse(newLineNum.Text); }
             catch (FormatException) { newLineNum.Text = "*Invalid number*"; Succeeded = false; }
             if (newArea.SelectedItem != null)
                 newLine.Area = (Areas)Enum.Parse(typeof(Areas), newArea.SelectedItem.ToString());
@@ -62,31 +73,61 @@ namespace PlGui
                 Indication.Content = "No Area selected";
                 Succeeded = false;
             }
-            //List<Station> newListSta = new List<Station>();
-            //newListSta.Add(newFirstSta.SelectedItem as Station);
-            //newListSta.Add(newLastSta.SelectedItem as Station);
-            //newLine.stations = newListSta;
+            if (myStatos == addOrUpdate.add)
+            {
+                if (newFirstSta.SelectedItem != null && newLastSta.SelectedItem != null)
+                {
+                    newLine.FirstStation = (int)((newFirstSta.SelectedItem as Station).Code);
+                    newLine.LastStation = (int)((newLastSta.SelectedItem as Station).Code);
+                }
+                else
+                {
+                    Indication.Content = "Need to choose two stations";
+                    Succeeded = false;
+                }
+            }
 
-            //try { bl.AddLine(newLine); }
-            //catch (BadIdException myEx)
-            //{
-            //    newLineNum.Text = "";
-            //    Indication.Content = myEx.Message;
-            //    Succeeded = false;
-            //}
+            try
+            {
+                if (myStatos == addOrUpdate.add)
+                    bl.AddLine(newLine);
+                else
+                    bl.UpdateLine(newLine);
+            }
+            catch (BadIdException ex)
+            {
+                newLineNum.Text = "";
+                Indication.Content = ex.Message;
+                Succeeded = false;
+            }
 
 
             if (Succeeded)
             {
-                newLineNum.Text = "";
                 Indication.Content = "Succeeded";
                 Indication.Foreground = Brushes.Lime;
-                allLineC.Items.Add(new LineControl(newLine));
+                var grid = ((((sender as Button).Parent as Grid).Parent as AddLineControl).Parent as Grid).Parent as Grid;
+                var window = ((((grid.Children[2] as Button).Parent as Grid).Parent as Grid).Parent as Grid).Parent;
+                if (myStatos == addOrUpdate.add)
+                {
+                    allLineControls.Add(new LineControl(newLine));
+                    (window as MangementWindow).updateList();
+                    string msg = "Line " + newLine.Code + " successfully added";
+                    MessageBox.Show(msg);
+                }
+                else
+                {
+                    SelectedLC.Refresh();
+                    string msg = "Line " + newLine.Code + " has been successfully updated";
+                    MessageBox.Show(msg);
+                }
+                Indication.Foreground = Brushes.Lime;
+                ((window as Window).FindResource("closeSB") as Storyboard).Begin();
             }
             else
             {
                 string temp = Indication.Content.ToString();
-                if (temp == "" || temp == "Succeeded")
+                if (temp == "")
                     Indication.Content = "Try again";
                 Indication.Foreground = Brushes.Red;
             }

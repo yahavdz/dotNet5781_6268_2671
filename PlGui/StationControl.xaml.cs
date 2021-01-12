@@ -28,6 +28,11 @@ namespace PlGui
         {
             InitializeComponent();
             currentStation = _station;
+            Refresh();
+        }
+
+        public void Refresh()
+        {
             nameSta.Content = currentStation.Name;
             codeSta.Content = currentStation.Code;
         }
