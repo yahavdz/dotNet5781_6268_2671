@@ -25,7 +25,7 @@ namespace DalApi
         Line GetLine(int lineId);
         IEnumerable<Line> GetAllLines();
         IEnumerable<Line> GetAllLinesBy(Predicate<Line> predicate);
-        void AddLine(Line line);
+        int AddLine(Line line);
         void UpdateLine(Line line);
         void DeleteLine(int lineId);
         #endregion Line

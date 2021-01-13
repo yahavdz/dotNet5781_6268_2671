@@ -34,7 +34,7 @@ namespace PlGui
            
             busMileage.Content = currentBus.TotalTrip.ToString() + "km";
             busFuel.Content = currentBus.FuelRemain.ToString() + "km";
-            startDate.Content = currentBus.FromDate.ToString();
+            startDate.Content = currentBus.FromDate.ToString("yyyy, MMMM dd");
             busStatus.Content = currentBus.BusStatus.ToString();
             KilometersSinceLastTreatment.Content= currentBus.KilometersSinceLastTreatment.ToString() + "km";
             KilometersSinceLastRefuel.Content = currentBus.KilometersAtLastRefueling.ToString() + "km";

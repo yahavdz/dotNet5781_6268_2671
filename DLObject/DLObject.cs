@@ -89,7 +89,7 @@ namespace Dal
             return from line in DataSource.ListLines.FindAll(l => l.Active).FindAll(predicate)
                    select line.Clone();
         }
-        public void AddLine(Line line)
+        public int AddLine(Line line)
         {
             Line findLine = DataSource.ListLines.FirstOrDefault(l => l.Id == line.Id);
             if (findLine != null && findLine.Active)
@@ -99,6 +99,7 @@ namespace Dal
             Line newLine = line.Clone();
             newLine.Id = Counts.getBusLineCount();
             DataSource.ListLines.Add(newLine);
+            return newLine.Id;
         }
         public void DeleteLine(int lineId)
         {
@@ -107,6 +108,8 @@ namespace Dal
                 line.Active = false;
             else
                 throw new BadIdException(lineId, $"bad line id: {lineId}");
+            foreach (LineStation ls in GetAllLineStationBy(_ls => _ls.LineId == line.Id))
+                ls.Active = false;
         }
         public void UpdateLine(Line line)
         {

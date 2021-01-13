@@ -200,7 +200,7 @@ namespace PlGui
                         break;
                 }
             }
-            if (Continued)
+            if (Continued && selectedView != selected.nullDis)
             {
                 Storyboard sb = this.FindResource("goBigSB") as Storyboard;
                 sb.Begin();
@@ -265,6 +265,11 @@ namespace PlGui
                 case selected.busDis:
                     BusControl SelectedBC = allItems.SelectedItem as BusControl;
                     Bus b = bl.GetBus(SelectedBC.currentBus.LicenseNum);
+                    string busNum = b.LicenseNum.ToString();
+                    if (busNum.Length == 8)
+                        myTitel.Text = "Bus " + busNum.Insert(5, "-").Insert(3, "-");
+                    else
+                        myTitel.Text = "Bus " + busNum.Insert(5, "-").Insert(2, "-");
                     BusDetails bD = new BusDetails(b);
                     detailsControl.Content = bD;
                     break;

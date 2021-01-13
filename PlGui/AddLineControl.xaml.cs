@@ -1,21 +1,13 @@
-﻿using System;
+﻿using BLApi;
+using BO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using BO;
-using BLApi;
-using Line = BO.Line;
 using System.Windows.Media.Animation;
+using Line = BO.Line;
 
 namespace PlGui
 {
@@ -39,18 +31,16 @@ namespace PlGui
             newFirstSta.ItemsSource = bl.GetAllStations();
             newFirstSta.DisplayMemberPath = "Name";
 
-            newLastSta.ItemsSource = bl.GetAllStations();
-            newLastSta.DisplayMemberPath = "Name";
-
             if (SelectedLC != null)
             {
                 myStatos = addOrUpdate.update;
                 newLineNum.Text = SelectedLC.currentLine.Id.ToString();
                 newArea.SelectedIndex = (int)SelectedLC.currentLine.Area;
-                newFirstSta.Visibility = Visibility.Hidden;
-                newLastSta.Visibility = Visibility.Hidden;
-                labelFS.Text += bl.GetStations(SelectedLC.currentLine.FirstStation).Name;
-                labelLS.Text += bl.GetStations(SelectedLC.currentLine.LastStation).Name;
+                if (SelectedLC.currentLine.stations.ToList().Count > 0)
+                {
+                    newFirstSta.Visibility = Visibility.Hidden;
+                    labelFS.Text += bl.GetStations(SelectedLC.currentLine.stations.ToList()[0].Code).Name;
+                }
             }
             else
                 myStatos = addOrUpdate.add;
@@ -73,24 +63,35 @@ namespace PlGui
                 Indication.Content = "No Area selected";
                 Succeeded = false;
             }
-            if (myStatos == addOrUpdate.add)
+            LineStation newFLS = new LineStation();
+            if (newFirstSta.Visibility == Visibility.Visible)
             {
-                if (newFirstSta.SelectedItem != null && newLastSta.SelectedItem != null)
+                //List<LineStation> newLineStations = new List<LineStation>();
+                if (newFirstSta.SelectedItem != null)
                 {
-                    newLine.FirstStation = (int)((newFirstSta.SelectedItem as Station).Code);
-                    newLine.LastStation = (int)((newLastSta.SelectedItem as Station).Code);
+                    Station findSta = bl.GetStations((newFirstSta.SelectedItem as Station).Code);
+                    newFLS.Code = findSta.Code;
+                    newFLS.Active = findSta.Active;
+                    newFLS.Address = findSta.Address;
+                    newFLS.Accessibility = findSta.Accessibility;
+                    //newLineStations.Add(newFLS);
+                    //newLine.stations = newLineStations;
+                    // TODO newFLS.DistanceToNextStation
                 }
                 else
                 {
-                    Indication.Content = "Need to choose two stations";
+                    Indication.Content = "Need to choose first stations";
                     Succeeded = false;
                 }
             }
-
+            int newId = -1;
             try
             {
                 if (myStatos == addOrUpdate.add)
-                    bl.AddLine(newLine);
+                {
+                    newId = bl.AddLine(newLine);
+                    bl.AddStationToLine(bl.GetLine(newId), newFLS);
+                }
                 else
                     bl.UpdateLine(newLine);
             }
@@ -110,7 +111,8 @@ namespace PlGui
                 var window = ((((grid.Children[2] as Button).Parent as Grid).Parent as Grid).Parent as Grid).Parent;
                 if (myStatos == addOrUpdate.add)
                 {
-                    allLineControls.Add(new LineControl(newLine));
+                    Line tt = bl.GetLine(newId);
+                    allLineControls.Add(new LineControl(tt));
                     (window as MangementWindow).updateList();
                     string msg = "Line " + newLine.Code + " successfully added";
                     MessageBox.Show(msg);

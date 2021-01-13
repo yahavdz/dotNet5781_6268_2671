@@ -169,12 +169,12 @@ namespace BL
             for (int i = 0; i < LineBO.stations.Count(); i++) // instaed of foraech for the station index
             {
                 DO.LineStation doLineStation = new DO.LineStation();
-                doLineStation.LineId = LineBO.Code;
+                doLineStation.LineId = LineBO.Id;
                 doLineStation.LineStationIndex = i;
                 doLineStation.Station = LineBO.stations.ElementAt(i).Code;
                 doLineStation.Active = LineBO.stations.ElementAt(i).Active;
                 if (i > 0) doLineStation.PrevStation = LineBO.stations.ElementAt(i - 1).Code;
-                if (i < LineBO.stations.Count() - 1) doLineStation.NextStation = LineBO.stations.ElementAt(i + 1).Code;
+                if (i < LineBO.stations.Count() - 1 && LineBO.stations.Count() > 1) doLineStation.NextStation = LineBO.stations.ElementAt(i + 1).Code;
                 stationsList.Add(doLineStation);
             }
             return stationsList;
@@ -204,7 +204,7 @@ namespace BL
             IEnumerable<DO.Line> doLines = dl.GetAllLinesBy((l) => predicate(LineDoBoAdapter(l)));
             return doLines.Select((l) => LineDoBoAdapter(l));
         }
-        public void AddLine(BO.Line line)
+        public int AddLine(BO.Line line)
         {
             if (line.Code < 0)
                 throw new BadIdException(line.Code, " Line Code must be bigger then 0");
@@ -213,7 +213,7 @@ namespace BL
             lineDO.Active = true;
             try
             {
-                dl.AddLine(lineDO);
+                return dl.AddLine(lineDO);
             }
             catch (DO.BadIdException ex)
             {
