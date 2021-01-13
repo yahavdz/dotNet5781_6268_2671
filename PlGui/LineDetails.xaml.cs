@@ -68,7 +68,7 @@ namespace PlGui
             ls.Active = sc.currentStation.Active;
             ls.Address = sc.currentStation.Address;
             ls.Accessibility = sc.currentStation.Accessibility;
-            // TODO ls.DistanceToNextStation
+            //TODO ls.DistanceToNextStation
 
 
 

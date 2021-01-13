@@ -250,7 +250,7 @@ namespace BL
                     }
                     catch (DO.BadIdException ex)
                     {
-                        // throw new BO.BadIdException(ex, $"bad bus id: {lineDO.Id}", lineDO.Id);
+                        // TODO throw new BO.BadIdException(ex, $"bad bus id: {lineDO.Id}", lineDO.Id);
                     }
                 }
                 else
@@ -261,7 +261,7 @@ namespace BL
                     }
                     catch (DO.BadIdException ex)
                     {
-                        // throw new BO.BadIdException(ex, $"bad bus id: {lineDO.Id}", lineDO.Id);
+                        // TODO throw new BO.BadIdException(ex, $"bad bus id: {lineDO.Id}", lineDO.Id);
                     }
                 }
             }
