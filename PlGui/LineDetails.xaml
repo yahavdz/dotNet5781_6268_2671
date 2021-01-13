@@ -4,36 +4,58 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PlGui"
-             mc:Ignorable="d" Height="308.556" Width="521" >
-    <Grid Background="#FFDEDEDE" Margin="10,5,0,5">
-        <StackPanel Orientation="Vertical">
-            <Grid Height="63" Margin="0,0,0.333,0">
-                <Label Content="Station List" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="28" FontFamily="Segoe UI Emoji" Foreground="Peru" Height="63" Width="196"/>
-                <Label Content="Line Num: " HorizontalAlignment="Left" Margin="201,0,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Emoji" Foreground="Peru" FontSize="28" Height="63" Width="141"/>
-                <Label x:Name="lineNum" HorizontalAlignment="Left" Margin="347,0,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Emoji" Foreground="Peru" FontSize="28" Height="63" Width="75"/>
-            </Grid>
-            <Grid Margin="0,0,0.333,0" Height="237">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="98*"/>
-                    <ColumnDefinition Width="103*"/>
-                    <ColumnDefinition Width="310*"/>
-                    <ColumnDefinition Width="0*"/>
-                </Grid.ColumnDefinitions>
-                <ListBox x:Name="liststation" Grid.Column="1" HorizontalAlignment="Left" Height="237" Margin="103,0,0,0" VerticalAlignment="Top" Width="310" Grid.ColumnSpan="2" Drop="ListBox_Drop" AllowDrop="True" />
-                <Button x:Name="daletButton" Opacity="0.6" Height="40" BorderBrush="{x:Null}" Foreground="{x:Null}" FontSize="28" FontWeight="Bold" Click="deleteButton_Click" Canvas.Left="40" Canvas.Top="440" Grid.ColumnSpan="2" Margin="62,192,78.333,5">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="20"/>
-                        </Style>
-                    </Button.Resources>
-                    <Button.Background>
-                        <ImageBrush ImageSource="deleteIcon.png" Stretch="UniformToFill"/>
-                    </Button.Background>
-                </Button>
-                <Label Content="Line Total time:" HorizontalAlignment="Left" Margin="0,64,0,0" VerticalAlignment="Top" Width="98" Height="48" FontWeight="Bold"/>
-                <Label x:Name="lineTime" Grid.Column="1" HorizontalAlignment="Left" Margin="0,64,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.446,0.415" Width="103" Height="48"/>
-                <Label  Content="To add, drag from stations" HorizontalAlignment="Left" Margin="10,157,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="181" Height="35" FontWeight="Bold" FontSize="13"/>
-            </Grid>
-        </StackPanel>
+             mc:Ignorable="d">
+    <Grid HorizontalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0">
+                <Label Content="Station List" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="28" FontFamily="Segoe UI Emoji" Foreground="Peru"/>
+                <Label Content="To add, drag from stations" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="12"/>
+            </StackPanel>
+            <ListBox x:Name="liststation" Background="SkyBlue" Grid.Row="1" Drop="ListBox_Drop" AllowDrop="True" BorderBrush="{x:Null}">
+                <ListBox.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </ListBox.Resources>
+            </ListBox>
+
+                <Button x:Name="daletButton" Grid.Row="2" Opacity="0.6" Height="50" Width="50" BorderBrush="{x:Null}" Foreground="{x:Null}" FontSize="28" FontWeight="Bold" Click="deleteButton_Click">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="25"/>
+                    </Style>
+                </Button.Resources>
+                <Button.Background>
+                    <ImageBrush ImageSource="deleteIcon.png" Stretch="UniformToFill"/>
+                </Button.Background>
+            </Button>
+        </Grid>
+        <Grid Grid.Column="0" VerticalAlignment="Top" Margin="0 80 0 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Content="Line ID: " Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="18" FontFamily="Segoe UI Emoji" Foreground="Peru"/>
+            <Label x:Name="lineNum" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontWeight="Bold" FontSize="16" FontFamily="Segoe UI Black" Foreground="Peru" VerticalContentAlignment="Center"/>
+            <Label Content="Line Area:" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="18" FontFamily="Segoe UI Emoji" Foreground="Peru"/>
+            <Label x:Name="lineArea" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontWeight="Bold" FontSize="16" FontFamily="Segoe UI Black" Foreground="Peru" VerticalContentAlignment="Center"/>
+            <Label Content="Line Total time:" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="18" FontFamily="Segoe UI Emoji" Foreground="Peru"/>
+            <Label x:Name="lineTime" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontWeight="Bold" FontSize="16" FontFamily="Segoe UI Black" Foreground="Peru" VerticalContentAlignment="Center"/>
+        </Grid>
     </Grid>
 </UserControl>

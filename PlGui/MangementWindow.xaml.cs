@@ -267,21 +267,23 @@ namespace PlGui
                     Bus b = bl.GetBus(SelectedBC.currentBus.LicenseNum);
                     string busNum = b.LicenseNum.ToString();
                     if (busNum.Length == 8)
-                        myTitel.Text = "Bus " + busNum.Insert(5, "-").Insert(3, "-");
+                        myTitel.Text = "Bus number " + busNum.Insert(5, "-").Insert(3, "-");
                     else
-                        myTitel.Text = "Bus " + busNum.Insert(5, "-").Insert(2, "-");
+                        myTitel.Text = "Bus number " + busNum.Insert(5, "-").Insert(2, "-");
                     BusDetails bD = new BusDetails(b);
                     detailsControl.Content = bD;
                     break;
                 case selected.lineDis:
                     LineControl SelectedLC = allItems.SelectedItem as LineControl;
                     Line l = bl.GetLine(SelectedLC.currentLine.Id);
+                    myTitel.Text = "Line number " + l.Code.ToString();
                     LineDetails ld = new LineDetails(l, bl);
                     detailsControl.Content = ld;
                     break;
                 case selected.stationDis:
                     StationControl SelectedSC = allItems.SelectedItem as StationControl;
                     Station s = bl.GetStations(SelectedSC.currentStation.Code);
+                    myTitel.Text = "Station Code " + s.Code.ToString();
                     StationDetails sd = new StationDetails(s);
                     detailsControl.Content = sd; 
                     break;

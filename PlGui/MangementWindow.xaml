@@ -148,7 +148,7 @@
                         <DropShadowEffect BlurRadius="30" Color="LightGray" ShadowDepth="0"/>
                     </Border.Effect>
                 </Border>
-                <TextBlock x:Name="myTitel" Background="{x:Null}" Foreground="Honeydew"  HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="62"/>
+                <TextBlock x:Name="myTitel" Background="{x:Null}" Foreground="Honeydew"  HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="48"/>
             </Grid>
             <Grid Background="#FFDEDEDE" Grid.Row="1">
                 <Border Margin="20" MinWidth="400" Background="White" Padding="30" CornerRadius="10" MaxWidth="800">
@@ -156,7 +156,7 @@
                         <DropShadowEffect BlurRadius="30" Color="LightGray" ShadowDepth="0"/>
                     </Border.Effect>
                 </Border>
-                <ContentControl x:Name="detailsControl" Background="#FF5C99D6" Grid.Row="1" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <ContentControl x:Name="detailsControl" Margin="25" Background="#FF5C99D6" Grid.Row="1" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center">
                     <ContentControl.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
