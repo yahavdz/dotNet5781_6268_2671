@@ -275,7 +275,10 @@ namespace PlGui
                     detailsControl.Content = ld;
                     break;
                 case selected.stationDis:
-                   
+                    StationControl SelectedSC = allItems.SelectedItem as StationControl;
+                    Station s = bl.GetStations(SelectedSC.currentStation.Code);
+                    StationDetails sd = new StationDetails(s);
+                    detailsControl.Content = sd; 
                     break;
                 default:
                     break;

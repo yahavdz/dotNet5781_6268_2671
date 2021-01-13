@@ -225,14 +225,14 @@ namespace Dal
         #endregion BusOnTrip
 
         #region LineStation
-        public LineStation GetLineStation(int lineStationId)
+        public LineStation GetLineStation(int lineId, int station)
         {
-            LineStation lineStation = DataSource.ListLineStations.Find(ls => ls.LineId == lineStationId && ls.Active);
+            LineStation lineStation = DataSource.ListLineStations.Find(ls => ls.LineId == lineId && ls.Active && ls.Station==station);
 
             if (lineStation != null)
                 return lineStation.Clone();
             else
-                throw new BadIdException(lineStationId, $"bad line station id: {lineStationId}");
+                throw new BadIdException(lineId, $"bad line station id: {lineId}");
         }
         public IEnumerable<LineStation> GetAllLineStation()
         {
@@ -253,13 +253,13 @@ namespace Dal
                 DataSource.ListLineStations.Remove(findLineStation);
             DataSource.ListLineStations.Add(lineStation.Clone());
         }
-        public void DeleteLineStation(int lineStationId)
+        public void DeleteLineStation(int lineId, int station)
         {
-            LineStation lineStation = DataSource.ListLineStations.Find(ls => ls.LineId == lineStationId);
+            LineStation lineStation = DataSource.ListLineStations.Find(ls => ls.LineId == lineId && ls.Station == station);
             if (lineStation != null)
                 lineStation.Active = false;
             else
-                throw new BadIdException(lineStationId, $"bad line station id: {lineStationId}");
+                throw new BadIdException(lineId, $"bad line station id: {lineId}");
         }
         public void UpdateLineStation(LineStation lineStation)
         {

@@ -24,9 +24,11 @@ namespace PlGui
     /// </summary>
     public partial class LineDetails : UserControl
     {
-        
+
         public Line currentLine { get; set; }
         private List<StationControl> allStationControls { get; set; }
+        private List<LineControl> allLineControls { get; set; }
+
         private IBL bl { get; set; }
 
         public LineDetails(Line _line, IBL _bl)
@@ -35,6 +37,8 @@ namespace PlGui
             currentLine = _line;
             bl = _bl;
             allStationControls = new List<StationControl>();
+            allLineControls = new List<LineControl>();
+
             Refresh();
         }
 
@@ -46,13 +50,13 @@ namespace PlGui
             {
                 lt += ls.TimeToNextStation;
             }
-            foreach(Station s in currentLine.stations)
-                 allStationControls.Add(new StationControl(s));
+            foreach (Station s in currentLine.stations)
+                allStationControls.Add(new StationControl(s));
             foreach (StationControl sc in allStationControls)
                 liststation.Items.Add(sc);
             lineTime.Content = lt.ToString();
 
-               
+
         }
 
         private void ListBox_Drop(object sender, DragEventArgs e)
@@ -74,7 +78,36 @@ namespace PlGui
 
             bl.AddStationToLine(currentLine, ls);
         }
-    }
 
-   
+
+
+        private void deleteButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            daletButton.Opacity = 0.6;
+            if (liststation.SelectedItem != null)
+            {
+                MessageBoxResult popUp = MessageBox.Show("Are you sure you want to delete?", "Delete",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question,
+                MessageBoxResult.Yes);
+                if (popUp == MessageBoxResult.Yes)
+                {
+
+                    StationControl SelectedSC = liststation.SelectedItem as StationControl;
+                    bl.DeleteStation(SelectedSC.currentStation.Code);
+                    allStationControls.Remove(SelectedSC);
+
+                }
+                
+            }
+            liststation.SelectedItem = null;
+            liststation.Items.Clear();
+            foreach (StationControl sc in allStationControls)
+                liststation.Items.Add(sc);
+        }
+    }
 }
+
+
+

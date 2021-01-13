@@ -20,10 +20,19 @@
                     <ColumnDefinition Width="0*"/>
                 </Grid.ColumnDefinitions>
                 <ListBox x:Name="liststation" Grid.Column="1" HorizontalAlignment="Left" Height="237" Margin="103,0,0,0" VerticalAlignment="Top" Width="310" Grid.ColumnSpan="2" Drop="ListBox_Drop" AllowDrop="True" />
-                <Button Content="ADD" Grid.Column="1" HorizontalAlignment="Left" Margin="0,192,0,-1" VerticalAlignment="Top" Width="103" Height="46"/>
-                <Button Content="DELETE" HorizontalAlignment="Left" Margin="0,192,0,-1" VerticalAlignment="Top" Width="98" Height="46"/>
-                <Label Content="Line Total time:" HorizontalAlignment="Left" Margin="0,64,0,0" VerticalAlignment="Top" Width="98" Height="48"/>
+                <Button x:Name="daletButton" Opacity="0.6" Height="40" BorderBrush="{x:Null}" Foreground="{x:Null}" FontSize="28" FontWeight="Bold" Click="deleteButton_Click" Canvas.Left="40" Canvas.Top="440" Grid.ColumnSpan="2" Margin="62,192,78.333,5">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="20"/>
+                        </Style>
+                    </Button.Resources>
+                    <Button.Background>
+                        <ImageBrush ImageSource="deleteIcon.png" Stretch="UniformToFill"/>
+                    </Button.Background>
+                </Button>
+                <Label Content="Line Total time:" HorizontalAlignment="Left" Margin="0,64,0,0" VerticalAlignment="Top" Width="98" Height="48" FontWeight="Bold"/>
                 <Label x:Name="lineTime" Grid.Column="1" HorizontalAlignment="Left" Margin="0,64,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.446,0.415" Width="103" Height="48"/>
+                <Label  Content="To add, drag from stations" HorizontalAlignment="Left" Margin="10,157,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="181" Height="35" FontWeight="Bold" FontSize="13"/>
             </Grid>
         </StackPanel>
     </Grid>

@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="PlGui.StationDetails"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PlGui"
+            mc:Ignorable="d" Height="308.556" Width="521" >
+    <Grid Background="#FFDEDEDE" Margin="10,5,0,5">
+
+        <StackPanel Orientation="Vertical">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="125*"/>
+                    <ColumnDefinition Width="109*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left" Height="47" Margin="0,0,0,-0.333" Width="390" Grid.ColumnSpan="2">
+                    <Label Content="Station Code:" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="28" FontFamily="Segoe UI Emoji" Foreground="Peru"/>
+                    <Label x:Name="stationCode" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="20" FontFamily="Segoe UI Black" Foreground="Peru" Margin="0,0,0,-0.333" Width="276" Height="47"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,47,0,-47.333" Height="47" Width="388" Grid.ColumnSpan="2">
+                    <Label Content="Location:" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="28" FontFamily="Segoe UI Emoji" Foreground="Peru"/>
+                    <Label x:Name="name" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="20" FontFamily="Segoe UI Black" Foreground="Peru" Margin="0,0,0,-0.333" Width="274" Height="47"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,94,0,-94.333" Grid.ColumnSpan="2" Height="47" Width="390">
+                    <Label Content="Address:" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="28" FontFamily="Segoe UI Emoji" Foreground="Peru"/>
+                    <Label x:Name="address" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="20" FontFamily="Segoe UI Black" Foreground="Peru" Margin="0,0,0,-0.333" Width="253" Height="47"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,141,0,-141.333" Grid.ColumnSpan="2" Height="47" Width="390">
+                    <Label Content="Longitude:" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="28" FontFamily="Segoe UI Emoji" Foreground="Peru"/>
+                    <Label x:Name="longitude" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="20" FontFamily="Segoe UI Black" Foreground="Peru" Margin="0,0,0,-0.333" Width="249" Height="47"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,188,0,-188.333" Grid.ColumnSpan="2" Height="47" Width="390">
+                    <Label Content="Latitude:" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="28" FontFamily="Segoe UI Emoji" Foreground="Peru"/>
+                    <Label x:Name="latitude" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="20" FontFamily="Segoe UI Black" Foreground="Peru" Margin="0,0,0,-0.333" Width="273" Height="47"/>
+                </StackPanel>
+               
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -140,14 +140,14 @@ namespace BL
                 {
                     DO.Station nextDoStation = dl.GetStation(listOfLineStations.ElementAt(i + 1).Station);
                     bols.DistanceToNextStation = Math.Sqrt(Math.Pow(nextDoStation.Latitude * 110.574 - currentDoStation.Latitude * 110.574, 2) + Math.Pow(nextDoStation.Longitude * 111.320 * Math.Cos(nextDoStation.Latitude) - currentDoStation.Longitude * 111.320 * Math.Cos(nextDoStation.Latitude), 2) * 1.0);
-                    double calc = (bols.DistanceToNextStation / 50)*3;
+                    double calc = (bols.DistanceToNextStation / 50) * 3;
                     int temp = Convert.ToInt32(calc);
-                    if (calc < 1 && calc > 0) 
-                        bols.TimeToNextStation =new TimeSpan (0,0,temp*2);
+                    if (calc < 1 && calc > 0)
+                        bols.TimeToNextStation = new TimeSpan(0, 0, temp * 2);
                     if (calc < 60 && calc > 1)
-                        bols.TimeToNextStation = new TimeSpan(0, temp*2, 0);
+                        bols.TimeToNextStation = new TimeSpan(0, temp * 2, 0);
                     else if (calc > 60)
-                        bols.TimeToNextStation =  TimeSpan.FromHours(temp*2);
+                        bols.TimeToNextStation = TimeSpan.FromHours(temp * 2);
                 }
                 currentDoStation.CopyPropertiesTo(bols);
                 LineBO.stations = LineBO.stations.Append(bols).ToList();
@@ -164,7 +164,7 @@ namespace BL
         }
 
         IEnumerable<DO.LineStation> LineBoLineStationDoAdapter(BO.Line LineBO)
-        {             
+        {
             List<DO.LineStation> stationsList = new List<DO.LineStation>();
             for (int i = 0; i < LineBO.stations.Count(); i++) // instaed of foraech for the station index
             {
@@ -176,7 +176,7 @@ namespace BL
                 if (i > 0) doLineStation.PrevStation = LineBO.stations.ElementAt(i - 1).Code;
                 if (i < LineBO.stations.Count() - 1) doLineStation.NextStation = LineBO.stations.ElementAt(i + 1).Code;
                 stationsList.Add(doLineStation);
-            }    
+            }
             return stationsList;
         }
 
@@ -250,7 +250,7 @@ namespace BL
                     }
                     catch (DO.BadIdException ex)
                     {
-                        // TODO throw new BO.BadIdException(ex, $"bad bus id: {lineDO.Id}", lineDO.Id);
+                        throw new BO.IsNotExistException(ex, $" {lineDO.Id} Not Exist", lineDO.Id);
                     }
                 }
                 else
@@ -261,7 +261,7 @@ namespace BL
                     }
                     catch (DO.BadIdException ex)
                     {
-                        // TODO throw new BO.BadIdException(ex, $"bad bus id: {lineDO.Id}", lineDO.Id);
+                        throw new BO.IsNotExistException(ex, $" {lineDO.Id} Not Exist", lineDO.Id);
                     }
                 }
             }
@@ -285,6 +285,18 @@ namespace BL
         {
             line.stations = line.stations.Append(station).ToList();
             UpdateLine(line);
+        }
+        public void DeleteStationFromLine(Line line, LineStation station)
+        {
+            DO.LineStation stationToDelete = dl.GetLineStation(line.Code, station.Code);
+            DO.LineStation prevStation = dl.GetLineStation(line.Code, stationToDelete.PrevStation);
+            DO.LineStation nextStation = dl.GetLineStation(line.Code, stationToDelete.NextStation);
+            prevStation.NextStation = nextStation.Station;
+            nextStation.PrevStation = prevStation.Station;
+            dl.UpdateLineStation(prevStation);
+            dl.UpdateLineStation(nextStation);
+            dl.DeleteLineStation(line.Code, station.Code); 
+
         }
 
         #endregion

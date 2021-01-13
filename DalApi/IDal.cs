@@ -49,12 +49,12 @@ namespace DalApi
         #endregion
 
         #region LineStation
-        LineStation GetLineStation(int lineStationId);
+        LineStation GetLineStation(int lineId, int station);
         IEnumerable<LineStation> GetAllLineStation();
         IEnumerable<LineStation> GetAllLineStationBy(Predicate<LineStation> predicate);
         void AddLineStation(LineStation lineStation);
         void UpdateLineStation(LineStation lineStation);
-        void DeleteLineStation(int lineStationId);
+        void DeleteLineStation(int lineId, int station);
         bool isLineStationExistForLine(int lineId, int lineStationsId);
         #endregion
 

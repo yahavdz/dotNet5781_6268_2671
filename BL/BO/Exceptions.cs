@@ -90,4 +90,13 @@ namespace BO
        base(message) => longitudeLatitude = l;
         public override string ToString() => base.ToString() + $", Wrong cordinates: {longitudeLatitude}";
     }
+    public class IsNotExistException : Exception
+    {
+        public int id;
+        public IsNotExistException(int i, string message) :
+       base(message) => id = i;
+        public IsNotExistException(DO.BadIdException ex, string message, int i) :
+           base(message) => id = i;
+        public override string ToString() => base.ToString() + $",  {id}  Not Exist";
+    }
 }
