@@ -55,8 +55,7 @@ namespace PlGui
             foreach (StationControl sc in allStationControls)
                 liststation.Items.Add(sc);
             lineTime.Content = lt.ToString();
-
-
+            lineArea.Content = currentLine.Area.ToString();
         }
 
         private void ListBox_Drop(object sender, DragEventArgs e)
