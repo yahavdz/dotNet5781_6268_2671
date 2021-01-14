@@ -292,17 +292,29 @@ namespace PlGui
 
         private void ListBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            
             if (selectedView == selected.stationDis)
             {
-                ListBox parent = (ListBox)sender;
-                dragSource = parent;
-                object data = GetDataFromListBox(dragSource, e.GetPosition(parent));
-
-                if (data != null)
+                if (e.ClickCount == 2)
                 {
-                    DragDrop.DoDragDrop(parent, data, DragDropEffects.Move);
+                    StationControl SelectedSC = allItems.SelectedItem as StationControl;
+                    Station s = bl.GetStations(SelectedSC.currentStation.Code);
+                    StationDetails sd = new StationDetails(s);
+                    detailsControl.Content = sd;
+                }
+                else
+                {
+                    ListBox parent = (ListBox)sender;
+                    dragSource = parent;
+                    object data = GetDataFromListBox(dragSource, e.GetPosition(parent));
+
+                    if (data != null)
+                    {
+                        DragDrop.DoDragDrop(parent, data, DragDropEffects.Move);
+                    }
                 }
             }
+            
         }
         #region GetDataFromListBox(ListBox,Point)
         private static object GetDataFromListBox(ListBox source, Point point)
