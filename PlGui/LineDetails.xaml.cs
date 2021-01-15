@@ -29,6 +29,7 @@ namespace PlGui
         private List<StationControl> allStationControls { get; set; }
         private List<LineControl> allLineControls { get; set; }
 
+        
         private IBL bl { get; set; }
 
         public LineDetails(Line _line, IBL _bl)
@@ -58,24 +59,57 @@ namespace PlGui
             lineArea.Content = currentLine.Area.ToString();
         }
 
+        private bool IsMouseOver(StationControl item, DragEventArgs e)
+        {
+            // We need to use MouseUtilities to figure out the cursor
+            // coordinates because, during a drag-drop operation, the WPF
+            // mechanisms for getting the coordinates behave strangely.
+
+            Rect bounds = VisualTreeHelper.GetDescendantBounds(item);
+            Point mousePos = e.GetPosition(item);
+            return bounds.Contains(mousePos);
+        }
         private void ListBox_Drop(object sender, DragEventArgs e)
         {
             ListBox parent = (ListBox)sender;
-            // e.Data.GetData()
+
+            int index = -1;
+            int i = 0;
+            foreach (StationControl item in parent.Items)
+            {
+                if (IsMouseOver(item, e))
+                {
+                    index = i;
+                    break;
+                }
+                i++;
+            }
+
             object data = e.Data.GetData(typeof(StationControl));
-            // ((IList)dragSource.ItemsSource).Remove(data);
             StationControl sc = new StationControl((data as StationControl).currentStation);
-            parent.Items.Add(sc);
+
+            if (index == -1)
+            {
+                parent.Items.Add(sc);
+                index = parent.Items.Count;
+            }
+            else
+            {
+                parent.Items.Insert(index, sc);
+            }
+
             LineStation ls = new LineStation();
             ls.Code = sc.currentStation.Code;
             ls.Active = sc.currentStation.Active;
             ls.Address = sc.currentStation.Address;
             ls.Accessibility = sc.currentStation.Accessibility;
+            ls.LineId = currentLine.Id;
+            ls.Latitude = sc.currentStation.Latitude;
+            ls.Longitude = sc.currentStation.Longitude;
+            ls.Name = sc.currentStation.Name;
+
             //TODO ls.DistanceToNextStation
-
-
-
-            bl.AddStationToLine(currentLine, ls);
+            bl.AddStationToLine(currentLine, ls, index);
         }
 
 
@@ -105,6 +139,22 @@ namespace PlGui
             foreach (StationControl sc in allStationControls)
                 liststation.Items.Add(sc);
         }
+    }
+}
+public static class WpfDomHelper
+{
+    public static T FindParent<T>(this DependencyObject child) where T : DependencyObject
+    {
+
+        DependencyObject parentObject = VisualTreeHelper.GetParent(child);
+
+        if (parentObject == null) return null;
+
+        T parent = parentObject as T;
+        if (parent != null)
+            return parent;
+        else
+            return FindParent<T>(parentObject);
     }
 }
 

@@ -25,7 +25,7 @@ namespace BLApi
         int AddLine(Line line);
         void UpdateLine(Line line);
         void DeleteLine(int id);
-        void AddStationToLine(Line line, LineStation station);
+        void AddStationToLine(Line line, LineStation station, int index);
         #endregion Line
 
         #region Station

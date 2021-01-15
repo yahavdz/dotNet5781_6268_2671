@@ -1,1 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Id> Counts.getBusLineCount()</Id>
+<Code>1</Code>
+<Area>Areas.Center </Area>
+FirstStation=ListStations[0].Code,
+LastStation=ListStations[9].Code,
+Active = true

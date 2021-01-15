@@ -28,7 +28,7 @@ namespace PlGui
         public MainWindow()
         {
             InitializeComponent();
-            selectedView = Options.Signup;
+            selectedView = Options.Login;
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)

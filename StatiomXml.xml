@@ -1,1 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfStation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Station>
+		<Code> Counts.getStationsCount()</Code>
+		<Address> "Tel-Aviv 122"</Address>
+		<Latitude> random.NextDouble() * (33.3 - 31.0) + 31.0</Latitude>
+		<Longitude> random.NextDouble() * (35.5 - 34.3) + 34.3</Longitude>
+		<Name> " Dolev st. - Habrosh st."</Name>
+		<Accessibility> true </Accessibility>
+		<Active> true </Active>
+	</Station>
+</ArrayOfStation>

@@ -235,7 +235,7 @@ namespace Dal
             if (lineStation != null)
                 return lineStation.Clone();
             else
-                throw new BadIdException(lineId, $"bad line station id: {lineId}");
+                throw new BadIdException(lineId, $"The is no station {station} in line: {lineId}");
         }
         public IEnumerable<LineStation> GetAllLineStation()
         {
@@ -266,7 +266,7 @@ namespace Dal
         }
         public void UpdateLineStation(LineStation lineStation)
         {
-            LineStation findLineStation = DataSource.ListLineStations.FirstOrDefault(ls => ls.LineId == lineStation.LineId && ls.Active);
+            LineStation findLineStation = DataSource.ListLineStations.FirstOrDefault(ls => ls.LineId == lineStation.LineId && ls.Station == lineStation.Station && ls.Active);
 
             if (findLineStation != null)
             {

@@ -584,7 +584,7 @@ namespace DS
                      Code=6,
                      Area =Areas.General ,
                      FirstStation=ListStations[5].Code,
-                     LastStation=ListStations[15].Code,
+                     LastStation=ListStations[14].Code,
                      Active = true
                  },
                  new Line//7
@@ -593,7 +593,7 @@ namespace DS
                      Code=7,
                      Area =Areas.General ,
                      FirstStation=ListStations[15].Code,
-                     LastStation=ListStations[25].Code,
+                     LastStation=ListStations[24].Code,
                      Active = true
                  },
                  new Line//8
@@ -602,7 +602,7 @@ namespace DS
                      Code=8,
                      Area =Areas.South ,
                      FirstStation=ListStations[25].Code,
-                     LastStation=ListStations[35].Code,
+                     LastStation=ListStations[34].Code,
                      Active = true
                  },
                  new Line//9
@@ -611,7 +611,7 @@ namespace DS
                      Code=9,
                      Area =Areas.General ,
                      FirstStation=ListStations[35].Code,
-                     LastStation=ListStations[45].Code,
+                     LastStation=ListStations[44].Code,
                      Active = true
                  },
                  new Line//10
@@ -620,7 +620,7 @@ namespace DS
                      Code=10,
                      Area =Areas.Jerusalem ,
                      FirstStation=ListStations[20].Code,
-                     LastStation=ListStations[40].Code,
+                     LastStation=ListStations[39].Code,
                      Active = true
                  },
 
@@ -950,10 +950,10 @@ namespace DS
                 ListLineStations.Add(new LineStation
                 {
                     LineId = ListLines[i].Id,
-                    Station = ListStations[i * 10].Code,
-                    LineStationIndex = 1,
+                    Station = ListLines[i].FirstStation,
+                    LineStationIndex = 0,
                     // PrevStation = ListStations[0].Code,
-                    NextStation = ListStations[i * 10 + 1].Code,
+                    NextStation = ListLines[i].FirstStation + 1,
                     Active = true
                 });
 
@@ -962,34 +962,33 @@ namespace DS
                     ListLineStations.Add(new LineStation
                     {
                         LineId = ListLines[i].Id,
-                        Station = ListStations[i * 10 + j].Code,
+                        Station = ListLines[i].FirstStation +  j,
                         LineStationIndex = j,
-                        PrevStation = ListStations[i * 10 + j - 1].Code,
-                        NextStation = ListStations[i * 10 + j + 1].Code,
+                        PrevStation = ListLines[i].FirstStation + j - 1,
+                        NextStation = ListLines[i].FirstStation + j + 1,
                         Active = true
                     });
                 }
 
-              
                 ListLineStations.Add(new LineStation
                 {
                     LineId = ListLines[i].Id,
-                    Station = ListStations[i * 10 + 9].Code,
+                    Station = ListLines[i].LastStation,
                     LineStationIndex = 9,
-                    PrevStation = ListStations[i * 10 + 8].Code,
+                    PrevStation = ListLines[i].LastStation - 1,
                     // NextStation = ListStations[i * 10 + 1] .Code,
                     Active = true
                 });
             }
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 4; i++)
             {
                 ListLineStations.Add(new LineStation
                 {
                     LineId = ListLines[i + 5].Id,
                     Station = ListLines[i + 5].FirstStation,
-                    LineStationIndex = 1,
+                    LineStationIndex = 0,
                     // PrevStation = ListStations[0].Code,
-                    NextStation = ListStations[i * 10 + 1].Code,
+                    NextStation = ListLines[i + 5].FirstStation + 1,
                     Active = true
                 }) ;
 
@@ -1018,9 +1017,40 @@ namespace DS
                 });
             }
 
+            // for the last line with 20 stations:
+            ListLineStations.Add(new LineStation
+            {
+                LineId = ListLines[9].Id,
+                Station = ListLines[9].FirstStation,
+                LineStationIndex = 0,
+                // PrevStation = ListStations[0].Code,
+                NextStation = ListLines[9].FirstStation + 1,
+                Active = true
+            });
+            for (int j = 1; j < 19; j++)
+            {
+                ListLineStations.Add(new LineStation
+                {
+                    LineId = ListLines[9].Id,
+                    Station = ListLines[9].FirstStation + j,
+                    LineStationIndex = j,
+                    PrevStation = ListLines[9].FirstStation + j - 1,
+                    NextStation = ListLines[9].FirstStation + j + 1,
+                    Active = true
+                });
+            }
+            ListLineStations.Add(new LineStation
+            {
+                LineId = ListLines[9].Id,
+                Station = ListLines[9].LastStation,
+                LineStationIndex = 19,
+                PrevStation = ListLines[9].LastStation - 1,
+                // NextStation = ListStations[i * 10 + 1] .Code,
+                Active = true
+            });
 
 
-            for (int i = 0; i < 10; i++)
+            /*for (int i = 0; i < 10; i++)
             {
                 int stationsCount = i * 10;
                 if (i > 4) stationsCount = (i - 5) * 10;
@@ -1061,7 +1091,7 @@ namespace DS
                     Active = true
                 });
 
-            }
+            }*/
 
             ListUsers = new List<User>()
             {

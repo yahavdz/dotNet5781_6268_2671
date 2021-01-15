@@ -90,7 +90,7 @@ namespace PlGui
                 if (myStatos == addOrUpdate.add)
                 {
                     newId = bl.AddLine(newLine);
-                    bl.AddStationToLine(bl.GetLine(newId), newFLS);
+                    bl.AddStationToLine(bl.GetLine(newId), newFLS, 0);
                 }
                 else
                     bl.UpdateLine(newLine);

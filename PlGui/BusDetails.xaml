@@ -15,7 +15,7 @@
             <Label Content="Fuel left:" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="28" FontFamily="Segoe UI Emoji" Foreground="Peru"/>
             <Label Content="Start date:" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="28" FontFamily="Segoe UI Emoji" Foreground="Peru"/>
             <Label Content="Bus status:" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="28" FontFamily="Segoe UI Emoji" Foreground="Peru"/>
-            <Label Content="KM since last treatment:" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="28" FontFamily="Segoe UI Emoji" Foreground="Peru"/>
+            <Label Content="KM at last treatment:" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="28" FontFamily="Segoe UI Emoji" Foreground="Peru"/>
             <Label Content="KM at last refuel:" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="28" FontFamily="Segoe UI Emoji" Foreground="Peru"/>
         </StackPanel>
         <StackPanel Grid.Column="1">

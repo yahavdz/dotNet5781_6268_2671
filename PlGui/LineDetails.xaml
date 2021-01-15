@@ -28,7 +28,7 @@
                 </ListBox.Resources>
             </ListBox>
 
-                <Button x:Name="daletButton" Grid.Row="2" Opacity="0.6" Height="50" Width="50" BorderBrush="{x:Null}" Foreground="{x:Null}" FontSize="28" FontWeight="Bold" Click="deleteButton_Click">
+            <Button x:Name="daletButton" Grid.Row="2" Opacity="0.6" Height="50" Width="50" BorderBrush="{x:Null}" Foreground="{x:Null}" FontSize="28" FontWeight="Bold" Click="deleteButton_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="25"/>
@@ -50,7 +50,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Label Content="Line ID: " Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="18" FontFamily="Segoe UI Emoji" Foreground="Peru"/>
+            <Label Content="Line ID: " Grid.Row="0" Grid.Column="0" VerticalAlignment="Bottom" FontSize="18" FontFamily="Segoe UI Emoji" Foreground="Peru" Margin="0,0,58.333,0"/>
             <Label x:Name="lineNum" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontWeight="Bold" FontSize="16" FontFamily="Segoe UI Black" Foreground="Peru" VerticalContentAlignment="Center"/>
             <Label Content="Line Area:" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="18" FontFamily="Segoe UI Emoji" Foreground="Peru"/>
             <Label x:Name="lineArea" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontWeight="Bold" FontSize="16" FontFamily="Segoe UI Black" Foreground="Peru" VerticalContentAlignment="Center"/>
