@@ -27,5 +27,10 @@ namespace PlGui
             InitializeComponent();
             bl = _bl;
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
