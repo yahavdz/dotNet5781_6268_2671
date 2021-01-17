@@ -857,7 +857,7 @@ namespace DS
                     Id = Counts.getTripLine(),
                     LineId = ListLines[0].Code,
                     StartAt = new TimeSpan(6,0,0),
-                    Frequency = new TimeSpan(0,0,30),
+                    Frequency = new TimeSpan(0,30,0),
                     FinishAt = new TimeSpan(23,0,0),
                     Active = true
                 },
@@ -884,7 +884,7 @@ namespace DS
                     Id = Counts.getTripLine(),
                     LineId = ListLines[3].Code,
                     StartAt = new TimeSpan(6,0,0),
-                    Frequency = new TimeSpan(0,0,30),
+                    Frequency = new TimeSpan(0,30,0),
                     FinishAt = new TimeSpan(23,0,0),
                     Active = true
                 },
@@ -911,7 +911,7 @@ namespace DS
                     Id = Counts.getTripLine(),
                     LineId = ListLines[6].Code,
                     StartAt = new TimeSpan(12,0,0),
-                    Frequency = new TimeSpan(0,1,0),
+                    Frequency = new TimeSpan(1,0,0),
                     FinishAt = new TimeSpan(23,0,0),
                     Active = true
                 },
@@ -1092,7 +1092,7 @@ namespace DS
                 });
 
             }*/
-
+            
             ListUsers = new List<User>()
             {
                 new User

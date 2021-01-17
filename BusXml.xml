@@ -2,12 +2,102 @@
 <ArrayOfBus xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<Bus>
 		<LicenseNum>12345678</LicenseNum>
-		<FromDate>17-Apr-85 12:00:00 AM</FromDate>
+		<FromDate>17-Apr-18 12:00:00 AM</FromDate>
 		<TotalTrip>10000</TotalTrip>
-		<FuelRemain>900</FuelRemain>
+		<FuelRemain>1200</FuelRemain>
 		<BusStatus>readyToGo</BusStatus>
-		<KilometersSinceLastTreatment>55</KilometersSinceLastTreatment>
+		<KilometersSinceLastTreatment>0</KilometersSinceLastTreatment>
 		<KilometersAtLastRefueling>10000</KilometersAtLastRefueling>
+		<Active>true</Active>
+	</Bus>
+	<Bus>
+		<LicenseNum>12345679</LicenseNum>
+		<FromDate>18-Apr-19 12:00:00 AM</FromDate>
+		<TotalTrip>11000</TotalTrip>
+		<FuelRemain>1200</FuelRemain>
+		<BusStatus>readyToGo</BusStatus>
+		<KilometersSinceLastTreatment>0</KilometersSinceLastTreatment>
+		<KilometersAtLastRefueling>11000</KilometersAtLastRefueling>
+		<Active>true</Active>
+	</Bus>
+	<Bus>
+		<LicenseNum>12345680</LicenseNum>
+		<FromDate>19-Apr-19 12:00:00 AM</FromDate>
+		<TotalTrip>12000</TotalTrip>
+		<FuelRemain>1200</FuelRemain>
+		<BusStatus>readyToGo</BusStatus>
+		<KilometersSinceLastTreatment>0</KilometersSinceLastTreatment>
+		<KilometersAtLastRefueling>12000</KilometersAtLastRefueling>
+		<Active>true</Active>
+	</Bus>
+	<Bus>
+		<LicenseNum>12345681</LicenseNum>
+		<FromDate>20-Apr-18 12:00:00 AM</FromDate>
+		<TotalTrip>13000</TotalTrip>
+		<FuelRemain>1200</FuelRemain>
+		<BusStatus>readyToGo</BusStatus>
+		<KilometersSinceLastTreatment>0</KilometersSinceLastTreatment>
+		<KilometersAtLastRefueling>13000</KilometersAtLastRefueling>
+		<Active>true</Active>
+	</Bus>
+	<Bus>
+		<LicenseNum>12345682</LicenseNum>
+		<FromDate>21-Apr-18 12:00:00 AM</FromDate>
+		<TotalTrip>13000</TotalTrip>
+		<FuelRemain>1200</FuelRemain>
+		<BusStatus>readyToGo</BusStatus>
+		<KilometersSinceLastTreatment>0</KilometersSinceLastTreatment>
+		<KilometersAtLastRefueling>13000</KilometersAtLastRefueling>
+		<Active>true</Active>
+	</Bus>
+	<Bus>
+		<LicenseNum>12345683</LicenseNum>
+		<FromDate>23-Apr-18 12:00:00 AM</FromDate>
+		<TotalTrip>13000</TotalTrip>
+		<FuelRemain>1200</FuelRemain>
+		<BusStatus>readyToGo</BusStatus>
+		<KilometersSinceLastTreatment>0</KilometersSinceLastTreatment>
+		<KilometersAtLastRefueling>13000</KilometersAtLastRefueling>
+		<Active>true</Active>
+	</Bus>
+	<Bus>
+		<LicenseNum>12345684</LicenseNum>
+		<FromDate>24-Apr-18 12:00:00 AM</FromDate>
+		<TotalTrip>13000</TotalTrip>
+		<FuelRemain>1200</FuelRemain>
+		<BusStatus>readyToGo</BusStatus>
+		<KilometersSinceLastTreatment>0</KilometersSinceLastTreatment>
+		<KilometersAtLastRefueling>13000</KilometersAtLastRefueling>
+		<Active>true</Active>
+	</Bus>
+	<Bus>
+		<LicenseNum>12345685</LicenseNum>
+		<FromDate>25-Apr-18 12:00:00 AM</FromDate>
+		<TotalTrip>13000</TotalTrip>
+		<FuelRemain>1200</FuelRemain>
+		<BusStatus>readyToGo</BusStatus>
+		<KilometersSinceLastTreatment>0</KilometersSinceLastTreatment>
+		<KilometersAtLastRefueling>13000</KilometersAtLastRefueling>
+		<Active>true</Active>
+	</Bus>
+	<Bus>
+		<LicenseNum>12345686</LicenseNum>
+		<FromDate>26-Apr-18 12:00:00 AM</FromDate>
+		<TotalTrip>13000</TotalTrip>
+		<FuelRemain>1200</FuelRemain>
+		<BusStatus>readyToGo</BusStatus>
+		<KilometersSinceLastTreatment>0</KilometersSinceLastTreatment>
+		<KilometersAtLastRefueling>13000</KilometersAtLastRefueling>
+		<Active>true</Active>
+	</Bus>
+	<Bus>
+		<LicenseNum>12345687</LicenseNum>
+		<FromDate>27-Apr-18 12:00:00 AM</FromDate>
+		<TotalTrip>13000</TotalTrip>
+		<FuelRemain>1200</FuelRemain>
+		<BusStatus>readyToGo</BusStatus>
+		<KilometersSinceLastTreatment>0</KilometersSinceLastTreatment>
+		<KilometersAtLastRefueling>13000</KilometersAtLastRefueling>
 		<Active>true</Active>
 	</Bus>
 </ArrayOfBus>

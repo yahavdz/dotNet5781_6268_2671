@@ -1,1 +1,85 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfLineTrip xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<LineTrip>
+		<Id>1</Id>
+		<LineId>1</LineId>
+		<StartAt>06:00:00</StartAt>
+		<Frequency>00:30:00</Frequency>
+		<FinishAt>23:00:00</FinishAt>
+		<Active>true</Active>
+	</LineTrip>
+	<LineTrip>
+		<Id>2</Id>
+		<LineId>2</LineId>
+		<StartAt>06:00:00</StartAt>
+		<Frequency>00:150:00</Frequency>
+		<FinishAt>23:45:00</FinishAt>
+		<Active>true</Active>
+	</LineTrip>
+<LineTrip>
+		<Id>3</Id>
+		<LineId>3</LineId>
+		<StartAt>06:00:00</StartAt>
+		<Frequency>00:00:00</Frequency>
+		<FinishAt>23:00:00</FinishAt>
+		<Active>true</Active>
+	</LineTrip>
+<LineTrip>
+		<Id>4</Id>
+		<LineId>4</LineId>
+		<StartAt>06:00:00</StartAt>
+		<Frequency>00:30:00</Frequency>
+		<FinishAt>23:00:00</FinishAt>
+		<Active>true</Active>
+	</LineTrip>
+<LineTrip>
+		<Id>5</Id>
+		<LineId>5</LineId>
+		<StartAt>07:00:00</StartAt>
+		<Frequency>00:15:00</Frequency>
+		<FinishAt>21:45:00</FinishAt>
+		<Active>true</Active>
+	</LineTrip>
+<LineTrip>
+		<Id>6</Id>
+		<LineId>6</LineId>
+		<StartAt>08:00:00</StartAt>
+		<Frequency>01:00:00</Frequency>
+		<FinishAt>22:00:00</FinishAt>
+		<Active>true</Active>
+	</LineTrip>
+<LineTrip>
+		<Id>7</Id>
+		<LineId>7</LineId>
+		<StartAt>12:00:00</StartAt>
+		<Frequency>01:00:00</Frequency>
+		<FinishAt>23:00:00</FinishAt>
+		<Active>true</Active>
+	</LineTrip>
+<LineTrip>
+		<Id>8</Id>
+		<LineId>8</LineId>
+		<StartAt>10:00:00</StartAt>
+		<Frequency>00:15:00</Frequency>
+		<FinishAt>21:45:00</FinishAt>
+		<Active>true</Active>
+	</LineTrip>
+<LineTrip>
+		<Id>9</Id>
+		<LineId>9</LineId>
+		<StartAt>05:00:00</StartAt>
+		<Frequency>01:00:00</Frequency>
+		<FinishAt>22:00:00</FinishAt>
+		<Active>true</Active>
+	</LineTrip>
+<LineTrip>
+		<Id>10</Id>
+		<LineId>10</LineId>
+		<StartAt>06:00:00</StartAt>
+		<Frequency>01:30:00</Frequency>
+		<FinishAt>12:00:00</FinishAt>
+		<Active>true</Active>
+	</LineTrip>
+
+	
+</ArrayOfLineTrip>
