@@ -454,15 +454,25 @@ namespace BL
         }
         public void DeleteStation(int id)
         {
+            DO.Station sta;
             try
             {
-                dl.DeleteStation(id);
+                sta = dl.GetStation(id);
             }
             catch (DO.BadIdException ex)
             {
                 throw new BO.BadIdException(ex, $"station code does not exist: {id}", id);
             }
 
+            bool emptySta = true;
+            foreach (Line l in GetAllLines())
+                foreach (Station s in l.stations)
+                    if (sta.Code == s.Code)
+                        emptySta = false;
+            if (emptySta)
+                dl.DeleteStation(id);
+            else
+                throw new BO.BadIdException(id, $"station code does not exist: {id}");
         }
         #endregion
     }

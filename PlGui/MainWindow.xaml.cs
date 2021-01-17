@@ -18,6 +18,7 @@ using BLApi;
 namespace PlGui
 {
     public enum Options { Login, Signup }
+    public enum WatchState { Start, Stop }
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>

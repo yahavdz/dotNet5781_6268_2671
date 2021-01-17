@@ -20,7 +20,7 @@
                 <Label Content="Station List" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="28" FontFamily="Segoe UI Emoji" Foreground="Peru"/>
                 <Label Content="To add, drag from stations" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="12"/>
             </StackPanel>
-            <ListBox x:Name="liststation" Background="SkyBlue" Grid.Row="1" Drop="ListBox_Drop" AllowDrop="True" BorderBrush="{x:Null}">
+            <ListBox x:Name="liststation" Background="Beige" Grid.Row="1" Drop="ListBox_Drop" AllowDrop="True" BorderBrush="{x:Null}">
                 <ListBox.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>

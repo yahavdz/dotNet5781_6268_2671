@@ -3,6 +3,148 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:PlGui"
         mc:Ignorable="d"
-        Title="UserWindow" Height="450" Width="800"/>
+        Title="UserWindow" Height="690" Width="900">
+    <Grid x:Name="BackgroundGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="menuGrid" Grid.Column="0" Background="#FF31577E">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="6*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Margin="5">
+                <Grid.Background>
+                    <ImageBrush Stretch="Uniform" ImageSource="logo.png"/>
+                </Grid.Background>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+                    <materialDesign:PopupBox PlacementMode="BottomAndAlignLeftEdges" StaysOpen="False" HorizontalAlignment="Left" Foreground="White">
+                        <StackPanel Width="150" Background="PowderBlue">
+                            <Button Content="Account"/>
+                            <Button Content="About"/>
+                            <Separator/>
+                            <Button Content="Logout"/>
+                        </StackPanel>
+                    </materialDesign:PopupBox>
+                </StackPanel>
+            </Grid>
+            <Grid x:Name="optionsGrid" Grid.Row="1" Margin="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="lineDis" Margin="30 0 30 0" Grid.Column="1">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="40"/>
+                        </Style>
+                    </Button.Resources>
+                    <Button.Background>
+                        <ImageBrush Stretch="UniformToFill" ImageSource="lineImg.png"/>
+                    </Button.Background>
+                </Button>
+                <Button x:Name="stationDis" Margin="30 0 30 0" Grid.Column="0">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="40"/>
+                        </Style>
+                    </Button.Resources>
+                    <Button.Background>
+                        <ImageBrush Stretch="UniformToFill" ImageSource="stationImg.png"/>
+                    </Button.Background>
+                </Button>
+            </Grid>
+            <Canvas x:Name="mainListGrid" Grid.Row="2">
+                <ListBox x:Name="allItems" Height="450" Width="270" Margin="10 10 10 10" Background="#FFDEDEDE"/>
+            </Canvas>
+        </Grid>
+        <Grid x:Name="displayGrid" Background="LightGray" Grid.Column="1" RenderTransformOrigin="0.517,0.501">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="5*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="0" Grid.ColumnSpan="2">
+                <Border Margin="5" BorderBrush="Transparent" Background="#FF5C99D6" BorderThickness="1" CornerRadius="10">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="30" Color="LightGray" ShadowDepth="0"/>
+                    </Border.Effect>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <Label Content="Speed:" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" VerticalContentAlignment="Center"/>
+                        <TextBox x:Name="speedTB" Text="001" PreviewTextInput="NumberValidationTextBox" MaxLength="3" FontSize="36" Width="70" Background="Azure" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"/>
+                        <Button x:Name="startOrStop" Content="START" Background="#FF3F6183" Margin="30 10 10 10" Width="60" FontSize="14" FontWeight="Bold" Foreground="White" BorderBrush="{x:Null}" Click="startOrStop_Click">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius"  Value="5"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                        <TextBox x:Name="hourTB" Text="00" PreviewTextInput="NumberValidationTextBox" MaxLength="2" FontSize="36" Width="50" Background="Azure" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" BorderBrush="Azure"/>
+                        <TextBlock Text=":" Height="49.6" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36" FontWeight="Bold" Background="Azure" TextAlignment="Center"/>
+                        <TextBox x:Name="minTB" Text="00" PreviewTextInput="NumberValidationTextBox" MaxLength="2" FontSize="36" Width="50" Background="Azure" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" BorderBrush="Azure"/>
+                        <TextBlock Text=":" Height="49.6" VerticalAlignment="Center" FontSize="36" FontWeight="Bold" Background="Azure" HorizontalAlignment="Center" TextAlignment="Center"/>
+                        <TextBox x:Name="secTB" Text="00" PreviewTextInput="NumberValidationTextBox" MaxLength="2" FontSize="36" Width="50" Background="Azure" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" BorderBrush="Azure"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+            <Grid Grid.Row="1" Grid.ColumnSpan="2">
+                <Border Margin="10" MinWidth="400" Background="SeaGreen" Padding="30" CornerRadius="10" MaxWidth="800" BorderBrush="Black" BorderThickness="10">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="30" Color="LightGray" ShadowDepth="0"/>
+                    </Border.Effect>
+                </Border>
+                <ContentControl x:Name="detailsControl" Margin="25" Background="#FF5C99D6" Grid.Row="1" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center">
+                    <ContentControl.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="0"/>
+                            <TranslateTransform X="0.201" Y="0.014"/>
+                        </TransformGroup>
+                    </ContentControl.RenderTransform>
+                </ContentControl>
+            </Grid>
+            <Border Margin="20" Grid.Row="2" Grid.RowSpan="2" MinWidth="200" Background="#FFEAEA11" CornerRadius="20" MaxWidth="400">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="30" Color="LightGray" ShadowDepth="0"/>
+                </Border.Effect>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="3*"/>
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="0" CornerRadius="30">
+                        <Grid Background="White">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2.1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Grid.Background>
+                                    <ImageBrush ImageSource="busstop.png" Stretch="Uniform"/>
+                                </Grid.Background>
+
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Border>
+            <Grid Grid.Row="2" Grid.Column="1" Background="#FF31577E" Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="5*"/>
+                </Grid.RowDefinitions>
+                <Label Content="Details" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" FontFamily="Segoe UI Emoji" Foreground="Peru" FontSize="28"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

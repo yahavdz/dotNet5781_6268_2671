@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:PlGui"
         mc:Ignorable="d"
         Title="MangementWindow" Height="690" Width="900" WindowStartupLocation="CenterScreen">
@@ -41,15 +42,14 @@
                     <ImageBrush Stretch="Uniform" ImageSource="logo.png"/>
                 </Grid.Background>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
-                    <!--<materialDesign:PopupBox PlacementMode="BottomAndAlignLeftEdges" StaysOpen="False" HorizontalAlignment="Left" Foreground="White">
+                    <materialDesign:PopupBox PlacementMode="BottomAndAlignLeftEdges" StaysOpen="False" HorizontalAlignment="Left" Foreground="White">
                         <StackPanel Width="150" Background="PowderBlue">
-                            <Button Content="Settings"/>
                             <Button Content="Account"/>
-                            <Button Content="Help"/>
+                            <Button Content="About"/>
                             <Separator/>
                             <Button Content="Logout"/>
                         </StackPanel>
-                    </materialDesign:PopupBox>-->
+                    </materialDesign:PopupBox>
                 </StackPanel>
             </Grid>
             <Grid x:Name="optionsGrid" Grid.Row="1" Margin="0">
