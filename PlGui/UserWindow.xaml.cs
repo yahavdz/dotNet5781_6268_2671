@@ -31,11 +31,14 @@ namespace PlGui
         int sec = 0;
         BackgroundWorker worker;
         WatchState nowState = WatchState.Stop;
+        private Stopwatch stopWatch;
+
         public UserWindow(IBL _bl)
         {
             InitializeComponent();
             bl = _bl;
 
+            stopWatch = new Stopwatch();
             worker = new BackgroundWorker();
             worker.DoWork += Worker_DoWork;
             worker.ProgressChanged += Worker_ProgressChanged;
@@ -50,21 +53,20 @@ namespace PlGui
         }
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
-        {
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
+        { 
+            stopWatch.Restart();
+            stopWatch.Start();
 
             while (!e.Cancel)
             {
                 if (worker.CancellationPending == true)
                 {
                     e.Cancel = true;
-                    e.Result = stopwatch.ElapsedMilliseconds;
+                    stopWatch.Stop();              
                     break;
                 }
                 else
                 {
-                    // Perform a time consuming operation and report progress.
                     System.Threading.Thread.Sleep(1000 / timeSpeed);
                     sec++;
                     if(hour == 23 && min == 59 && sec == 59)
@@ -87,7 +89,7 @@ namespace PlGui
                     worker.ReportProgress(1);
                 }
             }
-            e.Result = stopwatch.ElapsedMilliseconds;
+            MessageBox.Show("The system operated for: " + stopWatch.ElapsedMilliseconds/1000*timeSpeed + " sec");
         }
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
@@ -130,13 +132,21 @@ namespace PlGui
             }
             else if (nowState == WatchState.Start && worker.WorkerSupportsCancellation == true)
             {
-                worker.CancelAsync(); // Cancel the asynchronous operation.
-                startOrStop.Content = "Start";
-                nowState = WatchState.Stop;
-                hourTB.IsReadOnly = false;
-                minTB.IsReadOnly = false;
-                secTB.IsReadOnly = false;
-                speedTB.IsReadOnly = false;
+                MessageBoxResult popUp = MessageBox.Show("Are you sure you want to stop the system?", "Watch",
+               MessageBoxButton.YesNo,
+               MessageBoxImage.Question,
+               MessageBoxResult.Yes);
+                if (popUp == MessageBoxResult.Yes)
+                {
+                    worker.CancelAsync(); // Cancel the asynchronous operation.
+                    startOrStop.Content = "Start";
+                    nowState = WatchState.Stop;
+                    hourTB.IsReadOnly = false;
+                    minTB.IsReadOnly = false;
+                    secTB.IsReadOnly = false;
+                    speedTB.IsReadOnly = false;
+                }
+
             }
         }
     }

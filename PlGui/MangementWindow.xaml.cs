@@ -158,8 +158,14 @@ namespace PlGui
                             break;
                         case selected.stationDis:
                             StationControl SelectedSC = allItems.SelectedItem as StationControl;
-                            bl.DeleteStation(SelectedSC.currentStation.Code);
-                            allStationControls.Remove(SelectedSC);
+                            try { 
+                                bl.DeleteStation(SelectedSC.currentStation.Code);
+                                allStationControls.Remove(SelectedSC);
+                            }
+                            catch(BadIdException)
+                            {
+                                MessageBox.Show("There are lines that pass through this station", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                            }                            
                             break;
                         default:
                             break;
@@ -284,7 +290,7 @@ namespace PlGui
                     StationControl SelectedSC = allItems.SelectedItem as StationControl;
                     Station s = bl.GetStations(SelectedSC.currentStation.Code);
                     myTitel.Text = "Station Code " + s.Code.ToString();
-                    StationDetails sd = new StationDetails(s);
+                    StationDetails sd = new StationDetails(s, bl);
                     detailsControl.Content = sd; 
                     break;
                 default:
@@ -301,7 +307,7 @@ namespace PlGui
                 {
                     StationControl SelectedSC = allItems.SelectedItem as StationControl;
                     Station s = bl.GetStations(SelectedSC.currentStation.Code);
-                    StationDetails sd = new StationDetails(s);
+                    StationDetails sd = new StationDetails(s, bl);
                     detailsControl.Content = sd;
                 }
                 else

@@ -1,4 +1,5 @@
-﻿using BO;
+﻿using BLApi;
+using BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Line = BO.Line;
 
 namespace PlGui
 {
@@ -21,23 +23,33 @@ namespace PlGui
     /// </summary>
     public partial class StationDetails : UserControl
     {
-        public Station currentBus { get; set; }
-        public StationDetails(Station _station)
+        public Station currentSta { get; set; }
+        private List<LineControl> allLineControls { get; set; }
+        private IBL bl { get; set; }
+        public StationDetails(Station _station, IBL _bl)
         {
             InitializeComponent();
-            currentBus = _station;
+            currentSta = _station;
+            bl = _bl;
+            allLineControls = new List<LineControl>();
             Refresh();
         }
 
         public void Refresh()
         {
 
-            stationCode.Content = currentBus.Code.ToString() ;
-            name.Content = currentBus.Name.ToString();
-            address.Content = currentBus.Address.ToString();
-            longitude.Content = currentBus.Longitude.ToString() + "°E";
-            latitude.Content = currentBus.Latitude.ToString() + "°N";
+            stationCode.Content = currentSta.Code.ToString() ;
+            name.Content = currentSta.Name.ToString();
+            address.Content = currentSta.Address.ToString();
+            longitude.Content = currentSta.Longitude.ToString() + "°E";
+            latitude.Content = currentSta.Latitude.ToString() + "°N";
 
+            foreach (Line l in bl.GetAllLines())
+                if ((l.stations.FirstOrDefault(s => s.Code == currentSta.Code)) != null)
+                    allLineControls.Add(new LineControl(l));
+
+            foreach (LineControl lc in allLineControls)
+                listLine.Items.Add(lc);
 
         }
     }

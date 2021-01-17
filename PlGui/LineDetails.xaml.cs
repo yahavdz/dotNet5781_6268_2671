@@ -120,17 +120,15 @@ namespace PlGui
             daletButton.Opacity = 0.6;
             if (liststation.SelectedItem != null)
             {
-                MessageBoxResult popUp = MessageBox.Show("Are you sure you want to delete?", "Delete",
+                MessageBoxResult popUp = MessageBox.Show("Are you sure you want to delete from the line?", "Delete",
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Question,
                 MessageBoxResult.Yes);
                 if (popUp == MessageBoxResult.Yes)
                 {
-
-                    StationControl SelectedSC = liststation.SelectedItem as StationControl;
-                    bl.DeleteStation(SelectedSC.currentStation.Code);
-                    allStationControls.Remove(SelectedSC);
-
+                    Station delS = (liststation.SelectedItem as StationControl).currentStation;
+                    allStationControls.Remove(liststation.SelectedItem as StationControl);
+                    bl.DeleteStationFromLine(currentLine, currentLine.stations.FirstOrDefault(ls => ls.Code == delS.Code));
                 }
                 
             }
