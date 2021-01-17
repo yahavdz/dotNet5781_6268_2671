@@ -59,7 +59,7 @@ namespace PlGui
             lineArea.Content = currentLine.Area.ToString();
         }
 
-        private bool IsMouseOver(StationControl item, DragEventArgs e)
+        private new bool IsMouseOver(StationControl item, DragEventArgs e)
         {
             // We need to use MouseUtilities to figure out the cursor
             // coordinates because, during a drag-drop operation, the WPF

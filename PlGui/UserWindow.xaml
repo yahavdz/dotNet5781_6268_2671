@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:PlGui"
         mc:Ignorable="d"
         Title="UserWindow" Height="690" Width="900">
@@ -21,6 +22,16 @@
                 <Grid.Background>
                     <ImageBrush Stretch="Uniform" ImageSource="logo.png"/>
                 </Grid.Background>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+                    <materialDesign:PopupBox PlacementMode="BottomAndAlignLeftEdges" StaysOpen="False" HorizontalAlignment="Left" Foreground="White">
+                        <StackPanel Width="150" Background="PowderBlue">
+                            <Button Content="Account"/>
+                            <Button Content="About"/>
+                            <Separator/>
+                            <Button Content="Logout"/>
+                        </StackPanel>
+                    </materialDesign:PopupBox>
+                </StackPanel>
             </Grid>
             <Grid x:Name="optionsGrid" Grid.Row="1" Margin="0">
                 <Grid.ColumnDefinitions>
@@ -67,8 +78,23 @@
                     <Border.Effect>
                         <DropShadowEffect BlurRadius="30" Color="LightGray" ShadowDepth="0"/>
                     </Border.Effect>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <Label Content="Speed:" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" VerticalContentAlignment="Center"/>
+                        <TextBox x:Name="speedTB" Text="001" PreviewTextInput="NumberValidationTextBox" MaxLength="3" FontSize="36" Width="70" Background="Azure" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"/>
+                        <Button x:Name="startOrStop" Content="START" Background="#FF3F6183" Margin="30 10 10 10" Width="60" FontSize="14" FontWeight="Bold" Foreground="White" BorderBrush="{x:Null}" Click="startOrStop_Click">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius"  Value="5"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                        <TextBox x:Name="hourTB" Text="00" PreviewTextInput="NumberValidationTextBox" MaxLength="2" FontSize="36" Width="50" Background="Azure" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" BorderBrush="Azure"/>
+                        <TextBlock Text=":" Height="49.6" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36" FontWeight="Bold" Background="Azure" TextAlignment="Center"/>
+                        <TextBox x:Name="minTB" Text="00" PreviewTextInput="NumberValidationTextBox" MaxLength="2" FontSize="36" Width="50" Background="Azure" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" BorderBrush="Azure"/>
+                        <TextBlock Text=":" Height="49.6" VerticalAlignment="Center" FontSize="36" FontWeight="Bold" Background="Azure" HorizontalAlignment="Center" TextAlignment="Center"/>
+                        <TextBox x:Name="secTB" Text="00" PreviewTextInput="NumberValidationTextBox" MaxLength="2" FontSize="36" Width="50" Background="Azure" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" BorderBrush="Azure"/>
+                    </StackPanel>
                 </Border>
-                <TextBlock x:Name="myTitel" Background="{x:Null}" Foreground="Honeydew"  HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="48"/>
             </Grid>
             <Grid Grid.Row="1" Grid.ColumnSpan="2">
                 <Border Margin="10" MinWidth="400" Background="SeaGreen" Padding="30" CornerRadius="10" MaxWidth="800" BorderBrush="Black" BorderThickness="10">
