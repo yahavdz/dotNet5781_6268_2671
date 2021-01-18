@@ -31,7 +31,7 @@ namespace BL
 
         TimeSpan startTime;
         int rate;        
-        private Action<TimeSpan> updateTime;
+        private Action<TimeSpan> updateTime { get; set; }
 
         public void AddObserver(Action<TimeSpan> _updateTime) => updateTime = _updateTime;
         public void RemoveObserver() => updateTime = null;
@@ -51,8 +51,8 @@ namespace BL
 
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            int TotalMs = (int)startTime.TotalMilliseconds + (int)stopWatch.ElapsedMilliseconds * rate;
-            updateTime(new TimeSpan(0, 0, 0, 0, TotalMs));
+            TimeSpan newTS = new TimeSpan(stopWatch.ElapsedTicks * rate) + startTime;
+            updateTime(new TimeSpan(newTS.Hours, newTS.Minutes, newTS.Seconds));
         }
 
         public void Stop()

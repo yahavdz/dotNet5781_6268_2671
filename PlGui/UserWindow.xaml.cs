@@ -66,12 +66,14 @@ namespace PlGui
                 int timeSpeed = Convert.ToInt32(speedTB.Text);
                 if (sec > 59 || min > 59 || hour > 23)
                     MessageBox.Show("Invalid time", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-                else if(timeSpeed == 0)
+                else if (timeSpeed == 0)
                     MessageBox.Show("Invalid speed", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 else
                 {
+                    startOrStop.Background = Brushes.Tomato;
+                    Action<TimeSpan> doUpdateTime = updateTime;
                     startOrStop.Content = "Stop";
-                    bl.StartSimulator(new TimeSpan(hour, min, sec), timeSpeed, updateTime);
+                    bl.StartSimulator(new TimeSpan(hour, min, sec), timeSpeed, doUpdateTime);
                     nowState = WatchState.Start;
                     hourTB.IsReadOnly = true;
                     minTB.IsReadOnly = true;
@@ -81,21 +83,14 @@ namespace PlGui
             }
             else if (nowState == WatchState.Start)
             {
-                MessageBoxResult popUp = MessageBox.Show("Are you sure you want to stop the system?", "Watch",
-               MessageBoxButton.YesNo,
-               MessageBoxImage.Question,
-               MessageBoxResult.Yes);
-                if (popUp == MessageBoxResult.Yes)
-                {
-                    bl.StopSimulator();
-                    startOrStop.Content = "Start";
-                    nowState = WatchState.Stop;
-                    hourTB.IsReadOnly = false;
-                    minTB.IsReadOnly = false;
-                    secTB.IsReadOnly = false;
-                    speedTB.IsReadOnly = false;
-                }
-
+                startOrStop.Background = Brushes.LightGreen;
+                bl.StopSimulator();
+                startOrStop.Content = "Start";
+                nowState = WatchState.Stop;
+                hourTB.IsReadOnly = false;
+                minTB.IsReadOnly = false;
+                secTB.IsReadOnly = false;
+                speedTB.IsReadOnly = false;
             }
         }
     }
