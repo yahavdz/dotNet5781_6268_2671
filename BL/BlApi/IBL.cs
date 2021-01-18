@@ -9,6 +9,11 @@ namespace BLApi
 {
     public interface IBL
     {
+        #region Watch
+        void StartSimulator(TimeSpan startTime, int Rate, Action<TimeSpan> updateTime);
+        void StopSimulator();
+        #endregion
+
         #region Bus
         Bus GetBus(int busId);
         IEnumerable<Bus> GetAllBuses();

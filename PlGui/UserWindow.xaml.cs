@@ -25,25 +25,12 @@ namespace PlGui
     public partial class UserWindow : Window
     {
         IBL bl;
-        int timeSpeed = 0;
-        int hour = 0;
-        int min = 0;
-        int sec = 0;
-        BackgroundWorker worker;
         WatchState nowState = WatchState.Stop;
-        private Stopwatch stopWatch;
 
         public UserWindow(IBL _bl)
         {
             InitializeComponent();
             bl = _bl;
-
-            stopWatch = new Stopwatch();
-            worker = new BackgroundWorker();
-            worker.DoWork += Worker_DoWork;
-            worker.ProgressChanged += Worker_ProgressChanged;
-            worker.WorkerReportsProgress = true;
-            worker.WorkerSupportsCancellation = true;
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
@@ -52,69 +39,31 @@ namespace PlGui
             e.Handled = regex.IsMatch(e.Text);
         }
 
-        private void Worker_DoWork(object sender, DoWorkEventArgs e)
-        { 
-            stopWatch.Restart();
-            stopWatch.Start();
-
-            while (!e.Cancel)
-            {
-                if (worker.CancellationPending == true)
-                {
-                    e.Cancel = true;
-                    stopWatch.Stop();              
-                    break;
-                }
-                else
-                {
-                    System.Threading.Thread.Sleep(1000 / timeSpeed);
-                    sec++;
-                    if(hour == 23 && min == 59 && sec == 59)
-                    {
-                        hour = 0;
-                        min = 0;
-                        sec = 0;
-                    }
-                    else if (min == 59 && sec == 59)
-                    {
-                        hour++;
-                        min = 0;
-                        sec = 0;
-                    }
-                    else if (sec == 59)
-                    {
-                        min++;
-                        sec = 0;
-                    }
-                    worker.ReportProgress(1);
-                }
-            }
-            MessageBox.Show("The system operated for: " + stopWatch.ElapsedMilliseconds/1000*timeSpeed + " sec");
-        }
-        private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        
+        public void updateTime(TimeSpan newTS)
         {
-            if (sec < 10)
-                secTB.Text = "0" + sec.ToString();
+            if (newTS.Seconds < 10)
+                secTB.Text = "0" + newTS.Seconds.ToString();
             else
-                secTB.Text = sec.ToString();
-            if(min < 10)
-                minTB.Text = "0" + min.ToString();
+                secTB.Text = newTS.Seconds.ToString();
+            if(newTS.Minutes < 10)
+                minTB.Text = "0" + newTS.Minutes.ToString();
             else
-                minTB.Text = min.ToString();
-            if(hour < 10)
-                hourTB.Text = "0" + hour.ToString();
+                minTB.Text = newTS.Minutes.ToString();
+            if(newTS.Hours < 10)
+                hourTB.Text = "0" + newTS.Hours.ToString();
             else
-                hourTB.Text = hour.ToString();
+                hourTB.Text = newTS.Hours.ToString();
         }
 
         private void startOrStop_Click(object sender, RoutedEventArgs e)
         {
-            if (nowState == WatchState.Stop && worker.IsBusy != true)
+            if (nowState == WatchState.Stop)
             {
-                hour = Convert.ToInt32(hourTB.Text);
-                min = Convert.ToInt32(minTB.Text);
-                sec = Convert.ToInt32(secTB.Text);
-                timeSpeed = Convert.ToInt32(speedTB.Text);
+                int hour = Convert.ToInt32(hourTB.Text);
+                int min = Convert.ToInt32(minTB.Text);
+                int sec = Convert.ToInt32(secTB.Text);
+                int timeSpeed = Convert.ToInt32(speedTB.Text);
                 if (sec > 59 || min > 59 || hour > 23)
                     MessageBox.Show("Invalid time", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 else if(timeSpeed == 0)
@@ -122,7 +71,7 @@ namespace PlGui
                 else
                 {
                     startOrStop.Content = "Stop";
-                    worker.RunWorkerAsync(); // Start the asynchronous operation.
+                    bl.StartSimulator(new TimeSpan(hour, min, sec), timeSpeed, updateTime);
                     nowState = WatchState.Start;
                     hourTB.IsReadOnly = true;
                     minTB.IsReadOnly = true;
@@ -130,7 +79,7 @@ namespace PlGui
                     speedTB.IsReadOnly = true;
                 }
             }
-            else if (nowState == WatchState.Start && worker.WorkerSupportsCancellation == true)
+            else if (nowState == WatchState.Start)
             {
                 MessageBoxResult popUp = MessageBox.Show("Are you sure you want to stop the system?", "Watch",
                MessageBoxButton.YesNo,
@@ -138,7 +87,7 @@ namespace PlGui
                MessageBoxResult.Yes);
                 if (popUp == MessageBoxResult.Yes)
                 {
-                    worker.CancelAsync(); // Cancel the asynchronous operation.
+                    bl.StopSimulator();
                     startOrStop.Content = "Start";
                     nowState = WatchState.Stop;
                     hourTB.IsReadOnly = false;
