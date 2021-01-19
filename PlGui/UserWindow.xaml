@@ -81,7 +81,7 @@
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
                         <Label Content="Speed:" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" VerticalContentAlignment="Center"/>
                         <TextBox x:Name="speedTB" Text="001" PreviewTextInput="NumberValidationTextBox" MaxLength="3" FontSize="36" Width="70" Background="Azure" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"/>
-                        <Button x:Name="startOrStop" Content="START" Background="#FF3F6183" Margin="30 10 10 10" Width="60" FontSize="14" FontWeight="Bold" Foreground="White" BorderBrush="{x:Null}" Click="startOrStop_Click">
+                        <Button x:Name="startOrStop" Content="START" Background="LightGreen" Margin="30 10 10 10" Width="60" FontSize="14" FontWeight="Bold" Foreground="White" BorderBrush="{x:Null}" Click="startOrStop_Click">
                             <Button.Resources>
                                 <Style TargetType="Border">
                                     <Setter Property="CornerRadius"  Value="5"/>

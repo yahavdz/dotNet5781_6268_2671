@@ -21,6 +21,20 @@ namespace BL
         #endregion
 
         IDal dl = DalFactory.GetDal();
+        SystemClock sc = SystemClock.Instance;
+
+        #region Watch
+        public void StartSimulator(TimeSpan startTime, int Rate, Action<TimeSpan> updateTime)
+        {
+            sc.AddObserver(updateTime);
+            sc.Start(startTime, Rate);
+        }
+        public void StopSimulator()
+        {
+            sc.Stop();
+            sc.RemoveObserver();
+        }
+        #endregion
 
         #region Bus
         Bus busDoBoAdapter(DO.Bus busDO)
