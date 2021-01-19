@@ -225,7 +225,7 @@ namespace Dal
             else
                 throw new BadIdException(busOnTrip.Id, $"bad busOnTrip id: {busOnTrip.Id}");
         }
-        #endregion BusOnTrip
+        #endregion BusOnTrip //
 
         #region LineStation
         public LineStation GetLineStation(int lineId, int station)

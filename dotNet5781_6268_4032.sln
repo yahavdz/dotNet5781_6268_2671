@@ -28,11 +28,13 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "all xml", "all xml", "{41A6E6E1-320D-4DE0-8FFB-9611A6D2868D}"
 	ProjectSection(SolutionItems) = preProject
 		AdjacentStationXml.xml = AdjacentStationXml.xml
+		BusOnTripXml.xml = BusOnTripXml.xml
 		BusXml.xml = BusXml.xml
 		LineStationXml.xml = LineStationXml.xml
 		LineTripXml.xml = LineTripXml.xml
 		LineXml.xml = LineXml.xml
 		StatiomXml.xml = StatiomXml.xml
+		TripXml.xml = TripXml.xml
 		UserXml.xml = UserXml.xml
 	EndProjectSection
 EndProject
