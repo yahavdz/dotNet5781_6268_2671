@@ -15,7 +15,8 @@ namespace BO
         public Areas Area { get; set; }
         public bool Active { get; set; }
         public IEnumerable<LineStation> stations { get; set; }
-        
+        public TimeSpan TotalTime { get; set; }
+
         //public IEnumerable<Station> GetLineList()
         //{
         //    return from st in stations

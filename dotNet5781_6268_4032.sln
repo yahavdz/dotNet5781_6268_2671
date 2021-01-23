@@ -27,15 +27,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLObject", "DLObject\DLObje
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "all xml", "all xml", "{41A6E6E1-320D-4DE0-8FFB-9611A6D2868D}"
 	ProjectSection(SolutionItems) = preProject
-		AdjacentStationXml.xml = AdjacentStationXml.xml
-		BusOnTripXml.xml = BusOnTripXml.xml
-		BusXml.xml = BusXml.xml
-		LineStationXml.xml = LineStationXml.xml
-		LineTripXml.xml = LineTripXml.xml
-		LineXml.xml = LineXml.xml
-		StatiomXml.xml = StatiomXml.xml
-		TripXml.xml = TripXml.xml
-		UserXml.xml = UserXml.xml
+		bin\xml\AdjacentStationXml.xml = bin\xml\AdjacentStationXml.xml
+		bin\xml\BusOnTripXml.xml = bin\xml\BusOnTripXml.xml
+		bin\xml\BusXml.xml = bin\xml\BusXml.xml
+		bin\xml\LineStationXml.xml = bin\xml\LineStationXml.xml
+		bin\xml\LineTripXml.xml = bin\xml\LineTripXml.xml
+		bin\xml\LineXml.xml = bin\xml\LineXml.xml
+		bin\xml\StationXml.xml = bin\xml\StationXml.xml
+		bin\xml\TripXml.xml = bin\xml\TripXml.xml
+		bin\xml\UserXml.xml = bin\xml\UserXml.xml
 	EndProjectSection
 EndProject
 Global

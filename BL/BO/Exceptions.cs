@@ -99,4 +99,13 @@ namespace BO
            base(message) => id = i;
         public override string ToString() => base.ToString() + $",  {id}  Not Exist";
     }
+    public class DuplicateException : Exception
+    {
+        public int id;
+        public DuplicateException(int i, string message) :
+       base(message) => id = i;
+        public DuplicateException(DO.BadIdException ex, string message, int i) :
+           base(message) => id = i;
+        public override string ToString() => base.ToString() + $",  {id}  Not Exist";
+    }
 }

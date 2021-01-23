@@ -44,13 +44,13 @@ namespace PlGui
             longitude.Content = currentSta.Longitude.ToString() + "°E";
             latitude.Content = currentSta.Latitude.ToString() + "°N";
 
-            foreach (Line l in bl.GetAllLines())
-                if ((l.stations.FirstOrDefault(s => s.Code == currentSta.Code)) != null)
-                    allLineControls.Add(new LineControl(l));
-
-            foreach (LineControl lc in allLineControls)
-                listLine.Items.Add(lc);
-
+            IEnumerable<Line> linesWithStation = bl.GetAllLinesBy(l => l.stations.Any(s => s.Code == currentSta.Code));
+            foreach (Line line in linesWithStation)
+            {
+                LineControl lineControl = new LineControl(line);
+                allLineControls.Add(lineControl);
+                listLine.Items.Add(lineControl);
+            }
         }
     }
 }

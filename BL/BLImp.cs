@@ -142,8 +142,6 @@ namespace BL
         {
             Line LineBO = new Line();
             LineBO.stations = new List<LineStation>();
-            IEnumerable<DO.LineStation> a = dl.GetAllLineStationBy(ls => ls.LineId == LineDO.Id && ls.Station == 123457);
-
             LineDO.CopyPropertiesTo(LineBO);
             IEnumerable<DO.LineStation> listOfLineStations = dl.GetAllLineStationBy(ls => ls.LineId == LineDO.Id);
             IEnumerable <DO.LineStation> orderedListOfLineStations = listOfLineStations.OrderBy(ls => ls.LineStationIndex);
@@ -167,7 +165,15 @@ namespace BL
                 currentDoStation.CopyPropertiesTo(bols);
                 LineBO.stations = LineBO.stations.Append(bols).ToList();
             }
-            
+
+            // calculate the total time according to the stations list:
+            TimeSpan lt = new TimeSpan();
+            foreach (LineStation ls in LineBO.stations)
+            {
+                lt += ls.TimeToNextStation;
+            }
+            LineBO.TotalTime = lt;
+
             return LineBO;
         }
         DO.Line LineBoDoAdapter(BO.Line LineBO)
@@ -255,6 +261,7 @@ namespace BL
             }
 
             // update the line stations - to save the stations order:
+            /*
             IEnumerable<DO.LineStation> lineStationsList = LineBoLineStationDoAdapter(line);
             foreach (DO.LineStation doLineStation in lineStationsList)
             {
@@ -280,7 +287,7 @@ namespace BL
                         throw new BO.IsNotExistException(ex, $" {lineDO.Id} Not Exist", lineDO.Id);
                     }
                 }
-            }
+            }*/
 
 
         }
@@ -299,10 +306,28 @@ namespace BL
         }
         public void AddStationToLine(Line line, LineStation station, int index)
         {
-            if (line.Code < 0)
-                throw new BadIdException(line.Code, " Line Code must be bigger then 0");
-            DO.Line lineDO = new DO.Line();
+            // add the new stations in index position:
+            IEnumerable<DO.LineStation> lineStationsList = dl.GetAllLineStationBy(ls => ls.LineId == line.Id); // LineBoLineStationDoAdapter(line);
+            lineStationsList = lineStationsList.OrderBy(ls => ls.LineStationIndex);
 
+            DO.LineStation newLineStation = new DO.LineStation();
+            newLineStation.Active = true;
+            newLineStation.LineId = line.Id;
+            newLineStation.LineStationIndex = index;
+            newLineStation.Station = station.Code;
+            if (index < line.stations.Count()) newLineStation.NextStation = lineStationsList.ElementAt(index).Station;
+            if (index > 0) newLineStation.PrevStation = lineStationsList.ElementAt(index - 1).Station;
+            try
+            {
+                dl.AddLineStation(newLineStation);
+            }
+            catch (DO.BadIdException ex)
+            {
+                throw new BO.DuplicateException(ex, $"Duplicate station: {station.Code}", station.Code);
+            }
+
+            //update line if it first or last station:
+            DO.Line lineDO = new DO.Line();
             if (index == 0)
             {
                 //add the station as first:
@@ -319,8 +344,6 @@ namespace BL
             }
 
             // update the index of the stations after the new station:
-            IEnumerable<DO.LineStation> lineStationsList = dl.GetAllLineStationBy(ls => ls.LineId == line.Id); // LineBoLineStationDoAdapter(line);
-            lineStationsList = lineStationsList.OrderBy(ls => ls.LineStationIndex);
             for (int i = index; i < lineStationsList.Count(); i++)
             {
                 DO.LineStation doLineStation = lineStationsList.ElementAt(i);
@@ -328,16 +351,7 @@ namespace BL
                 dl.UpdateLineStation(doLineStation); // update the index of the station
             }
 
-            // add the new stations in index position:
-            DO.LineStation newLineStation = new DO.LineStation();
-            newLineStation.Active = true;
-            newLineStation.LineId = line.Id;
-            newLineStation.LineStationIndex = index;
-            newLineStation.Station = station.Code;
-            if (index < lineStationsList.Count()) newLineStation.NextStation = lineStationsList.ElementAt(index).Station;
-            if (index > 0) newLineStation.PrevStation = lineStationsList.ElementAt(index - 1).Station;
-            dl.AddLineStation(newLineStation);
-
+           
             // update the prev and next stations to point to the new station:
             if (index > 0)
             {
@@ -351,6 +365,7 @@ namespace BL
                 nextStation.PrevStation = station.Code;
                 dl.UpdateLineStation(nextStation);
             }
+            
         }
         public void DeleteStationFromLine(Line line, LineStation station)
         {
@@ -365,6 +380,16 @@ namespace BL
                 DO.LineStation nextStation = dl.GetLineStation(line.Code, stationToDelete.NextStation);
                 nextStation.PrevStation = 0;
                 dl.UpdateLineStation(nextStation);
+                line.FirstStation = stationToDelete.NextStation;
+                UpdateLine(line); // update the first station field
+                IEnumerable<DO.LineStation> lineStationsList = dl.GetAllLineStationBy(ls => ls.LineId == line.Id); // LineBoLineStationDoAdapter(line);
+                lineStationsList = lineStationsList.OrderBy(ls => ls.LineStationIndex);
+                for (int i = stationToDelete.LineStationIndex; i < lineStationsList.Count(); i++)
+                {
+                    DO.LineStation doLineStation = lineStationsList.ElementAt(i);
+                    doLineStation.LineStationIndex++;
+                    dl.UpdateLineStation(doLineStation); // update the index of the station
+                }
             }
             else if (stationToDelete.NextStation == 0)
             {
@@ -372,6 +397,8 @@ namespace BL
                 DO.LineStation prevStation = dl.GetLineStation(line.Code, stationToDelete.PrevStation);
                 prevStation.NextStation = 0;
                 dl.UpdateLineStation(prevStation);
+                line.LastStation = stationToDelete.PrevStation;
+                UpdateLine(line); // update the last station field
             }
             else
             {
@@ -381,6 +408,14 @@ namespace BL
                 nextStation.PrevStation = prevStation.Station;
                 dl.UpdateLineStation(prevStation);
                 dl.UpdateLineStation(nextStation);
+                IEnumerable<DO.LineStation> lineStationsList = dl.GetAllLineStationBy(ls => ls.LineId == line.Id); // LineBoLineStationDoAdapter(line);
+                lineStationsList = lineStationsList.OrderBy(ls => ls.LineStationIndex);
+                for (int i = stationToDelete.LineStationIndex; i < lineStationsList.Count(); i++)
+                {
+                    DO.LineStation doLineStation = lineStationsList.ElementAt(i);
+                    doLineStation.LineStationIndex++;
+                    dl.UpdateLineStation(doLineStation); // update the index of the station
+                }
             }
             dl.DeleteLineStation(line.Code, station.Code); 
 

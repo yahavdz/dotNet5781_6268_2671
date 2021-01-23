@@ -17,7 +17,17 @@ namespace Dal
         #region singelton
         static readonly DalXml instance = new DalXml();
         static DalXml() { }// static ctor to ensure instance init is done just before first usage
-        private DalXml() { }
+        private DalXml() 
+        {
+            List<Line> lines = GetAllLines().ToList();
+            DO.Counts.setBusLineCount(lines.Count() + 1);
+            List<Station> station = GetAllStations().ToList();
+            DO.Counts.setStationsCount(station.Count() + 1);
+            List<BusOnTrip> busOT = GetAllBusOnTrip().ToList();
+            DO.Counts.setBusOnTripCount(busOT.Count() + 1); 
+            List<Trip> trip = GetAllTrip().ToList();
+            DO.Counts.setTripCount(trip.Count() + 1);
+        }
         public static DalXml Instance { get => instance; }// The public Instance property to use
         #endregion
 
@@ -217,7 +227,7 @@ namespace Dal
         {
             List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(stationPath);
 
-            Station findStation = DataSource.ListStations.FirstOrDefault(s => s.Code == station.Code);
+            Station findStation = ListStations.FirstOrDefault(s => s.Code == station.Code);
             if (findStation != null && findStation.Active)
                 throw new BadIdException(station.Code, "Duplicate station Code");
             if (findStation != null && !findStation.Active)
@@ -252,8 +262,8 @@ namespace Dal
 
             if (findStation != null)
             {
-                DataSource.ListStations.Remove(findStation);
-                DataSource.ListStations.Add(station);
+                ListStations.Remove(findStation);
+                ListStations.Add(station);
             }
             else
                 throw new BadIdException(station.Code, $"bad station code: {station.Code}");
@@ -305,7 +315,7 @@ namespace Dal
         {
             List<LineStation> ListLineStations = XMLTools.LoadListFromXMLSerializer<LineStation>(lineStationPath);
 
-            LineStation lineStation = DataSource.ListLineStations.Find(ls => ls.LineId == lineId && ls.Station == station);
+            LineStation lineStation = ListLineStations.Find(ls => ls.LineId == lineId && ls.Station == station);
             if (lineStation != null)
             {
                 ListLineStations.Remove(lineStation);
@@ -313,28 +323,28 @@ namespace Dal
                 ListLineStations.Add(lineStation);
             }
             else
-                throw new BadIdException(lineId, $"bad line station id: {lineId}");
+                throw new BadIdException(lineId, $"bad line station with line id: {lineId} and station code: {station}");
             XMLTools.SaveListToXMLSerializer(ListLineStations, lineStationPath);
         }
         public void UpdateLineStation(LineStation lineStation)
         {
             List<LineStation> ListLineStations = XMLTools.LoadListFromXMLSerializer<LineStation>(lineStationPath);
 
-            LineStation findLineStation = DataSource.ListLineStations.FirstOrDefault(ls => ls.LineId == lineStation.LineId && ls.Station == lineStation.Station && ls.Active);
+            LineStation findLineStation = ListLineStations.FirstOrDefault(ls => ls.LineId == lineStation.LineId && ls.Station == lineStation.Station && ls.Active);
             if (findLineStation != null)
             {
-                DataSource.ListLineStations.Remove(findLineStation);
-                DataSource.ListLineStations.Add(lineStation);
+                ListLineStations.Remove(findLineStation);
+                ListLineStations.Add(lineStation);
             }
             else
-                throw new BadIdException(lineStation.LineId, $"bad line station id: {lineStation.LineId}");
+                throw new BadIdException(lineStation.LineId, $"bad line station with line id: {lineStation.LineId} and station code: {lineStation.Station}");
             XMLTools.SaveListToXMLSerializer(ListLineStations, lineStationPath);
         }
         public bool isLineStationExistForLine(int lineId, int lineStationsId)
         {
             List<LineStation> ListLineStations = XMLTools.LoadListFromXMLSerializer<LineStation>(lineStationPath);
 
-            return (null != ListLineStations.Find(ls => ls.LineId == lineId && ls.Station == lineStationsId));
+            return (ListLineStations.Any(ls => ls.LineId == lineId && ls.Station == lineStationsId));
         }
 
         #endregion LineStation

@@ -29,7 +29,7 @@ namespace PlGui
         private List<StationControl> allStationControls { get; set; }
         private List<LineControl> allLineControls { get; set; }
 
-        
+
         private IBL bl { get; set; }
 
         public LineDetails(Line _line, IBL _bl)
@@ -45,18 +45,14 @@ namespace PlGui
 
         public void Refresh()
         {
-            TimeSpan lt = new TimeSpan();
             lineNum.Content = currentLine.Id.ToString();
-            foreach (LineStation ls in currentLine.stations)
-            {
-                lt += ls.TimeToNextStation;
-            }
             foreach (Station s in currentLine.stations)
                 allStationControls.Add(new StationControl(s));
             foreach (StationControl sc in allStationControls)
                 liststation.Items.Add(sc);
-            lineTime.Content = lt.ToString();
+            lineTime.Content = currentLine.TotalTime.ToString();
             lineArea.Content = currentLine.Area.ToString();
+
         }
 
         private new bool IsMouseOver(StationControl item, DragEventArgs e)
@@ -71,45 +67,58 @@ namespace PlGui
         }
         private void ListBox_Drop(object sender, DragEventArgs e)
         {
-            ListBox parent = (ListBox)sender;
-
-            int index = -1;
-            int i = 0;
-            foreach (StationControl item in parent.Items)
+            try
             {
-                if (IsMouseOver(item, e))
+                ListBox parent = (ListBox)sender;
+
+                int index = -1;
+                int i = 0;
+                foreach (StationControl item in parent.Items)
                 {
-                    index = i;
-                    break;
+                    if (IsMouseOver(item, e))
+                    {
+                        index = i;
+                        break;
+                    }
+                    i++;
                 }
-                i++;
+
+                object data = e.Data.GetData(typeof(StationControl));
+                StationControl sc = new StationControl((data as StationControl).currentStation);
+
+                LineStation newLineStation = new LineStation();
+                newLineStation.Code = sc.currentStation.Code;
+                newLineStation.Active = sc.currentStation.Active;
+                newLineStation.Address = sc.currentStation.Address;
+                newLineStation.Accessibility = sc.currentStation.Accessibility;
+                newLineStation.Latitude = sc.currentStation.Latitude;
+                newLineStation.Longitude = sc.currentStation.Longitude;
+                newLineStation.Name = sc.currentStation.Name;
+                newLineStation.DistanceToNextStation = Math.Sqrt(Math.Pow(newLineStation.Latitude * 110.574 - sc.currentStation.Latitude * 110.574, 2) + Math.Pow(newLineStation.Longitude * 111.320 * Math.Cos(sc.currentStation.Latitude) - sc.currentStation.Longitude * 111.320 * Math.Cos(newLineStation.Latitude), 2) * 1.0);
+
+                bl.AddStationToLine(currentLine, newLineStation, index);
+
+                // change the GUI after adding the station:
+                if (index == -1)
+                {
+                    parent.Items.Add(sc);
+                    index = parent.Items.Count - 1;
+                }
+                else
+                {
+                    parent.Items.Insert(index, sc);
+                }
+                currentLine = bl.GetLine(currentLine.Id); // update the current line with the new station and total time
+                lineTime.Content = currentLine.TotalTime.ToString();
             }
-
-            object data = e.Data.GetData(typeof(StationControl));
-            StationControl sc = new StationControl((data as StationControl).currentStation);
-
-            if (index == -1)
+            catch (BO.DuplicateException)
             {
-                parent.Items.Add(sc);
-                index = parent.Items.Count;
+                MessageBoxResult popUp = MessageBox.Show("The station is alredy exist", "ERROR",
+                MessageBoxButton.OK,
+                MessageBoxImage.Error
+                );
+                
             }
-            else
-            {
-                parent.Items.Insert(index, sc);
-            }
-
-            LineStation ls = new LineStation();
-            ls.Code = sc.currentStation.Code;
-            ls.Active = sc.currentStation.Active;
-            ls.Address = sc.currentStation.Address;
-            ls.Accessibility = sc.currentStation.Accessibility;
-            ls.LineId = currentLine.Id;
-            ls.Latitude = sc.currentStation.Latitude;
-            ls.Longitude = sc.currentStation.Longitude;
-            ls.Name = sc.currentStation.Name;
-
-            //TODO ls.DistanceToNextStation
-            bl.AddStationToLine(currentLine, ls, index);
         }
 
 
@@ -130,12 +139,14 @@ namespace PlGui
                     allStationControls.Remove(liststation.SelectedItem as StationControl);
                     bl.DeleteStationFromLine(currentLine, currentLine.stations.FirstOrDefault(ls => ls.Code == delS.Code));
                 }
-                
+
             }
             liststation.SelectedItem = null;
             liststation.Items.Clear();
             foreach (StationControl sc in allStationControls)
                 liststation.Items.Add(sc);
+            currentLine = bl.GetLine(currentLine.Code); // update the current line with the new station and total time
+            lineTime.Content = currentLine.TotalTime.ToString();
         }
     }
 }

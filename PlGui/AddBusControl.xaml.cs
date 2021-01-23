@@ -65,8 +65,8 @@ namespace PlGui
             catch (FormatException) { newTotalKilometers.Text = "*Invalid number*"; Succeeded = false; }
             try { newBus.KilometersSinceLastTreatment = Int32.Parse(newLastTreatment.Text); }
             catch (FormatException) { newLastTreatment.Text = "*Invalid number*"; Succeeded = false; }
-            try { newBus.FuelRemain = Int32.Parse(newTotalFuel.Text);
-                newBus.KilometersAtLastRefueling = newBus.TotalTrip - newBus.FuelRemain; }
+            try { newBus.FuelRemain = 1200-Int32.Parse(newTotalFuel.Text);
+                newBus.KilometersAtLastRefueling = newBus.TotalTrip -  Int32.Parse(newTotalFuel.Text); }
             catch (FormatException) { newTotalFuel.Text = "*Invalid number*"; Succeeded = false; }
 
             try
