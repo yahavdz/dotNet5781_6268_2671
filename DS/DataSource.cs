@@ -855,7 +855,7 @@ namespace DS
                 new LineTrip//1
                 {
                     Id = Counts.getTripLine(),
-                    LineId = ListLines[0].Code,
+                    LineId = ListLines[0].Id,
                     StartAt = new TimeSpan(6,0,0),
                     Frequency = new TimeSpan(0,30,0),
                     FinishAt = new TimeSpan(23,0,0),
@@ -864,7 +864,7 @@ namespace DS
                 new LineTrip//2
                 {
                     Id = Counts.getTripLine(),
-                    LineId = ListLines[1].Code,
+                    LineId = ListLines[1].Id,
                     StartAt = new TimeSpan(6,0,0),
                     Frequency = new TimeSpan(0,15,0),
                     FinishAt = new TimeSpan(23,45,0),
@@ -873,7 +873,7 @@ namespace DS
                 new LineTrip//3
                 {
                     Id = Counts.getTripLine(),
-                    LineId = ListLines[2].Code,
+                    LineId = ListLines[2].Id,
                     StartAt = new TimeSpan(6,0,0),
                     Frequency = new TimeSpan(1,0,0),
                     FinishAt = new TimeSpan(23,0,0),
@@ -882,7 +882,7 @@ namespace DS
                 new LineTrip//4
                 {
                     Id = Counts.getTripLine(),
-                    LineId = ListLines[3].Code,
+                    LineId = ListLines[3].Id,
                     StartAt = new TimeSpan(6,0,0),
                     Frequency = new TimeSpan(0,30,0),
                     FinishAt = new TimeSpan(23,0,0),
@@ -891,7 +891,7 @@ namespace DS
                 new LineTrip//5
                 {
                     Id = Counts.getTripLine(),
-                    LineId = ListLines[4].Code,
+                    LineId = ListLines[4].Id,
                     StartAt = new TimeSpan(7,0,0),
                     Frequency = new TimeSpan(0,15,0),
                     FinishAt = new TimeSpan(21,45,0),
@@ -900,7 +900,7 @@ namespace DS
                 new LineTrip//6
                 {
                     Id = Counts.getTripLine(),
-                    LineId = ListLines[5].Code,
+                    LineId = ListLines[5].Id,
                     StartAt = new TimeSpan(8,0,0),
                     Frequency = new TimeSpan(1,0,0),
                     FinishAt = new TimeSpan(22,0,0),
@@ -909,7 +909,7 @@ namespace DS
                 new LineTrip//7
                 {
                     Id = Counts.getTripLine(),
-                    LineId = ListLines[6].Code,
+                    LineId = ListLines[6].Id,
                     StartAt = new TimeSpan(12,0,0),
                     Frequency = new TimeSpan(1,0,0),
                     FinishAt = new TimeSpan(23,0,0),
@@ -918,7 +918,7 @@ namespace DS
                 new LineTrip//8
                 {
                     Id = Counts.getTripLine(),
-                    LineId = ListLines[7].Code,
+                    LineId = ListLines[7].Id,
                     StartAt = new TimeSpan(10,0,0),
                     Frequency = new TimeSpan(0,15,0),
                     FinishAt = new TimeSpan(21,45,0),
@@ -927,7 +927,7 @@ namespace DS
                 new LineTrip//9
                 {
                     Id = Counts.getTripLine(),
-                    LineId = ListLines[8].Code,
+                    LineId = ListLines[8].Id,
                     StartAt = new TimeSpan(5,0,0),
                     Frequency = new TimeSpan(1,0,0),
                     FinishAt = new TimeSpan(22,0,0),
@@ -936,7 +936,7 @@ namespace DS
                 new LineTrip//10
                 {
                     Id = Counts.getTripLine(),
-                    LineId = ListLines[9].Code,
+                    LineId = ListLines[9].Id,
                     StartAt = new TimeSpan(6,0,0),
                     Frequency = new TimeSpan(1,30,0),
                     FinishAt = new TimeSpan(12,0,0),

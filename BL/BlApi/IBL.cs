@@ -9,7 +9,8 @@ namespace BLApi
 {
     public interface IBL
     {
-        #region Watch
+        #region Simulator
+        void SetStationPanel(int station, Action<List<LineTiming>> updateBus);
         void StartSimulator(TimeSpan startTime, int Rate, Action<TimeSpan> updateTime);
         void StopSimulator();
         #endregion

@@ -16,6 +16,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using BO;
 using BLApi;
+using Line = BO.Line;
 
 namespace PlGui
 {
@@ -26,11 +27,20 @@ namespace PlGui
     {
         IBL bl;
         WatchState nowState = WatchState.Stop;
+        private List<StationControl> allStationControls { get; set; }
+        private int SelectedStation { get; set; }
 
         public UserWindow(IBL _bl)
         {
             InitializeComponent();
             bl = _bl;
+            SelectedStation = -1;
+            allStationControls = new List<StationControl>();
+            foreach (Station _station in bl.GetAllStations())
+                allStationControls.Add(new StationControl(_station));
+
+            foreach (StationControl _SC in allStationControls)
+                allItems.Items.Add(_SC);
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
@@ -54,6 +64,15 @@ namespace PlGui
                 hourTB.Text = "0" + newTS.Hours.ToString();
             else
                 hourTB.Text = newTS.Hours.ToString();
+        }
+
+        public void updateBus(List<LineTiming> linesInSta)
+        {
+            panelList.Items.Clear();
+            foreach (LineTiming lt in linesInSta)
+                panelList.Items.Add(new PanelControl(lt.LineNum, lt.StationName, lt.ArrivalTime.Minutes));
+            if (linesInSta.Count == 0)
+                panelList.Items.Add(new PanelControl(-1, "No lines coming soon", -1));
         }
 
         private void startOrStop_Click(object sender, RoutedEventArgs e)
@@ -84,14 +103,37 @@ namespace PlGui
             else if (nowState == WatchState.Start)
             {
                 startOrStop.Background = Brushes.LightGreen;
-                bl.StopSimulator();
+                bl.StopSimulator();                
                 startOrStop.Content = "Start";
+                panelList.Items.Clear();
                 nowState = WatchState.Stop;
                 hourTB.IsReadOnly = false;
                 minTB.IsReadOnly = false;
                 secTB.IsReadOnly = false;
                 speedTB.IsReadOnly = false;
             }
+        }
+
+        private void Details_Click(object sender, RoutedEventArgs e)
+        {
+            panelList.Items.Clear();
+            linesInStaLB.Items.Clear();
+            StationControl SelectedSC = allItems.SelectedItem as StationControl;
+            SelectedStation = SelectedSC.currentStation.Code;
+            Station s = bl.GetStations(SelectedStation);
+            Action<List<LineTiming>> doUpdateBus = updateBus;
+            bl.SetStationPanel(SelectedStation, doUpdateBus);
+
+            staNameLa.Content = s.Name.Substring(1);
+            staCodeLa.Content = s.Code;
+            foreach (Line l in bl.GetAllLinesBy(_l => _l.stations.FirstOrDefault(_s => _s.Code == s.Code) != null))
+                linesInStaLB.Items.Add(new SignControl(l));
+
+            stationCodeDe.Content = s.Code.ToString();
+            nameDe.Content = s.Name.ToString();
+            addressDe.Content = s.Address.ToString();
+            longitudeDe.Content = s.Longitude.ToString().Substring(0, 10) + "°E";
+            latitudeDe.Content = s.Latitude.ToString().Substring(0, 10) + "°N";
         }
     }
 }
