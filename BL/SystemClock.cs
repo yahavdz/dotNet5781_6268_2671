@@ -12,7 +12,7 @@ namespace BL
     class SystemClock
     {
         private static Stopwatch stopWatch;
-        internal volatile bool isTimerRun = false;
+        internal static volatile bool isTimerRun = false;
         BackgroundWorker timerworker;
 
         #region singelton
@@ -29,9 +29,10 @@ namespace BL
         public static SystemClock Instance { get => instance; }// The public Instance property to use
         #endregion
 
-        TimeSpan startTime;
-        int rate;        
+        static TimeSpan startTime;
+        internal static int rate;        
         private Action<TimeSpan> updateTime { get; set; }
+        internal static TimeSpan Now { get { return new TimeSpan(stopWatch.ElapsedTicks * rate) + startTime; } }
 
         public void AddObserver(Action<TimeSpan> _updateTime) => updateTime = _updateTime;
         public void RemoveObserver() => updateTime = null;
@@ -42,7 +43,6 @@ namespace BL
             {
                 startTime = _startTime;
                 rate = _rate;
-                
                 stopWatch.Restart();
                 isTimerRun = true;
                 timerworker.RunWorkerAsync();
@@ -52,7 +52,8 @@ namespace BL
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             TimeSpan newTS = new TimeSpan(stopWatch.ElapsedTicks * rate) + startTime;
-            updateTime(new TimeSpan(newTS.Hours, newTS.Minutes, newTS.Seconds));
+            if(updateTime != null)
+                updateTime(new TimeSpan(newTS.Hours, newTS.Minutes, newTS.Seconds));
         }
 
         public void Stop()

@@ -11,7 +11,7 @@ using BO;
 
 namespace BL
 {
-    class BLImp : IBL
+    public class BLImp : IBL
     {
         #region singelton
         static readonly BLImp instance = new BLImp();
@@ -22,8 +22,18 @@ namespace BL
 
         IDal dl = DalFactory.GetDal();
         SystemClock sc = SystemClock.Instance;
+        TravelOperator to = TravelOperator.Instance;
 
-        #region Watch
+        #region Simulator
+        public void SetStationPanel(int station, Action<List<LineTiming>> updateBus)
+        {
+            if (SystemClock.isTimerRun)
+            {
+                to.Stop();
+                to.AddObserver(updateBus);
+                to.Start(station);
+            }
+        }
         public void StartSimulator(TimeSpan startTime, int Rate, Action<TimeSpan> updateTime)
         {
             sc.AddObserver(updateTime);
@@ -31,8 +41,10 @@ namespace BL
         }
         public void StopSimulator()
         {
-            sc.Stop();
+            to.Stop();
+            sc.Stop();           
             sc.RemoveObserver();
+            to.RemoveObserver();
         }
         #endregion
 
@@ -155,7 +167,7 @@ namespace BL
                 {
                     DO.Station nextDoStation = dl.GetStation(orderedListOfLineStations.ElementAt(i + 1).Station);
                     bols.DistanceToNextStation = Math.Sqrt(Math.Pow(nextDoStation.Latitude * 110.574 - currentDoStation.Latitude * 110.574, 2) + Math.Pow(nextDoStation.Longitude * 111.320 * Math.Cos(nextDoStation.Latitude) - currentDoStation.Longitude * 111.320 * Math.Cos(nextDoStation.Latitude), 2) * 1.0);
-                    double calc = (bols.DistanceToNextStation / 50) * 3;
+                    double calc = (bols.DistanceToNextStation / 60) * 3;
                     int temp = Convert.ToInt32(calc);
                     if (calc < 1 && calc > 0)
                         bols.TimeToNextStation = new TimeSpan(0, 0, temp * 2);
