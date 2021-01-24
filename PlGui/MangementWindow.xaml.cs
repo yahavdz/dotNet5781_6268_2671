@@ -71,7 +71,6 @@ namespace PlGui
                 updateList();
             }
         }
-
         private void lineDis_Click(object sender, RoutedEventArgs e)
         {
             updateButton.Opacity = 0.6;
@@ -100,7 +99,6 @@ namespace PlGui
                 updateList();
             }
         }
-
         private void stationDis_Click(object sender, RoutedEventArgs e)
         {
             updateButton.Opacity = 0.6;
@@ -129,14 +127,24 @@ namespace PlGui
                 updateList();
             }
         }
-
+        private void userDis_Click(object sender, RoutedEventArgs e)
+        {
+            updateButton.Opacity = 0.6;
+            daletButton.Opacity = 0.6;
+            allItems.SelectedItem = null;
+            allItems.Items.Clear();
+            selectedView = selected.nullDis;
+            List<User> allUsers = bl.GetAllUsers().ToList();
+            foreach (User u in allUsers)
+                allItems.Items.Add(new UserAdminControl(u, bl));
+        }
 
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
             updateButton.Opacity = 0.6;
             daletButton.Opacity = 0.6;
-            if (allItems.SelectedItem != null)
+            if (allItems.SelectedItem != null && selectedView != selected.nullDis)
             {
                 MessageBoxResult popUp = MessageBox.Show("Are you sure you want to delete?", "Delete",
                 MessageBoxButton.YesNo,
@@ -174,7 +182,6 @@ namespace PlGui
                 }
             }
         }
-
         private void addOrUpdate_Click(object sender, RoutedEventArgs e)
         {
             updateButton.Opacity = 0.6;
@@ -236,8 +243,11 @@ namespace PlGui
 
         private void newItemSelected(object sender, SelectionChangedEventArgs e)
         {
-            updateButton.Opacity = 1;
-            daletButton.Opacity = 1;
+            if (selectedView != selected.nullDis)
+            {
+                updateButton.Opacity = 1;
+                daletButton.Opacity = 1;
+            }
         }
         public void updateList()
         {
@@ -263,7 +273,6 @@ namespace PlGui
                     break;
             }
         }
-
         private void Details_Click(object sender, RoutedEventArgs e)
         {
             switch (selectedView)
@@ -356,5 +365,7 @@ namespace PlGui
         }
 
         #endregion
+
+        
     }
 }

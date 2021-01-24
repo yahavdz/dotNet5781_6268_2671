@@ -34,7 +34,7 @@ namespace PlGui
             if (SelectedLC != null)
             {
                 myStatos = addOrUpdate.update;
-                newLineNum.Text = SelectedLC.currentLine.Id.ToString();
+                newLineNum.Text = SelectedLC.currentLine.Code.ToString();
                 newArea.SelectedIndex = (int)SelectedLC.currentLine.Area;
                 if (SelectedLC.currentLine.stations.ToList().Count > 0)
                 {

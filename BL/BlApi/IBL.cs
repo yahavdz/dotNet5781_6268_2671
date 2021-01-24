@@ -44,5 +44,14 @@ namespace BLApi
         void DeleteStation(int id);
         #endregion Station
 
+        #region User
+        User GetUser(string name);
+        IEnumerable<User> GetAllUsers();
+        IEnumerable<User> GetAllUsersBy(Predicate<User> predicate);
+        void AddUser(User user);
+        void UpdateUser(User user);
+        void DeleteUser(string name);
+        #endregion
+
     }
 }
