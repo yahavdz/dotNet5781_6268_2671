@@ -1115,6 +1115,20 @@ namespace DS
                     HashPassword = -1152142086,
                     Admin = false,
                     Active = true
+                },
+                new User
+                {
+                    UserName = "aaa",
+                    Password = "1234",
+                    Admin = true,
+                    Active = true
+                },
+                new User
+                {
+                    UserName = "zzz",
+                    Password = "0000",
+                    Admin = false,
+                    Active = true
                 }
             };
 

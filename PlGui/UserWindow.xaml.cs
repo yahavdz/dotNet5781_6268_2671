@@ -132,8 +132,9 @@ namespace PlGui
             stationCodeDe.Content = s.Code.ToString();
             nameDe.Content = s.Name.ToString();
             addressDe.Content = s.Address.ToString();
-            longitudeDe.Content = s.Longitude.ToString().Substring(0, 10) + "°E";
-            latitudeDe.Content = s.Latitude.ToString().Substring(0, 10) + "°N";
+            longitudeDe.Content = s.Longitude.ToString() + "°E";
+            latitudeDe.Content = s.Latitude.ToString() + "°N";
+            AccessibleDe.Content = s.Accessibility.ToString();
         }
     }
 }

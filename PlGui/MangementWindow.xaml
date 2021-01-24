@@ -41,16 +41,13 @@
                 <Grid.Background>
                     <ImageBrush Stretch="Uniform" ImageSource="logo.png"/>
                 </Grid.Background>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
-                    <materialDesign:PopupBox PlacementMode="BottomAndAlignLeftEdges" StaysOpen="False" HorizontalAlignment="Left" Foreground="White">
-                        <StackPanel Width="150" Background="PowderBlue">
-                            <Button Content="Account"/>
-                            <Button Content="About"/>
-                            <Separator/>
-                            <Button Content="Logout"/>
-                        </StackPanel>
-                    </materialDesign:PopupBox>
-                </StackPanel>
+                <Button x:Name="userDis" Background="#FF5C99D6" Content="Users" Margin="2 0 4 0" Click="userDis_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Width="50" Height="30" BorderBrush="{x:Null}" Foreground="White">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
             </Grid>
             <Grid x:Name="optionsGrid" Grid.Row="1" Margin="0">
                 <Grid.ColumnDefinitions>

@@ -45,11 +45,13 @@ namespace BLApi
         #endregion Station
 
         #region User
-
-        BO.User GetUser(string username);
-        void AddUser(BO.User user);
-
-
+        User GetUser(string name);
+        IEnumerable<User> GetAllUsers();
+        IEnumerable<User> GetAllUsersBy(Predicate<User> predicate);
+        void AddUser(User user);
+        void UpdateUser(User user);
+        void DeleteUser(string name);
         #endregion
+
     }
 }

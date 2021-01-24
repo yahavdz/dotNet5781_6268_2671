@@ -123,20 +123,23 @@
             <Grid Grid.Row="2" Grid.Column="1" Background="#FF31577E" Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="7*"/>
                 </Grid.RowDefinitions>
-                <Label Content="Details" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" FontFamily="Segoe UI Emoji" Foreground="Peru" FontSize="28"/>
+                <Label Content="Details" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" FontFamily="Segoe UI Emoji" Foreground="Peru" FontSize="20"/>
                 <StackPanel Grid.Row="1">
                     <Label Content="Station Code:" HorizontalAlignment="Left" FontSize="14" Padding="10,0,0,0"/>
                     <Label Name="stationCodeDe" HorizontalAlignment="Right" FontSize="14" FontWeight="Bold" Padding="5,0"/>
-                    <Label Content="Station Name:" HorizontalAlignment="Left" FontSize="14" Padding="10,5,0,0"/>
+                    <Label Content="Station Name:" HorizontalAlignment="Left" FontSize="14" Padding="10,0,0,0"/>
                     <Label Name="nameDe" HorizontalAlignment="Right" FontSize="14" FontWeight="Bold" Padding="5,0"/>
-                    <Label Content="Station Address:" HorizontalAlignment="Left" FontSize="14" Padding="10,5,0,0"/>
+                    <Label Content="Station Address:" HorizontalAlignment="Left" FontSize="14" Padding="10,0,0,0"/>
                     <Label Name="addressDe" HorizontalAlignment="Right" FontSize="14" FontWeight="Bold" Padding="5,0"/>
-                    <Label Content="Station Longitud:" HorizontalAlignment="Left" FontSize="14" Padding="10,5,0,0"/>
+                    <Label Content="Station Longitud:" HorizontalAlignment="Left" FontSize="14" Padding="10,0,0,0"/>
                     <Label Name="longitudeDe" HorizontalAlignment="Right" FontSize="14" FontWeight="Bold" Padding="5,0"/>
-                    <Label Content="Station Latitude:" HorizontalAlignment="Left" FontSize="14" Padding="10,5,0,0"/>
+                    <Label Content="Station Latitude:" HorizontalAlignment="Left" FontSize="14" Padding="10,0,0,0"/>
                     <Label Name="latitudeDe" HorizontalAlignment="Right" FontSize="14" FontWeight="Bold" Padding="5,0"/>
+                    <Label Content="Accessible station:" HorizontalAlignment="Left" FontSize="14" Padding="10,0,0,0"/>
+                    <Label Name="AccessibleDe" HorizontalAlignment="Right" FontSize="14" FontWeight="Bold" Padding="5,0"/>
+
                 </StackPanel>
             </Grid>
         </Grid>

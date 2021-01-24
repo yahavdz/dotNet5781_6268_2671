@@ -42,7 +42,7 @@ namespace BL
         public void StopSimulator()
         {
             to.Stop();
-            sc.Stop();           
+            sc.Stop();
             sc.RemoveObserver();
             to.RemoveObserver();
         }
@@ -95,9 +95,8 @@ namespace BL
             {
                 throw new BadIdException(ex, "Duplicate bus ID", bus.LicenseNum);
             }
-
         }
-        public void ValidateBusFiledsCheck(BO.Bus bus)
+        void ValidateBusFiledsCheck(BO.Bus bus)
         {
             DateTime tempDate2018 = new DateTime(2018, 1, 1);
             DateTime tempDate1985 = new DateTime(1985, 1, 1);
@@ -136,7 +135,6 @@ namespace BL
         }
         public void DeleteBus(int id)
         {
-
             try
             {
                 dl.DeleteBus(id);
@@ -145,7 +143,6 @@ namespace BL
             {
                 throw new BO.BadIdException(ex, $"License number does not exist: {id}", id);
             }
-
         }
         #endregion
 
@@ -156,7 +153,7 @@ namespace BL
             LineBO.stations = new List<LineStation>();
             LineDO.CopyPropertiesTo(LineBO);
             IEnumerable<DO.LineStation> listOfLineStations = dl.GetAllLineStationBy(ls => ls.LineId == LineDO.Id);
-            IEnumerable <DO.LineStation> orderedListOfLineStations = listOfLineStations.OrderBy(ls => ls.LineStationIndex);
+            IEnumerable<DO.LineStation> orderedListOfLineStations = listOfLineStations.OrderBy(ls => ls.LineStationIndex);
             for (int i = 0; i < orderedListOfLineStations.Count(); i++)
             {
                 BO.LineStation bols = new LineStation();
@@ -196,7 +193,6 @@ namespace BL
             LineDO.LastStation = LineBO.stations.Last().Code;
             return LineDO;
         }
-
         IEnumerable<DO.LineStation> LineBoLineStationDoAdapter(BO.Line LineBO)
         {
             List<DO.LineStation> stationsList = new List<DO.LineStation>();
@@ -213,7 +209,6 @@ namespace BL
             }
             return stationsList;
         }
-
         public BO.Line GetLine(int lineId)
         {
             DO.Line LineDO;
@@ -363,7 +358,7 @@ namespace BL
                 dl.UpdateLineStation(doLineStation); // update the index of the station
             }
 
-           
+
             // update the prev and next stations to point to the new station:
             if (index > 0)
             {
@@ -377,7 +372,7 @@ namespace BL
                 nextStation.PrevStation = station.Code;
                 dl.UpdateLineStation(nextStation);
             }
-            
+
         }
         public void DeleteStationFromLine(Line line, LineStation station)
         {
@@ -429,7 +424,7 @@ namespace BL
                     dl.UpdateLineStation(doLineStation); // update the index of the station
                 }
             }
-            dl.DeleteLineStation(line.Code, station.Code); 
+            dl.DeleteLineStation(line.Code, station.Code);
 
         }
 
@@ -538,39 +533,73 @@ namespace BL
         #endregion
 
         #region User
-
-        public BO.User GetUser(string username)
+        User userDoBoAdapter(DO.User userDO)
         {
-            try
-            {
-                BO.User userBO = new User();
-                DO.User userDO = dl.GetUser(username);
-                userDO.CopyPropertiesTo(userBO);
-                return userBO;
-
-            }
-            catch (DO.BadUserNameException ex)
-            {
-                throw new BO.BadUserNameException(username, $"bad user name: {username}");
-            }
+            User userBO = new User();
+            userDO.CopyPropertiesTo(userBO);
+            return userBO;
         }
-
-        public void AddUser(BO.User user)
+        public BO.User GetUser(string name)
         {
+            DO.User userDO;
             try
             {
-                DO.User userDO = new DO.User();
-                user.CopyPropertiesTo(userDO);
+                userDO = dl.GetUser(name);
+            }
+            catch (DO.BadUserNameException)
+            {
+                throw new BO.BadUserNameException(name);
+            }
+            return userDoBoAdapter(userDO);
+        }
+        public IEnumerable<User> GetAllUsers()
+        {
+            return from user in dl.GetAllUsers()
+                   select userDoBoAdapter(user);
+        }
+        public IEnumerable<User> GetAllUsersBy(Predicate<User> predicate)
+        {
+            IEnumerable<DO.User> doUsers = dl.GetAllUsersBy((u) => predicate(userDoBoAdapter(u)));
+            return doUsers.Select((u) => userDoBoAdapter(u));
+        }
+        public void AddUser(User user)
+        {
+            DO.User userDO = new DO.User();
+            user.CopyPropertiesTo(userDO);
+            userDO.Active = true;
+            try
+            {
                 dl.AddUser(userDO);
             }
-            catch (DO.BadUserNameException ex)
+            catch (DO.BadUserNameException)
             {
-                // if user does not exist:
-                throw new BO.BadUserNameException(user.UserName, "Duplicate user name");
+                throw new BadUserNameException(user.UserName, "Duplicate user name");
             }
         }
-
+        public void UpdateUser(User user)
+        {
+            DO.User userDO = new DO.User();
+            user.CopyPropertiesTo(userDO);
+            try
+            {
+                dl.UpdateUser(userDO);
+            }
+            catch (DO.BadUserNameException)
+            {
+                throw new BO.BadUserNameException(userDO.UserName);
+            }
+        }
+        public void DeleteUser(string name)
+        {
+            try
+            {
+                dl.DeleteUser(name);
+            }
+            catch (DO.BadUserNameException)
+            {
+                throw new BO.BadUserNameException(name);
+            }
+        }
         #endregion
-
     }
 }
