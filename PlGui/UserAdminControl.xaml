@@ -16,7 +16,7 @@
                 <Label Name="userAdmin" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" FontFamily="Segoe UI Black" Foreground="Peru"/>
             </StackPanel>
         </StackPanel>
-        <Button x:Name="BecomeAdmin" Background="#FF5C99D6" Content="Become Admin" HorizontalAlignment="Right" Margin="0,15,5,15" FontSize="10" Click="BecomeAdmin_Click" Foreground="White" BorderBrush="{x:Null}">
+        <Button x:Name="BecomeAdmin" Background="#FF5C99D6" Content="Make Admin" HorizontalAlignment="Right" Margin="0,15,5,15" FontSize="10" Click="BecomeAdmin_Click" Foreground="White" BorderBrush="{x:Null}">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
