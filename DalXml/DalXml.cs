@@ -20,13 +20,13 @@ namespace Dal
         static DalXml() { }// static ctor to ensure instance init is done just before first usage
         private DalXml() 
         {
-            List<Line> lines = GetAllLines().ToList();
+            List<Line> lines = XMLTools.LoadListFromXMLSerializer<Line>(linePath);
             DO.Counts.setBusLineCount(lines.Count() + 1);
-            List<Station> station = GetAllStations().ToList();
+            List<Station> station = XMLTools.LoadListFromXMLSerializer<Station>(stationPath);
             DO.Counts.setStationsCount(station.Count() + 1);
-            List<BusOnTrip> busOT = GetAllBusOnTrip().ToList();
+            List<BusOnTrip> busOT = XMLTools.LoadListFromXMLSerializer<BusOnTrip>(busOnTripPath);
             DO.Counts.setBusOnTripCount(busOT.Count() + 1); 
-            List<Trip> trip = GetAllTrip().ToList();
+            List<Trip> trip = XMLTools.LoadListFromXMLSerializer<Trip>(tripPath);
             DO.Counts.setTripCount(trip.Count() + 1);
         }
         public static DalXml Instance { get => instance; }// The public Instance property to use
