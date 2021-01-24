@@ -71,13 +71,13 @@ namespace PlGui
                         passwordLab.Foreground = Brushes.Black;
                         if (user.Admin)
                         {
-                            UserWindow userWindow = new UserWindow(bl);
-                            userWindow.ShowDialog();
+                            MangementWindow mangementWindow = new MangementWindow(bl);
+                            mangementWindow.ShowDialog();
                         }
                         else
                         {
-                            MangementWindow mangementWindow = new MangementWindow(bl);
-                            mangementWindow.ShowDialog();
+                            UserWindow userWindow = new UserWindow(bl);
+                            userWindow.ShowDialog();
                         }
                         wrongPass.Text = "";
                         myUsername.Text = "";

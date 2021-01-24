@@ -160,16 +160,19 @@ namespace BL
                 DO.Station currentDoStation = dl.GetStation(orderedListOfLineStations.ElementAt(i).Station);
                 if (i < orderedListOfLineStations.Count() - 1) // not the last
                 {
-                    DO.Station nextDoStation = dl.GetStation(orderedListOfLineStations.ElementAt(i + 1).Station);
-                    bols.DistanceToNextStation = Math.Sqrt(Math.Pow(nextDoStation.Latitude * 110.574 - currentDoStation.Latitude * 110.574, 2) + Math.Pow(nextDoStation.Longitude * 111.320 * Math.Cos(nextDoStation.Latitude) - currentDoStation.Longitude * 111.320 * Math.Cos(nextDoStation.Latitude), 2) * 1.0);
-                    double calc = (bols.DistanceToNextStation / 60) * 3;
+                    // DO.Station nextDoStation = dl.GetStation(orderedListOfLineStations.ElementAt(i + 1).Station);
+                    DO.AdjacentStations adjacentStations = dl.GetAdjacentStations(currentDoStation.Code, orderedListOfLineStations.ElementAt(i + 1).Station);
+                    // bols.DistanceToNextStation = Math.Sqrt(Math.Pow(nextDoStation.Latitude * 110.574 - currentDoStation.Latitude * 110.574, 2) + Math.Pow(nextDoStation.Longitude * 111.320 * Math.Cos(nextDoStation.Latitude) - currentDoStation.Longitude * 111.320 * Math.Cos(nextDoStation.Latitude), 2) * 1.0);
+                    /*double calc = (bols.DistanceToNextStation / 60) * 3;
                     int temp = Convert.ToInt32(calc);
                     if (calc < 1 && calc > 0)
                         bols.TimeToNextStation = new TimeSpan(0, 0, temp * 2);
                     if (calc < 60 && calc > 1)
                         bols.TimeToNextStation = new TimeSpan(0, temp * 2, 0);
                     else if (calc > 60)
-                        bols.TimeToNextStation = TimeSpan.FromHours(temp * 2);
+                        bols.TimeToNextStation = TimeSpan.FromHours(temp * 2);*/
+                    bols.TimeToNextStation = adjacentStations.Time;
+                    bols.DistanceToNextStation = adjacentStations.Distance;
                 }
                 currentDoStation.CopyPropertiesTo(bols);
                 LineBO.stations = LineBO.stations.Append(bols).ToList();

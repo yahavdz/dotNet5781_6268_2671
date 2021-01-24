@@ -12,7 +12,7 @@
                 <Label Name="userName" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontFamily="Segoe UI Black" Foreground="Peru" FontSize="14"/>
             </StackPanel>
             <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
-                <Label Content="Aadmin:" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" FontFamily="Segoe UI Emoji" Foreground="Peru"/>
+                <Label Content="Admin:" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" FontFamily="Segoe UI Emoji" Foreground="Peru"/>
                 <Label Name="userAdmin" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" FontFamily="Segoe UI Black" Foreground="Peru"/>
             </StackPanel>
         </StackPanel>

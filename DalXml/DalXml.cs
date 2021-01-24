@@ -433,7 +433,8 @@ namespace Dal
                                                      Station1 = int.Parse(adj.Element("Station1").Value),
                                                      Station2 = int.Parse(adj.Element("Station2").Value),
                                                      Distance = Convert.ToDouble(adj.Element("Distance").Value),
-                                                     Time =  TimeSpan.Parse(adj.Element("Time").Value),
+                                                     // example: P0DT12H30M
+                                                     Time = XmlConvert.ToTimeSpan($"P0DT{adj.Element("TimeHours").Value}H{adj.Element("TimeMinutes").Value}M"),
                                                      Active = Convert.ToBoolean(adj.Element("Active").Value)
                                                  }
                                                  ).FirstOrDefault();
@@ -453,7 +454,7 @@ namespace Dal
                         Station1 = int.Parse(adj.Element("Station1").Value),
                         Station2 = int.Parse(adj.Element("Station2").Value),
                         Distance = Convert.ToDouble(adj.Element("Distance").Value),
-                        Time = TimeSpan.Parse(adj.Element("Time").Value),
+                        Time = XmlConvert.ToTimeSpan($"P0DT{adj.Element("TimeHours").Value}H{adj.Element("TimeMinutes").Value}M"),
                         Active = Convert.ToBoolean(adj.Element("Active").Value)
                     }
                                                  );
@@ -468,7 +469,7 @@ namespace Dal
                         Station1 = int.Parse(adj.Element("Station1").Value),
                         Station2 = int.Parse(adj.Element("Station2").Value),
                         Distance = Convert.ToDouble(adj.Element("Distance").Value),
-                        Time = TimeSpan.Parse(adj.Element("Time").Value),
+                        Time = XmlConvert.ToTimeSpan($"P0DT{adj.Element("TimeHours").Value}H{adj.Element("TimeMinutes").Value}M"),
                         Active = Convert.ToBoolean(adj.Element("Active").Value)
                     }
                     where predicate(adj1)
@@ -489,7 +490,8 @@ namespace Dal
                                    new XElement("Station1", adjacentStations.Station1),
                                    new XElement("Station2", adjacentStations.Station2),
                                    new XElement("Distance", adjacentStations.Distance),
-                                   new XElement("Time", adjacentStations.Time),
+                                   new XElement("TimeHours", adjacentStations.Time.Hours),
+                                   new XElement("TimeMinutes", adjacentStations.Time.Minutes),
                                    new XElement("Active", adjacentStations.Active));
                 adjacentStationsRootElem.Add(adjElem);
             }
@@ -524,7 +526,8 @@ namespace Dal
                 findAdjacentStations.Element("Station1").Value = adjacentStations.Station1.ToString();
                 findAdjacentStations.Element("Station2").Value = adjacentStations.Station2.ToString();
                 findAdjacentStations.Element("Distance").Value = adjacentStations.Distance.ToString();
-                findAdjacentStations.Element("Time").Value = adjacentStations.Time.ToString();
+                findAdjacentStations.Element("TimeHours").Value = adjacentStations.Time.Hours.ToString();
+                findAdjacentStations.Element("TimeMinutes").Value = adjacentStations.Time.Minutes.ToString();
                 findAdjacentStations.Element("Active").Value = adjacentStations.Active.ToString();
                 XMLTools.SaveListToXMLElement(adjacentStationsRootElem, adjacentStationPath);
             }

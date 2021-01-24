@@ -45,10 +45,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\xml1\xml1\xml1.csproj">
-      <Project>{9eabe926-0209-480b-b031-19b107895e1c}</Project>
-      <Name>xml1</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DalApi\DalApi.csproj">
       <Project>{111c1235-5477-463a-869c-bb851b1fa79e}</Project>
       <Name>DalApi</Name>

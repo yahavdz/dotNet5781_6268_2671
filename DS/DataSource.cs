@@ -850,6 +850,7 @@ namespace DS
                 },
             };
 
+            #region LineTrip
             ListLineTrips = new List<LineTrip>()
             {
                 new LineTrip//1
@@ -943,7 +944,9 @@ namespace DS
                     Active = true
                 },
             };
+            #endregion
 
+            #region LineStation
             ListLineStations = new List<LineStation>();
             for (int i = 0; i < 5; i++)
             {
@@ -1048,51 +1051,9 @@ namespace DS
                 // NextStation = ListStations[i * 10 + 1] .Code,
                 Active = true
             });
+            #endregion
 
-
-            /*for (int i = 0; i < 10; i++)
-            {
-                int stationsCount = i * 10;
-                if (i > 4) stationsCount = (i - 5) * 10;
-                ListLineStations.Add(new LineStation
-                {
-                    LineId = ListLines[i].Id,
-                    Station = ListStations[stationsCount].Code,
-                    LineStationIndex = 1,
-                    // PrevStation = ListStations[0].Code,
-                    NextStation = ListStations[stationsCount + 1].Code,
-                    Active = true
-                });
-
-                for (int j = 1; j < 10 - 1; j++)
-                {
-                    stationsCount = i * 10 + j;
-                    if (i > 4) stationsCount = (i - 5) * 10 + j; 
-                    ListLineStations.Add(new LineStation
-                    {
-                        LineId = ListLines[i].Id,
-                        Station = ListStations[stationsCount].Code,
-                        LineStationIndex = j,
-                        PrevStation = ListStations[stationsCount - 1].Code,
-                        NextStation = ListStations[stationsCount + 1].Code,
-                        Active = true
-                    });
-                }
-
-                stationsCount = i * 10 + 9;
-                if (i > 4) stationsCount = (i - 5) * 10 + 9;
-                ListLineStations.Add(new LineStation
-                {
-                    LineId = ListLines[i].Id,
-                    Station = ListStations[stationsCount].Code,
-                    LineStationIndex = 9,
-                    PrevStation = ListStations[stationsCount - 1].Code,
-                    // NextStation = ListStations[i * 10 + 1] .Code,
-                    Active = true
-                });
-
-            }*/
-            
+            #region User
             ListUsers = new List<User>()
             {
                 new User
@@ -1115,34 +1076,25 @@ namespace DS
                     HashPassword = -1152142086,
                     Admin = false,
                     Active = true
-                },
-                new User
-                {
-                    UserName = "aaa",
-                    Password = "1234",
-                    Admin = true,
-                    Active = true
-                },
-                new User
-                {
-                    UserName = "zzz",
-                    Password = "0000",
-                    Admin = false,
-                    Active = true
                 }
+                
             };
+            #endregion
 
             ListAdjacentStations = new List<AdjacentStations>();
-            for (int i = 0; i < 48; i++)
+            foreach (LineStation lineStation in ListLineStations)
             {
-                ListAdjacentStations.Add(new AdjacentStations
+                if (lineStation.NextStation != 0)
                 {
-                    Station1 = ListStations[i].Code,
-                    Station2 = ListStations[i + 1].Code,
-                    Distance = random.Next(1, 5) * 0.9,
-                    Time = new TimeSpan(0, random.Next(2, 10), 0),
-                    Active = true
-                });
+                    ListAdjacentStations.Add(new AdjacentStations
+                    {
+                        Station1 = lineStation.Station,
+                        Station2 = lineStation.NextStation,
+                        Distance = random.NextDouble() * 20,
+                        Time = new TimeSpan(random.Next(0, 2), random.Next(0, 59), random.Next(0, 59)),
+                        Active = true
+                    });
+                }
             }
         }
     }
