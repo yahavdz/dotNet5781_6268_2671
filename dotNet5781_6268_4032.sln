@@ -30,6 +30,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "all xml", "all xml", "{41A6
 		bin\xml\AdjacentStationXml.xml = bin\xml\AdjacentStationXml.xml
 		bin\xml\BusOnTripXml.xml = bin\xml\BusOnTripXml.xml
 		bin\xml\BusXml.xml = bin\xml\BusXml.xml
+		bin\config.xml = bin\config.xml
 		bin\xml\LineStationXml.xml = bin\xml\LineStationXml.xml
 		bin\xml\LineTripXml.xml = bin\xml\LineTripXml.xml
 		bin\xml\LineXml.xml = bin\xml\LineXml.xml

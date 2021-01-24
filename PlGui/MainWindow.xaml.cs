@@ -62,6 +62,7 @@ namespace PlGui
         {
             if (selectedView == Options.Login)
             {
+               
                 if (myUsername.Text == "aaa" && myPassword.Password == "1234")
                 {
                     passwordLab.Foreground = Brushes.Black;

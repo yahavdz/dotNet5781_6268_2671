@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using System.Xml.Linq;
 using DalApi;
 using DalXml;
@@ -543,9 +544,10 @@ namespace Dal
                                                  {
                                                      Id = int.Parse(line.Element("Id").Value),
                                                      LineId = int.Parse(line.Element("LineId").Value),
-                                                     StartAt = TimeSpan.Parse(line.Element("StartAt").Value),
-                                                     Frequency = TimeSpan.Parse(line.Element("Frequency").Value),
-                                                     FinishAt = TimeSpan.Parse(line.Element("FinishAt").Value),
+                                                     // example: P0DT12H30M
+                                                     StartAt = XmlConvert.ToTimeSpan($"P0DT{line.Element("StartAtHour").Value}H{line.Element("StartAtMinute").Value}M"),
+                                                     Frequency = XmlConvert.ToTimeSpan($"P0DT{line.Element("FrequencyHour").Value}H{line.Element("FrequencyMinute").Value}M"),
+                                                     FinishAt = XmlConvert.ToTimeSpan($"P0DT{line.Element("FinishAtHour").Value}H{line.Element("FinishAtMinute").Value}M"),
                                                      Active = Convert.ToBoolean(line.Element("Active").Value)
                                                  }
                                                 ).FirstOrDefault();
@@ -564,9 +566,10 @@ namespace Dal
                     {
                         Id = int.Parse(line.Element("Id").Value),
                         LineId = int.Parse(line.Element("LineId").Value),
-                        StartAt = TimeSpan.Parse(line.Element("StartAt").Value),
-                        Frequency = TimeSpan.Parse(line.Element("Frequency").Value),
-                        FinishAt = TimeSpan.Parse(line.Element("FinishAt").Value),
+                        // example: P0DT12H30M
+                        StartAt = XmlConvert.ToTimeSpan($"P0DT{line.Element("StartAtHour").Value}H{line.Element("StartAtMinute").Value}M"),
+                        Frequency = XmlConvert.ToTimeSpan($"P0DT{line.Element("FrequencyHour").Value}H{line.Element("FrequencyMinute").Value}M"),
+                        FinishAt = XmlConvert.ToTimeSpan($"P0DT{line.Element("FinishAtHour").Value}H{line.Element("FinishAtMinute").Value}M"),
                         Active = Convert.ToBoolean(line.Element("Active").Value)
                     });
         }
@@ -579,9 +582,10 @@ namespace Dal
                    {
                        Id = int.Parse(line.Element("Id").Value),
                        LineId = int.Parse(line.Element("LineId").Value),
-                       StartAt = TimeSpan.Parse(line.Element("StartAt").Value),
-                       Frequency = TimeSpan.Parse(line.Element("Frequency").Value),
-                       FinishAt = TimeSpan.Parse(line.Element("FinishAt").Value),
+                       // example: P0DT12H30M
+                       StartAt = XmlConvert.ToTimeSpan($"P0DT{line.Element("StartAtHour").Value}H{line.Element("StartAtMinute").Value}M"),
+                       Frequency = XmlConvert.ToTimeSpan($"P0DT{line.Element("FrequencyHour").Value}H{line.Element("FrequencyMinute").Value}M"),
+                       FinishAt = XmlConvert.ToTimeSpan($"P0DT{line.Element("FinishAtHour").Value}H{line.Element("FinishAtMinute").Value}M"),
                        Active = Convert.ToBoolean(line.Element("Active").Value)
                    }
                    where predicate(line1)
@@ -600,9 +604,12 @@ namespace Dal
                 XElement lTElem = new XElement("LineTrip",
                                       new XElement("Id", lineTrip.Id),
                                       new XElement("LineId", lineTrip.LineId),
-                                      new XElement("StartAt", lineTrip.StartAt),
-                                      new XElement("Frequency", lineTrip.Frequency),
-                                      new XElement("FinishAt", lineTrip.FinishAt),
+                                      new XElement("StartAtHour", lineTrip.StartAt.Hours),
+                                      new XElement("StartAtMinute", lineTrip.StartAt.Minutes),
+                                      new XElement("FrequencyHour", lineTrip.Frequency.Hours),
+                                      new XElement("FrequencyMinute", lineTrip.Frequency.Minutes),
+                                      new XElement("FinishAtHour", lineTrip.FinishAt.Hours),
+                                      new XElement("FinishAtMinute", lineTrip.FinishAt.Minutes),
                                       new XElement("Active", lineTrip.Active));
                 LineTripsRootElem.Add(lTElem);
             }
@@ -634,9 +641,12 @@ namespace Dal
             {
                 findLineTrip.Element("Id").Value = lineTrip.Id.ToString();
                 findLineTrip.Element("LineId").Value = lineTrip.LineId.ToString();
-                findLineTrip.Element("StartAt").Value = lineTrip.StartAt.ToString();
-                findLineTrip.Element("Frequency").Value = lineTrip.Frequency.ToString();
-                findLineTrip.Element("FinishAt").Value = lineTrip.FinishAt.ToString();
+                findLineTrip.Element("StartAtHour").Value = lineTrip.StartAt.Hours.ToString();
+                findLineTrip.Element("StartAtMinute").Value = lineTrip.StartAt.Minutes.ToString();
+                findLineTrip.Element("FrequencyHour").Value = lineTrip.Frequency.Hours.ToString();
+                findLineTrip.Element("FrequencyMinute").Value = lineTrip.Frequency.Minutes.ToString();
+                findLineTrip.Element("FinishAtHour").Value = lineTrip.FinishAt.Hours.ToString();
+                findLineTrip.Element("FinishAtMinute").Value = lineTrip.FinishAt.Minutes.ToString();
                 findLineTrip.Element("Active").Value = lineTrip.Active.ToString();
                 XMLTools.SaveListToXMLElement(LineTripsRootElem, lineTripPath);
             }
