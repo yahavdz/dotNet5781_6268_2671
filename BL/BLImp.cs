@@ -536,5 +536,41 @@ namespace BL
                 throw new BO.BadIdException(id, $"station code does not exist: {id}");
         }
         #endregion
+
+        #region User
+
+        public BO.User GetUser(string username)
+        {
+            try
+            {
+                BO.User userBO = new User();
+                DO.User userDO = dl.GetUser(username);
+                userDO.CopyPropertiesTo(userBO);
+                return userBO;
+
+            }
+            catch (DO.BadUserNameException ex)
+            {
+                throw new BO.BadUserNameException(username, $"bad user name: {username}");
+            }
+        }
+
+        public void AddUser(BO.User user)
+        {
+            try
+            {
+                DO.User userDO = new DO.User();
+                user.CopyPropertiesTo(userDO);
+                dl.AddUser(userDO);
+            }
+            catch (DO.BadUserNameException ex)
+            {
+                // if user does not exist:
+                throw new BO.BadUserNameException(user.UserName, "Duplicate user name");
+            }
+        }
+
+        #endregion
+
     }
 }

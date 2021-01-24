@@ -60,32 +60,72 @@ namespace PlGui
 
         private void approval_Click(object sender, RoutedEventArgs e)
         {
+            wrongPass.Text = "";
             if (selectedView == Options.Login)
             {
-               
-                if (myUsername.Text == "aaa" && myPassword.Password == "1234")
+                try
                 {
-                    passwordLab.Foreground = Brushes.Black;
-                    wrongPass.Text = "";
-                    myUsername.Text = "";
-                    myPassword.Password = "";
-                    MangementWindow mangementWindow = new MangementWindow(bl);
-                    mangementWindow.ShowDialog();
+                    BO.User user = bl.GetUser(myUsername.Text);
+                    if (user.HashPassword == myPassword.Password.GetHashCode())
+                    {
+                        passwordLab.Foreground = Brushes.Black;
+                        if (user.Admin)
+                        {
+                            UserWindow userWindow = new UserWindow(bl);
+                            userWindow.ShowDialog();
+                        }
+                        else
+                        {
+                            MangementWindow mangementWindow = new MangementWindow(bl);
+                            mangementWindow.ShowDialog();
+                        }
+                        wrongPass.Text = "";
+                        myUsername.Text = "";
+                        myPassword.Password = "";
+                    }
+                    else
+                    {
+                        wrongPass.Text = "Incorrect password. Please try again";
+                    }
                 }
-                else if (myUsername.Text == "zzz" && myPassword.Password == "0000")
+                catch(BO.BadUserNameException ex)
                 {
-                    passwordLab.Foreground = Brushes.Black;
-                    wrongPass.Text = "";
-                    myUsername.Text = "";
-                    myPassword.Password = "";
-                    UserWindow userWindow = new UserWindow(bl);
-                    userWindow.ShowDialog();
+                    wrongPass.Text = "Username does not exist. Please try again";
                 }
-                else
-                    wrongPass.Text = "Incorrect password";
             }
             else
             {
+                // register:
+                if (myPassword.Password != myConfirmPW.Password)
+                {
+                    wrongPass.Text = "Password is different from the confirm password.\nPlease try again";
+                }
+                else
+                {
+                    try
+                    {
+                        BO.User user = new User();
+                        user.UserName = myUsername.Text;
+                        user.HashPassword = myPassword.Password.GetHashCode();
+                        user.Active = true;
+                        bl.AddUser(user);
+
+                        // change to login window:
+                        selectedView = Options.Login;
+                        loginButton.Opacity = 1;
+                        signupButton.Opacity = 0.6;
+                        approval.Content = "Log in";
+                        confirmPWlab.Visibility = Visibility.Hidden;
+                        myConfirmPW.Visibility = Visibility.Hidden;
+                        emaillab.Visibility = Visibility.Hidden;
+                        myEmail.Visibility = Visibility.Hidden;
+
+                    }
+                    catch (BO.BadUserNameException ex)
+                    {
+                        wrongPass.Text = "Username already exist. Please try again";
+                    }
+                }
 
             }
         }

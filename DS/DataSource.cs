@@ -1097,15 +1097,22 @@ namespace DS
             {
                 new User
                 {
-                    UserName = "Admin",
-                    Password = "Admin",
+                    UserName = "zzz",
+                    HashPassword = 15947562,
                     Admin = true,
                     Active = true
                 },
                 new User
                 {
-                    UserName = "Guest",
-                    Password = "Guest",
+                    UserName = "admin",
+                    HashPassword = 15947562,
+                    Admin = true,
+                    Active = true
+                },
+                new User
+                {
+                    UserName = "aaa",
+                    HashPassword = -1152142086,
                     Admin = false,
                     Active = true
                 }

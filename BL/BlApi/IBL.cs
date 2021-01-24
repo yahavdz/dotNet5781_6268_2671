@@ -44,5 +44,12 @@ namespace BLApi
         void DeleteStation(int id);
         #endregion Station
 
+        #region User
+
+        BO.User GetUser(string username);
+        void AddUser(BO.User user);
+
+
+        #endregion
     }
 }
