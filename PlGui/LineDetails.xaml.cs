@@ -96,16 +96,16 @@ namespace PlGui
                 newLineStation.Name = sc.currentStation.Name;
                 newLineStation.DistanceToNextStation = Math.Sqrt(Math.Pow(newLineStation.Latitude * 110.574 - sc.currentStation.Latitude * 110.574, 2) + Math.Pow(newLineStation.Longitude * 111.320 * Math.Cos(sc.currentStation.Latitude) - sc.currentStation.Longitude * 111.320 * Math.Cos(newLineStation.Latitude), 2) * 1.0);
 
-                bl.AddStationToLine(currentLine, newLineStation, index);
 
                 // change the GUI after adding the station:
                 if (index == -1)
                 {
+                    bl.AddStationToLine(currentLine, newLineStation, parent.Items.Count - 1);
                     parent.Items.Add(sc);
-                    index = parent.Items.Count - 1;
                 }
                 else
                 {
+                    bl.AddStationToLine(currentLine, newLineStation, index);
                     parent.Items.Insert(index, sc);
                 }
                 currentLine = bl.GetLine(currentLine.Id); // update the current line with the new station and total time
@@ -145,7 +145,7 @@ namespace PlGui
             liststation.Items.Clear();
             foreach (StationControl sc in allStationControls)
                 liststation.Items.Add(sc);
-            currentLine = bl.GetLine(currentLine.Code); // update the current line with the new station and total time
+            currentLine = bl.GetLine(currentLine.Id); // update the current line with the new station and total time
             lineTime.Content = currentLine.TotalTime.ToString();
         }
     }

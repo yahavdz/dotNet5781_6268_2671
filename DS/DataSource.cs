@@ -536,7 +536,7 @@ namespace DS
                  new Line//1
                  {
                      Id= Counts.getBusLineCount(),
-                     Code=1,
+                     Code=17,
                      Area =Areas.Center ,
                      FirstStation=ListStations[0].Code,
                      LastStation=ListStations[9].Code,
@@ -545,7 +545,7 @@ namespace DS
                  new Line//2
                  {
                      Id= Counts.getBusLineCount(),
-                     Code=2,
+                     Code=201,
                      Area =Areas.North ,
                      FirstStation=ListStations[10].Code,
                      LastStation=ListStations[19].Code,
@@ -563,7 +563,7 @@ namespace DS
                  new Line//4
                  {
                      Id= Counts.getBusLineCount(),
-                     Code=4,
+                     Code=437,
                      Area =Areas.Center ,
                      FirstStation=ListStations[30].Code,
                      LastStation=ListStations[39].Code,
@@ -572,7 +572,7 @@ namespace DS
                  new Line//5
                  {
                      Id= Counts.getBusLineCount(),
-                     Code=5,
+                     Code=12,
                      Area =Areas.Jerusalem ,
                      FirstStation=ListStations[40].Code,
                      LastStation=ListStations[49].Code,
@@ -581,7 +581,7 @@ namespace DS
                  new Line//6
                  {
                      Id= Counts.getBusLineCount(),
-                     Code=6,
+                     Code=74,
                      Area =Areas.General ,
                      FirstStation=ListStations[5].Code,
                      LastStation=ListStations[14].Code,
@@ -590,7 +590,7 @@ namespace DS
                  new Line//7
                  {
                      Id= Counts.getBusLineCount(),
-                     Code=7,
+                     Code=87,
                      Area =Areas.General ,
                      FirstStation=ListStations[15].Code,
                      LastStation=ListStations[24].Code,
@@ -599,7 +599,7 @@ namespace DS
                  new Line//8
                  {
                      Id= Counts.getBusLineCount(),
-                     Code=8,
+                     Code=56,
                      Area =Areas.South ,
                      FirstStation=ListStations[25].Code,
                      LastStation=ListStations[34].Code,
@@ -608,7 +608,7 @@ namespace DS
                  new Line//9
                  {
                      Id= Counts.getBusLineCount(),
-                     Code=9,
+                     Code=91,
                      Area =Areas.General ,
                      FirstStation=ListStations[35].Code,
                      LastStation=ListStations[44].Code,
@@ -1090,8 +1090,8 @@ namespace DS
                     {
                         Station1 = lineStation.Station,
                         Station2 = lineStation.NextStation,
-                        Distance = random.NextDouble() * 20,
-                        Time = new TimeSpan(random.Next(0, 2), random.Next(0, 59), random.Next(0, 59)),
+                        Distance = random.NextDouble() * 10,
+                        Time = new TimeSpan(0, random.Next(0, 15), random.Next(0, 59)),
                         Active = true
                     });
                 }

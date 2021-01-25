@@ -160,17 +160,7 @@ namespace BL
                 DO.Station currentDoStation = dl.GetStation(orderedListOfLineStations.ElementAt(i).Station);
                 if (i < orderedListOfLineStations.Count() - 1) // not the last
                 {
-                    // DO.Station nextDoStation = dl.GetStation(orderedListOfLineStations.ElementAt(i + 1).Station);
-                    DO.AdjacentStations adjacentStations = dl.GetAdjacentStations(currentDoStation.Code, orderedListOfLineStations.ElementAt(i + 1).Station);
-                    // bols.DistanceToNextStation = Math.Sqrt(Math.Pow(nextDoStation.Latitude * 110.574 - currentDoStation.Latitude * 110.574, 2) + Math.Pow(nextDoStation.Longitude * 111.320 * Math.Cos(nextDoStation.Latitude) - currentDoStation.Longitude * 111.320 * Math.Cos(nextDoStation.Latitude), 2) * 1.0);
-                    /*double calc = (bols.DistanceToNextStation / 60) * 3;
-                    int temp = Convert.ToInt32(calc);
-                    if (calc < 1 && calc > 0)
-                        bols.TimeToNextStation = new TimeSpan(0, 0, temp * 2);
-                    if (calc < 60 && calc > 1)
-                        bols.TimeToNextStation = new TimeSpan(0, temp * 2, 0);
-                    else if (calc > 60)
-                        bols.TimeToNextStation = TimeSpan.FromHours(temp * 2);*/
+                    DO.AdjacentStations adjacentStations = dl.GetAdjacentStations(orderedListOfLineStations.ElementAt(i).Station, orderedListOfLineStations.ElementAt(i + 1).Station);
                     bols.TimeToNextStation = adjacentStations.Time;
                     bols.DistanceToNextStation = adjacentStations.Distance;
                 }
@@ -320,13 +310,16 @@ namespace BL
             IEnumerable<DO.LineStation> lineStationsList = dl.GetAllLineStationBy(ls => ls.LineId == line.Id); // LineBoLineStationDoAdapter(line);
             lineStationsList = lineStationsList.OrderBy(ls => ls.LineStationIndex);
 
+            int nextId = lineStationsList.ElementAt(index).Station;
+            int prevId = lineStationsList.ElementAt(index - 1).Station;
+
             DO.LineStation newLineStation = new DO.LineStation();
             newLineStation.Active = true;
             newLineStation.LineId = line.Id;
             newLineStation.LineStationIndex = index;
             newLineStation.Station = station.Code;
-            if (index < line.stations.Count()) newLineStation.NextStation = lineStationsList.ElementAt(index).Station;
-            if (index > 0) newLineStation.PrevStation = lineStationsList.ElementAt(index - 1).Station;
+            if (index < line.stations.Count()) newLineStation.NextStation = nextId;
+            if (index > 0) newLineStation.PrevStation = prevId;
             try
             {
                 dl.AddLineStation(newLineStation);
@@ -334,6 +327,17 @@ namespace BL
             catch (DO.BadIdException ex)
             {
                 throw new BO.DuplicateException(ex, $"Duplicate station: {station.Code}", station.Code);
+            }
+
+            // add adjacment stations if needed:
+            if (index < line.stations.Count())
+            {
+                AddAdjacentStationsBetweenStations(newLineStation.Station, newLineStation.NextStation);
+            }
+
+            if (index > 0)
+            {
+                AddAdjacentStationsBetweenStations(newLineStation.PrevStation, newLineStation.Station);
             }
 
             //update line if it first or last station:
@@ -353,10 +357,11 @@ namespace BL
                 dl.UpdateLine(lineDO);
             }
 
+
             // update the index of the stations after the new station:
             for (int i = index; i < lineStationsList.Count(); i++)
             {
-                DO.LineStation doLineStation = lineStationsList.ElementAt(i);
+                DO.LineStation doLineStation = dl.GetAllLineStationBy(ls => ls.LineStationIndex == i && ls.LineId == line.Id && ls.Station != station.Code).ElementAt(0);
                 doLineStation.LineStationIndex++;
                 dl.UpdateLineStation(doLineStation); // update the index of the station
             }
@@ -365,21 +370,50 @@ namespace BL
             // update the prev and next stations to point to the new station:
             if (index > 0)
             {
-                DO.LineStation prevStation = dl.GetLineStation(line.Id, lineStationsList.ElementAt(index - 1).Station);
+                DO.LineStation prevStation = dl.GetLineStation(line.Id, prevId);
                 prevStation.NextStation = station.Code;
                 dl.UpdateLineStation(prevStation);
             }
             if (index < lineStationsList.Count())
             {
-                DO.LineStation nextStation = dl.GetLineStation(line.Id, lineStationsList.ElementAt(index).Station);
+                DO.LineStation nextStation = dl.GetLineStation(line.Id, nextId);
                 nextStation.PrevStation = station.Code;
                 dl.UpdateLineStation(nextStation);
             }
 
+
+        }
+        private void AddAdjacentStationsBetweenStations(int station1, int station2)
+        {
+            try
+            {
+                DO.AdjacentStations adjacentStations = new DO.AdjacentStations();
+                adjacentStations.Station1 = station1;
+                adjacentStations.Station2 = station2;
+                adjacentStations.Active = true;
+                DO.Station newStation = dl.GetStation(station1);
+                DO.Station nextStation = dl.GetStation(station2);
+                adjacentStations.Distance = Math.Sqrt(Math.Pow(nextStation.Latitude * 110.574 - newStation.Latitude * 110.574, 2) + Math.Pow(nextStation.Longitude * 111.320 * Math.Cos(nextStation.Latitude) - newStation.Longitude * 111.320 * Math.Cos(nextStation.Latitude), 2) * 1.0);
+
+                double calc = (adjacentStations.Distance / 60) * 3;
+                int temp = Convert.ToInt32(calc);
+                if (calc < 1 && calc > 0)
+                    adjacentStations.Time = new TimeSpan(0, 0, temp * 2);
+                if (calc < 60 && calc > 1)
+                    adjacentStations.Time = new TimeSpan(0, temp * 2, 0);
+                else if (calc > 60)
+                    adjacentStations.Time = TimeSpan.FromHours(temp * 2);
+
+                dl.AddAdjacentStations(adjacentStations);
+            }
+            catch (DO.BadAdjacentStationsException)
+            {
+                // not throw exception - if alreday exist its ok
+            }
         }
         public void DeleteStationFromLine(Line line, LineStation station)
         {
-            DO.LineStation stationToDelete = dl.GetLineStation(line.Code, station.Code);
+            DO.LineStation stationToDelete = dl.GetLineStation(line.Id, station.Code);
             if (stationToDelete.PrevStation == 0 && stationToDelete.NextStation == 0)
             {
                 // the only station in the line
@@ -387,24 +421,24 @@ namespace BL
             else if (stationToDelete.PrevStation == 0)
             {
                 //the first station
-                DO.LineStation nextStation = dl.GetLineStation(line.Code, stationToDelete.NextStation);
+                DO.LineStation nextStation = dl.GetLineStation(line.Id, stationToDelete.NextStation);
                 nextStation.PrevStation = 0;
                 dl.UpdateLineStation(nextStation);
                 line.FirstStation = stationToDelete.NextStation;
                 UpdateLine(line); // update the first station field
                 IEnumerable<DO.LineStation> lineStationsList = dl.GetAllLineStationBy(ls => ls.LineId == line.Id); // LineBoLineStationDoAdapter(line);
                 lineStationsList = lineStationsList.OrderBy(ls => ls.LineStationIndex);
-                for (int i = stationToDelete.LineStationIndex; i < lineStationsList.Count(); i++)
+                for (int i = stationToDelete.LineStationIndex + 1; i < lineStationsList.Count(); i++)
                 {
-                    DO.LineStation doLineStation = lineStationsList.ElementAt(i);
-                    doLineStation.LineStationIndex++;
+                    DO.LineStation doLineStation = dl.GetAllLineStationBy(ls => ls.LineStationIndex == i && ls.LineId == line.Id && ls.Station != station.Code).ElementAt(0);
+                    doLineStation.LineStationIndex--;
                     dl.UpdateLineStation(doLineStation); // update the index of the station
                 }
             }
             else if (stationToDelete.NextStation == 0)
             {
                 // the last station
-                DO.LineStation prevStation = dl.GetLineStation(line.Code, stationToDelete.PrevStation);
+                DO.LineStation prevStation = dl.GetLineStation(line.Id, stationToDelete.PrevStation);
                 prevStation.NextStation = 0;
                 dl.UpdateLineStation(prevStation);
                 line.LastStation = stationToDelete.PrevStation;
@@ -412,22 +446,26 @@ namespace BL
             }
             else
             {
-                DO.LineStation prevStation = dl.GetLineStation(line.Code, stationToDelete.PrevStation);
-                DO.LineStation nextStation = dl.GetLineStation(line.Code, stationToDelete.NextStation);
+                DO.LineStation prevStation = dl.GetLineStation(line.Id, stationToDelete.PrevStation);
+                DO.LineStation nextStation = dl.GetLineStation(line.Id, stationToDelete.NextStation);
                 prevStation.NextStation = nextStation.Station;
                 nextStation.PrevStation = prevStation.Station;
                 dl.UpdateLineStation(prevStation);
                 dl.UpdateLineStation(nextStation);
                 IEnumerable<DO.LineStation> lineStationsList = dl.GetAllLineStationBy(ls => ls.LineId == line.Id); // LineBoLineStationDoAdapter(line);
                 lineStationsList = lineStationsList.OrderBy(ls => ls.LineStationIndex);
-                for (int i = stationToDelete.LineStationIndex; i < lineStationsList.Count(); i++)
+                for (int i = stationToDelete.LineStationIndex + 1; i < lineStationsList.Count(); i++)
                 {
-                    DO.LineStation doLineStation = lineStationsList.ElementAt(i);
-                    doLineStation.LineStationIndex++;
+                    DO.LineStation doLineStation = dl.GetAllLineStationBy(ls => ls.LineStationIndex == i && ls.LineId == line.Id && ls.Station != station.Code).ElementAt(0);
+                    doLineStation.LineStationIndex--;
                     dl.UpdateLineStation(doLineStation); // update the index of the station
                 }
+
+                // add adjacent stations if needed:
+                AddAdjacentStationsBetweenStations(prevStation.Station, nextStation.Station);
+             
             }
-            dl.DeleteLineStation(line.Code, station.Code);
+            dl.DeleteLineStation(line.Id, station.Code);
 
         }
 

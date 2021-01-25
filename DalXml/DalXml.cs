@@ -480,13 +480,13 @@ namespace Dal
             XElement adjacentStationsRootElem = XMLTools.LoadListFromXMLElement(adjacentStationPath);
 
             XElement findAdjacentStations = (from adj in adjacentStationsRootElem.Elements()
-                                                     where (int.Parse(adj.Element("Station1").Value) == adjacentStations.Station1 && int.Parse(adj.Element("Station2").Value) == adjacentStations.Station2)
-                                                     select adj).FirstOrDefault();
-            if (findAdjacentStations != null && findAdjacentStations.Element("Active").Value=="true")
+                                             where (int.Parse(adj.Element("Station1").Value) == adjacentStations.Station1 && int.Parse(adj.Element("Station2").Value) == adjacentStations.Station2)
+                                             select adj).FirstOrDefault();
+            if (findAdjacentStations != null && findAdjacentStations.Element("Active").Value == "true")
                 throw new BadAdjacentStationsException(adjacentStations.Station1, adjacentStations.Station2, "Duplicate adjacentStations");
-            if (findAdjacentStations != null && !(findAdjacentStations.Element("Active").Value == "true"))
+            else
             {
-                XElement adjElem = new XElement("adjacentStations", 
+                XElement adjElem = new XElement("adjacentStations",
                                    new XElement("Station1", adjacentStations.Station1),
                                    new XElement("Station2", adjacentStations.Station2),
                                    new XElement("Distance", adjacentStations.Distance),
@@ -602,7 +602,7 @@ namespace Dal
                                              select line).FirstOrDefault();
             if (findLineTrip != null && findLineTrip.Element("Active").Value == "true")
                 throw new BadIdException(lineTrip.Id, "Duplicate line trip ID");
-            if (findLineTrip != null && !(findLineTrip.Element("Active").Value == "true"))
+            else
             {
                 XElement lTElem = new XElement("LineTrip",
                                       new XElement("Id", lineTrip.Id),
