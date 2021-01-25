@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfLineTrip xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<LineTrip>
+		<Id>1</Id>
+		<LineId>1</LineId>
+		<StartAtHour>06</StartAtHour>
+		<StartAtMinute>00</StartAtMinute>
+		<FrequencyHour>00</FrequencyHour>
+		<FrequencyMinute>30</FrequencyMinute>
+		<FinishAtHour>23</FinishAtHour>
+		<FinishAtMinute>00</FinishAtMinute>
+		<Active>true</Active>
+	</LineTrip>
+	<LineTrip>
+		<Id>2</Id>
+		<LineId>2</LineId>
+		<StartAtHour>06</StartAtHour>
+		<StartAtMinute>00</StartAtMinute>
+		<FrequencyHour>00</FrequencyHour>
+		<FrequencyMinute>15</FrequencyMinute>
+		<FinishAtHour>23</FinishAtHour>
+		<FinishAtMinute>45</FinishAtMinute>
+		<Active>true</Active>
+	</LineTrip>
+<LineTrip>
+		<Id>3</Id>
+		<LineId>3</LineId>
+		<StartAtHour>06</StartAtHour>
+		<StartAtMinute>00</StartAtMinute>
+		<FrequencyHour>00</FrequencyHour>
+		<FrequencyMinute>00</FrequencyMinute>
+		<FinishAtHour>23</FinishAtHour>
+		<FinishAtMinute>00</FinishAtMinute>
+		<Active>true</Active>
+	</LineTrip>
+<LineTrip>
+		<Id>4</Id>
+		<LineId>4</LineId>
+		<StartAtHour>06</StartAtHour>
+		<StartAtMinute>00</StartAtMinute>
+		<FrequencyHour>00</FrequencyHour>
+		<FrequencyMinute>30</FrequencyMinute>
+		<FinishAtHour>23</FinishAtHour>
+		<FinishAtMinute>00</FinishAtMinute>
+		<Active>true</Active>
+	</LineTrip>
+<LineTrip>
+		<Id>5</Id>
+		<LineId>5</LineId>
+		<StartAtHour>07</StartAtHour>
+		<StartAtMinute>00</StartAtMinute>
+		<FrequencyHour>00</FrequencyHour>
+		<FrequencyMinute>15</FrequencyMinute>
+		<FinishAtHour>21</FinishAtHour>
+		<FinishAtMinute>45</FinishAtMinute>
+		<Active>true</Active>
+	</LineTrip>
+<LineTrip>
+		<Id>6</Id>
+		<LineId>6</LineId>
+		<StartAtHour>08</StartAtHour>
+		<StartAtMinute>00</StartAtMinute>
+		<FrequencyHour>01</FrequencyHour>
+		<FrequencyMinute>00</FrequencyMinute>
+		<FinishAtHour>22</FinishAtHour>
+		<FinishAtMinute>00</FinishAtMinute>
+		<Active>true</Active>
+	</LineTrip>
+<LineTrip>
+		<Id>7</Id>
+		<LineId>7</LineId>
+		<StartAtHour>12</StartAtHour>
+		<StartAtMinute>00</StartAtMinute>
+		<FrequencyHour>01</FrequencyHour>
+		<FrequencyMinute>00</FrequencyMinute>
+		<FinishAtHour>23</FinishAtHour>
+		<FinishAtMinute>00</FinishAtMinute>
+		<Active>true</Active>
+	</LineTrip>
+<LineTrip>
+		<Id>8</Id>
+		<LineId>8</LineId>
+		<StartAtHour>10</StartAtHour>
+		<StartAtMinute>00</StartAtMinute>
+		<FrequencyHour>00</FrequencyHour>
+		<FrequencyMinute>15</FrequencyMinute>
+		<FinishAtHour>21</FinishAtHour>
+		<FinishAtMinute>45</FinishAtMinute>
+		<Active>true</Active>
+	</LineTrip>
+<LineTrip>
+		<Id>9</Id>
+		<LineId>9</LineId>
+		<StartAtHour>05</StartAtHour>
+		<StartAtMinute>00</StartAtMinute>
+		<FrequencyHour>01</FrequencyHour>
+		<FrequencyMinute>00</FrequencyMinute>
+		<FinishAtHour>22</FinishAtHour>
+		<FinishAtMinute>00</FinishAtMinute>
+		<Active>true</Active>
+	</LineTrip>
+<LineTrip>
+		<Id>10</Id>
+		<LineId>10</LineId>
+		<StartAtHour>06</StartAtHour>
+		<StartAtMinute>00</StartAtMinute>
+		<FrequencyHour>01</FrequencyHour>
+		<FrequencyMinute>30</FrequencyMinute>
+		<FinishAtHour>12</FinishAtHour>
+		<FinishAtMinute>00</FinishAtMinute>
+		<Active>true</Active>
+	</LineTrip>
+
+	
+</ArrayOfLineTrip>

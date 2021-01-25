@@ -1,0 +1,503 @@
+<?xml version="1.0"?>
+<ArrayOfStation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Station>
+		<Code>123457</Code>
+		<Name> Dolev st. - Habrosh st.</Name>
+		<Address>Tel-Aviv 122</Address>
+		<Accessibility>true</Accessibility>
+		<Longitude>34.7799914550409</Longitude>
+		<Latitude>31.5274803082121</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123458</Code>
+		<Name> Haermon st. - Hayarden st.</Name>
+		<Address>Tel-Aviv 13</Address>
+		<Accessibility>true</Accessibility>
+		<Longitude>34.9855482499514</Longitude>
+		<Latitude>33.1453338222789</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123459</Code>
+		<Name> Haermon st. - Hamor st.</Name>
+		<Address>Tel-Aviv 172</Address>
+		<Accessibility>false</Accessibility>
+		<Longitude>34.5823901222471</Longitude>
+		<Latitude>32.9697548796282</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123460</Code>
+		<Name> Hamor st. - Hayarden st.</Name>
+		<Address>Tel-Aviv 72</Address>
+		<Accessibility>false</Accessibility>
+		<Longitude>34.4285358822572</Longitude>
+		<Latitude>31.4057430726503</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123461</Code>
+		<Name> Yaalom st. - Hayarden st.</Name>
+		<Address>Tel-Aviv 73</Address>
+		<Accessibility>false</Accessibility>
+		<Longitude>35.0019126574983</Longitude>
+		<Latitude>32.3803324468342</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123462</Code>
+		<Name> Carmel st. - Yaalom st.</Name>
+		<Address>Tel-Aviv 134</Address>
+		<Accessibility>true</Accessibility>
+		<Longitude>34.988931129076</Longitude>
+		<Latitude>32.3723510829603</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123463</Code>
+		<Name> Hagoren st. - Carmel st.</Name>
+		<Address>Tel-Aviv 14</Address>
+		<Accessibility>true</Accessibility>
+		<Longitude>34.7330419561048</Longitude>
+		<Latitude>31.8799835864827</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123464</Code>
+		<Name> Hashita st. - Hagoren st.</Name>
+		<Address>Tel-Aviv 125</Address>
+		<Accessibility>false</Accessibility>
+		<Longitude>35.0372264023578</Longitude>
+		<Latitude>32.6631503588814</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123465</Code>
+		<Name> Lakish st. - Hashita st.</Name>
+		<Address>Tel-Aviv 15</Address>
+		<Accessibility>false</Accessibility>
+		<Longitude>34.5903526514258</Longitude>
+		<Latitude>31.148142343782</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123466</Code>
+		<Name> Haharouv st. - Lakish st.</Name>
+		<Address>Tel-Aviv 155</Address>
+		<Accessibility>false</Accessibility>
+		<Longitude>35.2156226005944</Longitude>
+		<Latitude>32.9062113762862</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123467</Code>
+		<Name> Dolev st. - Habrosh st.</Name>
+		<Address>Haifa 155</Address>
+		<Accessibility>false</Accessibility>
+		<Longitude>34.9046228998362</Longitude>
+		<Latitude>32.1610701835067</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123468</Code>
+		<Name> Haermon st. - Hayarden st.</Name>
+		<Address>Haifa 15</Address>
+		<Accessibility>true</Accessibility>
+		<Longitude>34.8001435110812</Longitude>
+		<Latitude>32.7549245588737</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123469</Code>
+		<Name> Haermon st. - Hamor st.</Name>
+		<Address>Haifa 122</Address>
+		<Accessibility>true</Accessibility>
+		<Longitude>35.4712373824656</Longitude>
+		<Latitude>32.9729686750904</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123470</Code>
+		<Name> Hamor st. - Hayarden st.</Name>
+		<Address>Haifa 72</Address>
+		<Accessibility>false</Accessibility>
+		<Longitude>35.3750256347819</Longitude>
+		<Latitude>33.1930539569785</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123471</Code>
+		<Name> Yaalom st. - Hayarden st.</Name>
+		<Address>Haifa 73</Address>
+		<Accessibility>false</Accessibility>
+		<Longitude>34.3814262386791</Longitude>
+		<Latitude>31.3243766248805</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123472</Code>
+		<Name> Carmel st. - Yaalom st.</Name>
+		<Address>Haifa 134</Address>
+		<Accessibility>true</Accessibility>
+		<Longitude>35.067196429133</Longitude>
+		<Latitude>32.3662671633839</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123473</Code>
+		<Name> Hagoren st. - Carmel st.</Name>
+		<Address>Haifa 14</Address>
+		<Accessibility>true</Accessibility>
+		<Longitude>35.0079147059042</Longitude>
+		<Latitude>31.9830900150738</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123474</Code>
+		<Name> Hashita st. - Hagoren st.</Name>
+		<Address>Haifa 125</Address>
+		<Accessibility>false</Accessibility>
+		<Longitude>34.7738456793473</Longitude>
+		<Latitude>31.572653876372</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123475</Code>
+		<Name> Lakish st. - Hashita st.</Name>
+		<Address>Haifa 15</Address>
+		<Accessibility>false</Accessibility>
+		<Longitude>34.6653392633262</Longitude>
+		<Latitude>32.4323817692848</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123476</Code>
+		<Name> Haharouv st. - Lakish st.</Name>
+		<Address>Haifa 155</Address>
+		<Accessibility>false</Accessibility>
+		<Longitude>35.4304024276931</Longitude>
+		<Latitude>32.3340906252312</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123477</Code>
+		<Name> Dolev st. - Habrosh st.</Name>
+		<Address>Ashkelon 155</Address>
+		<Accessibility>false</Accessibility>
+		<Longitude>35.3324079514632</Longitude>
+		<Latitude>31.1524725008069</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123478</Code>
+		<Name> Haermon st. - Hayarden st.</Name>
+		<Address>Ashkelon 15</Address>
+		<Accessibility>true</Accessibility>
+		<Longitude>35.4514122726169</Longitude>
+		<Latitude>32.7947502966014</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123479</Code>
+		<Name> Haermon st. - Hamor st.</Name>
+		<Address>Ashkelon 122</Address>
+		<Accessibility>true</Accessibility>
+		<Longitude>34.6973872426885</Longitude>
+		<Latitude>32.1831188497055</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123480</Code>
+		<Name> Hamor st. - Hayarden st.</Name>
+		<Address>Ashkelon 72</Address>
+		<Accessibility>false</Accessibility>
+		<Longitude>34.6722056323533</Longitude>
+		<Latitude>31.1001736497507</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123481</Code>
+		<Name> Yaalom st. - Hayarden st.</Name>
+		<Address>Ashkelon 73</Address>
+		<Accessibility>false</Accessibility>
+		<Longitude>35.2745355496996</Longitude>
+		<Latitude>31.3970031517544</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123482</Code>
+		<Name> Carmel st. - Yaalom st.</Name>
+		<Address>Ashkelon 134</Address>
+		<Accessibility>true</Accessibility>
+		<Longitude>34.8242423304004</Longitude>
+		<Latitude>33.0269085016227</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123483</Code>
+		<Name> Hagoren st. - Carmel st.</Name>
+		<Address>Ashkelon 14</Address>
+		<Accessibility>true</Accessibility>
+		<Longitude>34.3862861706346</Longitude>
+		<Latitude>31.815266797885</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123484</Code>
+		<Name> Hashita st. - Hagoren st.</Name>
+		<Address>Ashkelon 125</Address>
+		<Accessibility>false</Accessibility>
+		<Longitude>35.1705842174918</Longitude>
+		<Latitude>31.1502570896643</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123485</Code>
+		<Name> Lakish st. - Hashita st.</Name>
+		<Address>Ashkelon 15</Address>
+		<Accessibility>false</Accessibility>
+		<Longitude>34.919161091847</Longitude>
+		<Latitude>32.4650590632879</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123486</Code>
+		<Name> Haharouv st. - Lakish st.</Name>
+		<Address>Ashkelon 155</Address>
+		<Accessibility>false</Accessibility>
+		<Longitude>35.3564608156013</Longitude>
+		<Latitude>32.640998803983</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123487</Code>
+		<Name> Dolev st. - Habrosh st.</Name>
+		<Address>Moodiin 155</Address>
+		<Accessibility>false</Accessibility>
+		<Longitude>34.6366664031226</Longitude>
+		<Latitude>31.6481937773284</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123488</Code>
+		<Name> Haermon st. - Hayarden st.</Name>
+		<Address>Moodiin 15</Address>
+		<Accessibility>true</Accessibility>
+		<Longitude>34.9387472118431</Longitude>
+		<Latitude>33.2219838161124</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123489</Code>
+		<Name> Haermon st. - Hamor st.</Name>
+		<Address>Moodiin 122</Address>
+		<Accessibility>true</Accessibility>
+		<Longitude>35.4488128315419</Longitude>
+		<Latitude>33.2790654301546</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123490</Code>
+		<Name> Hamor st. - Hayarden st.</Name>
+		<Address>Moodiin 72</Address>
+		<Accessibility>false</Accessibility>
+		<Longitude>35.2512071653042</Longitude>
+		<Latitude>31.3373613156552</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123491</Code>
+		<Name> Yaalom st. - Hayarden st.</Name>
+		<Address>Moodiin 73</Address>
+		<Accessibility>false</Accessibility>
+		<Longitude>34.6938849426777</Longitude>
+		<Latitude>31.2573432061623</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123492</Code>
+		<Name> Carmel st. - Yaalom st.</Name>
+		<Address>Moodiin 134</Address>
+		<Accessibility>true</Accessibility>
+		<Longitude>35.2119523942992</Longitude>
+		<Latitude>33.280635501901</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123493</Code>
+		<Name> Hagoren st. - Carmel st.</Name>
+		<Address>Moodiin 14</Address>
+		<Accessibility>true</Accessibility>
+		<Longitude>35.3641426381954</Longitude>
+		<Latitude>32.5224186233349</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123494</Code>
+		<Name> Hashita st. - Hagoren st.</Name>
+		<Address>Moodiin 125</Address>
+		<Accessibility>false</Accessibility>
+		<Longitude>35.0733677964534</Longitude>
+		<Latitude>32.602470816999</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123495</Code>
+		<Name> Lakish st. - Hashita st.</Name>
+		<Address>Moodiin 15</Address>
+		<Accessibility>false</Accessibility>
+		<Longitude>35.2642005407085</Longitude>
+		<Latitude>32.664110261418</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123496</Code>
+		<Name> Haharouv st. - Lakish st.</Name>
+		<Address>Moodiin 155</Address>
+		<Accessibility>false</Accessibility>
+		<Longitude>34.9319877182282</Longitude>
+		<Latitude>33.0754895465334</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123497</Code>
+		<Name> Dolev st. - Habrosh st.</Name>
+		<Address>Beit-Shemesh 155</Address>
+		<Accessibility>false</Accessibility>
+		<Longitude>35.0719964321572</Longitude>
+		<Latitude>33.144697999975</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123498</Code>
+		<Name> Haermon st. - Hayarden st.</Name>
+		<Address>Beit-Shemes 15</Address>
+		<Accessibility>true</Accessibility>
+		<Longitude>34.694704428499</Longitude>
+		<Latitude>32.6634626482443</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123499</Code>
+		<Name> Haermon st. - Hamor st.</Name>
+		<Address>Beit-Shemes 122</Address>
+		<Accessibility>true</Accessibility>
+		<Longitude>34.4885927113651</Longitude>
+		<Latitude>31.4291584558455</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123500</Code>
+		<Name> Hamor st. - Hayarden st.</Name>
+		<Address>Beit-Shemes 72</Address>
+		<Accessibility>false</Accessibility>
+		<Longitude>34.7266303589692</Longitude>
+		<Latitude>31.65519302462</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123501</Code>
+		<Name> Yaalom st. - Hayarden st.</Name>
+		<Address>Beit-Shemes 73</Address>
+		<Accessibility>false</Accessibility>
+		<Longitude>34.9281917180066</Longitude>
+		<Latitude>32.2065794299853</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123502</Code>
+		<Name> Carmel st. - Yaalom st.</Name>
+		<Address>Beit-Shemes 134</Address>
+		<Accessibility>true</Accessibility>
+		<Longitude>34.4281685269103</Longitude>
+		<Latitude>32.7431451554611</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123503</Code>
+		<Name> Hagoren st. - Carmel st.</Name>
+		<Address>Beit-Shemes 14</Address>
+		<Accessibility>true</Accessibility>
+		<Longitude>35.1395864671281</Longitude>
+		<Latitude>32.3592347840589</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123504</Code>
+		<Name> Hashita st. - Hagoren st.</Name>
+		<Address>Beit-Shemes 125</Address>
+		<Accessibility>false</Accessibility>
+		<Longitude>35.2428844668637</Longitude>
+		<Latitude>32.51841087575</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123505</Code>
+		<Name> Lakish st. - Hashita st.</Name>
+		<Address>Beit-Shemes 15</Address>
+		<Accessibility>false</Accessibility>
+		<Longitude>34.5976442472533</Longitude>
+		<Latitude>33.0567980908588</Latitude>
+		<Active>true</Active>
+	</Station>
+
+	<Station>
+		<Code>123506</Code>
+		<Name> Haharouv st. - Lakish st.</Name>
+		<Address>Beit-Shemes 155</Address>
+		<Accessibility>false</Accessibility>
+		<Longitude>34.9684665683044</Longitude>
+		<Latitude>33.2278080923612</Latitude>
+		<Active>true</Active>
+	</Station>
+
+</ArrayOfStation>
