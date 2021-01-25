@@ -68,7 +68,7 @@ namespace PlGui
 
         public void updateBus(List<LineTiming> linesInSta)
         {
-            panelList.Items.Clear();
+            panelList.Items.Clear();    
             foreach (LineTiming lt in linesInSta)
                 panelList.Items.Add(new PanelControl(lt.LineNum, lt.StationName, lt.ArrivalTime.Minutes));
             if (linesInSta.Count == 0)

@@ -7,7 +7,7 @@
              mc:Ignorable="d">
     <Border BorderBrush="Black" BorderThickness="2">
         <Grid>
-            <Label Name="lastStaLa" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontWeight="Bold"/>
+            <Label Name="lastStaLa" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontWeight="Bold"/>
             <Label Name="lineNumLa" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Right" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" FontWeight="Bold"/>
         </Grid>
     </Border>

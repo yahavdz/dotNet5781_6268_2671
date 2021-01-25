@@ -25,7 +25,7 @@ namespace Dal
             List<Station> station = XMLTools.LoadListFromXMLSerializer<Station>(stationPath);
             DO.Counts.setStationsCount(station.Count() + 1);
             List<BusOnTrip> busOT = XMLTools.LoadListFromXMLSerializer<BusOnTrip>(busOnTripPath);
-            DO.Counts.setBusOnTripCount(busOT.Count() + 1); 
+            DO.Counts.setBusOnTripCount(34200 + busOT.Count() + 1); 
             List<Trip> trip = XMLTools.LoadListFromXMLSerializer<Trip>(tripPath);
             DO.Counts.setTripCount(trip.Count() + 1);
         }

@@ -27,6 +27,7 @@ namespace BL
             OperatorWorker = new BackgroundWorker();
             OperatorWorker.DoWork += Worker_DoWork;
             OperatorWorker.ProgressChanged += doTravel;
+            OperatorWorker.WorkerSupportsCancellation = true;
             OperatorWorker.WorkerReportsProgress = true;
 
             dl = DalFactory.GetDal();
@@ -43,7 +44,7 @@ namespace BL
         public void RemoveObserver() => updateBus = null;
 
         public void Start(int _Station)
-        {            
+        {
             if (!onTravel && !OperatorWorker.IsBusy)
             {
                 allLT = dl.GetAllLineTrip().OrderBy(lt => lt.StartAt).ToList();
@@ -67,12 +68,16 @@ namespace BL
                 OperatorWorker.ReportProgress(1);
                 Thread.Sleep(60000 / SystemClock.rate);
             }
+            onTravel = false;
+            if (OperatorWorker.CancellationPending)
+                e.Cancel = true;
         }
 
         private void doTravel(object sender, ProgressChangedEventArgs e)
         {
             List<LineTiming> lineTimingInSta = GetLineTimingPerStation(CodeStation);
-            updateBus(lineTimingInSta);
+            if(updateBus != null)
+                updateBus(lineTimingInSta);
         }
 
         private List<LineTiming> GetLineTimingPerStation(int curStation)
