@@ -24,12 +24,6 @@ namespace BL
         static TravelOperator() { }// static ctor to ensure instance init is done just before first usage
         private TravelOperator()
         {
-            OperatorWorker = new BackgroundWorker();
-            OperatorWorker.DoWork += Worker_DoWork;
-            OperatorWorker.ProgressChanged += doTravel;
-            OperatorWorker.WorkerSupportsCancellation = true;
-            OperatorWorker.WorkerReportsProgress = true;
-
             dl = DalFactory.GetDal();
             CodeStation = -1;
         }
@@ -45,39 +39,53 @@ namespace BL
 
         public void Start(int _Station)
         {
-            if (!onTravel && !OperatorWorker.IsBusy)
+            if (OperatorWorker == null || (OperatorWorker != null && !OperatorWorker.IsBusy))
             {
                 allLT = dl.GetAllLineTrip().OrderBy(lt => lt.StartAt).ToList();
                 allLT.OrderBy(lt => lt.StartAt);
                 CodeStation = _Station;
                 onTravel = true;
+                OperatorWorker = new BackgroundWorker();
+                OperatorWorker.DoWork += Worker_DoWork;
+                OperatorWorker.ProgressChanged += doTravel;
+                OperatorWorker.WorkerSupportsCancellation = true;
+                OperatorWorker.WorkerReportsProgress = true;
                 OperatorWorker.RunWorkerAsync();
             }
         }
 
         public void Stop()
         {
-            if (onTravel)
-                onTravel = false;
+            if (OperatorWorker != null)
+                OperatorWorker.CancelAsync();
+            onTravel = false;
         }
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            while (SystemClock.isTimerRun && onTravel)
+            BackgroundWorker worker = sender as BackgroundWorker;
+            while (true)
             {
-                OperatorWorker.ReportProgress(1);
-                Thread.Sleep(60000 / SystemClock.rate);
+                if (worker.CancellationPending)
+                {
+                    e.Cancel = true;
+                    break;
+                }
+                else
+                {
+                    Thread.Sleep(60000 / SystemClock.rate);
+                    worker.ReportProgress(1);
+                }
             }
-            onTravel = false;
-            if (OperatorWorker.CancellationPending)
-                e.Cancel = true;
         }
 
         private void doTravel(object sender, ProgressChangedEventArgs e)
         {
-            List<LineTiming> lineTimingInSta = GetLineTimingPerStation(CodeStation);
-            if(updateBus != null)
+            if (updateBus != null)
+            {
+                List<LineTiming> lineTimingInSta = GetLineTimingPerStation(CodeStation);
                 updateBus(lineTimingInSta);
+            }
         }
 
         private List<LineTiming> GetLineTimingPerStation(int curStation)

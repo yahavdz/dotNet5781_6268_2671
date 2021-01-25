@@ -20,11 +20,7 @@ namespace BL
         static SystemClock() { }// static ctor to ensure instance init is done just before first usage
         private SystemClock()
         {
-            stopWatch = new Stopwatch();
-            timerworker = new BackgroundWorker();
-            timerworker.DoWork += Worker_DoWork;
-            timerworker.ProgressChanged += Worker_ProgressChanged;
-            timerworker.WorkerReportsProgress = true;
+            stopWatch = new Stopwatch();            
         }
         public static SystemClock Instance { get => instance; }// The public Instance property to use
         #endregion
@@ -39,14 +35,17 @@ namespace BL
 
         public void Start(TimeSpan _startTime, int _rate)
         {
-            if (!isTimerRun)
-            {
-                startTime = _startTime;
-                rate = _rate;
-                stopWatch.Restart();
-                isTimerRun = true;
-                timerworker.RunWorkerAsync();
-            }
+            startTime = _startTime;
+            rate = _rate;
+            stopWatch.Restart();
+            isTimerRun = true;
+            timerworker = new BackgroundWorker();
+            timerworker.DoWork += Worker_DoWork;
+            timerworker.ProgressChanged += Worker_ProgressChanged;
+            timerworker.WorkerSupportsCancellation = true;
+            timerworker.WorkerReportsProgress = true;
+
+            timerworker.RunWorkerAsync();
         }
 
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -58,19 +57,23 @@ namespace BL
 
         public void Stop()
         {
-            if (isTimerRun)
-            {
-                stopWatch.Stop();
-                isTimerRun = false;
-            }
+            stopWatch.Stop();
+            timerworker.CancelAsync();
+            isTimerRun = false;
         }
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            while (isTimerRun)
-            {
-                timerworker.ReportProgress(1);
-                Thread.Sleep(1000/rate);
+            BackgroundWorker worker = sender as BackgroundWorker;
+            while (true)
+            {                                
+                if (worker.CancellationPending)
+                {
+                    e.Cancel = true;
+                    break;
+                }
+                worker.ReportProgress(1);
+                Thread.Sleep(1000 / rate);
             }
         }
     }
