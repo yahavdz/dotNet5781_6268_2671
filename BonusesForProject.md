@@ -1,7 +1,7 @@
 # dotNet5781_6268_4032
 
 # Bonuses:
-Management of information on the maintenance of vehicles (buses)
+Management of information on the maintenance of vehicles (buses)<br>
 Template 2 of the layer model
 observer design pattern( Through delagate for information transfer)
 wpf- dragDrop(when add statin to  line)
